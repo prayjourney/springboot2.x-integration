@@ -1,5 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiro.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @ResponseBody
     @RequestMapping("hello")
-    public String hello(){
-        return "hello";
+    public String hello() throws JsonProcessingException {
+        return JSONUtil.getJsonFromObject("hello");
     }
 }
