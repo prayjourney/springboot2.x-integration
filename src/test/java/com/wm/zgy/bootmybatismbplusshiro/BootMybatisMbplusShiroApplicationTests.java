@@ -141,4 +141,11 @@ public class BootMybatisMbplusShiroApplicationTests {
         userMapper.deleteById(1262042182942023681L);
     }
 
+    // 删除操作, 通过map的方式
+    @Test
+    public void testDeleteByMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", "Kings !");
+        userMapper.deleteByMap(map);
+    }
 }
