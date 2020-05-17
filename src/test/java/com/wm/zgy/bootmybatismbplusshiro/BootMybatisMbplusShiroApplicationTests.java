@@ -171,4 +171,14 @@ public class BootMybatisMbplusShiroApplicationTests {
         List<User> users = userMapper.selectList(wrapper);
         users.forEach(System.out::println);
     }
+
+    // 模糊查询
+    @Test
+    public void testWrapperQueryLike(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 和map类似， 支持链式编程，name不空， age大于18， version为1
+        wrapper.like("name","张");
+        List<User> users = userMapper.selectList(wrapper);
+        users.forEach(System.out::println);
+    }
 }
