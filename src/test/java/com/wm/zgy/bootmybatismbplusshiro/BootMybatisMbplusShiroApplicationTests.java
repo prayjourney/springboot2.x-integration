@@ -49,6 +49,7 @@ public class BootMybatisMbplusShiroApplicationTests {
         User user = new User();
         user.setId(2L);
         user.setName("张自忠");
+        user.setEmail("helloworld@gmail.com");
         int i = userMapper.updateById(user);
         System.out.println(i);
     }
