@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -109,6 +110,17 @@ public class BootMybatisMbplusShiroApplicationTests {
     @Test
     public void testBatchSelect() {
         List<User> users = userMapper.selectBatchIds(Arrays.asList(1L, 2L, 3L));
+        users.forEach(System.out::println);
+    }
+
+    // 条件查询，封装在map里面，我们不用去拼接动态SQL了
+    @Test
+    public void testContionSelect(){
+        HashMap<String, Object> map = new HashMap();
+        map.put("name", "张三");
+        map.put("age", 3);
+
+        List<User> users = userMapper.selectByMap(map);
         users.forEach(System.out::println);
     }
 
