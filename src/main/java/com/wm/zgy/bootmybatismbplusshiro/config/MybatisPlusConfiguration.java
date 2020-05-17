@@ -1,5 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiro.config;
 
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -34,5 +36,11 @@ public class MybatisPlusConfiguration {
         // 开启 count 的 join 优化,只针对部分 left join
         // paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
+    }
+
+    // 配置逻辑删除组件
+    @Bean
+    public ISqlInjector sqlInjector(){
+        return new LogicSqlInjector();
     }
 }

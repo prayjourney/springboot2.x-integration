@@ -33,8 +33,8 @@ public class BootMybatisMbplusShiroApplicationTests {
     @Test
     public void testSelect() {
         System.out.println(("----- selectAll method test ------"));
-        List<User> userList = userMapper.selectList(null);
-        Assert.assertEquals(5, userList.size());
+        List<User> userList = userMapper.selectBatchIds(Arrays.asList(1262043073220792322L, 1262043073220792322L));
+        Assert.assertEquals(0, userList.size());
         userList.forEach(System.out::println);
     }
 
@@ -147,5 +147,17 @@ public class BootMybatisMbplusShiroApplicationTests {
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", "Kings !");
         userMapper.deleteByMap(map);
+    }
+
+    // 逻辑删除
+    @Test
+    public void testDeleteById(){
+        userMapper.deleteById(1262043073220792322L);
+    }
+
+    // 逻辑删除, 批量
+    @Test
+    public void testDeleteByBatchIds(){
+        userMapper.deleteBatchIds(Arrays.asList(1262043073220792322L,1262041503661940738L));
     }
 }
