@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -103,6 +103,13 @@ public class BootMybatisMbplusShiroApplicationTests {
         userMapper.updateById(user2);
 
         userMapper.updateById(user); //如果没有乐观锁，就会插队成功，就会覆盖，名字变成李四111.实际上没有被覆盖，修改后还是李四111
+    }
+
+    // 批量查询
+    @Test
+    public void testBatchSelect() {
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1L, 2L, 3L));
+        users.forEach(System.out::println);
     }
 
 }
