@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiro;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wm.zgy.bootmybatismbplusshiro.mapper.UserMapper;
 import com.wm.zgy.bootmybatismbplusshiro.pojo.User;
 import org.junit.Assert;
@@ -124,4 +125,12 @@ public class BootMybatisMbplusShiroApplicationTests {
         users.forEach(System.out::println);
     }
 
+    // 分页查询
+    @Test
+    public void testPageSelect(){
+        // param1:当前页，param2:页面大小
+        Page<User> page = new Page<>(1, 5);
+        userMapper.selectPage(page,null);
+        page.getRecords().forEach(System.out::println);
+    }
 }
