@@ -55,6 +55,6 @@
 		</root>
 	</springProfile>
 
-	<logger name="boot-mybatis-mbplus-shiro" level="INFO"/>
+	<logger name="boot-mybatis-mbplus-shiro" level="DEBUG"/>
 	<logger name="sql" level="DEBUG"/>
 </configuration>
