@@ -40,15 +40,15 @@ public class BootMybatisMbplusShiroApplicationTests {
         User user = new User();
         user.setAge(3);
         user.setEmail("2246890834578@qq.com");
-        user.setName("张三");
+        user.setName("Kings !");
         userMapper.insert(user);
     }
 
     @Test
     public void testUpdate() {
         User user = new User();
-        user.setId(2L);
-        user.setName("张自忠");
+        user.setId(3L);
+        user.setName("zhanglingfu!");
         user.setEmail("helloworld@gmail.com");
         int i = userMapper.updateById(user);
         System.out.println(i);
