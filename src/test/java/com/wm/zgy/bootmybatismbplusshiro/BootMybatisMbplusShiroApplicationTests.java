@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.CustomEditorConfigurer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -33,5 +34,14 @@ public class BootMybatisMbplusShiroApplicationTests {
         List<User> userList = userMapper.selectList(null);
         Assert.assertEquals(5, userList.size());
         userList.forEach(System.out::println);
+    }
+
+    @Test
+    public void testInsert(){
+        User user= new User();
+        user.setAge(3);
+        user.setEmail("2246890834578@qq.com");
+        user.setName("张三");
+        userMapper.insert(user);
     }
 }
