@@ -53,4 +53,17 @@ public class BootMybatisMbplusShiroApplicationTests {
         int i = userMapper.updateById(user);
         System.out.println(i);
     }
+
+    // 成功
+    @Test
+    public void testOptimsticLockOkay(){
+        // 查询用户信息
+        User user = userMapper.selectById(1L);
+        // 修改用户信息
+        user.setName("李四");
+        user.setEmail("mg123@qq.com");
+        // 执行更新操作
+        userMapper.updateById(user);
+    }
+
 }
