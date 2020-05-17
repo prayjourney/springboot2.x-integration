@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiro;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wm.zgy.bootmybatismbplusshiro.mapper.UserMapper;
 import com.wm.zgy.bootmybatismbplusshiro.pojo.User;
@@ -159,5 +160,15 @@ public class BootMybatisMbplusShiroApplicationTests {
     @Test
     public void testDeleteByBatchIds(){
         userMapper.deleteBatchIds(Arrays.asList(1262043073220792322L,1262041503661940738L));
+    }
+
+    // Wrapper， 用于比较复杂的SQL
+    @Test
+    public void testWrapperQuery(){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 和map类似， 支持链式编程，name不空， age大于18， version为1
+        wrapper.isNotNull("name").ge("age",18).eq("version", 1);
+        List<User> users = userMapper.selectList(wrapper);
+        users.forEach(System.out::println);
     }
 }
