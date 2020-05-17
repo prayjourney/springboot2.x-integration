@@ -134,4 +134,11 @@ public class BootMybatisMbplusShiroApplicationTests {
         page.getRecords().forEach(System.out::println);
         System.out.println("一共有：" + page.getTotal() + " 条。");
     }
+
+    // 删除操作
+    @Test
+    public void testDelete() {
+        userMapper.deleteById(1262042182942023681L);
+    }
+
 }
