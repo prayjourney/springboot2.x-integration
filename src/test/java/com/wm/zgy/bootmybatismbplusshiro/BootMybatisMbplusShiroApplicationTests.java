@@ -116,7 +116,7 @@ public class BootMybatisMbplusShiroApplicationTests {
 
     // 条件查询，封装在map里面，我们不用去拼接动态SQL了
     @Test
-    public void testContionSelect(){
+    public void testContionSelect() {
         HashMap<String, Object> map = new HashMap();
         map.put("name", "张三");
         map.put("age", 3);
@@ -127,10 +127,11 @@ public class BootMybatisMbplusShiroApplicationTests {
 
     // 分页查询
     @Test
-    public void testPageSelect(){
+    public void testPageSelect() {
         // param1:当前页，param2:页面大小
         Page<User> page = new Page<>(1, 5);
-        userMapper.selectPage(page,null);
+        userMapper.selectPage(page, null);
         page.getRecords().forEach(System.out::println);
+        System.out.println("一共有：" + page.getTotal() + " 条。");
     }
 }
