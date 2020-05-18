@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -42,5 +44,16 @@ public class MybatisPlusConfiguration {
     @Bean
     public ISqlInjector sqlInjector(){
         return new LogicSqlInjector();
+    }
+
+    //SQL执行效率插件
+    @Bean
+    @Profile(value = {"dev","test"})
+    public PerformanceInterceptor performanceInterceptor(){
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setFormat(true);
+        performanceInterceptor.setMaxTime(1);  // 1ms设置sql执行的最大时间，超过就不去执行
+        return  performanceInterceptor;
+
     }
 }
