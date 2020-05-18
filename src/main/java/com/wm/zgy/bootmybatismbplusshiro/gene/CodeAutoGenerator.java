@@ -27,7 +27,7 @@ public class CodeAutoGenerator {
         // 2.配置策略
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/src/main/java/generator");
+        gc.setOutputDir(projectPath + "/src/main/java/");
         gc.setAuthor("zgy");
         gc.setOpen(false);
         gc.setFileOverride(false);  //是否覆盖
@@ -48,7 +48,7 @@ public class CodeAutoGenerator {
         // 4.包的设置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName("myschool");
-        pc.setParent("generator.com.zgy.learn");
+        pc.setParent("org.zgy");
         pc.setEntity("pojo");
         pc.setService("service");
         pc.setController("controller");
