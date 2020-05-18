@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -79,10 +81,10 @@ public class FileOptController {
     @RequestMapping("/download2")
     public void fileDownload2(HttpServletResponse response) throws IOException {
         // 数据
-        HashMap<String, Object>  hm =new HashMap<>();
-        hm.put("name","张三");
-        hm.put("age",22);
-        hm.put("gender","男");
+        HashMap<String, Object> hm = new HashMap<>();
+        hm.put("name", "张三");
+        hm.put("age", 22);
+        hm.put("gender", "男");
 
         // 设置强制下载不打开
         response.setContentType("application/force-download");
@@ -120,10 +122,10 @@ public class FileOptController {
     @RequestMapping("/download3")
     public void fileDownload3(HttpServletResponse response) throws IOException {
         // 数据
-        HashMap<String, Object>  hm =new HashMap<>();
-        hm.put("name","张三");
-        hm.put("age",22);
-        hm.put("gender","男");
+        HashMap<String, Object> hm = new HashMap<>();
+        hm.put("name", "张三");
+        hm.put("age", 22);
+        hm.put("gender", "男");
 
         // 设置强制下载不打开
         response.setContentType("application/force-download");
@@ -143,6 +145,38 @@ public class FileOptController {
         os.write(buffer);
 
         System.out.println(fileName + "下载成功！！！");
+    }
+
+    // 原文链接：https://blog.csdn.net/chaos_le/java/article/details/81871472
+    @ResponseBody
+    @RequestMapping("/download4")
+    public void downloadTXT(HttpServletResponse response) {
+
+        String fileName = "fileName" + ".txt";
+        String content = "写入txt的内容";
+        response.setContentType("text/plain");
+
+        try {
+            response.setHeader("Content-Disposition", "attachment; filename="
+                    + URLEncoder.encode(fileName, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        ServletOutputStream outputStream = null;
+        BufferedOutputStream buffer = null;
+
+        try {
+            outputStream = response.getOutputStream();
+            buffer = new BufferedOutputStream(outputStream);
+            buffer.write(content.getBytes("UTF-8"));
+            buffer.flush();
+            buffer.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
