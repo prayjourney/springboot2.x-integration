@@ -128,7 +128,7 @@ public class FileOptController {
         // 设置强制下载不打开
         response.setContentType("application/force-download");
         // 文件名
-        String fileName = System.currentTimeMillis() + "xxx.txt";
+        String fileName = System.currentTimeMillis() + "-xxx.txt";
         // 设置文件名
         response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
 
