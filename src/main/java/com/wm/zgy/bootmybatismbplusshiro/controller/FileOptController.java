@@ -74,7 +74,7 @@ public class FileOptController {
     }
 
 
-    //文件下载
+    //文件下载， 这个下载下来是一个空的文件
     @ResponseBody
     @RequestMapping("/download2")
     public void fileDownload2(HttpServletResponse response) throws IOException {
