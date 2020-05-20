@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wm.zgy</groupId>
-    <artifactId>boot-mybatis-mbplus-shiro</artifactId>
+    <artifactId>boot-mybatis-mbplus-shiro-es</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-mybatis-mbplus-shiro</name>
+    <name>boot-mybatis-mbplus-shiro-es</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -109,6 +109,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
+        </dependency>
+
+        <!-- elastic search -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
     </dependencies>
 
