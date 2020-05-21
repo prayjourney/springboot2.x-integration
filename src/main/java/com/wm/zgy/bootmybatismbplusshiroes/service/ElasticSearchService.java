@@ -1,6 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiroes.service;
 
 import com.wm.zgy.bootmybatismbplusshiroes.pojo.Book;
+import com.wm.zgy.bootmybatismbplusshiroes.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroes.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -232,6 +233,18 @@ public class ElasticSearchService {
         // 批量处理
         for (int i = 0; i < ids.size(); i++) {
             request.add(new UpdateRequest(indexName, ids.get(i)).doc(contents.get(i), XContentType.JSON));
+        }
+        BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
+        System.out.println(bulkResponse.status().getStatus());
+        return bulkResponse.status().getStatus();
+    }
+    // 批量更新，这样会导致全量的更新，还是map的方式最好
+    public int batchUpdateMathTeacherDocument2(String indexName, List<String> ids, List<MathTeacher> contents) throws IOException {
+        BulkRequest request = new BulkRequest();
+        request.timeout(TimeValue.timeValueSeconds(10));
+        // 批量处理
+        for (int i = 0; i < ids.size(); i++) {
+            request.add(new UpdateRequest(indexName, ids.get(i)).doc(JSONUtil.getJsonFromObject(contents.get(i)), XContentType.JSON));
         }
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
         System.out.println(bulkResponse.status().getStatus());

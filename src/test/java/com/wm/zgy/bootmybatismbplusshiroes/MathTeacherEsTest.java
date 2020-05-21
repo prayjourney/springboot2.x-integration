@@ -43,7 +43,7 @@ public class MathTeacherEsTest {
 
     @Test
     public void testBatchUpdateMathTeacherDocument() throws IOException {
-        List<String> ids = Arrays.asList("100", "101","103");
+        List<String> ids = Arrays.asList("100", "101", "103");
         List<Map<String, Object>> maps = new ArrayList<>();
         HashMap<String, Object> mp1 = new HashMap<>();
         HashMap<String, Object> mp2 = new HashMap<>();
@@ -56,5 +56,19 @@ public class MathTeacherEsTest {
         maps.add(mp2);
         maps.add(mp3);
         esService.batchUpdateMathTeacherDocument("teachers", ids, maps);
+    }
+
+    // 批量更新，这样会导致全量的更新，还是map的方式最好，可以精确更新，其他的都不会变
+    @Test
+    public void testBatchUpdateMathTeacherDocument2() throws IOException {
+        List<String> ids = Arrays.asList("100", "101", "103");
+        List<MathTeacher> mts = new ArrayList<>();
+        MathTeacher lisi = MathTeacher.builder().id(100).name("lisi").hobby("抠脚").build();
+        MathTeacher kristina = MathTeacher.builder().id(101).name("kristina").hobby("参加海天盛筵").build();
+        MathTeacher wangwu = MathTeacher.builder().id(103).gender("女").build();
+        mts.add(lisi);
+        mts.add(kristina);
+        mts.add(wangwu);
+        esService.batchUpdateMathTeacherDocument2("teachers", ids, mts);
     }
 }
