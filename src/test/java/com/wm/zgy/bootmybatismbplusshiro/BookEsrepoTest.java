@@ -133,6 +133,7 @@ public class BookEsrepoTest {
 
     }
 
+    // todo: 批量更新
     /**
      * 批量更新，这个不行，有点问题，更新不到我们想要的字段上面去
      * @throws IOException
