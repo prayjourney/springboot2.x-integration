@@ -1,6 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiro;
 
 import com.wm.zgy.bootmybatismbplusshiro.service.ElasticSearchService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,19 @@ public class BookEsrepoTest {
 
     @Test
     public void testCreateIndex() throws IOException {
-        searchService.createIndex("ppp");
+        Assert.assertEquals(true,searchService.createIndex("ppp"));
+
+    }
+
+    @Test
+    public void testGetIndex() throws IOException {
+        Assert.assertEquals(true,searchService.getIndex("hello"));
+
+    }
+
+    @Test
+    public void testDeleteIndex() throws IOException {
+        Assert.assertEquals(true,searchService.deleteIndex("ppp"));
 
     }
 
