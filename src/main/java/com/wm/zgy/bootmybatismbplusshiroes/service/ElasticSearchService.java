@@ -70,7 +70,7 @@ public class ElasticSearchService {
         return response.isAcknowledged();
     }
 
-    // 创建一个文档
+    // 创建book一个文档
     public int addBookDocument(Book book, String indexName, String id, Integer timeOut) throws IOException {
         // 创建请求
         IndexRequest request = new IndexRequest(indexName);
@@ -92,7 +92,7 @@ public class ElasticSearchService {
     }
 
     // 测试文档是否存在
-    public boolean existsBookDocument(String indexName, String id) throws IOException {
+    public boolean existsDocument(String indexName, String id) throws IOException {
         GetRequest request = new GetRequest(indexName, id);
         // 不获取上下文 _source
         request.fetchSourceContext(new FetchSourceContext(false));
@@ -103,14 +103,14 @@ public class ElasticSearchService {
     }
 
     // 简单获取文档内容
-    public String getBookDocument(String indexName, String id) throws IOException {
+    public String getDocument(String indexName, String id) throws IOException {
         GetRequest request = new GetRequest(indexName, id);
         GetResponse response = client.get(request, RequestOptions.DEFAULT);
         return response.getSourceAsString();
     }
 
     // 删除一个文档
-    public int deleteBookDocument(String indexName, String id) throws IOException {
+    public int deleteDocument(String indexName, String id) throws IOException {
         DeleteRequest request = new DeleteRequest(indexName, id);
         DeleteResponse response = client.delete(request, RequestOptions.DEFAULT);
         return response.status().getStatus();
@@ -139,7 +139,7 @@ public class ElasticSearchService {
     }
 
     // 批量插入文档
-    public <T> int batchAddBookDocument(List<T> as, String indexName, Integer curStart) throws IOException {
+    public <T> int batchAddDocument(List<T> as, String indexName, Integer curStart) throws IOException {
         BulkRequest request = new BulkRequest();
         request.timeout(TimeValue.timeValueSeconds(10));
         // 批量处理
@@ -156,7 +156,7 @@ public class ElasticSearchService {
     }
 
     // 批量删除
-    public <T> int batchDeleteBookDocument(String indexName, List<T> ids) throws IOException {
+    public <T> int batchDeleteDocument(String indexName, List<T> ids) throws IOException {
         BulkRequest request = new BulkRequest();
         request.timeout(TimeValue.timeValueSeconds(10));
         // 批量处理
@@ -179,7 +179,7 @@ public class ElasticSearchService {
      * @throws IOException
      */
     // 批量更新
-    public <T, N> int batchUpdateBookDocument(List<T> as, String indexName, List<N> ids) throws IOException {
+    public <T, N> int batchUpdateDocument(List<T> as, String indexName, List<N> ids) throws IOException {
         BulkRequest request = new BulkRequest();
         request.timeout(TimeValue.timeValueSeconds(10));
         // 批量处理
@@ -193,7 +193,7 @@ public class ElasticSearchService {
     }
 
     // 查询所有的BookDocument
-    public void searchAllBookDocument(String indexName) throws IOException {
+    public void searchAllDocument(String indexName) throws IOException {
         SearchRequest request = new SearchRequest(indexName);
         // 构造查询条件
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -209,8 +209,8 @@ public class ElasticSearchService {
         System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
     }
 
-    // 按照名字精确查询BookDocument
-    public void searchBookDocumentByName(String indexName, String bookName) throws IOException {
+    // 按照名字精确查询Document
+    public void searchDocumentByName(String indexName, String bookName) throws IOException {
         SearchRequest request = new SearchRequest(indexName);
         // 构造查询条件
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
