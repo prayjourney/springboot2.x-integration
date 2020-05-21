@@ -212,12 +212,12 @@ public class ElasticSearchService {
     }
 
     // 按照名字精确查询Document
-    public void searchDocumentByName(String indexName, String bookName) throws IOException {
+    public void searchDocumentByName(String indexName, String name) throws IOException {
         SearchRequest request = new SearchRequest(indexName);
         // 构造查询条件
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        // 查询条件
-        TermQueryBuilder queryBuilder = QueryBuilders.termQuery("name", bookName);
+        // 查询条件，这儿的name,是我们的文档的字段名称
+        TermQueryBuilder queryBuilder = QueryBuilders.termQuery("gender", name);
         searchSourceBuilder.query(queryBuilder);
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         request.source(searchSourceBuilder);

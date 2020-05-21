@@ -63,12 +63,22 @@ public class MathTeacherEsTest {
     public void testBatchUpdateMathTeacherDocument2() throws IOException {
         List<String> ids = Arrays.asList("100", "101", "103");
         List<MathTeacher> mts = new ArrayList<>();
-        MathTeacher lisi = MathTeacher.builder().id(100).name("lisi").hobby("抠脚").build();
+        MathTeacher lisi = MathTeacher.builder().id(100).name("lisi").hobby("抠脚").gender("boy").build();
         MathTeacher kristina = MathTeacher.builder().id(101).name("kristina").hobby("参加海天盛筵").build();
-        MathTeacher wangwu = MathTeacher.builder().id(103).gender("女").build();
+        MathTeacher wangwu = MathTeacher.builder().id(103).gender("女").hobby("movie").build();
         mts.add(lisi);
         mts.add(kristina);
         mts.add(wangwu);
         esService.batchUpdateMathTeacherDocument2("teachers", ids, mts);
+    }
+
+    @Test
+    public void searchBookDocument() throws IOException {
+        esService.searchAllDocument("teachers");
+    }
+
+    @Test
+    public void searchBookDocumentByName() throws IOException {
+        esService.searchDocumentByName("teachers","boy");
     }
 }
