@@ -113,16 +113,18 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- elastic search -->
+        <!-- elasticsearch 的starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
+        <!-- 需要在其中指定elasticsearch的版本，一般而言有可能和elasticsearch的starter中提供的不一样-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
         </dependency>
+        <!--elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致-->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
