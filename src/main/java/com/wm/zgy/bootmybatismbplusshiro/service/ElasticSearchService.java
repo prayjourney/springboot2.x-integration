@@ -151,4 +151,17 @@ public class ElasticSearchService {
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
     }
+
+    // 批量删除
+    public <T> int batchDeleteBookDocument(String indexName, List<T> ids) throws IOException {
+        BulkRequest request = new BulkRequest();
+        request.timeout(TimeValue.timeValueSeconds(10));
+        // 批量处理
+        for (int i = 0; i < ids.size(); i++) {
+            request.add(new DeleteRequest(indexName).id(String.valueOf(ids.get(i))));
+        }
+        BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
+        System.out.println(bulkResponse.status().getStatus());
+        return bulkResponse.status().getStatus();
+    }
 }

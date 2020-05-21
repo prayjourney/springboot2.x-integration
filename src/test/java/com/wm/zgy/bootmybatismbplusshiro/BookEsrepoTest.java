@@ -11,9 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author renjiaxin
@@ -83,7 +81,7 @@ public class BookEsrepoTest {
     @Test
     public void testUpdateBookDocument() throws IOException {
         // Book book = Book.builder().id(100).author("河东智叟许仲林").name("封神演义").overview("封神演义讲述了武王伐纣的故事").build();
-        Book book = Book.builder().issueDate(LocalDate.of(1522,12,9)).build();
+        Book book = Book.builder().issueDate(LocalDate.of(1522, 12, 9)).build();
         System.out.println(esService.updateBookDocument(book, "books", "3", 1));
 
     }
@@ -94,12 +92,12 @@ public class BookEsrepoTest {
 //        mp.put("name","封神榜");
 //        mp.put("author","河东智叟许仲林");
 //        mp.put("overview","武王伐纣啊");
-        mp.put("type","==");
+        mp.put("type", "==");
         System.out.println(esService.updateBookDocumentByMap(mp, "books", "3", 1));
     }
 
     @Test
-    public void testBul() throws IOException {
+    public void testBatchAddBookDocument() throws IOException {
         ArrayList as = new ArrayList();
         as.add(Book.builder().name("红楼梦").author("曹雪芹").overview("贾宝玉和林黛玉的爱情故事").type("古典爱情").build());
         as.add(Book.builder().name("三国演义").author("罗贯中").overview("东汉末年天下三分").type("历史战争").build());
@@ -110,6 +108,13 @@ public class BookEsrepoTest {
         as.add(Book.builder().name("动物庄园").author("奥威尔").overview("乌托邦讽刺小说").type("反乌托邦").build());
 
         System.out.println(esService.batchAddBookDocument(as, "books", 200));
+
+    }
+
+    @Test
+    public void testBatchDeleteBookDocument() throws IOException {
+        List<String> ids = Arrays.asList("1", "2");
+        System.out.println(esService.batchDeleteBookDocument("books", ids));
 
     }
 }
