@@ -69,4 +69,10 @@ public class BookEsrepoTest {
         System.out.println(esService.getBookDocument("books", "4"));
 
     }
+
+    @Test
+    public void testDeleteBookDocument() throws IOException {
+        System.out.println(esService.getBookDocument("books", "2"));
+
+    }
 }
