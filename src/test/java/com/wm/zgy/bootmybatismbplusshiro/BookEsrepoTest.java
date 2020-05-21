@@ -72,7 +72,22 @@ public class BookEsrepoTest {
 
     @Test
     public void testDeleteBookDocument() throws IOException {
-        System.out.println(esService.getBookDocument("books", "2"));
+        System.out.println(esService.deleteBookDocument("books", "2"));
 
     }
+
+    // 会把其他的部分冲掉，覆盖其他部分，是一个全量的更新，而非增量更新
+    @Test
+    public void testUpdateBookDocument() throws IOException {
+        // Book book = Book.builder().id(100).author("河东智叟许仲林").name("封神演义").overview("封神演义讲述了武王伐纣的故事").build();
+        Book book = Book.builder().issueDate(LocalDate.of(1522,12,9)).build();
+        System.out.println(esService.updateBookDocument(book, "books", "3", 1));
+
+    }
+
+//    @Test
+//    public void testUpdateBookDocumentByMap() throws IOException {
+//        System.out.println(esService.updateBookDocumentByMap("books", "2"));
+//
+//    }
 }

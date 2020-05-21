@@ -3,11 +3,15 @@ package com.wm.zgy.bootmybatismbplusshiro.service;
 import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -21,6 +25,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @Author renjiaxin
@@ -93,5 +98,33 @@ public class ElasticSearchService {
         GetRequest request = new GetRequest(indexName, id);
         GetResponse response = client.get(request, RequestOptions.DEFAULT);
         return response.getSourceAsString();
+    }
+
+    // 删除一个文档
+    public int deleteBookDocument(String indexName, String id) throws IOException {
+        DeleteRequest request = new DeleteRequest(indexName, id);
+        DeleteResponse response = client.delete(request, RequestOptions.DEFAULT);
+        return response.status().getStatus();
+    }
+
+    // 修改一个文档
+    // 会把其他的部分冲掉，覆盖其他部分，是一个全量的更新，而非增量更新
+    public int updateBookDocument(Book book, String indexName, String id, Integer timeOut) throws IOException {
+        UpdateRequest request = new UpdateRequest(indexName, id);
+        request.timeout(TimeValue.timeValueSeconds(timeOut));
+        request.doc(JSONUtil.getJsonFromObject(book), XContentType.JSON);
+
+        UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
+        return response.status().getStatus();
+    }
+
+    // 修改一个文档, 使用map更新
+    public int updateBookDocumentByMap(Map<String, Object> map, String indexName, String id, Integer timeOut) throws IOException {
+        UpdateRequest request = new UpdateRequest(indexName, id);
+        request.timeout(TimeValue.timeValueSeconds(timeOut));
+        request.doc(map, XContentType.JSON);
+
+        UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
+        return response.status().getStatus();
     }
 }
