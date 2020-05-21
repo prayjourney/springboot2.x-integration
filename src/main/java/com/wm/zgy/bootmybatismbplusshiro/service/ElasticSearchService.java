@@ -1,12 +1,18 @@
 package com.wm.zgy.bootmybatismbplusshiro.service;
 
+import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
+import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
+import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -45,5 +51,26 @@ public class ElasticSearchService {
         DeleteIndexRequest request = new DeleteIndexRequest(indexId);
         AcknowledgedResponse response = client.indices().delete(request, RequestOptions.DEFAULT);
         return response.isAcknowledged();
+    }
+
+    // 创建一个文档
+    public int addBookDocument(Book book, String indexName, String id, Integer timeOut) throws IOException {
+        // 创建请求
+        IndexRequest request = new IndexRequest(indexName);
+
+        // 规则 put /hello/_doc/1
+        request.id(id);
+        request.timeout(TimeValue.timeValueSeconds(timeOut));
+
+        // 将数据放入到请求之中
+        String bookJsonStr = JSONUtil.getJsonFromObject(book);
+        System.out.println(bookJsonStr);
+        request.source(bookJsonStr, XContentType.JSON);
+
+        // 向客户端发送请求，获取响应的结果
+        IndexResponse response = client.index(request, RequestOptions.DEFAULT);
+        System.out.println(response.status());
+        return response.status().getStatus();
+
     }
 }
