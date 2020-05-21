@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "book", type = "mybook")
+//@Document(indexName = "book", type = "mybook")
 public class Book {
     // 书籍id
     private int id;
