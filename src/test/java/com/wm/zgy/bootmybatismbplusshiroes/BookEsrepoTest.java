@@ -65,19 +65,19 @@ public class BookEsrepoTest {
 
     @Test
     public void testExistsBookDocument() throws IOException {
-        System.out.println(esService.existsBookDocument("books", "1"));
+        System.out.println(esService.existsDocument("books", "1"));
 
     }
 
     @Test
     public void testGetBookDocument() throws IOException {
-        System.out.println(esService.getBookDocument("books", "4"));
+        System.out.println(esService.getDocument("books", "4"));
 
     }
 
     @Test
     public void testDeleteBookDocument() throws IOException {
-        System.out.println(esService.deleteBookDocument("books", "2"));
+        System.out.println(esService.deleteDocument("books", "2"));
 
     }
 
@@ -111,7 +111,7 @@ public class BookEsrepoTest {
         as.add(Book.builder().name("百年孤独").author("马尔克斯").overview("魔幻现实主义").type("拉美 魔幻现实").build());
         as.add(Book.builder().name("动物庄园").author("奥威尔").overview("乌托邦讽刺小说").type("反乌托邦").build());
 
-        System.out.println(esService.batchAddBookDocument(as, "books", 200));
+        System.out.println(esService.batchAddDocument(as, "books", 200));
 
     }
 
@@ -128,7 +128,7 @@ public class BookEsrepoTest {
         // as.add(Book.builder().name("动物庄园").id(1700).overview("***").type("反乌托邦").extras("一度被列为禁书").build());
         as.add(Book.builder().name("动物庄园").build());
 
-        System.out.println(esService.batchAddBookDocument(as, "books", 200));
+        System.out.println(esService.batchAddDocument(as, "books", 200));
 
     }
 
@@ -144,14 +144,14 @@ public class BookEsrepoTest {
         as.add(Book.builder().name("678").author("678").overview("678").type("678").build());
         as.add(Book.builder().name("789").author("789").overview("789").type("789").build());
 
-        System.out.println(esService.batchAddBookDocument(as, "books", 1000));
+        System.out.println(esService.batchAddDocument(as, "books", 1000));
 
     }
 
     @Test
     public void testBatchDeleteBookDocument() throws IOException {
         List<String> ids = Arrays.asList("1", "2");
-        System.out.println(esService.batchDeleteBookDocument("books", ids));
+        System.out.println(esService.batchDeleteDocument("books", ids));
 
     }
 
@@ -181,17 +181,17 @@ public class BookEsrepoTest {
         list.add(mp1);
         list.add(mp2);
         list.add(mp3);
-        System.out.println(esService.batchUpdateBookDocument(list, "books", ids));
+        System.out.println(esService.batchUpdateDocument(list, "books", ids));
 
     }
 
     @Test
     public void searchBookDocument() throws IOException {
-        esService.searchAllBookDocument("books");
+        esService.searchAllDocument("books");
     }
 
     @Test
     public void searchBookDocumentByName() throws IOException {
-        esService.searchBookDocumentByName("books","三国演义");
+        esService.searchDocumentByName("books","三国演义");
     }
 }
