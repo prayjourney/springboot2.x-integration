@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.utils;
+package com.wm.zgy.bootmybatismbplusshiroes.utils;
 
 /**
  * @Author renjiaxin

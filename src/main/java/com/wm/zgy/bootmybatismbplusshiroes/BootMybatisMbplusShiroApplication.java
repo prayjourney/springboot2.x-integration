@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro;
+package com.wm.zgy.bootmybatismbplusshiroes;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

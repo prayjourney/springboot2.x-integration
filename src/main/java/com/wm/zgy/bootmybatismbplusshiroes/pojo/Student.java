@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.pojo;
+package com.wm.zgy.bootmybatismbplusshiroes.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

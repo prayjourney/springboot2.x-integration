@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.utils;
+package com.wm.zgy.bootmybatismbplusshiroes.utils;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.FieldFill;

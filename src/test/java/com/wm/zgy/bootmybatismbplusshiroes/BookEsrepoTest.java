@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiro;
+package com.wm.zgy.bootmybatismbplusshiroes;
 
-import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
-import com.wm.zgy.bootmybatismbplusshiro.service.ElasticSearchService;
+import com.wm.zgy.bootmybatismbplusshiroes.pojo.Book;
+import com.wm.zgy.bootmybatismbplusshiroes.service.ElasticSearchService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

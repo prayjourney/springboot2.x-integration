@@ -1,10 +1,9 @@
-package com.wm.zgy.bootmybatismbplusshiro.pojo;
+package com.wm.zgy.bootmybatismbplusshiroes.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDate;
 

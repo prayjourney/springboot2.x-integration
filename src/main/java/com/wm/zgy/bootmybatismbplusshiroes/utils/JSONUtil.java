@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.utils;
+package com.wm.zgy.bootmybatismbplusshiroes.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

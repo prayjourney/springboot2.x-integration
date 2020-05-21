@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiro.service;
+package com.wm.zgy.bootmybatismbplusshiroes.service;
 
-import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
-import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
+import com.wm.zgy.bootmybatismbplusshiroes.pojo.Book;
+import com.wm.zgy.bootmybatismbplusshiroes.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;

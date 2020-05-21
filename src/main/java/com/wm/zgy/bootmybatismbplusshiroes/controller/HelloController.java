@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiro.controller;
+package com.wm.zgy.bootmybatismbplusshiroes.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
+import com.wm.zgy.bootmybatismbplusshiroes.utils.JSONUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;

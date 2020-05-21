@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.config;
+package com.wm.zgy.bootmybatismbplusshiroes.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;

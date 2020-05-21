@@ -1,9 +1,9 @@
-package com.wm.zgy.bootmybatismbplusshiro;
+package com.wm.zgy.bootmybatismbplusshiroes;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wm.zgy.bootmybatismbplusshiro.mapper.UserMapper;
-import com.wm.zgy.bootmybatismbplusshiro.pojo.User;
+import com.wm.zgy.bootmybatismbplusshiroes.mapper.UserMapper;
+import com.wm.zgy.bootmybatismbplusshiroes.pojo.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

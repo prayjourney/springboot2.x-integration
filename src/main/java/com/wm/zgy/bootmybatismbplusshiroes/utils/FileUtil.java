@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiro.utils;
+package com.wm.zgy.bootmybatismbplusshiroes.utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
