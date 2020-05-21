@@ -11,6 +11,8 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
@@ -21,6 +23,10 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.MatchAllQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -184,5 +190,36 @@ public class ElasticSearchService {
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
+    }
+
+    // 查询所有的BookDocument
+    public void searchAllBookDocument(String indexName) throws IOException {
+        SearchRequest request = new SearchRequest(indexName);
+        // 构造查询条件
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 查询条件
+        // QueryBuilders来构造条件查询
+        // QueryBuilders.termQuery()实现精确查询
+        // TermQueryBuilder queryBuilder = QueryBuilders.termQuery();
+        MatchAllQueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        searchSourceBuilder.query(queryBuilder);
+        searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
+        request.source(searchSourceBuilder);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
+    }
+
+    // 按照名字精确查询BookDocument
+    public void searchBookDocumentByName(String indexName, String bookName) throws IOException {
+        SearchRequest request = new SearchRequest(indexName);
+        // 构造查询条件
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 查询条件
+        TermQueryBuilder queryBuilder = QueryBuilders.termQuery("name", bookName);
+        searchSourceBuilder.query(queryBuilder);
+        searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
+        request.source(searchSourceBuilder);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
     }
 }

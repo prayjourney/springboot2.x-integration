@@ -184,4 +184,14 @@ public class BookEsrepoTest {
         System.out.println(esService.batchUpdateBookDocument(list, "books", ids));
 
     }
+
+    @Test
+    public void searchBookDocument() throws IOException {
+        esService.searchAllBookDocument("books");
+    }
+
+    @Test
+    public void searchBookDocumentByName() throws IOException {
+        esService.searchBookDocumentByName("books","三国演义");
+    }
 }
