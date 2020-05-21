@@ -1,8 +1,12 @@
 package com.wm.zgy.bootmybatismbplusshiro.service;
 
+import com.alibaba.druid.support.json.JSONUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -25,6 +29,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -127,5 +133,22 @@ public class ElasticSearchService {
 
         UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
         return response.status().getStatus();
+    }
+
+    // 批量插入文档
+    public <T> int batchAddBookDocument(List<T> as, String indexName, Integer curStart) throws IOException {
+        BulkRequest request = new BulkRequest();
+        request.timeout(TimeValue.timeValueSeconds(10));
+        // 批量处理
+        for (int i = 0; i < as.size(); i++) {
+            request.add(
+                    new IndexRequest(indexName)
+                            .id("" + (curStart + i))
+                            .source(JSONUtil.getJsonFromObject(as.get(i)), XContentType.JSON)
+            );
+        }
+        BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
+        System.out.println(bulkResponse.status().getStatus());
+        return bulkResponse.status().getStatus();
     }
 }
