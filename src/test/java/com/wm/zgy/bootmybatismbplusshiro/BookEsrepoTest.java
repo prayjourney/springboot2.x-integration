@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author renjiaxin
@@ -85,9 +87,13 @@ public class BookEsrepoTest {
 
     }
 
-//    @Test
-//    public void testUpdateBookDocumentByMap() throws IOException {
-//        System.out.println(esService.updateBookDocumentByMap("books", "2"));
-//
-//    }
+    @Test
+    public void testUpdateBookDocumentByMap() throws IOException {
+        Map<String, Object> mp = new HashMap<>();
+//        mp.put("name","封神榜");
+//        mp.put("author","河东智叟许仲林");
+//        mp.put("overview","武王伐纣啊");
+        mp.put("type","==");
+        System.out.println(esService.updateBookDocumentByMap(mp, "books", "3", 1));
+    }
 }

@@ -119,6 +119,7 @@ public class ElasticSearchService {
     }
 
     // 修改一个文档, 使用map更新
+    // 不会吧其他的部分充掉，精确的更新
     public int updateBookDocumentByMap(Map<String, Object> map, String indexName, String id, Integer timeOut) throws IOException {
         UpdateRequest request = new UpdateRequest(indexName, id);
         request.timeout(TimeValue.timeValueSeconds(timeOut));
