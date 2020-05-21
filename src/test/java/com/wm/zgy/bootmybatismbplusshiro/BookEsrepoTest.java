@@ -51,10 +51,22 @@ public class BookEsrepoTest {
                 "在八戒、沙僧协助下，一路斩妖除魔，到西天成了“正果”";
         LocalDate date = LocalDate.of(1552, 2, 5);
         String extras = " xiyouji -test";
-        Book book =Book.builder().id(1).name("西游记").author("吴承恩").price(27).press("长江文艺出版社").
+        Book book = Book.builder().id(1).name("西游记").author("吴承恩").price(27).press("长江文艺出版社").
                 overview(overView).issueDate(date).type("古典神魔").extras(extras).build();
         System.out.println(book.toString());
         esService.addBookDocument(book, "books", "4", 1);
+
+    }
+
+    @Test
+    public void testExistsBookDocument() throws IOException {
+        System.out.println(esService.existsBookDocument("books", "1"));
+
+    }
+
+    @Test
+    public void testGetBookDocument() throws IOException {
+        System.out.println(esService.getBookDocument("books", "4"));
 
     }
 }
