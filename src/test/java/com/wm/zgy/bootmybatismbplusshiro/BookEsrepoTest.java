@@ -80,7 +80,7 @@ public class BookEsrepoTest {
     // 会把其他的部分冲掉，覆盖其他部分，是一个全量的更新，而非增量更新
     @Test
     public void testUpdateBookDocument() throws IOException {
-        // Book book = Book.builder().id(100).author("河东智叟许仲林").name("封神演义").overview("封神演义讲述了武王伐纣的故事").build();
+        // Book book = Book.builder().id(100).author("河东叟").name("封神演义").overview("封神演义讲述了武王伐纣的故事").build();
         Book book = Book.builder().issueDate(LocalDate.of(1522, 12, 9)).build();
         System.out.println(esService.updateBookDocument(book, "books", "3", 1));
 
@@ -112,9 +112,52 @@ public class BookEsrepoTest {
     }
 
     @Test
+    public void testBatchAddBookDocument4Test() throws IOException {
+        ArrayList as = new ArrayList();
+        as.add(Book.builder().name("123").author("123").overview("123").type("123").build());
+        as.add(Book.builder().name("234").author("234").overview("234").type("234").build());
+        as.add(Book.builder().name("345").author("345").overview("345").type("345").build());
+        as.add(Book.builder().name("456").author("456").overview("456").type("456").build());
+        as.add(Book.builder().name("567").author("567").overview("567").type("567").build());
+        as.add(Book.builder().name("678").author("678").overview("678").type("678").build());
+        as.add(Book.builder().name("789").author("789").overview("789").type("789").build());
+
+        System.out.println(esService.batchAddBookDocument(as, "books", 1000));
+
+    }
+
+    @Test
     public void testBatchDeleteBookDocument() throws IOException {
         List<String> ids = Arrays.asList("1", "2");
         System.out.println(esService.batchDeleteBookDocument("books", ids));
+
+    }
+
+    /**
+     * 批量更新，这个不行，有点问题，更新不到我们想要的字段上面去
+     * @throws IOException
+     */
+    @Test
+    public void testBatchUpdateBookDocument() throws IOException {
+        List<String> ids = Arrays.asList("1000", "1001", "1002");
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String, Object> mp1 = new HashMap<>();
+        mp1.put("name", "张三12qqq3");
+        mp1.put("author", "张三12qqqq3");
+        mp1.put("issueDate", LocalDate.of(19921, 1, 1));
+        Map<String, Object> mp2 = new HashMap<>();
+        mp2.put("name", "王的怒吼");
+        mp2.put("author", "张三");
+        mp2.put("extras", "暂时还没有完成！");
+        Map<String, Object> mp3 = new HashMap<>();
+        mp3.put("name", "李四的歌");
+        mp3.put("overview", "hello, 李四的歌是李四想唱给世界听得歌曲");
+        mp3.put("issueDate", LocalDate.of(2019, 1, 1));
+        mp3.put("price",32.5f);
+        list.add(mp1);
+        list.add(mp2);
+        list.add(mp3);
+        System.out.println(esService.batchUpdateBookDocument(list, "books", ids));
 
     }
 }

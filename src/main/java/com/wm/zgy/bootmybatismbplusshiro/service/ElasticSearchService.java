@@ -164,4 +164,28 @@ public class ElasticSearchService {
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
     }
+
+    /**
+     * 批量更新，这个不行，有点问题，更新不到我们想要的字段上面去
+     * @param as
+     * @param indexName
+     * @param ids
+     * @param <T>
+     * @param <N>
+     * @return
+     * @throws IOException
+     */
+    // 批量更新
+    public <T, N> int batchUpdateBookDocument(List<T> as, String indexName, List<N> ids) throws IOException {
+        BulkRequest request = new BulkRequest();
+        request.timeout(TimeValue.timeValueSeconds(10));
+        // 批量处理
+        for (int i = 0; i < ids.size(); i++) {
+            // map不会冲掉，String会冲掉，更新的部分，放在map之中，使用key-value键值对，更加好一些
+            request.add(new UpdateRequest(indexName, String.valueOf(ids.get(i))).doc(as.get(i),XContentType.JSON));
+        }
+        BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
+        System.out.println(bulkResponse.status().getStatus());
+        return bulkResponse.status().getStatus();
+    }
 }
