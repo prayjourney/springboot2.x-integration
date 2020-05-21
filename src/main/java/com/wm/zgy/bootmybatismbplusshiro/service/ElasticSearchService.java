@@ -1,7 +1,5 @@
 package com.wm.zgy.bootmybatismbplusshiro.service;
 
-import com.alibaba.druid.support.json.JSONUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wm.zgy.bootmybatismbplusshiro.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiro.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -29,7 +27,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

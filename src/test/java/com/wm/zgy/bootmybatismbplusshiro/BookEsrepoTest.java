@@ -11,7 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author renjiaxin
@@ -112,6 +116,24 @@ public class BookEsrepoTest {
     }
 
     @Test
+    public void testBatchAddBookDocument01() throws IOException {
+        ArrayList as = new ArrayList();
+        as.add(Book.builder().name("红楼梦").id(100).author("曹雪芹").overview("贾宝玉和林黛玉的爱情故事").build());
+        as.add(Book.builder().name("三国演义").id(101).author("罗贯中").overview("东汉末年天下三分").type("历史战争").build());
+        as.add(Book.builder().name("水浒传").id(102).author("施耐庵").type("战争").price(100).build());
+        as.add(Book.builder().name("呐喊").id(103).author("鲁迅").overview("对封建礼教的控诉").type("白话").build());
+        as.add(Book.builder().name("家春秋").id(800).author("巴金").type("白话 家庭").build());
+        as.add(Book.builder().name("百年孤独").id(1500).author("马尔克斯").overview("魔幻现实主义").price(66).extras("拉美文学巨著")
+                .type("拉美 魔幻现实").press("百花文艺出版社").issueDate(LocalDate.of(2018, 3, 6)).build());
+        // as.add(Book.builder().name("动物庄园").id(1700).overview("***").type("反乌托邦").extras("一度被列为禁书").build());
+        as.add(Book.builder().name("动物庄园").build());
+
+        System.out.println(esService.batchAddBookDocument(as, "books", 200));
+
+    }
+
+
+    @Test
     public void testBatchAddBookDocument4Test() throws IOException {
         ArrayList as = new ArrayList();
         as.add(Book.builder().name("123").author("123").overview("123").type("123").build());
@@ -136,6 +158,7 @@ public class BookEsrepoTest {
     // todo: 批量更新
     /**
      * 批量更新，这个不行，有点问题，更新不到我们想要的字段上面去
+     *
      * @throws IOException
      */
     @Test
@@ -154,7 +177,7 @@ public class BookEsrepoTest {
         mp3.put("name", "李四的歌");
         mp3.put("overview", "hello, 李四的歌是李四想唱给世界听得歌曲");
         mp3.put("issueDate", LocalDate.of(2019, 1, 1));
-        mp3.put("price",32.5f);
+        mp3.put("price", 32.5f);
         list.add(mp1);
         list.add(mp2);
         list.add(mp3);
