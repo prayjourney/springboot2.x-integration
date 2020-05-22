@@ -37,8 +37,9 @@
 	</appender>
 
 	<!-- 使用spring的profile来控制不同的环境，应该使用那些appender的组合 -->
+	<!-- 此处控制打印级别 -->
 	<springProfile name="dev">
-		<root level="ERROR">
+		<root level="INFO">
 			<appender-ref ref="STD_OUT"/>
 			<appender-ref ref="ERROR_LOG"/>
 		</root>
@@ -58,6 +59,6 @@
 		</root>
 	</springProfile>
 
-	<logger name="boot-mybatis-mbplus-shiro" level="DEBUG"/>
+	<logger name="boot-mybatis-mbplus-shiro-es-quartz" level="DEBUG"/>
 	<logger name="sql" level="DEBUG"/>
 </configuration>
