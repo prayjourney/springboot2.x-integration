@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiroes;
+package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.MathTeacher;
-import com.wm.zgy.bootmybatismbplusshiroes.service.ElasticSearchService;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.service.ElasticSearchService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

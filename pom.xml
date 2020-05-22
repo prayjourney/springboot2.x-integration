@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wm.zgy</groupId>
-    <artifactId>boot-mybatis-mbplus-shiro-es</artifactId>
+    <artifactId>boot-mybatis-mbplus-shiro-es-quartz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-mybatis-mbplus-shiro-es</name>
+    <name>boot-mybatis-mbplus-shiro-es-quartz</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

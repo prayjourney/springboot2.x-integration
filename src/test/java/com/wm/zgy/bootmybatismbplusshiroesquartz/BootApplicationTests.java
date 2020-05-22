@@ -1,9 +1,9 @@
-package com.wm.zgy.bootmybatismbplusshiroes;
+package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.wm.zgy.bootmybatismbplusshiroes.mapper.UserMapper;
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.User;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.UserMapper;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BootMybatisMbplusShiroApplicationTests {
+public class BootApplicationTests {
 
     /**
      * 所有的方法，至此都来自于BaseMapper父类，基本的CRUD都已经OKAY了，有特殊的，我们就可以去自己写了
