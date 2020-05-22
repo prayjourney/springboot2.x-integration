@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.service.QuartzService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -31,5 +32,11 @@ public class QuartzServiceTest {
     public void testPrintTimeEveryMinutes() {
         service.printTimeEveryMinutes();
         log.info("print time ok" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+    }
+
+    @Test
+    public void testInsertOneStudent() throws JsonProcessingException {
+        service.insertOneStudent();
+        log.info("insert a student ok" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
     }
 }
