@@ -9,6 +9,9 @@
 	</appender>
 	<appender name="All_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_PATH}/all.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${LOG_PATH}/all.%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>60</maxHistory>
