@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiroes.config;
+package com.wm.zgy.bootmybatismbplusshiroesquartz.config;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;

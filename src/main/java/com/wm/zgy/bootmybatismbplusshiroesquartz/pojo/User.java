@@ -1,4 +1,4 @@
-package com.wm.zgy.bootmybatismbplusshiroes.pojo;
+package com.wm.zgy.bootmybatismbplusshiroesquartz.pojo;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;

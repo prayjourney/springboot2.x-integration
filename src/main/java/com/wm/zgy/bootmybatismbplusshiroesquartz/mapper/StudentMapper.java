@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiroes.mapper;
+package com.wm.zgy.bootmybatismbplusshiroesquartz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.Student;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,8 +1,8 @@
-package com.wm.zgy.bootmybatismbplusshiroes.service;
+package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.Book;
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.MathTeacher;
-import com.wm.zgy.bootmybatismbplusshiroes.utils.JSONUtil;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;

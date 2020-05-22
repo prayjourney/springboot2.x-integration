@@ -1,7 +1,7 @@
-package com.wm.zgy.bootmybatismbplusshiroes.mapper;
+package com.wm.zgy.bootmybatismbplusshiroesquartz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wm.zgy.bootmybatismbplusshiroes.pojo.User;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
