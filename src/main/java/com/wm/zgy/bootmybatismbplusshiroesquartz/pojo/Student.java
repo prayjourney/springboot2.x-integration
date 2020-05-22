@@ -1,6 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.pojo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
  * @Modified by:
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
