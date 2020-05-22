@@ -48,8 +48,10 @@ public class MathTeacherEsTest {
         HashMap<String, Object> mp1 = new HashMap<>();
         HashMap<String, Object> mp2 = new HashMap<>();
         HashMap<String, Object> mp3 = new HashMap<>();
-        mp1.put("name", "zhangsan");
-        mp1.put("hobby", "吃瓜子");
+        // 实现精确的更新，这样的话，性别字段的内容不会被覆盖，也不会被更新，还是原来的内容，没有做修改
+        mp1.put("name", "zhangsan====");
+        mp1.put("hobby", "吃瓜子==");
+        mp1.put("id", "123");
         mp2.put("hobby", "烹饪， 打麻将， 旅游");
         mp3.put("gender", "第三性");
         maps.add(mp1);
