@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.wm.zgy.bootmybatismbplusshiro.mapper") // 扫描mapper文件夹
+@MapperScan("com.wm.zgy.bootmybatismbplusshiroesquartz.mapper") // 扫描mapper文件夹
 public class BootApplication {
 
     public static void main(String[] args) {
