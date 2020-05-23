@@ -1,7 +1,10 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.controller;
 
+import com.wm.zgy.bootmybatismbplusshiroesquartz.service.ContentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @Author: renjiaxin
@@ -10,10 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Modified by:
  */
 @Controller
+@RequestMapping("jd")
 public class JdSearchController {
-    @GetMapping("jd")
-    public String helloJdSearch(){
-        return "jd";
 
+    @Autowired
+    private ContentService service;
+
+    // 设置两个url
+    @GetMapping({"/", "index"})
+    public String helloJdSearch() {
+        return "jd";
     }
 }
