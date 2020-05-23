@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: renjiaxin
@@ -30,8 +32,14 @@ public class HtmlParseUtilTest {
 
     @Test
     public void testParseContentAdd2Es() throws Exception {
-        boolean status = contentService.parseContentAdd2Es("java");
+        boolean status = contentService.parseContentAdd2Es("vue");
         System.out.println(status);
+    }
+
+    @Test
+    public void testSearchContentWithPage() throws Exception {
+        List<Map<String, Object>> javaBooks = contentService.searchContentWithPage("java", 1, 10);
+        System.out.println(javaBooks);
     }
 
 }
