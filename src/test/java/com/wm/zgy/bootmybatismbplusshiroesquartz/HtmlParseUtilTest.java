@@ -11,11 +11,10 @@ import java.io.IOException;
  * @Date: Created in 2020/5/23 1:34
  * @Modified by:
  */
-public class HtmlPraseUtilTest {
+public class HtmlParseUtilTest {
     @Test
-    public void testPraseJd() throws IOException {
+    public void testParseJd() throws IOException {
         HtmlParseUtil htmlParseUtil = new HtmlParseUtil();
-        System.out.println(htmlParseUtil.praseJd("vue").toArray());
-
+        System.out.println(htmlParseUtil.parseJd("vue"));
     }
 }
