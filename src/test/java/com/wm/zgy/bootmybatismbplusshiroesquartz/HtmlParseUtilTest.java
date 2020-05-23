@@ -32,7 +32,7 @@ public class HtmlParseUtilTest {
 
     @Test
     public void testParseContentAdd2Es() throws Exception {
-        boolean status = contentService.parseContentAdd2Es("vue");
+        boolean status = contentService.parseContentAdd2Es("java");
         System.out.println(status);
     }
 
