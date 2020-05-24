@@ -14,6 +14,7 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
@@ -27,7 +28,10 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.metrics.MaxAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.dfs.AggregatedDfs;
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -250,4 +254,36 @@ public class ElasticSearchService {
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
     }
+
+    /**
+    GET kuangsheng/user/_search
+    {
+        "size": 0,
+            "aggs":
+        {
+            "mytest1":{
+            "max":{
+                "field": "age"
+            }
+        }
+        }
+    }*/
+    // 聚合操作, 目前有问题
+    public void aggDocumentMax(String indexName, String filedName) throws IOException {
+        SearchRequest request = new SearchRequest(indexName);
+        // request.searchType(typeName);
+        // 构造查询条件, 不管是聚合还是查询，都是通过GET，后面都是一个_search, 所以就需要构建SearchRequest
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 查询条件,这个使用的是聚合的Builders和Builder
+        MaxAggregationBuilder maxBuilder = AggregationBuilders.max(filedName);
+
+        searchSourceBuilder.aggregation(maxBuilder);
+        searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
+        //request.searchType(SearchType.DEFAULT);
+        request.indices(indexName);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
+        System.out.println(JSONUtil.getJsonFromObject(response.getAggregations()));
+    }
+
 }
