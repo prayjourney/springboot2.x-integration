@@ -479,4 +479,36 @@ public class ElasticSearchService {
 
     }
 
+    // 聚合操作：Group By 的分组统计, 桶的数量不够了
+    public void aggDocumentGroupBy02(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 设置了
+        TermsAggregationBuilder termsAggregation = AggregationBuilders.terms("age_first").field("age").size(15);
+        searchSourceBuilder.aggregation(termsAggregation);
+        searchRequest.source(searchSourceBuilder);
+        System.out.println("==================");
+        System.out.println(searchSourceBuilder.toString());
+        System.out.println("==================");
+
+
+        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        // 解析数据，桶不够了
+        /**
+        ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().asList().get(0);
+        System.out.println(longTerms);
+        List<? extends Terms.Bucket> buckets = longTerms.getBuckets();
+        for (int i = 0; i < buckets.size(); i++) {
+            System.out.println(buckets.get(i).getKey() + ", " +buckets.get(i).getDocCount());
+        }
+        */
+
+        Map<String, Aggregation> aggregationMap = searchResponse.getAggregations().asMap();
+        ParsedLongTerms age_first = (ParsedLongTerms)  aggregationMap.get("age_first");
+        for (Terms.Bucket groupByAgeBucket : age_first.getBuckets()) {
+            System.out.println(groupByAgeBucket.getKey() + ":" + groupByAgeBucket.getDocCount());
+        }
+
+    }
+
 }

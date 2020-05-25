@@ -68,8 +68,14 @@ public class EsAggregationTest {
     }
 
     @Test
-    public void testAggDocumentMax07() throws IOException {
+    public void testAggDocumentGroupBy01() throws IOException {
         esService.aggDocumentGroupBy("kuangsheng");
+
+    }
+
+    @Test
+    public void testAggDocumentGroupBy02() throws IOException {
+        esService.aggDocumentGroupBy02("kuangsheng");
 
     }
 }
