@@ -27,5 +27,50 @@ public class EsAggregationTest {
         esService.aggDocumentMax("kuangsheng","age");
 
     }
+
+    @Test
+    public void testAggDocumentMax02() throws IOException {
+        esService.aggDocumentMax02("kuangsheng","age");
+
+    }
+    @Test
+    public void testAggDocumentMax03() throws IOException {
+        String q1= "{\"size\":0,\"aggs\":{\"the_terms\":{\"terms\":{\"size\":10,\"field\":\"age\"}}}}";
+        String myQuery= "{size:0, aggs:{the_terms:{terms:{size:10,field:age}}}}";
+        esService.aggDocumentMax03("kuangsheng","age",myQuery);
+
+    }
+
+    @Test
+    public void testAggDocumentMax04() throws IOException {
+        esService.aggDocumentMax04("kuangsheng");
+
+    }
+
+
+//    @Test
+//    public void testAggDocumentMax05() throws IOException {
+//        esService.agg1();
+//
+//    }
+
+    @Test
+    public void testAggDocumentMax05() throws IOException {
+        esService.aggDocumentMax05("kuangsheng");
+
+    }
+
+    // 这个是可以查出来我们想要的值得
+    @Test
+    public void testAggDocumentMax06() throws IOException {
+        esService.aggDocumentMax06("kuangsheng");
+
+    }
+
+    @Test
+    public void testAggDocumentMax07() throws IOException {
+        esService.aggDocumentGroupBy("kuangsheng");
+
+    }
 }
 

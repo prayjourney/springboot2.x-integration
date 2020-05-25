@@ -3,6 +3,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
+import lombok.val;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -13,6 +14,7 @@ import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
@@ -24,16 +26,35 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.common.xcontent.ToXContent;
+import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.aggregations.Aggregation;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.Aggregations;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
+import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
+import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.Max;
 import org.elasticsearch.search.aggregations.metrics.MaxAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.ParsedMax;
+import org.elasticsearch.search.aggregations.metrics.SumAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ResultsExtractor;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -241,6 +262,7 @@ public class ElasticSearchService {
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
     }
+
     // 批量更新，这样会导致全量的更新，还是map的方式最好
     public int batchUpdateMathTeacherDocument2(String indexName, List<String> ids, List<MathTeacher> contents) throws IOException {
         BulkRequest request = new BulkRequest();
@@ -266,13 +288,13 @@ public class ElasticSearchService {
     GET kuangsheng/user/_search
     {
         "size": 0,
-            "aggs":
-        {
-            "mytest1":{
-            "max":{
-                "field": "age"
+        "aggs":
+            {
+                "mytest1":{
+                "max":{
+                    "field": "age"
+                }
             }
-        }
         }
     }*/
     // 聚合操作, 目前有问题
@@ -282,15 +304,179 @@ public class ElasticSearchService {
         // 构造查询条件, 不管是聚合还是查询，都是通过GET，后面都是一个_search, 所以就需要构建SearchRequest
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         // 查询条件,这个使用的是聚合的Builders和Builder
-        MaxAggregationBuilder maxBuilder = AggregationBuilders.max(filedName);
+        // hello-mmm是取得一个名字，而不是字段
+        MaxAggregationBuilder maxBuilder = AggregationBuilders.max("hello-mmm").field(filedName);
+//        XContentBuilder builder = new XContentBuilder.Writer();
+//        ToXContent.Params params = new ToXContent.Params()
+//        maxBuilder.doXContentBody(builder,"age");
 
         searchSourceBuilder.aggregation(maxBuilder);
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         //request.searchType(SearchType.DEFAULT);
-        request.indices(indexName);
         SearchResponse response = client.search(request, RequestOptions.DEFAULT);
         System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
         System.out.println(JSONUtil.getJsonFromObject(response.getAggregations()));
+    }
+
+    // 聚合操作, 目前有问题
+    public void aggDocumentMax02(String indexName, String filedName) throws IOException {
+        SearchRequest request = new SearchRequest(indexName);
+        request.indices(indexName);
+
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        MaxAggregationBuilder maxAggregationBuilder = AggregationBuilders.max(filedName);
+        searchSourceBuilder.aggregation(maxAggregationBuilder).size(0);
+
+
+        request.source(searchSourceBuilder);
+        SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+        System.out.println("返回结果:" + response);
+    }
+
+    // 聚合操作, 目前有问题
+    public void aggDocumentMax03(String indexName, String filedName, String myQueryString) throws IOException {
+
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(QueryBuilders.queryStringQuery(myQueryString));
+
+        TermsAggregationBuilder aggregation = AggregationBuilders.terms("test")
+                .field(filedName  + ".keyword").size(0);
+        aggregation.subAggregation(AggregationBuilders.count("count"));
+        searchSourceBuilder.aggregation(aggregation);
+
+
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        searchRequest.source(searchSourceBuilder);
+
+
+        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+
+
+        Aggregations aggregations = searchResponse.getAggregations();
+        Terms byMsisdn = aggregations.get("test");
+    }
+
+    // 聚合操作, 目前有问题
+    public void aggDocumentMax04(String indexName) throws IOException {
+
+
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        //查询条件
+        QueryBuilder query = QueryBuilders.boolQuery().must(QueryBuilders.matchQuery("age.keyword", 23));
+        //统计条件
+        TermsAggregationBuilder serviceLineAgg = AggregationBuilders.
+                terms("hello").field("age.keyword").size(30);
+        TermsAggregationBuilder appNameAgg = AggregationBuilders.terms("hello2").
+                field("age.keyword").size(30);
+
+        searchSourceBuilder.query(query).size(0);
+        searchSourceBuilder.aggregation(serviceLineAgg.subAggregation(appNameAgg)).size(0);
+
+
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.indices(indexName);
+        searchRequest.source(searchSourceBuilder);
+        System.out.println(searchRequest);
+        SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+        System.out.println(response);
+
+
+    }
+
+    // https://blog.csdn.net/zhangshng/article/details/95946596
+    // 聚合操作, 目前有问题
+    public void aggDocumentMax05(String indexName) throws IOException {
+
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // TermsAggregationBuilder aggregation = AggregationBuilders.terms("ddddd").field("age.keyword");
+        // aggregation.subAggregation(AggregationBuilders.max("dddddsf").field("age"));
+        // searchSourceBuilder.aggregation(aggregation);
+        MaxAggregationBuilder aggregation1 = AggregationBuilders.max("hello-test").field("age");
+        searchSourceBuilder.aggregation(aggregation1);
+        searchRequest.source(searchSourceBuilder);
+        System.out.println("==================");
+        System.out.println(searchSourceBuilder.toString());
+        System.out.println("==================");
+
+
+        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        System.out.println(searchResponse.getAggregations().getAsMap().get("hello-test"));
+        ParsedMax sss = (ParsedMax) searchResponse.getAggregations().asList().get(0);
+        System.out.println(sss.getValue());
+
+        /**
+        Map<String, Aggregation> serviceLineMap = searchResponse.getAggregations().asMap();
+        ParsedStringTerms serviceLineTerms = (ParsedStringTerms) serviceLineMap.get("dddddsf");
+        List serviceLists = serviceLineTerms.getBuckets();
+        for (Object serviceList : serviceLists) {
+            ParsedStringTerms.ParsedBucket serviceListObj = (ParsedStringTerms.ParsedBucket) serviceList;
+            String serviceLine = serviceListObj.getKeyAsString();
+            Map<String, Aggregation> appNameMap = serviceListObj.getAggregations().asMap();
+            ParsedStringTerms appNameTerms = (ParsedStringTerms) appNameMap.get("dddddsf");
+            List appNameLists = appNameTerms.getBuckets();
+            for (Object appNameList : appNameLists) {
+                ParsedStringTerms.ParsedBucket appNameObj = (ParsedStringTerms.ParsedBucket) appNameList;
+                String appName = appNameObj.getKeyAsString();
+                Long count = appNameObj.getDocCount();
+                System.out.println(serviceLine);
+                System.out.println(appName);
+                System.out.println(count);
+            }
+        }*/
+
+    }
+
+    // 聚合操作： 求取最大的数===》OKAY
+    public void aggDocumentMax06(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        //        TermsAggregationBuilder aggregation = AggregationBuilders.terms("ddddd")
+        //                .field("age.keyword");
+        //        aggregation.subAggregation(AggregationBuilders.max("dddddsf")
+        //                .field("age"));
+        //        searchSourceBuilder.aggregation(aggregation);
+        MaxAggregationBuilder aggregation1 = AggregationBuilders.max("hello-test").field("age");
+        searchSourceBuilder.aggregation(aggregation1);
+        searchRequest.source(searchSourceBuilder);
+        System.out.println("==================");
+        System.out.println(searchSourceBuilder.toString());
+        System.out.println("==================");
+
+
+        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        // 通过map的方式可以看到值，但是取不到，转换成list
+        // System.out.println(searchResponse.getAggregations().getAsMap().get("hello-test"));
+        ParsedMax sss = (ParsedMax) searchResponse.getAggregations().asList().get(0);
+        System.out.println(sss.getValue());
+
+    }
+
+
+    // 聚合操作：Group By 的分组统计===》OKAY
+    public void aggDocumentGroupBy(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        TermsAggregationBuilder termsAggregation = AggregationBuilders.terms("age-first").field("age");
+        // 有多个需要操作的时候，先后顺序
+        // termsAggregation.subAggregation(AggregationBuilders.max("test2").field("age"));
+        // searchSourceBuilder.aggregation(aggregation);
+        searchSourceBuilder.aggregation(termsAggregation);
+        searchRequest.source(searchSourceBuilder);
+        System.out.println("==================");
+        System.out.println(searchSourceBuilder.toString());
+        System.out.println("==================");
+
+
+        // 解析数据
+        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().asList().get(0);
+        System.out.println(longTerms);
+        List<? extends Terms.Bucket> buckets = longTerms.getBuckets();
+        for (int i = 0; i < buckets.size(); i++) {
+            System.out.println(buckets.get(i).getKey() + ", " +buckets.get(i).getDocCount());
+        }
+
     }
 
 }
