@@ -19,6 +19,7 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.core.CountRequest;
 import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
@@ -249,5 +250,13 @@ public class ElasticSearchService {
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
         System.out.println(bulkResponse.status().getStatus());
         return bulkResponse.status().getStatus();
+    }
+
+    // 去重计数，计算每个作者的书籍量
+    public void searchCount(String indexName, String author) throws IOException {
+        CountRequest countRequest = new CountRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        countRequest.source(searchSourceBuilder);
     }
 }
