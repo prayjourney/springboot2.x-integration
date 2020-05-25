@@ -5,6 +5,7 @@ import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,8 +33,10 @@ public class JdSearchController {
     }
 
     @ResponseBody
-    @GetMapping("search")
-    public String search(String keyword, int pageNo, int pageSize) throws IOException {
+    @GetMapping("search/{keyword}/{pageNo}/{pageSize}")
+    public String search(@PathVariable("keyword") String keyword,
+                         @PathVariable("pageNo") int pageNo,
+                         @PathVariable("pageSize") int pageSize) throws IOException {
         List<Map<String, Object>> vueBooks = service.searchContentWithPage(keyword, pageNo, pageSize);
         return JSONUtil.getJsonFromObject(vueBooks);
     }

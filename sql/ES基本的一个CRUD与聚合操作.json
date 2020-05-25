@@ -1,0 +1,421 @@
+// 我们搜索，增删改查，所得到的数据或元素和Java之中的对象，是对应起来的
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# 创建一个文档，指定了文档类型
+PUT /kuangsheng/user/1
+{
+  "name":"狂神",
+  "age":23,
+  "desc":"一顿操作猛如虎，一看工资2500",
+  "tags":["技术宅","暖男","直男"]
+}
+
+PUT /kuangsheng/user/2
+{
+  "name":"张三",
+  "age":3,
+  "desc":"法外狂徒",
+  "tags":["技术宅","渣男"]
+}
+
+PUT /kuangsheng/user/3
+{
+  "name":"张二狗",
+  "age":6,
+  "desc":"张二狗",
+  "tags":["小逗比","撩妹高手"]
+}
+
+PUT /kuangsheng/user/4
+{
+  "name":"梦幻张三",
+  "age":6,
+  "desc":"女张三",
+  "tags":["大逗逼","撩汉高手"]
+}
+
+PUT /kuangsheng/user/5
+{
+  "name":"小狂神",
+  "age":11,
+  "desc":"狂神来了",
+  "tags":["学习达人","热爱分享"]
+}
+
+PUT /kuangsheng/user/8
+{
+  "name":"张二楞",
+  "age":11,
+  "desc":"最强张二楞",
+  "tags":["智障","白痴","二傻子"]
+}
+
+PUT /kuangsheng/user/9
+{
+  "name":"狂神说前端",
+  "age":19,
+  "desc":"狂神说前端",
+  "tags":["技术宅","暖男"]
+}
+
+
+# 这样更新会冲掉其他的数据，不推荐这样更新
+PUT /kuangsheng/user/6
+{
+  "name":"张二楞",
+  "age":11
+}
+# 冲掉了其他数据
+POST /kuangsheng/user/6
+{
+  "name":"张二楞",
+  "age":11
+}
+
+# 冲掉了其他数据
+POST /kuangsheng/user/6/
+{
+  "doc":{
+    "name":"张二楞",
+    "age":11
+  }
+}
+
+# 报错
+POST /kuangsheng/user/6/_update
+{
+  "name":"张二楞2222",
+  "age":11123
+}
+# 这样才是精确更新
+POST /kuangsheng/user/6/_update
+{
+  "doc":{
+    "name":"张二楞1231",
+    "age":1111
+  }
+}
+
+
+DELETE kuangsheng/user/8
+
+
+# 获取数据,最简单的方式
+GET kuangsheng/user/1
+
+# 精确匹配
+GET kuangsheng/user/_search?q=age:23
+
+# 搜索我们一般都是放在query里面的，上面的方式不常用
+# 字段是name, 如果name匹配到狂神，就返回
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂神" 
+    }
+  }
+  
+}
+
+# 甄选出我们需要的字段，其余的不要了
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂神" 
+    }
+  },
+  "_source": ["age", "name", "desc"]
+  
+}
+
+# 排序,sort这样的，其中的格式符合json格式就行
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂神" 
+    }
+  },
+  "sort":{
+    "age":{
+      "order":"desc"
+    }
+  }
+  
+}
+
+# 分页查询，和sort一样，都是在query之外，数据查出来，才能排序分页
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂神" 
+    }
+  },
+  "sort":{
+    "age":{
+      "order":"desc"
+    }
+  },
+  "from": 0, 
+  "size": 2
+  
+}
+
+
+
+# 布尔值查询
+# must(and), 所有的条件都要符合，就好比是 where id =1 and name =xxx这种操作形式
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": "狂神"
+          }
+        },
+        {
+          "match": {
+            "age": 23
+          }
+        }
+      ]
+    }
+  }
+  
+}
+
+# should(or), 满足一个即可，就好比是 where id =1 or name =xxx这种操作形式
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "name": "狂神"
+          }
+        },
+        {
+          "match": {
+            "age": 23
+          }
+        }
+      ]
+    }
+  }
+  
+}
+
+# must_not(not), 反向操作，就好比是 where id <> 1这种操作形式
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "must_not": 
+        {
+          "match": {
+            "age": 23
+          }
+        }
+    }
+  }
+  
+}
+
+# 过滤器filter，gt大于，gte大于等于，lt小于，lte小于等于
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "must": 
+        {
+          "match": {
+            "name": "狂神"
+          }
+        },
+        "filter": {
+          "range": {
+            "age": {
+              "gt": 10,
+              "lte": 30
+            }
+          }
+        }
+      }
+    }
+}
+
+# 匹配多个搜多条件
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "神 张"
+    }
+  }
+}
+
+
+
+# 精确匹配
+GET kuangsheng/user/_search
+{
+  "query": {
+    "term": {
+      "name": "神 张"
+    }
+  }
+}
+
+GET kuangsheng/user/_search
+{
+  "query": {
+    "term": {
+      "age": 6
+    }
+  }
+}
+
+
+
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "name" : "狂神"
+          }
+        },
+        {
+          "match": {
+            "desc": "男"
+          }
+        }
+      ],
+      "filter": {
+          "range": {
+            "age": {
+              "gt": 10,
+              "lte": 30
+            }
+          }
+        }
+      }
+    }
+}
+
+
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "sum_id": {
+      "sum": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+# from和size是分页操作，如果size是0，就不会显示数据
+GET kuangsheng/user/_search
+{
+  "from": 0, 
+  "size": 20, 
+  "aggs": {
+    "per_count": {
+      "terms": {
+        "size":100,
+        "field": "age",
+        "min_doc_count":1
+      }
+    }
+  }
+}
+
+# mytest是我们给这个聚合取的一个名字,sum是类型，field是字段
+GET kuangsheng/user/_search
+{
+  "size": 0, 
+  "aggs": {
+    "mytest": {
+      "terms": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+# 查询最小的, 查出来最小的是3
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "min": {
+      "bucket_sort": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+# 每个key的数量的统计，类似于count (age) group by age的效果
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "mytest": {
+      "terms": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+# 求age的最大值
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": 
+      {
+        "mytest1":{
+          "max":{
+          "field": "age"
+          }
+        }
+      }
+}
+
+# 去重，使用cardinality， 去除重复的值
+GET kuangsheng/user/_search
+{
+  "aggs": {
+    "cccc": {
+      "cardinality": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
