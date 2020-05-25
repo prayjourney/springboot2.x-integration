@@ -20,6 +20,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
         <elasticsearch.version>7.6.0</elasticsearch.version>
+        <elasticsearch.rest.client.version>7.6.0</elasticsearch.rest.client.version>
         <elasticsearch.high.rest.client.version>7.6.0</elasticsearch.high.rest.client.version>
     </properties>
 
@@ -123,6 +124,12 @@
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
+        </dependency>
+        <!-- elasticsearch-rest-high-level-client基于elasticsearch-rest-client-->
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-client</artifactId>
+            <version>${elasticsearch.rest.client.version}</version>
         </dependency>
         <!--elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致-->
         <dependency>
