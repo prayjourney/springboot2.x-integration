@@ -1,14 +1,17 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.PageUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author: renjiaxin
@@ -48,5 +51,35 @@ public class PageUtilTest {
             }
             System.out.println("============");
         }
+    }
+
+
+    @Test
+    public void testMap2Page() throws Exception {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "a");
+        map.put(2, "b");
+        map.put(3, "c");
+        map.put(4, "d");
+        map.put(5, "e");
+        map.put(6, "f");
+        map.put(7, "g");
+        map.put(8, "h");
+        map.put(9, "i");
+        map.put(10, "j");
+        map.put(11, "k");
+        map.put(12, "l");
+        map.put(13, "m");
+        map.put(14, "n");
+        map.put(15, "o");
+        map.put(16, "p");
+        Map<Integer, String> integerStringMap = PageUtil.map2Page(map, 15, 0);
+        Set<Map.Entry<Integer, String>> entries = integerStringMap.entrySet();
+        Iterator<Map.Entry<Integer, String>> iterator = entries.iterator();
+        while(iterator.hasNext()){
+            Map.Entry<Integer, String> next = iterator.next();
+            System.out.println("key : " + next.getKey() +", value : " +next.getValue());
+        }
+
     }
 }

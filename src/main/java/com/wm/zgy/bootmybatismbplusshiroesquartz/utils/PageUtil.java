@@ -2,7 +2,11 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.utils;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author: renjiaxin
@@ -13,6 +17,26 @@ import java.util.List;
 @Component
 public class PageUtil {
     /**
+     * 获取分页的总数
+     *
+     * @param ls       需要分页的list
+     * @param pageSize 页面大小
+     * @return 按照此页面分页可以得到的分页数量
+     */
+    public static <T> int getIteratorNum(List<T> ls, int pageSize) {
+        int base = ls.size() / pageSize;
+        boolean complete = (ls.size() % pageSize) == 0 ? true : false;
+        if (complete == true) {
+            return base;
+        } else {
+            return base + 1;
+        }
+    }
+
+
+    /**
+     * 获取分页之后，该页的数据
+     *
      * 获取第pageNo页面， 从页面的起始值从0开始
      * 15个数据，页面是5-->3组, 完整3组, 15/5=3;
      * 15个数据，页面是7--->3组, 完整2组, 残缺1组, 15/7=2 ...1;
@@ -37,18 +61,66 @@ public class PageUtil {
     /**
      * 获取分页的总数
      *
-     * @param ls 需要分页的list
+     * @param map       需要分页的map
      * @param pageSize 页面大小
      * @return 按照此页面分页可以得到的分页数量
      */
-    public static <T> int getIteratorNum(List<T> ls, int pageSize) {
-        int base = ls.size() / pageSize;
-        boolean complete = (ls.size() % pageSize) == 0 ? true : false;
+    public static <T,V> int getIteratorNum(Map<T,V> map, int pageSize) {
+        int base = map.size() / pageSize;
+        boolean complete = (map.size() % pageSize) == 0 ? true : false;
         if (complete == true) {
             return base;
         } else {
             return base + 1;
         }
     }
+
+    /**
+     * map的分页
+     *
+     * @param map 需要分页的数据
+     * @param pageSize 页面大小
+     * @param pageNo 要获取的页面编码
+     * @param <T> T
+     * @param <V> V
+     * @return pageNo页面的内容，相当于是一个子Map
+     * @throws Exception exception
+     */
+    public static <T,V> Map<T, V> map2Page(Map<T,V> map, int pageSize, int pageNo) throws Exception {
+        // 获取当前分页条件下的页面数量
+        int allPageNumber = getIteratorNum(map, pageSize);
+
+        // 需要先把Map转换成List, 然后去遍历，这样可以让操作有顺序的进行
+        Set<T> ts = map.keySet();
+        List<T> keyList = new ArrayList<>();
+        List<V> valueList = new ArrayList<>();
+        for (T t: ts){
+            keyList.add(t);
+            valueList.add(map.get(t));
+        }
+
+        if (pageNo < 0 || pageNo > allPageNumber) {
+            throw new Exception("page number is out of boundary!");
+        } else if (pageNo >= 0 && pageNo < allPageNumber - 1) {
+            List<T> tempKeyList = keyList.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
+            List<V> tempValueList = valueList.subList(pageNo * pageSize, pageNo * pageSize +pageSize);
+            Map<T, V> tvHashMap = new HashMap<>();
+            for (int i =0; i< tempKeyList.size(); i++){
+                // 1.此处可以Map的方式get, 2.可以通过list按顺序获取
+                tvHashMap.put(tempKeyList.get(i), tempValueList.get(i));
+            }
+            return tvHashMap;
+        } else {
+            List<T> tempKeyList = keyList.subList(pageNo * pageSize, map.size());
+            List<V> tempValueList = valueList.subList(pageNo * pageSize, map.size());
+            Map<T, V> tvHashMap = new HashMap<>();
+            for (int i =0; i< tempKeyList.size(); i++){
+                // 1.此处可以Map的方式get, 2.可以通过list按顺序获取
+                tvHashMap.put(tempKeyList.get(i), tempValueList.get(i));
+            }
+            return tvHashMap;
+        }
+    }
+
 
 }
