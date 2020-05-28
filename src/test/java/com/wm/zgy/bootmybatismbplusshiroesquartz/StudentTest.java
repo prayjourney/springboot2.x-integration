@@ -31,4 +31,15 @@ public class StudentTest {
     public void testUpdateStudent(){
         studentService.updateStudent();
     }
+
+
+    @Test
+    public void testGetStudentById(){
+        studentService.getStudentById(101);
+    }
+
+    @Test
+    public void testGetStudentByName(){
+        studentService.getStudentByName("关羽");
+    }
 }

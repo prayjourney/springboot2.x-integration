@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -44,5 +46,25 @@ public class StudentService {
         // 更新条件
         wrapper.eq("stId", 1111);
         mapper.update(student, wrapper);
+    }
+
+
+    public void getStudentById(int id){
+        // 直接使用自带的selectById， 这样不行啊
+        // Student student = mapper.selectById(id);
+        // System.out.println(student.toString());
+
+        Map<String, Object> mp = new HashMap<>();
+        mp.put("stId",id);
+        List<Student> students = mapper.selectByMap(mp);
+        System.out.println(students.get(0).toString());
+    }
+
+    // 按照其他条件查询
+    public void getStudentByName(String name){
+        Map<String, Object> mp = new HashMap<>();
+        mp.put("stName",name);
+        List<Student> students = mapper.selectByMap(mp);
+        System.out.println(students.get(0).toString());
     }
 }

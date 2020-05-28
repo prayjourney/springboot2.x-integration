@@ -30,9 +30,11 @@ import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -153,7 +155,7 @@ public class ElasticSearchService {
     }
 
     // 修改一个文档, 使用map更新
-    // 不会吧其他的部分充掉，精确的更新
+    // 不会把其他的部分充掉，精确的更新
     public int updateBookDocumentByMap(Map<String, Object> map, String indexName, String id, Integer timeOut) throws IOException {
         UpdateRequest request = new UpdateRequest(indexName, id);
         request.timeout(TimeValue.timeValueSeconds(timeOut));
@@ -162,6 +164,28 @@ public class ElasticSearchService {
         UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
         return response.status().getStatus();
     }
+
+    // 按照单一的条件去搜索, Map<String, Object> map,
+    public int updateBookDocumentByName(String indexName, String filedName, String name) throws IOException {
+        // 先查出来
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        MatchQueryBuilder builder = new MatchQueryBuilder(filedName, name);
+        sourceBuilder.query(builder);
+        searchRequest.source(sourceBuilder);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+        SearchHit[] hits = searchResponse.getHits().getHits();
+        for (SearchHit hit: hits){
+            Map<String, Object> sourceAsMap = hit.getSourceAsMap();
+            sourceAsMap.put("name","西游记1");
+            // 这个id是book的id，而update的时候，是需要整个文档的_id的  _id = hit.getId()
+            // String id = sourceAsMap.get("id").toString();
+            String id = hit.getId();
+            updateBookDocumentByMap(sourceAsMap,"books", id, 10);
+        }
+        return 1;
+    }
+
 
     // 批量插入文档
     public <T> int batchAddDocument(List<T> as, String indexName, Integer curStart) throws IOException {
