@@ -34,27 +34,52 @@ public class PageUtil {
     }
 
 
+//    /**
+//     * 获取分页之后，该页的数据
+//     *
+//     * 获取第pageNo页面， 从页面的起始值从0开始
+//     * 15个数据，页面是5-->3组, 完整3组, 15/5=3;
+//     * 15个数据，页面是7--->3组, 完整2组, 残缺1组, 15/7=2 ...1;
+//     * 所以，可以分页的数据，需要在外面决定好
+//     */
+//    public static <T> List<T> list2Page(List<T> ls, int pageSize, int pageNo, int iteratorNum) {
+//        // 是否可以完整分页, 也就是是否有残余的数据
+//        boolean complete = (ls.size() % pageSize) == 0 ? true : false;
+//
+//        if (pageNo < 0 || pageNo > iteratorNum) {
+//            // 也可直接报错
+//            return null;
+//        } else if (pageNo >= 0 && pageNo < iteratorNum - 1) {
+//            return ls.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
+//
+//        } else {
+//            // (pageNo > 0 && pageNo == iteratorNum)
+//            return ls.subList(pageNo * pageSize, ls.size());
+//        }
+//    }
+
     /**
      * 获取分页之后，该页的数据
      *
-     * 获取第pageNo页面， 从页面的起始值从0开始
-     * 15个数据，页面是5-->3组, 完整3组, 15/5=3;
-     * 15个数据，页面是7--->3组, 完整2组, 残缺1组, 15/7=2 ...1;
-     * 所以，可以分页的数据，需要在外面决定好
+     * @param list 需要分页的List数据
+     * @param pageSize 页面大小
+     * @param pageNo 页面编码
+     * @param <T> T参数类型
+     * @return pageNo页面的内容，相当于是一个子List
+     * @throws Exception exception
      */
-    public static <T> List<T> list2Page(List<T> ls, int pageSize, int pageNo, int iteratorNum) {
-        // 是否可以完整分页, 也就是是否有残余的数据
-        boolean complete = (ls.size() % pageSize) == 0 ? true : false;
+    public static <T> List<T> list2Page(List<T> list, int pageSize, int pageNo) throws Exception {
+        // 获取当前分页条件下的页面数量
+        int allPageNumber = getIteratorNum(list, pageSize);
 
-        if (pageNo < 0 || pageNo > iteratorNum) {
+        if (pageNo < 0 || pageNo > allPageNumber) {
             // 也可直接报错
-            return null;
-        } else if (pageNo >= 0 && pageNo < iteratorNum - 1) {
-            return ls.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
-
+            throw new Exception("page number is out of boundary!");
+        } else if (pageNo >= 0 && pageNo < allPageNumber - 1) {
+            return list.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
         } else {
             // (pageNo > 0 && pageNo == iteratorNum)
-            return ls.subList(pageNo * pageSize, ls.size());
+            return list.subList(pageNo * pageSize, list.size());
         }
     }
 
@@ -81,8 +106,8 @@ public class PageUtil {
      * @param map 需要分页的数据
      * @param pageSize 页面大小
      * @param pageNo 要获取的页面编码
-     * @param <T> T
-     * @param <V> V
+     * @param <T> T参数类型
+     * @param <V> V参数类型
      * @return pageNo页面的内容，相当于是一个子Map
      * @throws Exception exception
      */
