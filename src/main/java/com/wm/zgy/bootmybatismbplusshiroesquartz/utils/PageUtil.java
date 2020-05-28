@@ -37,9 +37,9 @@ public class PageUtil {
     /**
      * 获取分页的总数
      *
-     * @param ls
-     * @param pageSize
-     * @return
+     * @param ls 需要分页的list
+     * @param pageSize 页面大小
+     * @return 按照此页面分页可以得到的分页数量
      */
     public static <T> int getIteratorNum(List<T> ls, int pageSize) {
         int base = ls.size() / pageSize;
