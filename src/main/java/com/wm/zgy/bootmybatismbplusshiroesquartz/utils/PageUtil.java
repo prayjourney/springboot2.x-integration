@@ -23,7 +23,7 @@ public class PageUtil {
      * @param pageSize 页面大小
      * @return 按照此页面分页可以得到的分页数量
      */
-    private static <T> int getIteratorNum(List<T> ls, int pageSize) {
+    public static <T> int getIteratorNum(List<T> ls, int pageSize) {
         int base = ls.size() / pageSize;
         boolean complete = (ls.size() % pageSize) == 0 ? true : false;
         if (complete == true) {
@@ -90,7 +90,7 @@ public class PageUtil {
      * @param pageSize 页面大小
      * @return 按照此页面分页可以得到的分页数量
      */
-    private static <T,V> int getIteratorNum(Map<T,V> map, int pageSize) {
+    public static <T,V> int getIteratorNum(Map<T,V> map, int pageSize) {
         int base = map.size() / pageSize;
         boolean complete = (map.size() % pageSize) == 0 ? true : false;
         if (complete == true) {

@@ -24,7 +24,7 @@ import java.util.Set;
 public class PageUtilTest {
 
     @Test
-    public void testList2Page() {
+    public void testList2Page() throws Exception {
         List<String> ls = new ArrayList<>();
         ls.add("a1a2a1");
         ls.add("a1a2a2");
@@ -45,7 +45,8 @@ public class PageUtilTest {
         int pageSize = 4;
         int iteratorNum = PageUtil.getIteratorNum(ls, pageSize);
         for (int pageNo = 0; pageNo < iteratorNum; pageNo++) {
-            List<String> ss = PageUtil.list2Page(ls, pageSize, pageNo, iteratorNum);
+            // List<String> ss = PageUtil.list2Page(ls, pageSize, pageNo, iteratorNum);
+            List<String> ss = PageUtil.list2Page(ls, pageSize, pageNo);
             for (String s : ss) {
                 System.out.println(s);
             }
