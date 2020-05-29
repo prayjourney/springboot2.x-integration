@@ -13,9 +13,12 @@ import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.ClearScrollRequest;
+import org.elasticsearch.action.search.ClearScrollResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchScrollRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
@@ -34,6 +37,7 @@ import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.search.Scroll;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.Aggregation;
 import org.elasticsearch.search.aggregations.AggregationBuilder;
@@ -62,6 +66,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
 /**
  * @Author renjiaxin
@@ -175,13 +181,13 @@ public class ElasticSearchService {
         searchRequest.source(sourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         SearchHit[] hits = searchResponse.getHits().getHits();
-        for (SearchHit hit: hits){
+        for (SearchHit hit : hits) {
             Map<String, Object> sourceAsMap = hit.getSourceAsMap();
-            sourceAsMap.put("name","西游记1");
+            sourceAsMap.put("name", "西游记1");
             // 这个id是book的id，而update的时候，是需要整个文档的_id的  _id = hit.getId()
             // String id = sourceAsMap.get("id").toString();
             String id = hit.getId();
-            updateBookDocumentByMap(sourceAsMap,"books", id, 10);
+            updateBookDocumentByMap(sourceAsMap, "books", id, 10);
         }
         return 1;
     }
@@ -251,7 +257,7 @@ public class ElasticSearchService {
         // QueryBuilders来构造条件查询
         // QueryBuilders.termQuery()实现精确查询
         // TermQueryBuilder queryBuilder = QueryBuilders.termQuery();
-        MatchAllQueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
+        MatchAllQueryBuilder queryBuilder = matchAllQuery();
         searchSourceBuilder.query(queryBuilder);
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         request.source(searchSourceBuilder);
@@ -304,23 +310,24 @@ public class ElasticSearchService {
     public void searchCount(String indexName, String author) throws IOException {
         CountRequest countRequest = new CountRequest(indexName);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        searchSourceBuilder.query(matchAllQuery());
         countRequest.source(searchSourceBuilder);
     }
 
     /**
-    GET kuangsheng/user/_search
-    {
-        "size": 0,
-        "aggs":
-            {
-                "mytest1":{
-                "max":{
-                    "field": "age"
-                }
-            }
-        }
-    }*/
+     * GET kuangsheng/user/_search
+     * {
+     * "size": 0,
+     * "aggs":
+     * {
+     * "mytest1":{
+     * "max":{
+     * "field": "age"
+     * }
+     * }
+     * }
+     * }
+     */
     // 聚合操作, 目前有问题
     public void aggDocumentMax(String indexName, String filedName) throws IOException {
         SearchRequest request = new SearchRequest(indexName);
@@ -364,7 +371,7 @@ public class ElasticSearchService {
         searchSourceBuilder.query(QueryBuilders.queryStringQuery(myQueryString));
 
         TermsAggregationBuilder aggregation = AggregationBuilders.terms("test")
-                .field(filedName  + ".keyword").size(0);
+                .field(filedName + ".keyword").size(0);
         aggregation.subAggregation(AggregationBuilders.count("count"));
         searchSourceBuilder.aggregation(aggregation);
 
@@ -373,7 +380,7 @@ public class ElasticSearchService {
         searchRequest.source(searchSourceBuilder);
 
 
-        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
 
         Aggregations aggregations = searchResponse.getAggregations();
@@ -424,30 +431,30 @@ public class ElasticSearchService {
         System.out.println("==================");
 
 
-        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         System.out.println(searchResponse.getAggregations().getAsMap().get("hello-test"));
         ParsedMax sss = (ParsedMax) searchResponse.getAggregations().asList().get(0);
         System.out.println(sss.getValue());
 
         /**
-        Map<String, Aggregation> serviceLineMap = searchResponse.getAggregations().asMap();
-        ParsedStringTerms serviceLineTerms = (ParsedStringTerms) serviceLineMap.get("dddddsf");
-        List serviceLists = serviceLineTerms.getBuckets();
-        for (Object serviceList : serviceLists) {
-            ParsedStringTerms.ParsedBucket serviceListObj = (ParsedStringTerms.ParsedBucket) serviceList;
-            String serviceLine = serviceListObj.getKeyAsString();
-            Map<String, Aggregation> appNameMap = serviceListObj.getAggregations().asMap();
-            ParsedStringTerms appNameTerms = (ParsedStringTerms) appNameMap.get("dddddsf");
-            List appNameLists = appNameTerms.getBuckets();
-            for (Object appNameList : appNameLists) {
-                ParsedStringTerms.ParsedBucket appNameObj = (ParsedStringTerms.ParsedBucket) appNameList;
-                String appName = appNameObj.getKeyAsString();
-                Long count = appNameObj.getDocCount();
-                System.out.println(serviceLine);
-                System.out.println(appName);
-                System.out.println(count);
-            }
-        }*/
+         Map<String, Aggregation> serviceLineMap = searchResponse.getAggregations().asMap();
+         ParsedStringTerms serviceLineTerms = (ParsedStringTerms) serviceLineMap.get("dddddsf");
+         List serviceLists = serviceLineTerms.getBuckets();
+         for (Object serviceList : serviceLists) {
+         ParsedStringTerms.ParsedBucket serviceListObj = (ParsedStringTerms.ParsedBucket) serviceList;
+         String serviceLine = serviceListObj.getKeyAsString();
+         Map<String, Aggregation> appNameMap = serviceListObj.getAggregations().asMap();
+         ParsedStringTerms appNameTerms = (ParsedStringTerms) appNameMap.get("dddddsf");
+         List appNameLists = appNameTerms.getBuckets();
+         for (Object appNameList : appNameLists) {
+         ParsedStringTerms.ParsedBucket appNameObj = (ParsedStringTerms.ParsedBucket) appNameList;
+         String appName = appNameObj.getKeyAsString();
+         Long count = appNameObj.getDocCount();
+         System.out.println(serviceLine);
+         System.out.println(appName);
+         System.out.println(count);
+         }
+         }*/
 
     }
 
@@ -468,7 +475,7 @@ public class ElasticSearchService {
         System.out.println("==================");
 
 
-        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         // 通过map的方式可以看到值，但是取不到，转换成list
         // System.out.println(searchResponse.getAggregations().getAsMap().get("hello-test"));
         ParsedMax sss = (ParsedMax) searchResponse.getAggregations().asList().get(0);
@@ -493,12 +500,12 @@ public class ElasticSearchService {
 
 
         // 解析数据
-        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().asList().get(0);
         System.out.println(longTerms);
         List<? extends Terms.Bucket> buckets = longTerms.getBuckets();
         for (int i = 0; i < buckets.size(); i++) {
-            System.out.println(buckets.get(i).getKey() + ", " +buckets.get(i).getDocCount());
+            System.out.println(buckets.get(i).getKey() + ", " + buckets.get(i).getDocCount());
         }
 
     }
@@ -516,22 +523,82 @@ public class ElasticSearchService {
         System.out.println("==================");
 
 
-        SearchResponse searchResponse  = client.search(searchRequest,RequestOptions.DEFAULT);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         // 解析数据，桶不够了
         /**
-        ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().asList().get(0);
-        System.out.println(longTerms);
-        List<? extends Terms.Bucket> buckets = longTerms.getBuckets();
-        for (int i = 0; i < buckets.size(); i++) {
-            System.out.println(buckets.get(i).getKey() + ", " +buckets.get(i).getDocCount());
-        }
-        */
+         ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().asList().get(0);
+         System.out.println(longTerms);
+         List<? extends Terms.Bucket> buckets = longTerms.getBuckets();
+         for (int i = 0; i < buckets.size(); i++) {
+         System.out.println(buckets.get(i).getKey() + ", " +buckets.get(i).getDocCount());
+         }
+         */
 
         Map<String, Aggregation> aggregationMap = searchResponse.getAggregations().asMap();
-        ParsedLongTerms age_first = (ParsedLongTerms)  aggregationMap.get("age_first");
+        ParsedLongTerms age_first = (ParsedLongTerms) aggregationMap.get("age_first");
         for (Terms.Bucket groupByAgeBucket : age_first.getBuckets()) {
             System.out.println(groupByAgeBucket.getKey() + ":" + groupByAgeBucket.getDocCount());
         }
+
+    }
+
+    public void testScroll(String indexName) {
+        // 初始化scroll
+        final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L)); //设定滚动时间间隔
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        searchRequest.scroll(scroll);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        searchSourceBuilder.query(matchAllQuery());
+        searchSourceBuilder.size(5); //设定每次返回多少条数据
+        searchRequest.source(searchSourceBuilder);
+
+
+        SearchResponse searchResponse = null;
+        try {
+            searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String scrollId = searchResponse.getScrollId();
+        SearchHit[] searchHits = searchResponse.getHits().getHits();
+        System.out.println("-----首页-----");
+
+        for (SearchHit searchHit : searchHits) {
+            System.out.println(searchHit.getSourceAsString());
+        }
+
+        //遍历搜索命中的数据，直到没有数据
+        while (searchHits != null && searchHits.length > 0) {
+            SearchScrollRequest scrollRequest = new SearchScrollRequest(scrollId);
+            scrollRequest.scroll(scroll);
+            try {
+                searchResponse = client.scroll(scrollRequest, RequestOptions.DEFAULT);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            scrollId = searchResponse.getScrollId();
+            searchHits = searchResponse.getHits().getHits();
+            if (searchHits != null && searchHits.length > 0) {
+                System.out.println("-----下一页-----");
+                for (SearchHit searchHit : searchHits) {
+                    System.out.println(searchHit.getSourceAsString());
+                }
+            }
+
+        }
+
+        //清除滚屏
+        ClearScrollRequest clearScrollRequest = new ClearScrollRequest();
+        clearScrollRequest.addScrollId(scrollId);//也可以选择setScrollIds()将多个scrollId一起使用
+        ClearScrollResponse clearScrollResponse = null;
+        try {
+            clearScrollResponse = client.clearScroll(clearScrollRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        boolean succeeded = clearScrollResponse.isSucceeded();
+        System.out.println("succeeded:" + succeeded);
 
     }
 
