@@ -3,6 +3,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
+import io.swagger.models.auth.In;
 import lombok.val;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -45,6 +46,7 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
 import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
 import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
+import org.elasticsearch.search.aggregations.bucket.terms.IncludeExclude;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
@@ -64,8 +66,11 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
@@ -542,6 +547,7 @@ public class ElasticSearchService {
 
     }
 
+    // scroll适合于查询，对于聚合，当桶特别多的时候，它并不适用
     public void testScroll(String indexName) {
         // 初始化scroll
         final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L)); //设定滚动时间间隔
@@ -599,6 +605,64 @@ public class ElasticSearchService {
         }
         boolean succeeded = clearScrollResponse.isSucceeded();
         System.out.println("succeeded:" + succeeded);
+
+    }
+
+
+    // 当桶特别多的时候，scroll不适用，所以需要使用partition，把数据分片，然后自己去组装结果
+    public Map<String, Integer> testScrollByAggs(String indexName) throws IOException {
+        Map<String, Integer> resultTemp = new HashMap<>(); //存放临时数据，等待合并
+
+        SearchRequest searchRequest = new SearchRequest(indexName);
+
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+
+        int partitionNo = 6;
+        for (int i = 0; i < partitionNo; i++) {
+            // 聚类的时候，一个里面放5个数据
+            String name = "hello-age"+i;
+            TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms(name).field("age").size(3);
+            // partition, 将数据分为10份，每次自己去组装
+            IncludeExclude includeExclude = new IncludeExclude(i, partitionNo);
+            termsAggregationBuilder.includeExclude(includeExclude);
+            searchSourceBuilder.aggregation(termsAggregationBuilder);
+            searchSourceBuilder.size(10); //设定每次返回多少条数据，要放得下每页返回的数量
+            searchRequest.source(searchSourceBuilder);
+
+            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+            ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().getAsMap().get(name);
+
+            for (int loc = 0; loc < longTerms.getBuckets().size(); loc++) {
+                String age = String.valueOf(longTerms.getBuckets().get(loc).getKey());
+                Integer ageCountPeople = Math.toIntExact(longTerms.getBuckets().get(loc).getDocCount());
+                System.out.println("age: " + age + ", ageCountPeople: " + ageCountPeople);
+                if (resultTemp.containsKey(age)) {
+                    Integer tempValue = resultTemp.get(age);
+                    resultTemp.put(age, (tempValue+ ageCountPeople));
+                }
+                resultTemp.put(age, ageCountPeople);
+            }
+
+            /*
+            // 合并处理结果
+            if (null == result || result.size() == 0) {
+                result.putAll(resultTemp);
+            } else {
+                Iterator<Map.Entry<String, Integer>> iterator = result.entrySet().iterator();
+                Set<String> resultTempKeySet = resultTemp.keySet();
+                while (iterator.hasNext()) {
+                    String key = iterator.next().getKey();
+                    if (resultTempKeySet.contains(key)) {
+                        Integer value = result.get(key) + resultTemp.get(key);
+                        result.put(key, value);
+                    }
+                }
+            }*/
+        }
+
+        return resultTemp;
 
     }
 

@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @Author renjiaxin
@@ -24,6 +26,18 @@ public class EsScrollTest {
     @Test
     public void testAggDocumentMax() throws IOException {
         esService.testScroll("kuangsheng");
+
+    }
+
+    @Test
+    public void testScrollByAggs() throws IOException {
+        Map<String, Integer> kuangsheng = esService.testScrollByAggs("kuangsheng");
+        Iterator<Map.Entry<String, Integer>> iterator = kuangsheng.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> map = iterator.next();
+            System.out.println("key : " + map.getKey() + ", value : " +map.getValue());
+        }
+
 
     }
 }
