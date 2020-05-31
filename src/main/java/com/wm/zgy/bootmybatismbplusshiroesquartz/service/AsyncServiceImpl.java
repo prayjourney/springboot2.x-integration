@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AsyncServiceImpl implements AsyncService {
     @Override
+    @Async("asyncServiceExecutor")
     public void executeAsync() {
         log.info("start executeAsync");
         try{
