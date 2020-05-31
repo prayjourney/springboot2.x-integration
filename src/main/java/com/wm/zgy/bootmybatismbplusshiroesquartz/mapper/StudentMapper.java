@@ -2,7 +2,10 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student;
+import io.swagger.models.auth.In;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @Author: renjiaxin
@@ -12,4 +15,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {
+    List<Student> getAllStudentList();
 }
