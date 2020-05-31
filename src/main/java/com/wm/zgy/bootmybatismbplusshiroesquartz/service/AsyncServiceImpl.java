@@ -18,7 +18,7 @@ public class AsyncServiceImpl implements AsyncService {
     public void executeAsync() {
         log.info("start executeAsync");
         try{
-            Thread.sleep(1000);
+            Thread.sleep(10000);
             System.out.println("好瞌睡啊。。。。");
         }catch(Exception e){
             e.printStackTrace();

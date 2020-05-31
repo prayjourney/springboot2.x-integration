@@ -45,7 +45,7 @@ public class ExecutorConfig {
         executor.setKeepAliveSeconds(outTimeSeconds);
         // 配置线程池中的线程的名称前缀
         executor.setThreadNamePrefix(taskPrefix);
-        // 配置拒绝策略
+        // 配置拒绝策略，满了之后等待的策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 初始化
         executor.initialize();
