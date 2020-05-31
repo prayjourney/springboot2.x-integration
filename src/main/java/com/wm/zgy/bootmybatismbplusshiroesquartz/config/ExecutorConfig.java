@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.config;
 
+import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.VisiableThreadPoolTaskExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +35,10 @@ public class ExecutorConfig {
 
     @Bean
     public Executor asyncServiceExecutor(){
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        // Spring给我们封装的ThreadPoolTaskExecutor， 其实核心就是ThreadPoolExecutor
+        // ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        // 使用自定义的详细的Executor
+        VisiableThreadPoolTaskExecutor executor = new VisiableThreadPoolTaskExecutor();
         // 配置核心线程数
         executor.setCorePoolSize(coreSize);
         // 配置最大线程数
