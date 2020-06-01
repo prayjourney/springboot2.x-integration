@@ -16,4 +16,6 @@ import java.util.List;
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {
     List<Student> getAllStudentList();
+
+    void updateStudent(Integer key, Student student);
 }

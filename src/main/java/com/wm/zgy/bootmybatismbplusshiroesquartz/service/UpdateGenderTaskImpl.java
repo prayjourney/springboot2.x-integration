@@ -30,8 +30,9 @@ public class UpdateGenderTaskImpl implements UpdateTask {
         // System.out.println(updateWrapper.getSqlSet().toString());
         log.info("开始更新， stId: " + key);
         TimeUnit.MILLISECONDS.sleep(30L);
-        studentMapper.update(student, updateWrapper);
-        //studentMapper.updateById(student);
+        // studentMapper.update(student, updateWrapper);
+        // studentMapper.updateById(student);
+        studentMapper.updateStudent(key, student);
         log.info("更新结束， stId: " + key);
     }
 }

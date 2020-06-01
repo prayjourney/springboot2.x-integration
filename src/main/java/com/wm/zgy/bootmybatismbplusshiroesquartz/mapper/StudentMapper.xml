@@ -5,4 +5,19 @@
         SELECT `stId`,`stName`,`stAge`,`stGender`,`classId`,`hobbyGroupId`,`stHome`,`cityId`
         FROM student
     </select>
+
+    <update id="updateStudent" parameterType="com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student">
+        update student
+        <set>
+            <if test="key != null">
+                key =#{key},
+            </if>
+            <if test="student !=null">
+                student = #{student}
+            </if>
+        </set>
+        <where>
+            key = #{key}
+        </where>
+    </update>
 </mapper>
