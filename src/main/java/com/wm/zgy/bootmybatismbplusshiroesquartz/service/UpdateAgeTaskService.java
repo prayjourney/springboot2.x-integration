@@ -68,10 +68,9 @@ public class UpdateAgeTaskService {
         Iterator<Map.Entry<Integer, Student>> iterator = entrySet.iterator();
         while (iterator.hasNext()) {
             Map.Entry<Integer, Student> next = iterator.next();
-            Integer key = next.getKey();
             Student student = next.getValue();
             // 异步执行
-            ageTask.update(key, student);
+            ageTask.update(student);
         }
     }
 }

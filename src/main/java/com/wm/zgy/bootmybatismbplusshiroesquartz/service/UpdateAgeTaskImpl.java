@@ -25,7 +25,7 @@ public class UpdateAgeTaskImpl implements UpdateTask {
     @Async("asyncServiceExecutor")
     public void update(Student student) throws InterruptedException {
         Integer age = student.getStAge();
-        student.setStAge(age + 2);
+        student.setStAge(age + 1);
         // UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
         // updateWrapper.eq("stId", student.getStId());
         log.info("开始更新， stId: " + student.getStId());

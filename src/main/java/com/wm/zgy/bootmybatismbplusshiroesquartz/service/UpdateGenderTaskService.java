@@ -53,10 +53,9 @@ public class UpdateGenderTaskService{
         while (iterator.hasNext()) {
             TimeUnit.MILLISECONDS.sleep(60L);
             Map.Entry<Integer, Student> next = iterator.next();
-            Integer key = next.getKey();
             Student student = next.getValue();
             // 执行更新任务, 异步执行
-            genderTask.update(key, student);
+            genderTask.update(student);
         }
     }
 }
