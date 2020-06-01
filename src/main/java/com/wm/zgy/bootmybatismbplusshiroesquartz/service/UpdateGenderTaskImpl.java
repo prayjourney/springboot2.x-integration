@@ -24,9 +24,9 @@ public class UpdateGenderTaskImpl implements UpdateTask {
     @Override
     @Async("asyncServiceExecutor")
     public void update(Student student) throws InterruptedException {
-        student.setStGender('m');
-        //UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
-        //updateWrapper.eq("stId", key);
+        student.setStGender('1');
+        // UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
+        // updateWrapper.eq("stId", key);
         // System.out.println(updateWrapper.getSqlSet().toString());
         log.info("开始更新， stId: " + student.getStId());
         TimeUnit.MILLISECONDS.sleep(30L);

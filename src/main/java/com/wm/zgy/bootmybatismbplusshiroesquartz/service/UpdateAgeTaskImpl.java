@@ -26,8 +26,8 @@ public class UpdateAgeTaskImpl implements UpdateTask {
     public void update(Student student) throws InterruptedException {
         Integer age = student.getStAge();
         student.setStAge(age + 2);
-        UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
-        updateWrapper.eq("stId", student.getStId());
+        // UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
+        // updateWrapper.eq("stId", student.getStId());
         log.info("开始更新， stId: " + student.getStId());
         TimeUnit.MILLISECONDS.sleep(30L);
         // studentMapper.update(student, updateWrapper);
