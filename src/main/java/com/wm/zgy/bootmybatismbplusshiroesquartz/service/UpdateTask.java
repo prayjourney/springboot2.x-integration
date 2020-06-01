@@ -9,5 +9,5 @@ import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student;
  * @Modified by:
  */
 public interface UpdateTask {
-    void update(Integer key, Student student) throws InterruptedException;
+    void update(Student student) throws InterruptedException;
 }

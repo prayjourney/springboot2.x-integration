@@ -23,16 +23,17 @@ public class UpdateAgeTaskImpl implements UpdateTask {
 
     @Override
     @Async("asyncServiceExecutor")
-    public void update(Integer key, Student student) throws InterruptedException {
+    public void update(Student student) throws InterruptedException {
         Integer age = student.getStAge();
         student.setStAge(age + 2);
         UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
-        updateWrapper.eq("stId", key);
-        log.info("开始更新， stId: " + key);
+        updateWrapper.eq("stId", student.getStId());
+        log.info("开始更新， stId: " + student.getStId());
         TimeUnit.MILLISECONDS.sleep(30L);
-        studentMapper.update(student, updateWrapper);
-        //studentMapper.updateById(student);
-        log.info("更新结束， stId: " + key);
+        // studentMapper.update(student, updateWrapper);
+        // studentMapper.updateById(student);
+        studentMapper.updateStudent(student);
+        log.info("更新结束， stId: " + student.getStId());
 
     }
 }
