@@ -7,17 +7,17 @@
     </select>
 
     <update id="updateStudent" parameterType="com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student">
-        update student
+        UPDATE `student`
         <set>
-            <if test="key != null">
-                key =#{key},
+            <if test="stAge !=null">
+                stAge = #{stAge},
             </if>
-            <if test="student !=null">
-                student = #{student}
+            <if test="stGender !=null">
+                stGender = #{stGender}
             </if>
         </set>
         <where>
-            key = #{key}
+            stId = #{stId}
         </where>
     </update>
 </mapper>
