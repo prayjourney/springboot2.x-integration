@@ -25,10 +25,12 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-//@EnableAspectJAutoProxy(proxyTargetClass = true) //此处不需要这个
-public class UpdateAgeTaskService implements UpdateTask {
+public class UpdateAgeTaskService {
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private UpdateAgeTaskImpl ageTask;
 
 
     public Map<Integer, Student> getStudentIdMaps() {
@@ -40,6 +42,8 @@ public class UpdateAgeTaskService implements UpdateTask {
         return studentIdMaps;
     }
 
+    // 在同一个类之中调用，不会触发异步效果
+    /*
     @Override
     @Async("asyncServiceExecutor") //===============>为啥线程池换了，有问题啊
     public void update(Integer key, Student student) throws InterruptedException {
@@ -54,8 +58,9 @@ public class UpdateAgeTaskService implements UpdateTask {
         log.info("更新结束， stId: " + key);
 
     }
+    */
 
-    //@Async("asyncServiceExecutor") // 放在具体执行的方法上面即可===============>为啥线程池换了，有问题啊
+
     public void updateAge() throws InterruptedException {
         Map<Integer, Student> studentIdMaps = getStudentIdMaps();
         // 操作数据，放入到线程池里面
@@ -65,7 +70,8 @@ public class UpdateAgeTaskService implements UpdateTask {
             Map.Entry<Integer, Student> next = iterator.next();
             Integer key = next.getKey();
             Student student = next.getValue();
-            update(key, student);
+            // 异步执行
+            ageTask.update(key, student);
         }
     }
 }

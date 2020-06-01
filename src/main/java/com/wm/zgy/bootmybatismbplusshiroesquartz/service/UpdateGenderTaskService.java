@@ -27,9 +27,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 //@EnableAspectJAutoProxy(proxyTargetClass = true) //此处不需要这个
-public class UpdateGenderTaskService implements UpdateTask {
+public class UpdateGenderTaskService{
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private UpdateGenderTaskImpl genderTask;
+
 
     public Map<Integer, Student> getStudentIdMaps() {
         Map<Integer, Student> studentIdMaps = new HashMap<>();
@@ -40,20 +44,7 @@ public class UpdateGenderTaskService implements UpdateTask {
         return studentIdMaps;
     }
 
-    @Override
-    @Async("asyncServiceExecutor") //===============>为啥线程池换了，有问题啊
-    public void update(Integer key, Student student) throws InterruptedException {
-        student.setStGender('女');
-        UpdateWrapper<Student> updateWrapper = new UpdateWrapper<>(student);
-        updateWrapper.eq("stId", key);
-        log.info("开始更新， stId: " + key);
-        TimeUnit.MILLISECONDS.sleep(30L);
-        studentMapper.update(student, updateWrapper);
-        // studentMapper.updateById(student);
-        log.info("更新结束， stId: " + key);
-    }
 
-    // @Async("asyncServiceExecutor")  // 放在具体执行的方法上面即可
     public void updateGender() throws InterruptedException {
         Map<Integer, Student> studentIdMaps = getStudentIdMaps();
         // 操作数据，放入到线程池里面
@@ -64,7 +55,8 @@ public class UpdateGenderTaskService implements UpdateTask {
             Map.Entry<Integer, Student> next = iterator.next();
             Integer key = next.getKey();
             Student student = next.getValue();
-            update(key, student);
+            // 执行更新任务, 异步执行
+            genderTask.update(key, student);
         }
     }
 }
