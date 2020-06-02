@@ -548,7 +548,7 @@ public class ElasticSearchService {
     }
 
     // scroll适合于查询，对于聚合，当桶特别多的时候，它并不适用
-    public void testScroll(String indexName) {
+    public void searchUseScroll(String indexName) {
         // 初始化scroll
         final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L)); //设定滚动时间间隔
         SearchRequest searchRequest = new SearchRequest(indexName);
@@ -610,7 +610,7 @@ public class ElasticSearchService {
 
 
     // 当桶特别多的时候，scroll不适用，所以需要使用partition，把数据分片，然后自己去组装结果
-    public Map<String, Integer> testScrollByAggs(String indexName) throws IOException {
+    public Map<String, Integer> aggUsePartition(String indexName) throws IOException {
         Map<String, Integer> resultTemp = new HashMap<>(); //存放临时数据，等待合并
 
         SearchRequest searchRequest = new SearchRequest(indexName);

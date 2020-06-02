@@ -24,14 +24,14 @@ public class EsScrollTest {
 
 
     @Test
-    public void testAggDocumentMax() throws IOException {
-        esService.testScroll("kuangsheng");
+    public void testSearchUseScroll() throws IOException {
+        esService.searchUseScroll("kuangsheng");
 
     }
 
     @Test
-    public void testScrollByAggs() throws IOException {
-        Map<String, Integer> kuangsheng = esService.testScrollByAggs("kuangsheng");
+    public void testAggUsePartition() throws IOException {
+        Map<String, Integer> kuangsheng = esService.aggUsePartition("kuangsheng");
         Iterator<Map.Entry<String, Integer>> iterator = kuangsheng.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Integer> map = iterator.next();
