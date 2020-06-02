@@ -40,4 +40,9 @@ public class EsScrollTest {
 
 
     }
+
+    @Test
+    public void testAggUsePartitionWithScroll() throws IOException {
+        esService.aggUsePartitionWithScroll("kuangsheng", 10, 10, 2);
+    }
 }

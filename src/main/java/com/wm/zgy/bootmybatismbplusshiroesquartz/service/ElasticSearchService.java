@@ -609,14 +609,12 @@ public class ElasticSearchService {
     }
 
 
-    // 当桶特别多的时候，scroll不适用，所以需要使用partition，把数据分片，然后自己去组装结果
+    // 当桶特别多的时候, scroll不适用, 所以需要使用partition, 把数据分片, 然后自己去组装结果
     public Map<String, Integer> aggUsePartition(String indexName) throws IOException {
         Map<String, Integer> resultTemp = new HashMap<>(); //存放临时数据，等待合并
 
         SearchRequest searchRequest = new SearchRequest(indexName);
-
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-
 
         int partitionNo = 6;
         for (int i = 0; i < partitionNo; i++) {
@@ -664,6 +662,60 @@ public class ElasticSearchService {
 
         return resultTemp;
 
+    }
+
+
+    /**
+     * 当桶的数量非常多, 那么我们就需要使用partition, 如果搜索的数据很多, 那么我们就要使用Scroll
+     * 但是, 如果桶很多, 而每个桶里面的数据也很多, 那么我们就需要同一时间使用partition和Scroll了
+     *
+     * @param indexName            es的索引名称
+     * @param partitionNum         我们设置的分区数量
+     * @param maxDataSize          每个分区之中最多可以返回的数量
+     * @return
+     */
+    public Map<String, Integer> aggUsePartitionWithScroll(String indexName, int partitionNum, int maxDataSize, int everyAggNum) throws IOException {
+        // 存放临时数据，等待合并
+        Map<String, Integer> resultTemp = new HashMap<>();
+
+        for (int i = 0; i < partitionNum; i++) {
+            // 初始化scroll, 设定滚动时间间隔
+            final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L));
+            SearchRequest searchRequest = new SearchRequest(indexName);
+
+            SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+            // 每次分块的名称
+            String name = "hello-age-" + i;
+            // 使用age去聚类, 每次聚类3个
+            TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms(name).field("age").size(everyAggNum);
+            // partition, 将数据分为partitionNum份, 每次自己去组装
+            IncludeExclude includeExclude = new IncludeExclude(i, partitionNum);
+            termsAggregationBuilder.includeExclude(includeExclude);
+            searchSourceBuilder.aggregation(termsAggregationBuilder);
+            // 设定每次最多返回多少条数据, 要放得下每页返回的数量
+            searchSourceBuilder.size(maxDataSize);
+            searchRequest.source(searchSourceBuilder);
+            searchRequest.scroll(scroll);
+
+            // 得到了搜索结果, 然后获取scrollId, 去依次获取内容
+            SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+            String scrollId = searchResponse.getScrollId();
+
+            ParsedLongTerms longTerms = (ParsedLongTerms) searchResponse.getAggregations().getAsMap().get(name);
+
+            for (int loc = 0; loc < longTerms.getBuckets().size(); loc++) {
+                String age = String.valueOf(longTerms.getBuckets().get(loc).getKey());
+                Integer ageCountPeople = Math.toIntExact(longTerms.getBuckets().get(loc).getDocCount());
+                System.out.println("age: " + age + ", ageCountPeople: " + ageCountPeople);
+                if (resultTemp.containsKey(age)) {
+                    Integer tempValue = resultTemp.get(age);
+                    resultTemp.put(age, (tempValue + ageCountPeople));
+                }
+                resultTemp.put(age, ageCountPeople);
+            }
+        }
+
+        return resultTemp;
     }
 
 }
