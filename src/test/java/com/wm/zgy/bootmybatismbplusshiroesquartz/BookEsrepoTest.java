@@ -96,7 +96,7 @@ public class BookEsrepoTest {
         mp.put("name","封神榜");
         mp.put("author","河东智叟许仲林");
         mp.put("overview","武王伐纣啊");
-        mp.put("type", "==");
+        mp.put("type", "==1213");
         System.out.println(esService.updateBookDocumentByMap(mp, "books", "3", 1));
     }
 
