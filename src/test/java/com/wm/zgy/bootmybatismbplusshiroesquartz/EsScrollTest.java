@@ -45,4 +45,12 @@ public class EsScrollTest {
     public void testAggUsePartitionWithScroll() throws IOException {
         esService.aggUsePartitionWithScroll("kuangsheng", 10, 10, 2);
     }
+
+
+
+    @Test
+    public void testMultiCompositeBuckets() throws IOException {
+        esService.multiCompositeBuckets("kuangsheng");
+
+    }
 }

@@ -3,8 +3,6 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
-import io.swagger.models.auth.In;
-import lombok.val;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -17,7 +15,6 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.ClearScrollRequest;
 import org.elasticsearch.action.search.ClearScrollResponse;
 import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchScrollRequest;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
@@ -30,8 +27,6 @@ import org.elasticsearch.client.indices.CreateIndexRequest;
 import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.unit.TimeValue;
-import org.elasticsearch.common.xcontent.ToXContent;
-import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
@@ -41,36 +36,30 @@ import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.Scroll;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.Aggregation;
-import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.Aggregations;
-import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
-import org.elasticsearch.search.aggregations.bucket.histogram.ExtendedBounds;
+import org.elasticsearch.search.aggregations.bucket.composite.CompositeAggregationBuilder;
+import org.elasticsearch.search.aggregations.bucket.composite.CompositeValuesSourceBuilder;
+import org.elasticsearch.search.aggregations.bucket.composite.ParsedComposite;
+import org.elasticsearch.search.aggregations.bucket.composite.TermsValuesSourceBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.IncludeExclude;
 import org.elasticsearch.search.aggregations.bucket.terms.ParsedLongTerms;
-import org.elasticsearch.search.aggregations.bucket.terms.ParsedStringTerms;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
-import org.elasticsearch.search.aggregations.metrics.Max;
 import org.elasticsearch.search.aggregations.metrics.MaxAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.ParsedMax;
-import org.elasticsearch.search.aggregations.metrics.SumAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.data.elasticsearch.core.ResultsExtractor;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
@@ -727,6 +716,101 @@ public class ElasticSearchService {
         }
 
         return resultTemp;
+    }
+
+
+    public void multiCompositeBuckets(String indexName) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        // 聚合之中不去带source数据
+        searchSourceBuilder.size(0);
+
+        /********************以下组装聚合的三个字段****************************/
+        List<CompositeValuesSourceBuilder<?>> sources = new ArrayList<>();
+
+        TermsValuesSourceBuilder cityIdTerms = new TermsValuesSourceBuilder("ageTerm").field("age").
+                missingBucket(false).order(SortOrder.ASC);
+        sources.add(cityIdTerms);
+
+        //TermsValuesSourceBuilder industrySecondIdTerms = new TermsValuesSourceBuilder("industrySecondId").
+        //        field("industry_second_id").missingBucket(false).order(SortOrder.ASC);
+        //sources.add(industrySecondIdTerms);
+
+        //TermsValuesSourceBuilder companyIdTerms = new TermsValuesSourceBuilder("companyId").field("company_id")
+        //        .missingBucket(false).order(SortOrder.ASC);
+        //sources.add(companyIdTerms);
+
+        CompositeAggregationBuilder  composite =new CompositeAggregationBuilder("compositeBuckets", sources);
+        //这个就可以以定位了。。。。。
+        //composite.aggregateAfter(.......)
+        composite.size(2);
+
+
+//        // 将job_id进行排序，升序排序======》这个只是一个搜索的时候才能用到的
+//        searchSourceBuilder.sort("job_id", SortOrder.ASC).from(0).size(100);
+//        BoolQueryBuilder bool = new BoolQueryBuilder();
+//        bool.filter(QueryBuilders.rangeQuery("job_id").gte("afddsafdsa"));
+//        searchSourceBuilder.query(bool);
+
+        /*********************执行查询******************************/
+        searchSourceBuilder.aggregation(composite);
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+
+        // 问题，聚合的时候，能不能直接定位到一个点上面？
+        /********************取出数据*******************/
+        Aggregations aggregations = searchResponse.getAggregations();
+        ParsedComposite parsedComposite = aggregations.get("compositeBuckets");
+        Map<String, Object> afterKey = parsedComposite.afterKey();
+        System.out.println(afterKey);
+
+        List<ParsedComposite.ParsedBucket> list =  parsedComposite.getBuckets();
+
+
+        Map<String,Object> data = new HashMap<>();
+        for(ParsedComposite.ParsedBucket parsedBucket:list){
+            data.clear();
+            for (Map.Entry<String, Object> m :  parsedBucket.getKey().entrySet()) {
+                data.put(m.getKey(),m.getValue());
+            }
+            data.put("count",parsedBucket.getDocCount());
+            System.out.println(data);
+        }
+
+        int num = 0;
+        // 拿完了一轮
+        while (afterKey != null){
+            CompositeAggregationBuilder  composite02 =new CompositeAggregationBuilder("compositeBuckets" + num, sources).aggregateAfter(afterKey);
+            // composite02.aggregateAfter(afterKey);
+            /*********************执行查询******************************/
+            composite02.size(2);  // 聚类的时候，不管有多少个，一次可以拿完，只是有两个拿到所有结果后的桶
+            searchSourceBuilder.aggregation(composite02);
+            searchRequest.source(searchSourceBuilder);
+            SearchResponse searchNewResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+            /********************取出数据*******************/
+            aggregations = searchNewResponse.getAggregations();
+            ParsedComposite newParsedComposite = aggregations.get("compositeBuckets" +num);
+            afterKey = newParsedComposite.afterKey();
+            System.out.println(afterKey);
+
+            List<ParsedComposite.ParsedBucket> newList =  newParsedComposite.getBuckets();
+
+
+            Map<String,Object> newData = new HashMap<>();
+            for(ParsedComposite.ParsedBucket parsedBucket : newList){
+                newData.clear();
+                for (Map.Entry<String, Object> m :  parsedBucket.getKey().entrySet()) {
+                    newData.put(m.getKey(),m.getValue());
+                }
+                newData.put("count",parsedBucket.getDocCount());
+                System.out.println(newData);
+            }
+            num ++;
+
+        }
+
     }
 
 }
