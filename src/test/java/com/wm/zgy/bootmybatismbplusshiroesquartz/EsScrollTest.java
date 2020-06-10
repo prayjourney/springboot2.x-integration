@@ -58,4 +58,9 @@ public class EsScrollTest {
     public void testSearchSort01() throws IOException {
         esService.searchSort01("kuangsheng",5,null);
     }
+
+    @Test
+    public void testSearchSort02() throws IOException {
+        esService.searchSort02("kuangsheng",5,null);
+    }
 }

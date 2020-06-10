@@ -959,6 +959,81 @@ public class ElasticSearchService {
 
     }
 
+
+    /*这个逻辑相比于searchSort01, 反而是很清晰, 而且代码也减少了一半*/
+    public int searchSort02(String indexName, Integer dataMaxSize, Map<String, Object> lastKey) throws IOException {
+        // 记录次数
+        int num = 0;
+        // 记录是否为首页
+        boolean boolLastPage = false;
+        Map<String, Object> locationMap = new HashMap<>();
+        // 只是显示如下三个列, 默认返回所有的内容
+        String[] columns = new String[]{"name", "age", "type"};
+
+        while (!boolLastPage) {
+            log.info("这是第: {} 轮！", num + 1);
+            SearchRequest searchRequest001 = new SearchRequest(indexName);
+            SearchSourceBuilder searchSourceBuilder001 = new SearchSourceBuilder();
+            searchSourceBuilder001.size(dataMaxSize);
+            // 按照name排序
+            searchSourceBuilder001.fetchSource(columns, null).sort("name", SortOrder.ASC);
+            BoolQueryBuilder bool = new BoolQueryBuilder();
+            RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
+
+            // 如果不为空, 从上一个点开始计算
+            if (null != lastKey && num == 0) {
+                rangeQueryBuilder.gt(lastKey.get("name_location"));
+                bool.filter(rangeQueryBuilder);
+                searchSourceBuilder001.query(bool);
+            } else {
+                rangeQueryBuilder.gt(locationMap.get("name_location"));
+                bool.filter(rangeQueryBuilder);
+                searchSourceBuilder001.query(bool);
+            }
+            searchRequest001.source(searchSourceBuilder001);
+
+            // 获取结果
+            SearchResponse searchResponse = client.search(searchRequest001, RequestOptions.DEFAULT);
+            SearchHit[] hits = searchResponse.getHits().getHits();
+
+            // 如果此次为空, 表示已经没有数据了, 则可以结束运行, 并且删除, 因为这是正常的结束, 最后一次记录了位置, 所以需要删除
+            if (null == hits || hits.length == 0) {
+                // 删除数据库记录
+                // searchLocationMapper.deleteLocation("name_location");
+                return -1;
+            } else {
+                for (SearchHit sh : hits) {
+                    Map<String, Object> sourceAsMap = sh.getSourceAsMap();
+                    // docId用于更新, 在此处获取
+                    String docId = sh.getId();
+
+                    // 获取值
+                    String name = sourceAsMap.get("name").toString();
+                    String age = sourceAsMap.get("age").toString();
+                    String type = sourceAsMap.get("type").toString();
+
+                    // 业务
+                    log.info("docId: {} , name: {} , age : {} , type: {} !", docId, name, age, type);
+
+                    if (hits.length < dataMaxSize) {
+                        // 表示为最后一页, 从数据库之中删除, 删除数据库记录
+                        boolLastPage = true;
+                        // searchLocationMapper.deleteLocation("name_location");
+                    } else {
+                        locationMap.put("name_location", name);
+                    }
+                }
+            }
+            num++;
+            // 正常执行完一次， 就去记录最后一个的位置
+            // recordLocation(locationMap);
+        }
+
+        // 所有都正常完成，就去删除数据库之中的记录
+        // searchLocationMapper.deleteLocation("name_location");
+        return 0;
+    }
+
     // 记录位置到数据库
     private void recordLocation(Map<String, Object> mp) {
         QueryWrapper<SearchLocation> wrapper = new QueryWrapper<>();
