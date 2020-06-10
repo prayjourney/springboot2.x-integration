@@ -1,8 +1,11 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.SearchLocationMapper;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -28,10 +31,12 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.Scroll;
 import org.elasticsearch.search.SearchHit;
@@ -69,10 +74,14 @@ import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
  * @Description
  */
 @Service
+@Slf4j
 public class ElasticSearchService {
     @Autowired
     @Qualifier("restHighLevelClient")   //限定名字和我们的esconfig之中的一致
     private RestHighLevelClient client;
+
+    @Autowired
+    private SearchLocationMapper searchLocationMapper;
 
     // 创建index
     public boolean createIndex(String indexName) throws IOException {
@@ -608,7 +617,7 @@ public class ElasticSearchService {
         int partitionNo = 6;
         for (int i = 0; i < partitionNo; i++) {
             // 聚类的时候，一个里面放5个数据
-            String name = "hello-age"+i;
+            String name = "hello-age" + i;
             TermsAggregationBuilder termsAggregationBuilder = AggregationBuilders.terms(name).field("age").size(3);
             // partition, 将数据分为10份，每次自己去组装
             IncludeExclude includeExclude = new IncludeExclude(i, partitionNo);
@@ -627,7 +636,7 @@ public class ElasticSearchService {
                 System.out.println("age: " + age + ", ageCountPeople: " + ageCountPeople);
                 if (resultTemp.containsKey(age)) {
                     Integer tempValue = resultTemp.get(age);
-                    resultTemp.put(age, (tempValue+ ageCountPeople));
+                    resultTemp.put(age, (tempValue + ageCountPeople));
                 }
                 resultTemp.put(age, ageCountPeople);
             }
@@ -665,13 +674,14 @@ public class ElasticSearchService {
     //      改变的，因为数据实实在在就是这么多，如果非要按照公司id，对应公司招聘职位的数量，这个方式去聚合，那么能做的，就是扩大桶的数量，然后呢，
     //      我们根据数据的多少，把所有的数据，按照比如10份，分开，一份一份的去聚合，然后自己处理聚合的结果，当然，每一份聚合的操作的桶的数量，都要
     //      在我们设置的范围之内，总的桶数量，也要在这个范围之内，所以设置桶的配置和搜索窗口的大小，也同样重要！
+
     /**
      * 当桶的数量非常多, 那么我们就需要使用partition, 如果搜索的数据很多, 那么我们就要使用Scroll
      * 但是, 如果桶很多, 而每个桶里面的数据也很多, 那么我们就需要同一时间使用partition和Scroll了
      *
-     * @param indexName            es的索引名称
-     * @param partitionNum         我们设置的分区数量
-     * @param maxDataSize          每个分区之中最多可以返回的数量
+     * @param indexName    es的索引名称
+     * @param partitionNum 我们设置的分区数量
+     * @param maxDataSize  每个分区之中最多可以返回的数量
      * @return
      */
     public Map<String, Integer> aggUsePartitionWithScroll(String indexName, int partitionNum, int maxDataSize, int everyAggNum) throws IOException {
@@ -719,6 +729,12 @@ public class ElasticSearchService {
     }
 
 
+    /**
+     * 组合桶
+     *
+     * @param indexName
+     * @throws IOException
+     */
     public void multiCompositeBuckets(String indexName) throws IOException {
         SearchRequest searchRequest = new SearchRequest(indexName);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
@@ -740,7 +756,7 @@ public class ElasticSearchService {
         //        .missingBucket(false).order(SortOrder.ASC);
         //sources.add(companyIdTerms);
 
-        CompositeAggregationBuilder  composite =new CompositeAggregationBuilder("compositeBuckets", sources);
+        CompositeAggregationBuilder composite = new CompositeAggregationBuilder("compositeBuckets", sources);
         //这个就可以以定位了。。。。。
         //composite.aggregateAfter(.......)
         composite.size(2);
@@ -765,23 +781,23 @@ public class ElasticSearchService {
         Map<String, Object> afterKey = parsedComposite.afterKey();
         System.out.println(afterKey);
 
-        List<ParsedComposite.ParsedBucket> list =  parsedComposite.getBuckets();
+        List<ParsedComposite.ParsedBucket> list = parsedComposite.getBuckets();
 
 
-        Map<String,Object> data = new HashMap<>();
-        for(ParsedComposite.ParsedBucket parsedBucket:list){
+        Map<String, Object> data = new HashMap<>();
+        for (ParsedComposite.ParsedBucket parsedBucket : list) {
             data.clear();
-            for (Map.Entry<String, Object> m :  parsedBucket.getKey().entrySet()) {
-                data.put(m.getKey(),m.getValue());
+            for (Map.Entry<String, Object> m : parsedBucket.getKey().entrySet()) {
+                data.put(m.getKey(), m.getValue());
             }
-            data.put("count",parsedBucket.getDocCount());
+            data.put("count", parsedBucket.getDocCount());
             System.out.println(data);
         }
 
         int num = 0;
         // 拿完了一轮
-        while (afterKey != null){
-            CompositeAggregationBuilder  composite02 =new CompositeAggregationBuilder("compositeBuckets" + num, sources).aggregateAfter(afterKey);
+        while (afterKey != null) {
+            CompositeAggregationBuilder composite02 = new CompositeAggregationBuilder("compositeBuckets" + num, sources).aggregateAfter(afterKey);
             // composite02.aggregateAfter(afterKey);
             /*********************执行查询******************************/
             composite02.size(2);  // 聚类的时候，不管有多少个，一次可以拿完，只是有两个拿到所有结果后的桶
@@ -791,25 +807,147 @@ public class ElasticSearchService {
 
             /********************取出数据*******************/
             aggregations = searchNewResponse.getAggregations();
-            ParsedComposite newParsedComposite = aggregations.get("compositeBuckets" +num);
+            ParsedComposite newParsedComposite = aggregations.get("compositeBuckets" + num);
             afterKey = newParsedComposite.afterKey();
             System.out.println(afterKey);
 
-            List<ParsedComposite.ParsedBucket> newList =  newParsedComposite.getBuckets();
+            List<ParsedComposite.ParsedBucket> newList = newParsedComposite.getBuckets();
 
 
-            Map<String,Object> newData = new HashMap<>();
-            for(ParsedComposite.ParsedBucket parsedBucket : newList){
+            Map<String, Object> newData = new HashMap<>();
+            for (ParsedComposite.ParsedBucket parsedBucket : newList) {
                 newData.clear();
-                for (Map.Entry<String, Object> m :  parsedBucket.getKey().entrySet()) {
-                    newData.put(m.getKey(),m.getValue());
+                for (Map.Entry<String, Object> m : parsedBucket.getKey().entrySet()) {
+                    newData.put(m.getKey(), m.getValue());
                 }
-                newData.put("count",parsedBucket.getDocCount());
+                newData.put("count", parsedBucket.getDocCount());
                 System.out.println(newData);
             }
-            num ++;
+            num++;
 
         }
+
+    }
+
+    /**
+     * 排序搜索，设置了一次搜索的大小和显示的列，lastKey需要在数据库之中额外记录读入，用于断点续传
+     *
+     * @param indexName
+     * @param dataMaxSize
+     * @param lastKey
+     * @throws IOException
+     */
+    public int searchSort01(String indexName, Integer dataMaxSize, Map<String, Object> lastKey) throws IOException {
+        // 只是显示如下三个列, 默认返回所有的内容
+        String[] columns = new String[]{"name", "age", "type"};
+        SearchRequest searchRequest001 = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder001 = new SearchSourceBuilder();
+        searchSourceBuilder001.size(dataMaxSize);
+        // 按照name排序
+        searchSourceBuilder001.fetchSource(columns, null).sort("name", SortOrder.ASC);
+
+        BoolQueryBuilder bool = new BoolQueryBuilder();
+        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
+        // 如果不为空, 从上一个点开始计算
+        if (null != lastKey) {
+            rangeQueryBuilder.gt(lastKey.get("es_hot_value_location"));
+            bool.filter(rangeQueryBuilder);
+            searchSourceBuilder001.query(bool);
+        }
+        searchRequest001.source(searchSourceBuilder001);
+
+        // 获取结果
+        SearchResponse searchResponse = client.search(searchRequest001, RequestOptions.DEFAULT);
+        SearchHit[] hits = searchResponse.getHits().getHits();
+
+        // 如果此次为空, 表示已经没有数据了, 则可以结束运行, 并且删除, 因为这是正常的结束, 最后一次记录了位置, 所以需要删除
+        if (null == hits || hits.length == 0) {
+            // 从数据删除location记录
+            return -1;
+        }
+
+        // 用于计数，计算轮次
+        int num = 0;
+        // 判断是否为最后一页
+        boolean isLastPage = false;
+        Map<String, Object> location = new HashMap<>();
+
+        // 第一次循环
+        for (SearchHit oneHit : hits) {
+            Map<String, Object> sourceAsMap = oneHit.getSourceAsMap();
+            // docId用于更新, 在此处获取
+            String docId = oneHit.getId();
+
+            // 获取值
+            String name = sourceAsMap.get("name").toString();
+            String age = sourceAsMap.get("age").toString();
+            String type = sourceAsMap.get("type").toString();
+
+            // 业务
+            log.info("name: {}, age : {}, type: {}!", name, age, type);
+
+            if (hits.length < dataMaxSize) {
+                // 表示为最后一页
+                isLastPage = true;
+                // 从数据删除location记录
+            }else{
+                location.put("search-doc-id", docId);
+            }
+        }
+        // 写入数据库
+
+        // 再次去循环
+        while (!isLastPage) {
+            SearchRequest searchRequest002 = new SearchRequest(indexName);
+            SearchSourceBuilder searchSourceBuilder002 = new SearchSourceBuilder();
+            searchSourceBuilder002.size(dataMaxSize);
+            // 按照name排序
+            searchSourceBuilder002.fetchSource(columns, null).sort("name", SortOrder.ASC);
+
+            BoolQueryBuilder bool002 = new BoolQueryBuilder();
+            RangeQueryBuilder rangeQueryBuilder002 = QueryBuilders.rangeQuery("name");
+
+            // 从上一个点开始计算
+            if (null != lastKey) {
+                rangeQueryBuilder002.gt(lastKey.get("es_hot_value_location"));
+                bool002.filter(rangeQueryBuilder);
+                searchSourceBuilder002.query(bool002);
+            }
+            searchRequest002.source(searchSourceBuilder002);
+
+            // 获取结果
+            SearchResponse searchResponse002 = client.search(searchRequest002, RequestOptions.DEFAULT);
+            SearchHit[] hits002 = searchResponse002.getHits().getHits();
+
+            // 如果此次为空, 表示已经没有数据了, 则可以结束运行, 并且删除, 因为这是正常的结束, 最后一次记录了位置, 所以需要删除
+            if (null == hits002 || hits002.length == 0) {
+                // 从数据删除location记录
+                return -1;
+            }
+
+            for (SearchHit oneHit : hits) {
+                Map<String, Object> sourceAsMap = oneHit.getSourceAsMap();
+                // docId用于更新, 在此处获取
+                String docId02 = oneHit.getId();
+
+                // 获取值
+                String name02 = sourceAsMap.get("name").toString();
+                String age02 = sourceAsMap.get("age").toString();
+                String type02 = sourceAsMap.get("type").toString();
+                log.info("name: {}, age : {}, type: {}!", name02, age02, type02);
+
+                if (hits.length < dataMaxSize) {
+                    // 表示为最后一页
+                    isLastPage = true;
+                    // 从数据删除location记录
+                }else{
+                    location.put("search-doc-id", docId02);
+                }
+            }
+        }
+
+        // 从数据删除location记录
+        return 0;
 
     }
 

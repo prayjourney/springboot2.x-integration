@@ -53,4 +53,9 @@ public class EsScrollTest {
         esService.multiCompositeBuckets("kuangsheng");
 
     }
+
+    @Test
+    public void testSearchSort01() throws IOException {
+        esService.searchSort01("kuangsheng",5,null);
+    }
 }
