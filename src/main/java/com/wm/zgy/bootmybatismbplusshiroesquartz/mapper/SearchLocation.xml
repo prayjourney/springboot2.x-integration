@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.SearchLocationMapper">
+    <delete id="deleteLocation" parameterType="string">
+        delete from `search_location`
+        where `name` = #{name}
+    </delete>
+</mapper>
