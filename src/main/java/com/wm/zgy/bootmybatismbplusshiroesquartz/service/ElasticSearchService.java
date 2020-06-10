@@ -960,6 +960,7 @@ public class ElasticSearchService {
     }
 
 
+    // TODO: 参数之中的lastKey不能赋值，这是为什么？
     /*这个逻辑相比于searchSort01, 反而是很清晰, 而且代码也减少了一半*/
     public int searchSort02(String indexName, Integer dataMaxSize, Map<String, Object> lastKey) throws IOException {
         // 记录次数
