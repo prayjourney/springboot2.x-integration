@@ -1,9 +1,11 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.SearchLocationMapper;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.SearchLocation;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -62,6 +64,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -850,7 +853,7 @@ public class ElasticSearchService {
         RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
         // 如果不为空, 从上一个点开始计算
         if (null != lastKey) {
-            rangeQueryBuilder.gt(lastKey.get("es_hot_value_location"));
+            rangeQueryBuilder.gt(lastKey.get("name_location"));
             bool.filter(rangeQueryBuilder);
             searchSourceBuilder001.query(bool);
         }
@@ -862,7 +865,7 @@ public class ElasticSearchService {
 
         // 如果此次为空, 表示已经没有数据了, 则可以结束运行, 并且删除, 因为这是正常的结束, 最后一次记录了位置, 所以需要删除
         if (null == hits || hits.length == 0) {
-            // 从数据删除location记录
+            // searchLocationMapper.deleteLocation("name_location");
             return -1;
         }
 
@@ -889,34 +892,37 @@ public class ElasticSearchService {
             if (hits.length < dataMaxSize) {
                 // 表示为最后一页
                 isLastPage = true;
-                // 从数据删除location记录
-            }else{
-                location.put("search-doc-id", docId);
+                // searchLocationMapper.deleteLocation("name_location");
+            } else {
+                location.put("name_location", name);
             }
         }
         // 写入数据库
+        // recordLocation(location);
 
         // 再次去循环
         while (!isLastPage) {
-            SearchRequest searchRequest002 = new SearchRequest(indexName);
-            SearchSourceBuilder searchSourceBuilder002 = new SearchSourceBuilder();
-            searchSourceBuilder002.size(dataMaxSize);
+            num++;
+            log.info("第 {} 次循环！", num + 1);
+            SearchRequest sq2 = new SearchRequest(indexName);
+            SearchSourceBuilder sb2 = new SearchSourceBuilder();
+            sb2.size(dataMaxSize);
             // 按照name排序
-            searchSourceBuilder002.fetchSource(columns, null).sort("name", SortOrder.ASC);
+            sb2.fetchSource(columns, null).sort("name", SortOrder.ASC);
 
-            BoolQueryBuilder bool002 = new BoolQueryBuilder();
-            RangeQueryBuilder rangeQueryBuilder002 = QueryBuilders.rangeQuery("name");
+            BoolQueryBuilder bb2 = new BoolQueryBuilder();
+            RangeQueryBuilder rb2 = QueryBuilders.rangeQuery("name");
 
             // 从上一个点开始计算
-            if (null != lastKey) {
-                rangeQueryBuilder002.gt(lastKey.get("es_hot_value_location"));
-                bool002.filter(rangeQueryBuilder);
-                searchSourceBuilder002.query(bool002);
+            if (null != location) {
+                rb2.gt(location.get("name_location"));
+                bb2.filter(rb2);
+                sb2.query(bb2);
             }
-            searchRequest002.source(searchSourceBuilder002);
+            sq2.source(sb2);
 
             // 获取结果
-            SearchResponse searchResponse002 = client.search(searchRequest002, RequestOptions.DEFAULT);
+            SearchResponse searchResponse002 = client.search(sq2, RequestOptions.DEFAULT);
             SearchHit[] hits002 = searchResponse002.getHits().getHits();
 
             // 如果此次为空, 表示已经没有数据了, 则可以结束运行, 并且删除, 因为这是正常的结束, 最后一次记录了位置, 所以需要删除
@@ -940,15 +946,44 @@ public class ElasticSearchService {
                     // 表示为最后一页
                     isLastPage = true;
                     // 从数据删除location记录
-                }else{
-                    location.put("search-doc-id", docId02);
+                    // searchLocationMapper.deleteLocation("name_location");
+                } else {
+                    location.put("name_location", name02);
                 }
             }
         }
 
         // 从数据删除location记录
+        // searchLocationMapper.deleteLocation("name_location");
         return 0;
 
+    }
+
+    // 记录位置到数据库
+    private void recordLocation(Map<String, Object> mp) {
+        QueryWrapper<SearchLocation> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", "name_location");
+        int count = searchLocationMapper.selectCount(wrapper);
+        if (count >= 1) {
+            UpdateWrapper<SearchLocation> searchLocationUpdateWrapper = new UpdateWrapper<>();
+            searchLocationUpdateWrapper.eq("name", "name_location");
+            SearchLocation searchLocation = SearchLocation.builder()
+                    .location(String.valueOf(mp.get("name")))
+                    .updateTime(new Date())
+                    .info("correct")
+                    .build();
+            searchLocationMapper.update(searchLocation, searchLocationUpdateWrapper);
+        } else {
+            Date date = new Date();
+            SearchLocation searchLocation = SearchLocation.builder()
+                    .name("name_location")
+                    .location(String.valueOf(mp.get("name")))
+                    .createTime(date)
+                    .updateTime(date)
+                    .info("correct")
+                    .build();
+            searchLocationMapper.insert(searchLocation);
+        }
     }
 
 }
