@@ -1,6 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,8 +34,13 @@ public class ShiroController {
         return "getmsg";
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(String user, String password) {
+    @GetMapping(value = "login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "check", method = RequestMethod.POST)
+    public String loginCheck(String user, String password) {
         if (null == user || null == password) {
             return "404";
         }

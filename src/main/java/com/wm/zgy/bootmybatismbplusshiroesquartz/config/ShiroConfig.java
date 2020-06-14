@@ -36,6 +36,9 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/shiro/addmsg", "authc"); //需要认证
         filterChainDefinitionMap.put("/shiro/getmsg", "anon");  // 不需要认证
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
+        // 设置登录页面
+        bean.setLoginUrl("/shiro/login");
         return bean;
     }
 
