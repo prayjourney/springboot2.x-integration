@@ -2,6 +2,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.config;
 
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ShiroConfig {
     // ShiroFilterFactoryBean
-    @Bean
+    @Bean(name = "shiroFilterFactoryBean")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultSecurityManager securityManager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager);
@@ -24,8 +25,8 @@ public class ShiroConfig {
 
     // DefaultWebSecurityManager, 使用@Qualifier指定名字
     @Bean(name = "securityManager")
-    public DefaultSecurityManager getDefaultSecurityManager(@Qualifier("userRealm") MyRealm userRealm) {
-        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") MyRealm userRealm) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         // 关联userRealm
         securityManager.setRealm(userRealm);
         return securityManager;
