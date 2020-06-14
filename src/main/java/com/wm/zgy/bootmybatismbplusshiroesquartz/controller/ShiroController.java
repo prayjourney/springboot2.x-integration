@@ -36,9 +36,9 @@ public class ShiroController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(String user, String password) {
         if (null == user || null == password) {
-            return "index";
+            return "404";
         }
-        return "404";
+        return "login";
     }
 
 }
