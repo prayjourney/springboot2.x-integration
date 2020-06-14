@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @Author: renjiaxin
@@ -40,12 +39,15 @@ public class ShiroController {
         return "login";
     }
 
-    @RequestMapping(value = "check", method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public String loginCheck(String user, String password) {
         if (null == user || null == password) {
             return "404";
+        } else if ("123456".equals(password)) {
+            return "index";
+        } else {
+            return "login";
         }
-        return "login";
     }
 
 }
