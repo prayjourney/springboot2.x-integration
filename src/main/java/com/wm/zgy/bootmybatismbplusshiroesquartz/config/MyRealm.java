@@ -2,6 +2,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.config;
 
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -11,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +27,7 @@ public class MyRealm extends AuthorizingRealm {
     @Autowired
     private UserService service;
 
-    // 认证，登录
+    // 第一步: 认证，登录
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         System.out.println("登录！");
@@ -48,17 +50,25 @@ public class MyRealm extends AuthorizingRealm {
         }
         */
 
-        // 密码认证
-        return new SimpleAuthenticationInfo("",user.getPassword(),"");
+        // 密码认证， 相当于把User返回了
+        return new SimpleAuthenticationInfo(user, user.getPassword(), "");
     }
 
-    // 授权，访问资源
+    // 第二步: 授权，访问资源
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("授权！");
         // 权限的控制
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.addStringPermission("user:add");
+        // authorizationInfo.addStringPermission("user:add"); // 这个在实际业务之中，应该从数据库之中获取
+
+        // 拿到当前登录的这个对象
+        Subject subject = SecurityUtils.getSubject();
+        User currentUser = (User)subject.getPrincipal();
+
+        // 设置当前用户的权限，数据库之中获取
+        authorizationInfo.addStringPermission(currentUser.getPerms());
+
         return authorizationInfo;
     }
 
