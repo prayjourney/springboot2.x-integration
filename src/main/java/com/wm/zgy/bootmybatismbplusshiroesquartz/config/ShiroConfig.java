@@ -35,10 +35,16 @@ public class ShiroConfig {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/shiro/addmsg", "authc"); //需要认证
         filterChainDefinitionMap.put("/shiro/getmsg", "anon");  // 不需要认证
+
+        // 授权，正常情况下，没有授权跳到未授权页面, 意思是访问/shiro/addmsg页面，必须要有perms[user:add]权限
+        filterChainDefinitionMap.put("/shiro/addmsg", "perms[user:add]");
+
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
         // 设置登录页面
         bean.setLoginUrl("/shiro/login");
+        // 设置未授权页面
+        bean.setUnauthorizedUrl("/shiro/unauthor");
         return bean;
     }
 

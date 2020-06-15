@@ -8,6 +8,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -71,5 +72,11 @@ public class ShiroController {
             log.error("密码错误！ {} !", e2.getCause());
             return "login";
         }
+    }
+
+    @RequestMapping("unauthor")
+    @ResponseBody
+    public String unauthor(){
+        return "页面未经授权，不得访问！";
     }
 }
