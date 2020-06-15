@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.UserMapper">
 
+    <select id="selectUserById" resultType="com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User" parameterType="integer">
+        SELECT * FROM `user` WHERE `id` = #{id}
+    </select>
+
+    <select id="selectUserByName" resultType="com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User" parameterType="string">
+        SELECT * FROM `user` WHERE `name` = #{name}
+    </select>
 </mapper>
