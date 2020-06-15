@@ -23,12 +23,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class User {
     // 主键自增策略，有uuid, 自增id, 雪花算法， redis, zookeeper
-//    @TableId(type = IdType.AUTO)
+    // @TableId(type = IdType.AUTO)
     @TableId(type = IdType.ID_WORKER)
     private Long id;
     private String name;
     private Integer age;
     private String email;
+
+    private String password;
 
     // 字段添加填充内容
     @TableField(fill = FieldFill.INSERT)
