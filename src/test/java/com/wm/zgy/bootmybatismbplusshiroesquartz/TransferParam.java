@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -23,11 +24,11 @@ public class TransferParam {
         System.out.println("调用changeData(int data)方法后: " + age + "\n");
 
         // 基本类型的值传递, String
-        System.out.println("===========基本类型的值传递============");
+        System.out.println("===========基本类型的值传递:String============");
         String name = "张三";
         System.out.println("调用changeString(String str)方法前: " + name);
         changeDataBasic(age);
-        System.out.println("调用changeString(String str)方法后: " + name + "\n");
+        System.out.println("调用changeString(String str)方法后: " + name + "\n\n");
 
         // 对象类型的值传递
         System.out.println("+++++++++++对象类型的值传递++++++++++++++");
@@ -35,8 +36,17 @@ public class TransferParam {
         map.put("name", "李小龙");
         System.out.println("调用changeDataObject(Map<String, String> map)方法前: " + map);
         changeDataObject(map);
-        System.out.println("调用changeDataObject(Map<String, String> map)方法后: " + map);
+        System.out.println("调用changeDataObject(Map<String, String> map)方法后: " + map + "\n");
 
+        // 对象类型的值传递, 普通的对象
+        System.out.println("+++++++++++对象类型的值传递:People++++++++++++++");
+        Map<String, String> info = new HashMap<>();
+        info.put("address", "北京朝阳");
+        info.put("home", "四川成都");
+        People people = People.builder().age(22).name("lee").info(info).build();
+        System.out.println("调用changePeople(People people)方法前: " + people);
+        changePeople(people);
+        System.out.println("调用changePeople(People people)方法后: " + people);
 
 
     }
@@ -57,9 +67,19 @@ public class TransferParam {
         str ="Hello world!";
         System.out.println("方法中： " + str);
     }
+
+    public static void changePeople(People people){
+        Map<String, String> info2 = new HashMap<>();
+        info2.put("address", "北京");
+        info2.put("home", "四川雅安");
+        People people2 = People.builder().age(22).name("lee").info(info2).build();
+        people = people2;
+        System.out.println("方法中： " + people2);
+    }
 }
 
 @Data
+@Builder
 class People {
     private String name;
     private Integer age;
