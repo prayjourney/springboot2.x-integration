@@ -28,6 +28,23 @@ public class TransferParam2 {
         System.out.println("调用changeDataObject(Map<String, String> map)方法前: " + map);
         changeDataObject(map);
         System.out.println("调用changeDataObject(Map<String, String> map)方法后: " + map + "\n\n");
+
+        // 基本类型的值传递, 但是赋值行为改变了作用范围
+        System.out.println("++++++++++++基本类型的值传递: 返回值赋值修改了值+++++++++++++");
+        int age2 = 22;
+        System.out.println("调用changeDataReturn(int data)方法前: " + age2);
+        // 赋值行为修改了原先的值
+        age2 = changeDataBasicReturn(age);
+        System.out.println("调用changeDataReturn(int data)方法后: " + age2 + "\n");
+
+        // 对象类型的值传递, 但是赋值行为改变了作用范围
+        System.out.println("++++++++++++对象类型的值传递: 返回值赋值修改了值++++++++++++++");
+        Map<String, String> map2 = new HashMap<>();
+        map2.put("name", "陈真");
+        System.out.println("调用changeDataObjectReturn(Map<String, String> map)方法前: " + map2);
+        // 赋值行为修改了原先的值
+        map2 = changeDataObjectReturn(map2);
+        System.out.println("调用changeDataObjectReturn(Map<String, String> map)方法后: " + map2 + "\n\n");
     }
 
     // 这是空方法, 没有赋值行为, 对拷贝内容的修改, 仅仅局限于方法内, 返回是void, 对外不造成影响
@@ -36,8 +53,8 @@ public class TransferParam2 {
         System.out.println("方法中： " + data);
     }
 
-    public static void changeDataObject(Map<String, String> map){
-        Map<String, String > testMap = new HashMap<>();
+    public static void changeDataObject(Map<String, String> map) {
+        Map<String, String> testMap = new HashMap<>();
         testMap.put("name", "zhangsan");
         map = testMap;
         System.out.println("方法中： " + map);
@@ -50,8 +67,8 @@ public class TransferParam2 {
         return data;
     }
 
-    public static Map<String, String> changeDataObjectReturn(Map<String, String> map){
-        Map<String, String > testMap = new HashMap<>();
+    public static Map<String, String> changeDataObjectReturn(Map<String, String> map) {
+        Map<String, String> testMap = new HashMap<>();
         testMap.put("name", "zhangsan");
         map = testMap;
         System.out.println("方法中： " + map);
