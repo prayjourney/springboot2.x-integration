@@ -22,8 +22,15 @@ public class TransferParam {
         changeDataBasic(age);
         System.out.println("调用changeData(int data)方法后: " + age + "\n");
 
+        // 基本类型的值传递, String
+        System.out.println("===========基本类型的值传递============");
+        String name = "张三";
+        System.out.println("调用changeString(String str)方法前: " + name);
+        changeDataBasic(age);
+        System.out.println("调用changeString(String str)方法后: " + name + "\n");
+
         // 对象类型的值传递
-        System.out.println("+++++++++++本类型的值传递++++++++++++++");
+        System.out.println("+++++++++++对象类型的值传递++++++++++++++");
         Map<String, String > map = new HashMap<>();
         map.put("name", "李小龙");
         System.out.println("调用changeDataObject(Map<String, String> map)方法前: " + map);
@@ -44,6 +51,11 @@ public class TransferParam {
         testMap.put("name", "zhangsan");
         map = testMap;
         System.out.println("方法中： " + map);
+    }
+
+    public static void changeString(String str){
+        str ="Hello world!";
+        System.out.println("方法中： " + str);
     }
 }
 
