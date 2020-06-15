@@ -41,10 +41,3 @@ public class TestParam {
     }
 
 }
-
-@Data
-class People{
-    private String  name;
-    private Integer  age;
-    private Map<String, String>  info;
-}
