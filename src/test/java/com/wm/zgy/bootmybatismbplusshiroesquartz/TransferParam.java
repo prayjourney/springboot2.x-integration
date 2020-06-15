@@ -10,7 +10,7 @@ import java.util.Map;
  * @Author renjiaxin
  * @Date 2020/6/15
  * @Description 总的结论： Java是按照值传递的，而不是按照引用，
- * 值传递：  就是把原来的参数的值，拷贝一份，将这个拷贝的值修改，而原来的旧的值不会修改
+ * 按值传递：  就是把原来的参数的值，拷贝一份，将这个拷贝的值修改，而原来的旧的值不会修改
  * 引用传递：就是将参数的地址拿来使用，不去拷贝，直接在这个地址上操作，这样的话，就会把原来的值也修改了
  */
 public class TransferParam {
@@ -27,7 +27,7 @@ public class TransferParam {
         System.out.println("===========基本类型的值传递:String============");
         String name = "张三";
         System.out.println("调用changeString(String str)方法前: " + name);
-        changeDataBasic(age);
+        changeString(name);
         System.out.println("调用changeString(String str)方法后: " + name + "\n\n");
 
         // 对象类型的值传递
