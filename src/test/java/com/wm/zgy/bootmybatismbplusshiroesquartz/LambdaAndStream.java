@@ -12,14 +12,16 @@ public class LambdaAndStream {
 
     public static void main(String[] args) {
         //----------------消费型接口--------------------//
+        System.out.println("----------------消费型接口--------------------");
         // 消费型接口: 有一个参数, 没有返回值
         // 这个定义了这个consumer要怎么做事情
-        Consumer<String> consumer = str -> System.out.println(str);
+        Consumer<String> consumer = str -> System.out.println(str + "\n\n");
         consumerMethodOld("hello");
         consumerMethodNew("hello");
         consumerMethodNew02("hello", consumer);
 
         //----------------供给型接口--------------------//
+        System.out.println("----------------供给型接口--------------------");
         // 供给型接口: 没有参数, 有一个返回值
         System.out.println(supplierMethodOld("hello world!"));
         System.out.println(supplierMethodNew("我草! "));
@@ -60,17 +62,17 @@ public class LambdaAndStream {
      *
      * @return
      */
-    public static <T> String supplierMethodOld(String str) {
-        Supplier<String> supplier = new Supplier<String>() {
+    public static <T> T supplierMethodOld(T str) {
+        Supplier<T> supplier = new Supplier<T>() {
             @Override
-            public String get() {
+            public T get() {
                 return str;
             }
         };
         return supplier.get();
     }
 
-    public static <T> String supplierMethodNew(String str) {
+    public static <String> String supplierMethodNew(String str) {
         // Supplier接口之中，是没有参数的
         Supplier<String> supplier = () -> str;
         return supplier.get();
