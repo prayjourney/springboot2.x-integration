@@ -32,7 +32,7 @@ import java.util.function.Supplier;
  * * 函数式接口, 其实就是匿名内部类的简化方法, 所以当我们使用的时候, 如果不会写, 就先创建匿名内部类,
  * * 匿名内部类返回的接口是这种类型的接口对象, 然后复写内部的处理逻辑, 最后转化成lambda表达式
  */
-public class LambdaUse {
+public class J8LambdaUse {
 
     public static void main(String[] args) {
         //----------------消费型接口--------------------//
