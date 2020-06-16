@@ -1,7 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
-import io.swagger.models.auth.In;
-
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -54,8 +53,10 @@ public class LambdaAndStream {
         System.out.println("姓名长度: " + functionMethodOld("张飞万人敌"));
         System.out.println("姓名长度超过20: " + functionMethodNew("张飞"));
 
-        // 多个参数的接口
-        System.out.println(biFunctionMethod("张飞",25));
+        //----------------多参数接口--------------------//
+        System.out.println("----------------多参数接口--------------------");
+        System.out.println("两个参数的函数型接口: BiFunction:: " + biFunctionMethod("张飞", 25));
+        biConsumerMethod("两个参数的消费型接口: BiConsumer:: 张飞", "李逵");
 
     }
 
@@ -149,6 +150,12 @@ public class LambdaAndStream {
             return "name: " + x + ", age: " + y;
         };
         return (String) biFunction.apply(name, age);
+    }
+
+    // 两个入参的消费, 没有返回值
+    public static void biConsumerMethod(String p1, String p2) {
+        BiConsumer biConsumer = (x, y) -> System.out.println(x + ", " + y);
+        biConsumer.accept(p1, p2);
     }
 
 }
