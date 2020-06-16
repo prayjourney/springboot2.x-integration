@@ -145,6 +145,7 @@ public class LambdaAndStream {
     // 两个入参的方法, 一个返回值
     public static String biFunctionMethod(String name, Integer age) {
         BiFunction biFunction = (x, y) -> {
+            // 这是一个返回的结果
             return "name: " + x + ", age: " + y;
         };
         return (String) biFunction.apply(name, age);
