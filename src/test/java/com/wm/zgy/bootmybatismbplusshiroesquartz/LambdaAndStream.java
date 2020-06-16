@@ -2,6 +2,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import io.swagger.models.auth.In;
 
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -46,12 +47,15 @@ public class LambdaAndStream {
         //----------------断言型接口--------------------//
         System.out.println("----------------断言型接口--------------------");
         System.out.println("年龄大于18岁: " + predicateMethodOld(22));
-        System.out.println("姓名长度超过20: " + predicateMethodNew("张飞") +"\n\n");
+        System.out.println("姓名长度超过20: " + predicateMethodNew("张飞") + "\n\n");
 
         //----------------函数型接口--------------------//
         System.out.println("----------------函数型接口--------------------");
         System.out.println("姓名长度: " + functionMethodOld("张飞万人敌"));
         System.out.println("姓名长度超过20: " + functionMethodNew("张飞"));
+
+        // 多个参数的接口
+        System.out.println(biFunctionMethod("张飞",25));
 
     }
 
@@ -136,6 +140,14 @@ public class LambdaAndStream {
         // 参数类型, 返回值类型
         Function<String, Boolean> function = x -> x.length() > 20;
         return function.apply(name);
+    }
+
+    // 两个入参的方法, 一个返回值
+    public static String biFunctionMethod(String name, Integer age) {
+        BiFunction biFunction = (x, y) -> {
+            return "name: " + x + ", age: " + y;
+        };
+        return (String) biFunction.apply(name, age);
     }
 
 }
