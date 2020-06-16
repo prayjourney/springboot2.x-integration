@@ -1,16 +1,13 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
  * @Author renjiaxin
  * @Date 2020/6/15
- * @Description
- *  * 供给型接口: 没有参数,    有一个返回值
- *  * 消费型接口: 提供一个参数, 没有返回值
- *  * 断言型接口: 提供一个参数, 返回一个布尔值结果
- *  * 函数型接口: 提供一个参数, 返回一个规定类型结果
+ * @Description 介绍
  */
 public class LambdaAndStream {
 
@@ -28,8 +25,12 @@ public class LambdaAndStream {
         System.out.println("----------------供给型接口--------------------");
         // 供给型接口: 没有参数, 有一个返回值
         System.out.println(supplierMethodOld("hello world!"));
-        System.out.println(supplierMethodNew("我草! "));
+        System.out.println(supplierMethodNew("我草! \n\n"));
 
+        //----------------断言型接口--------------------//
+        System.out.println("----------------断言型接口--------------------");
+        System.out.println("年龄大于18岁: " + predicateMethodOld(22));
+        System.out.println("姓名长度超过20: " + predicateMethodNew("张飞"));
 
     }
 
@@ -80,6 +81,21 @@ public class LambdaAndStream {
         // Supplier接口之中，是没有参数的
         Supplier<String> supplier = () -> str;
         return supplier.get();
+    }
+
+    public static boolean predicateMethodOld(Integer age) {
+        Predicate<Integer> predicate = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer temp) {
+                return temp > 18;
+            }
+        };
+        return predicate.test(age);
+    }
+
+    public static <String> boolean predicateMethodNew(String name) {
+        Predicate<String> predicate = ss -> ss.toString().length() > 20;
+        return predicate.test(name);
     }
 
 }
