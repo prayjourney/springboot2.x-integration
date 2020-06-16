@@ -7,6 +7,10 @@ import java.util.function.Supplier;
  * @Author renjiaxin
  * @Date 2020/6/15
  * @Description
+ *  * 供给型接口: 没有参数,    有一个返回值
+ *  * 消费型接口: 提供一个参数, 没有返回值
+ *  * 断言型接口: 提供一个参数, 返回一个布尔值结果
+ *  * 函数型接口: 提供一个参数, 返回一个规定类型结果
  */
 public class LambdaAndStream {
 
