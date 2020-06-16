@@ -1,7 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 /**
  * @Author renjiaxin
@@ -9,24 +8,43 @@ import java.util.function.Supplier;
  * @Description
  */
 public class LambdaAndStream {
+
     public static void main(String[] args) {
-        消费型("hello", x -> System.out.println(x) );
-        供给型("hello", ()-> "hello");
+        // 这个定义了这个consumer要怎么做事情
+        Consumer<String> consumer = str -> System.out.println(str);
+        consumerMethodOld("hello");
+        consumerMethodNew("hello");
+        consumerMethodNew02("hello", consumer);
+
+
     }
 
     /**
      * 消费型：没有返回值，一个参数
      */
-    public static <T> void 消费型(T t, Consumer<T> consumer) {
-        // 有无参数，有无返回值，说的是这个
+    public static <String> void consumerMethodOld(String string) {
+
+        // 有无参数，有无返回值，说的是这个, consumer接口有一个参数, 没有返回值
+        Consumer<String> consumer = new Consumer<String>() {
+            // 这个str就是我们的消费型接口的一个参数
+            @Override
+            public void accept(String str) {
+                System.out.println("字符串的长度是: " + str.toString().length());
+            }
+        };
+        // 调用外部参数, 发挥实际的作用，在这个函数之中，Consumer接口是为这个函数而服务的
+        consumer.accept(string);
+    }
+
+    public static <T> void consumerMethodNew(T t) {
+        // 这个str就是我们的消费型接口的一个参数
+        Consumer<T> consumer2 = str -> System.out.println("字符串的长度是: " + str.toString().length());
+        consumer2.accept(t);
+    }
+
+    public static <T> void consumerMethodNew02(T t, Consumer<T> consumer) {
+        // 这个str就是我们的消费型接口的一个参数
         consumer.accept(t);
     }
 
-    /**
-     * 供给型：有返回值，没有参数
-     * @return
-     */
-    public static <T> String 供给型(String str, Supplier<T> supplier){
-        return (String) supplier.get();
-    }
 }
