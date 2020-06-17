@@ -65,6 +65,10 @@ public class J8LambdaUse {
         System.out.println("两个参数的函数型接口: BiFunction:: " + biFunctionMethod("张飞", 25));
         biConsumerMethod("两个参数的消费型接口: BiConsumer:: 张飞", "李逵");
 
+        //----------------接口的新特性--------------------//
+        System.out.println("----------------接口的新特性--------------------");
+        useNewInterface();
+
     }
 
     /**
@@ -164,5 +168,38 @@ public class J8LambdaUse {
         BiConsumer biConsumer = (x, y) -> System.out.println(x + ", " + y);
         biConsumer.accept(p1, p2);
     }
+
+    public static void useNewInterface() {
+        MyDefaultMethod defaultMethod = new MyDefaultMethod() {
+            @Override
+            public String info(String name, String age) {
+                return name + ", " + age;
+            }
+        };
+        System.out.println("getNum的默认方法获取的值: " + defaultMethod.getNum());
+        System.out.println("sqrt的默认方法获取的值: " + defaultMethod.sqrt(33));
+
+        // 相比于4大接口而言, 自定义的接口, 我们要实现的方法是自定义的， 而不是像以前一样规定好了
+        MyDefaultMethod defaultMethod02 = (x, y) -> String.valueOf(x.length() * y.length());
+        System.out.println(defaultMethod02.info("hello", "world!"));
+        System.out.println(defaultMethod02.sqrt(22));
+    }
+
+
+}
+
+// java8新接口
+interface MyDefaultMethod {
+    // 使用default修饰的默认接口方法, 看起来是可以有多个
+    default double sqrt(Integer num) {
+        return Math.sqrt(num);
+    }
+
+    default int getNum() {
+        return 1;
+    }
+
+    // 普通的接口方法
+    String info(String name, String age);
 
 }
