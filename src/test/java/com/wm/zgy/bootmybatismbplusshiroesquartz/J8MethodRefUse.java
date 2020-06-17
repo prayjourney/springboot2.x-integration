@@ -38,6 +38,7 @@ import java.util.stream.Stream;
  * https://www.cnblogs.com/yangfei629/p/11426986.html
  * https://blog.csdn.net/weixin_45225595/article/details/106203264
  * https://www.cnblogs.com/junjiang3/p/8998509.html
+ * https://juejin.im/post/5c6bba1bf265da2dd4276094
  */
 public class J8MethodRefUse {
     // 对象::实例方法
