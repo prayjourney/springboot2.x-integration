@@ -30,4 +30,9 @@ public class EsServiceTest {
 
     }
 
+    @Test
+    public void nullFieldTest() throws IOException {
+        esService.checkNullField("kuangsheng",200);
+    }
+
 }

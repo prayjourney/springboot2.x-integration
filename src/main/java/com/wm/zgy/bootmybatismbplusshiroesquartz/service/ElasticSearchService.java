@@ -7,6 +7,7 @@ import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Book;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.MathTeacher;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.SearchLocation;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -34,12 +35,14 @@ import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.ExistsQueryBuilder;
 import org.elasticsearch.index.query.MatchAllQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.index.query.TermQueryBuilder;
+import org.elasticsearch.index.query.TermsQueryBuilder;
 import org.elasticsearch.search.Scroll;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.Aggregation;
@@ -68,6 +71,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.IntConsumer;
+import java.util.function.Supplier;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
@@ -1060,6 +1066,46 @@ public class ElasticSearchService {
                     .build();
             searchLocationMapper.insert(searchLocation);
         }
+    }
+
+    // 检测某个字段是否存在
+    public void checkNullField(String indexName, Integer dataMaxSize) throws IOException {
+        Function<Integer, String[]> arrayFunction = x -> new String[x];
+        String[] myColumns = arrayFunction.apply(3);
+        myColumns[0] = "tags";
+        myColumns[1] = "type";
+        myColumns[2] = "desc";
+
+        SearchRequest searchRequest001 = new SearchRequest(indexName);
+        SearchSourceBuilder searchSourceBuilder001 = new SearchSourceBuilder();
+        searchSourceBuilder001.size(dataMaxSize);
+
+        // 按照name排序
+        searchSourceBuilder001.fetchSource(myColumns, null).sort("name", SortOrder.ASC);
+
+        // {"query":{"bool":{"must_not":[{"exists":{"field":"city_hot_value"}}]}},"from": 0, "size": 10,"sort": []}
+        BoolQueryBuilder bool = new BoolQueryBuilder();
+        // 不存在type字段的文档
+        ExistsQueryBuilder existsQueryBuilder = QueryBuilders.existsQuery("type");
+        bool.mustNot(existsQueryBuilder);
+
+        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
+        bool.filter(rangeQueryBuilder);
+
+        searchSourceBuilder001.query(bool);
+
+        searchRequest001.source(searchSourceBuilder001);
+        System.out.println(searchSourceBuilder001);
+        //{"size":200,"query":{"bool":{"filter":[{"range":{"name":{"from":null,"to":null,"include_lower":true,
+        //        "include_upper":true,"boost":1.0}}}],"must_not":[{"exists":{"field":"type","boost":1.0}}],
+        //"adjust_pure_negative":true,"boost":1.0}},"_source":{"includes":["tags","type","desc"],"excludes":[]},"sort"
+        //:[{"name":{"order":"asc"}}]}
+
+        // 获取结果
+        SearchResponse searchResponse = client.search(searchRequest001, RequestOptions.DEFAULT);
+        SearchHit[] hits = searchResponse.getHits().getHits();
+        System.out.println(hits.length);
+
     }
 
 }
