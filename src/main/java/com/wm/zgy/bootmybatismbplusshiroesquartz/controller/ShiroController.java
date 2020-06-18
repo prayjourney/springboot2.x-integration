@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -83,8 +84,15 @@ public class ShiroController {
 
     @RequiresPermissions("user:money")
     @GetMapping("getmoney")
-    @ResponseBody
     public String getMoney(){
-        return "1000元!";
+        try{
+            // TODO: 问题，如果没有登录，则直接跳到登录页面，如果没有权限，则跳到未授权页面，不应该在这儿再次处理了吧？
+            // Subject subject = SecurityUtils.getSubject();
+            System.out.println("获取1000元!");
+            return "getmoney";
+        }catch (AuthorizationException e){
+            System.out.println(e.getCause());
+            return "login";
+        }
     }
 }
