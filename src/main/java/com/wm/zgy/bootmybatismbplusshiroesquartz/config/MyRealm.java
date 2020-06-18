@@ -68,6 +68,8 @@ public class MyRealm extends AuthorizingRealm {
 
         // 设置当前用户的权限，数据库之中获取
         authorizationInfo.addStringPermission(currentUser.getPerms());
+        // 角色信息的设置和获取
+        authorizationInfo.addRole(currentUser.getRoles());
 
         return authorizationInfo;
     }
