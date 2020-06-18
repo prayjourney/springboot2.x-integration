@@ -101,7 +101,7 @@ public class ShiroController {
     }
 
     // 角色的检测
-    @RequiresRoles("roles:admin")
+    @RequiresRoles("role:admin")
     @GetMapping("getallinfo")
     public String getAllInfo(){
         try{
