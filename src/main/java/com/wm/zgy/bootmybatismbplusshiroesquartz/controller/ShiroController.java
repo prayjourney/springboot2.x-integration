@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,5 +79,12 @@ public class ShiroController {
     @ResponseBody
     public String unauthor(){
         return "页面未经授权，不得访问！";
+    }
+
+    @RequiresPermissions("user:money")
+    @GetMapping("getmoney")
+    @ResponseBody
+    public String getMoney(){
+        return "1000元!";
     }
 }
