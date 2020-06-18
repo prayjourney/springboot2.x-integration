@@ -1086,18 +1086,15 @@ public class ElasticSearchService {
 
         // {"query":{"bool":{"must_not":[{"exists":{"field":"city_hot_value"}}]}},"from": 0, "size": 10,"sort": []}
         BoolQueryBuilder bool = new BoolQueryBuilder();
-//        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
-//        rangeQueryBuilder.gt(lastKey.get("es_hot_value_location"));
-//        bool.filter(rangeQueryBuilder);
-        // 不存在type字段的文档
 
-        // 这样是and的关系，两个都是为空
+        // 不存在type字段的文档
+        // // 这样是and的关系，两个都是为空
         // ExistsQueryBuilder existsQueryBuilder1 = QueryBuilders.existsQuery("type");
         // ExistsQueryBuilder existsQueryBuilder2 = QueryBuilders.existsQuery("desc");
         // bool.mustNot(existsQueryBuilder1);
         // bool.mustNot(existsQueryBuilder2);
 
-        // or的关系呢？ 这个就是
+        // // or的关系呢？ 这个就是
         // BoolQueryBuilder bool001 = new BoolQueryBuilder();
         // ExistsQueryBuilder existsQueryBuilder001 = QueryBuilders.existsQuery("type");
         // bool001.mustNot(existsQueryBuilder001);
@@ -1108,7 +1105,8 @@ public class ElasticSearchService {
         // bool.should(bool001);
         // bool.should(bool002);
 
-        // or misssing的关系
+        // // or misssing的关系
+        BoolQueryBuilder boolFilter = new BoolQueryBuilder();
         BoolQueryBuilder bool001 = new BoolQueryBuilder();
         ExistsQueryBuilder existsQueryBuilder001 = QueryBuilders.existsQuery("type");
         bool001.mustNot(existsQueryBuilder001);
@@ -1116,9 +1114,14 @@ public class ElasticSearchService {
         ExistsQueryBuilder existsQueryBuilder002 = QueryBuilders.existsQuery("desc");
         bool002.mustNot(existsQueryBuilder002);
 
-        bool.should(bool001);
-        bool.should(bool002);
+        boolFilter.should(bool001);
+        boolFilter.should(bool002);
 
+        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
+        // rangeQueryBuilder.gt(lastKey.get("es_hot_value_location"));
+        // filter之间的话是and
+        bool.filter(rangeQueryBuilder);
+        bool.filter(boolFilter);
 
 
         searchSourceBuilder001.query(bool);
@@ -1134,6 +1137,13 @@ public class ElasticSearchService {
         SearchResponse searchResponse = client.search(searchRequest001, RequestOptions.DEFAULT);
         SearchHit[] hits = searchResponse.getHits().getHits();
         System.out.println(hits.length);
+
+        // {"size":200,"query":{"bool":{"filter":[{"range":{"name":{"from":null,"to":null,"include_lower":true,
+        //         "include_upper":true,"boost":1.0}}},{"bool":{"should":[{"bool":{"must_not":[{"exists":{"field":
+        //"type","boost":1.0}}],"adjust_pure_negative":true,"boost":1.0}},{"bool":{"must_not":[{"exists":{"field":
+        //"desc","boost":1.0}}],"adjust_pure_negative":true,"boost":1.0}}],"adjust_pure_negative":true,"boost":1.0}}],
+        //"adjust_pure_negative":true,"boost":1.0}},"_source":{"includes":["tags","type","desc"],"excludes":[]},"sort"
+        //:[{"name":{"order":"asc"}}]}
 
     }
 
