@@ -32,6 +32,7 @@ public class User {
 
     private String password;
     private String perms;
+    private String roles;
 
     // 字段添加填充内容
     @TableField(fill = FieldFill.INSERT)
