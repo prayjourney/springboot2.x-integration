@@ -2,11 +2,14 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,6 +85,7 @@ public class ShiroController {
         return "页面未经授权，不得访问！";
     }
 
+    // 权限的检测
     @RequiresPermissions("user:money")
     @GetMapping("getmoney")
     public String getMoney(){
@@ -91,6 +95,19 @@ public class ShiroController {
             System.out.println("获取1000元!");
             return "getmoney";
         }catch (AuthorizationException e){
+            System.out.println(e.getCause());
+            return "login";
+        }
+    }
+
+    // 角色的检测
+    @RequiresRoles("role:admin")
+    @GetMapping("getallinfo")
+    public String getAllInfo(){
+        try{
+            System.out.println("我是管理，想干啥就干啥！");
+            return "allinfo";
+        }catch (AuthenticationException e){
             System.out.println(e.getCause());
             return "login";
         }
