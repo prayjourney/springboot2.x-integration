@@ -75,6 +75,7 @@ import java.util.function.Function;
 import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 
+import static org.elasticsearch.index.query.QueryBuilders.boolQuery;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
 /**
@@ -1085,12 +1086,40 @@ public class ElasticSearchService {
 
         // {"query":{"bool":{"must_not":[{"exists":{"field":"city_hot_value"}}]}},"from": 0, "size": 10,"sort": []}
         BoolQueryBuilder bool = new BoolQueryBuilder();
+//        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
+//        rangeQueryBuilder.gt(lastKey.get("es_hot_value_location"));
+//        bool.filter(rangeQueryBuilder);
         // 不存在type字段的文档
-        ExistsQueryBuilder existsQueryBuilder = QueryBuilders.existsQuery("type");
-        bool.mustNot(existsQueryBuilder);
 
-        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("name");
-        bool.filter(rangeQueryBuilder);
+        // 这样是and的关系，两个都是为空
+        // ExistsQueryBuilder existsQueryBuilder1 = QueryBuilders.existsQuery("type");
+        // ExistsQueryBuilder existsQueryBuilder2 = QueryBuilders.existsQuery("desc");
+        // bool.mustNot(existsQueryBuilder1);
+        // bool.mustNot(existsQueryBuilder2);
+
+        // or的关系呢？ 这个就是
+        // BoolQueryBuilder bool001 = new BoolQueryBuilder();
+        // ExistsQueryBuilder existsQueryBuilder001 = QueryBuilders.existsQuery("type");
+        // bool001.mustNot(existsQueryBuilder001);
+        // BoolQueryBuilder bool002 = new BoolQueryBuilder();
+        // ExistsQueryBuilder existsQueryBuilder002 = QueryBuilders.existsQuery("desc");
+        // bool002.mustNot(existsQueryBuilder002);
+
+        // bool.should(bool001);
+        // bool.should(bool002);
+
+        // or misssing的关系
+        BoolQueryBuilder bool001 = new BoolQueryBuilder();
+        ExistsQueryBuilder existsQueryBuilder001 = QueryBuilders.existsQuery("type");
+        bool001.mustNot(existsQueryBuilder001);
+        BoolQueryBuilder bool002 = new BoolQueryBuilder();
+        ExistsQueryBuilder existsQueryBuilder002 = QueryBuilders.existsQuery("desc");
+        bool002.mustNot(existsQueryBuilder002);
+
+        bool.should(bool001);
+        bool.should(bool002);
+
+
 
         searchSourceBuilder001.query(bool);
 
