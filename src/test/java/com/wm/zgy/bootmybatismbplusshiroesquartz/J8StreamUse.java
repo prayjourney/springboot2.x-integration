@@ -9,6 +9,7 @@ import java.util.stream.Stream;
  * @Author renjiaxin
  * @Date 2020/6/16
  * @Description
+ * Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
  */
 public class J8StreamUse {
     public static void main(String[] args) {
@@ -35,5 +36,11 @@ public class J8StreamUse {
 
         Comparator<Integer> comparator = (x, y) -> x - y;
         System.out.println(integerStream.filter(x -> x > 13).sorted().min(comparator).get());
+
+        // 无限流, 种子是起始值, 下面的filter是一个检测操作， boolean类型的
+        Stream<Integer> stream3 = Stream.iterate(1, x ->  x + 2);
+        stream3.limit(20).skip(2).filter(x -> x % 2 != 0).forEach(System.out::println);
+        // log(0)是无意义的
+        System.out.println(Math.log(0));
     }
 }
