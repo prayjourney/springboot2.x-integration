@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author renjiaxin
@@ -32,7 +33,7 @@ public class QuartzService {
     private String timeFormatter = "yyyy-MM-dd HH:mm:ss";
 
     //每一分钟都打印一次时间
-    @Scheduled(cron = "0 * * * * ?")
+    //@Scheduled(cron = "0 * * * * ?")
     public String printTimeEveryMinutes() {
         LocalDateTime localDateTime = LocalDateTime.now();
         String nowTime = localDateTime.format(DateTimeFormatter.ofPattern(timeFormatter)).toString();
@@ -41,7 +42,7 @@ public class QuartzService {
     }
 
     //从0分钟开始，每3分钟执行一次插入
-    @Scheduled(cron = "0 0/3 * * * ? ")
+    //@Scheduled(cron = "0 0/3 * * * ? ")
     public String insertOneStudent() throws JsonProcessingException {
         List<String> names = Arrays.asList("张三", "lisi", "雨涵", "kiristina", "MG-HOTdog!");
         List<String> cities = Arrays.asList("四川省乐山市", "四川省成都市", "江苏省南京市", "广东省广州市", "北京市");
@@ -53,5 +54,16 @@ public class QuartzService {
         studentMapper.insert(student);
         log.info("插入学生成功，时间是： "+ LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
         return JSONUtil.getJsonFromObject(student);
+    }
+
+    // 每一分钟执行一次, 但是一分钟执行不完
+    @Scheduled(cron = "0 0/1 0,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ? ")
+    public String taskTimeMoreThanSettingMinutes() throws InterruptedException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String nowTime = localDateTime.format(DateTimeFormatter.ofPattern(timeFormatter)).toString();
+        log.info("每一分钟执行一次, 但是一分钟执行不完:::  + print now time : {}", nowTime);
+        TimeUnit.MINUTES.sleep(2);
+        log.info("MGGGGG==========  + print now time : {}", nowTime);
+        return nowTime;
     }
 }
