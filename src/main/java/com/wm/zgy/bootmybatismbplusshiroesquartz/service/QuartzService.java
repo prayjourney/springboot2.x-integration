@@ -22,6 +22,15 @@ import java.util.concurrent.TimeUnit;
  * @Author renjiaxin
  * @Date 2020/5/22
  * @Description
+ *
+ * @URL cron的介绍博客
+ * https://www.cnblogs.com/zouhong/p/11332126.html
+ * https://juejin.im/entry/5bb9bfd0f265da0af609c755
+ * https://www.cnblogs.com/chrischennx/p/7652087.html
+ * https://blog.csdn.net/asdfghzqlj/article/details/80586209
+ * https://segmentfault.com/q/1010000015784016
+ * https://segmentfault.com/a/1190000015253688
+ * https://www.cnblogs.com/zouhong/p/11332126.html
  */
 @Slf4j
 @Component
