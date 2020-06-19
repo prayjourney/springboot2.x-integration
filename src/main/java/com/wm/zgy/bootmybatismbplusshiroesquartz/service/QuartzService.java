@@ -57,13 +57,26 @@ public class QuartzService {
     }
 
     // 每一分钟执行一次, 但是一分钟执行不完
-    @Scheduled(cron = "0 0/1 0,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ? ")
+    // @Scheduled(cron = "0 0/1 0,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ? ")
     public String taskTimeMoreThanSettingMinutes() throws InterruptedException {
         LocalDateTime localDateTime = LocalDateTime.now();
         String nowTime = localDateTime.format(DateTimeFormatter.ofPattern(timeFormatter)).toString();
         log.info("每一分钟执行一次, 但是一分钟执行不完:::  + print now time : {}", nowTime);
         TimeUnit.MINUTES.sleep(2);
         log.info("MGGGGG==========  + print now time : {}", nowTime);
+        return nowTime;
+    }
+
+    // 执行耗时68s, 并且执行完之后等待1分钟, 再去执行新的任务
+    // 只能有一个的corn或者fixedDelay, fixedRate使用
+    // @Scheduled(cron = "0/30 * 0,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23 * * ? " fixedDelayString = "60000")
+    @Scheduled(fixedDelayString = "60000")
+    public String taskTimeMoreThanSettingMinutes02() throws InterruptedException {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String nowTime = localDateTime.format(DateTimeFormatter.ofPattern(timeFormatter)).toString();
+        log.info("执行了:::  + print now time : {}", nowTime);
+        TimeUnit.SECONDS.sleep(68);
+        log.info("执行执行...... + print now time : {}", nowTime);
         return nowTime;
     }
 }
