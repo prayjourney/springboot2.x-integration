@@ -7,6 +7,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -249,6 +250,13 @@ public class J8StreamUse {
         Map<Boolean, List<LittleDog>> mapDog =
                 dogs.stream().collect(Collectors.partitioningBy(x -> x.getHeight() > 60));
         System.out.println(mapDog);
+
+        // 统一统计
+        DoubleSummaryStatistics statistics = dogs.stream().collect(Collectors.summarizingDouble(LittleDog::getHeight));
+        System.out.println(statistics.getMax());
+        System.out.println(statistics.getAverage());
+        System.out.println(statistics.getCount());
+        System.out.println(statistics.getSum());
 
 
     }
