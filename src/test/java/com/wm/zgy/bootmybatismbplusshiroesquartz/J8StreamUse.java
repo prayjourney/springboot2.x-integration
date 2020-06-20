@@ -1,11 +1,14 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import io.swagger.models.auth.In;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -16,14 +19,16 @@ import java.util.stream.Stream;
  */
 public class J8StreamUse {
     public static void main(String[] args) {
-        System.out.println("==========创建流===============");
+        System.out.println("==========1.创建流===============");
         createStream();
-        System.out.println("==========筛选分片===============");
+        System.out.println("==========2.中间操作：筛选分片===============");
         filterMethod();
-        System.out.println("==========映射===============");
+        System.out.println("==========2.中间操作：映射===============");
         mapMethod();
-        System.out.println("==========排序===============");
+        System.out.println("==========2.中间操作：排序===============");
         sortMethod();
+        System.out.println("==========3.终止操作===============");
+        terminalMethod();
     }
 
     /**
@@ -128,6 +133,94 @@ public class J8StreamUse {
         sorted.forEach(System.out::println);
     }
 
+    // 数据准备
+    static List<LittleDog> dogs = Arrays.asList(
+            LittleDog.builder().id(1).name("lili").kind("阿拉斯加").height(23).status(Status.OKAY).build(),
+            LittleDog.builder().id(2).name("milu").kind("柴犬").height(45).status(Status.BAD).build(),
+            LittleDog.builder().id(3).name("makle").kind("阿拉斯加").height(67).status(Status.GOOD).build(),
+            LittleDog.builder().id(4).name("哈哈").kind("阿拉斯加").height(88).status(Status.GREAT).build(),
+            LittleDog.builder().id(5).name("孩子3").kind("柴犬").height(46).status(Status.GREAT).build(),
+            LittleDog.builder().id(6).name("MGDP").kind("中华田园犬").height(38).status(Status.GOOD).build(),
+            LittleDog.builder().id(7).name("特朗普").kind("柴犬").height(28).status(Status.OKAY).build(),
+            LittleDog.builder().id(8).name("小马").kind("中华田园犬").height(83).status(Status.OKAY).build(),
+            LittleDog.builder().id(9).name("校长").kind("德国牧羊犬").height(99).status(Status.BAD).build()
+    );
+
+    /**
+     * 终止操作
+     */
+    public static void terminalMethod(){
+        // 是否全都匹配，检查所有元素
+        boolean match1 = dogs.stream().allMatch(e -> e.getStatus().getStatus() == "OKAY");
+        System.out.println(match1);
+        // 是否匹配一个元素
+        boolean match2 = dogs.stream().anyMatch(e -> e.getStatus().getStatus() == "OKAY");
+        System.out.println(match2);
+        // 是否没有匹配所有元素
+        boolean match3 = dogs.stream().noneMatch(Status.OKAY.getStatus()::equals);
+        System.out.println(match3);
+        // 获取第一个
+        System.out.println(dogs.stream().findFirst().get().toString());
+        Optional<LittleDog> first = dogs.stream().sorted((x, y) -> Integer.compare(y.getHeight(), x.getHeight())).findFirst();
+        System.out.println(first.get());
+        // 随便获取一个
+        Optional<LittleDog> littleDog = dogs.parallelStream().filter(x -> x.getKind().equals("中华田园犬")).findAny();
+        System.out.println(littleDog.get().getName());
+        // 计算流中总数
+        System.out.println(dogs.stream().count());
+        System.out.println(dogs.stream().filter(x -> x.getKind().equals("柴犬")).count());
+        // 计算大小
+        Optional<LittleDog> maxDog =
+                dogs.stream().filter(x -> x.getKind().equals("阿拉斯加")).max((x, y) -> Integer.compare(x.getHeight(),
+                        y.getHeight()));
+        System.out.println(maxDog.get().getName());
+        Optional<Integer> min = dogs.stream().map(LittleDog::getHeight).min(Integer::compare);
+        System.out.println(min);
+
+    }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Data
+    @Builder
+    static class LittleDog{
+        private Integer id;
+        private String name;
+        private String kind;
+        private Integer height;
+        private Status status;
+    }
+}
+
+enum Status{
+    GREAT(1, "great"), GOOD(2,"good"), OKAY(3,"okay"), BAD(4,"bad");
+    private int index;
+    private String status;
+
+    private Status(int idex, String  str) {
+        index = idex;
+        status = str;
+    }
+
+    public String getStatus(){
+        return status;
+    }
 }
