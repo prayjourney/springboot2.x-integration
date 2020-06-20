@@ -89,6 +89,10 @@ public class J8StreamUse {
             sm.forEach(System.out::println);
         });
 
+        // 流中取流使用flatMap代替, 作用于集合的add，addAll类似
+        Stream<Character> s2tmFlat = list.stream().flatMap(J8StreamUse::filterCharacter);
+        s2tmFlat.forEach(System.out::println);
+
     }
 
     public static Stream<Character> filterCharacter(String str){
