@@ -17,8 +17,12 @@ import java.util.stream.Stream;
 public class J8StreamUse {
     public static void main(String[] args) {
         createStream();
+        filterMethod();
     }
 
+    /**
+     * 创建流: 创建得到流
+     */
     public static void createStream() {
         List<String> ls = new ArrayList<>();
         ls.add("刘备");
@@ -52,4 +56,16 @@ public class J8StreamUse {
         Stream<Integer> stream3 = Stream.iterate(1, x ->  x + 2);
         stream3.limit(20).skip(2).filter(x -> x % 2 != 0).forEach(System.out::println);
     }
+
+    /**
+     * 筛选与切片: 实际上就是对流里面的数据进行一个过滤或者其他的操作，比如截断limit，跳过skip,去重distinct，filter接收lambda
+     */
+    public static void filterMethod(){
+        Stream<Integer> integerStream = Stream.of(1, 20, 13, 27 ,29, 34, 15, 61, 27, 84, 29);
+        integerStream.filter(x -> x >=10).limit(10).distinct().skip(0).forEach(System.out::println);
+        // 排序
+        // Comparator<Integer> comparator = (x, y) -> x - y;
+        // System.out.println(integerStream.filter(x -> x > 13).sorted().min(comparator).get());
+    }
+
 }
