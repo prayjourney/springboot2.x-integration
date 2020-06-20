@@ -22,6 +22,8 @@ public class J8StreamUse {
         filterMethod();
         System.out.println("==========映射===============");
         mapMethod();
+        System.out.println("==========排序===============");
+        sortMethod();
     }
 
     /**
@@ -102,6 +104,17 @@ public class J8StreamUse {
         }
         return list.stream();
     }
+
+    /**
+     * 排序
+     * sorted()--->自然排序， comparable
+     * sorted(Comparator com)--->定制排序， comparator
+     */
+    public static void sortMethod(){
+        List<String> list = Arrays.asList("张三", "lisi", "22","7","黑山老妖");
+        list.stream().sorted().forEach(System.out::println);
+    }
+
 
 
 }
