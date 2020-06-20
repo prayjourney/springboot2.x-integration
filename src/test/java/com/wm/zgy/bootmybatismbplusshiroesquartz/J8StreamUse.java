@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -31,6 +34,8 @@ public class J8StreamUse {
         terminalMethod();
         System.out.println("==========3.终止操作: 归约===============");
         reduceMethod();
+        System.out.println("==========3.终止操作: 收集===============");
+        collectMethod();
     }
 
     /**
@@ -198,22 +203,29 @@ public class J8StreamUse {
 
     }
 
+    /**
+     * 收集
+     * 将流转换为其他的形式，接受一个collector接口实现，用于给Stream之中的元素做汇总的方法
+     */
+    public static void collectMethod(){
+        // 收集所有的狗的名字
+        List<String> stringList = dogs.stream().map(LittleDog::getName).collect(Collectors.toList());
+        stringList.forEach(System.out::println);
+
+        // 去重
+        Set<LittleDog> collect = dogs.stream().filter(x -> x.getHeight() > 40).collect(Collectors.toSet());
+        System.out.println(collect.size());
+
+        // 平均值
+        Double heightAvg = dogs.stream().filter(x -> x.getHeight() > 40).collect(Collectors.averagingInt(LittleDog::getHeight));
+        System.out.println(heightAvg);
+
+        // 最小值
+        Optional<Integer> minHeight = dogs.stream().map(LittleDog::getHeight).collect(Collectors.minBy(Integer::compare));
+        System.out.println(minHeight.get());
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     @Data
