@@ -16,8 +16,12 @@ import java.util.stream.Stream;
  */
 public class J8StreamUse {
     public static void main(String[] args) {
+        System.out.println("==========创建流===============");
         createStream();
+        System.out.println("==========筛选分片===============");
         filterMethod();
+        System.out.println("==========映射===============");
+        mapMethod();
     }
 
     /**
@@ -67,5 +71,17 @@ public class J8StreamUse {
         // Comparator<Integer> comparator = (x, y) -> x - y;
         // System.out.println(integerStream.filter(x -> x > 13).sorted().min(comparator).get());
     }
+
+    /**
+     * 映射
+     * map: 接收lambda, 将元素转化成其他形式或者提取信息，接受一个函数作为参数，将该函数应用到每一个元素上，并将其映射成新的元素
+     * flatMap: 接收一个函数作为参数，将流中的每个值换成另一个流，然后把所有的流连成一个流
+     */
+    public static void mapMethod(){
+        List<String> list = Arrays.asList("aa","bb","ccc","dd");
+        list.stream().map(String::toUpperCase).forEach(System.out::println);
+
+    }
+
 
 }
