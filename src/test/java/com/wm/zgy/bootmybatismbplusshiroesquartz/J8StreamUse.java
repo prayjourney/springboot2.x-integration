@@ -21,14 +21,16 @@ public class J8StreamUse {
     public static void main(String[] args) {
         System.out.println("==========1.创建流===============");
         createStream();
-        System.out.println("==========2.中间操作：筛选分片===============");
+        System.out.println("==========2.中间操作: 筛选分片===============");
         filterMethod();
-        System.out.println("==========2.中间操作：映射===============");
+        System.out.println("==========2.中间操作: 映射===============");
         mapMethod();
-        System.out.println("==========2.中间操作：排序===============");
+        System.out.println("==========2.中间操作: 排序===============");
         sortMethod();
         System.out.println("==========3.终止操作===============");
         terminalMethod();
+        System.out.println("==========3.终止操作: 归约===============");
+        reduceMethod();
     }
 
     /**
@@ -179,7 +181,22 @@ public class J8StreamUse {
 
     }
 
+    /**
+     * 归约操作: 将流中元素反复结合起来，得到一个值
+     * T reduce(T identity, BinaryOperator<T> accumulator);
+     * Optional<T> reduce(BinaryOperator<T> accumulator);
+     */
+    public static void reduceMethod(){
+        List<Integer> list =  Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+        // 0是起始值
+        Integer sum = list.stream().reduce(0, (x, y) -> x + y);
+        System.out.println(sum);
 
+        // 计算一下所有小狗的长度
+        Optional<Integer> reduceSum = dogs.stream().map(LittleDog::getHeight).reduce(Integer::sum);
+        System.out.println(reduceSum.get());
+
+    }
 
 
 
