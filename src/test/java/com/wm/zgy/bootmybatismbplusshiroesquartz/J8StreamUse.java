@@ -93,6 +93,9 @@ public class J8StreamUse {
 
     public static Stream<Character> filterCharacter(String str){
         List<Character> list = new ArrayList<>();
+        for (Character ch: str.toCharArray()){
+            list.add(ch);
+        }
         return list.stream();
     }
 
