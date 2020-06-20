@@ -224,7 +224,26 @@ public class J8StreamUse {
         Optional<Integer> minHeight = dogs.stream().map(LittleDog::getHeight).collect(Collectors.minBy(Integer::compare));
         System.out.println(minHeight.get());
 
+        // 分组
+        Map<Status, List<LittleDog>> listMap = dogs.stream().collect(Collectors.groupingBy(LittleDog::getStatus));
+        Set<Map.Entry<Status, List<LittleDog>>> entrySet = listMap.entrySet();
+        Stream<Map.Entry<Status, List<LittleDog>>> stream = entrySet.stream();
+        stream.forEach(x -> System.out.println(x.getKey() + ", " +x.getValue()));
 
+        // 多级分组
+        Map<String, Map<String, List<LittleDog>>> mapMap = dogs.stream()
+                .collect(Collectors.groupingBy(LittleDog::getKind, Collectors.groupingBy(
+                        (e) -> {
+                            if (e.getHeight() > 60) {
+                                return "大狗";
+                            } else if (e.getHeight() > 30) {
+                                return "中狗";
+                            } else {
+                                return "小狗";
+                            }
+                        }
+                )));
+        System.out.println(mapMap);
     }
 
 
