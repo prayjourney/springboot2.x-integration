@@ -113,6 +113,19 @@ public class J8StreamUse {
     public static void sortMethod(){
         List<String> list = Arrays.asList("张三", "lisi", "22","7","黑山老妖");
         list.stream().sorted().forEach(System.out::println);
+
+        // 定制排序
+        System.out.println("======定制排序======");
+        Stream<String> sorted = list.stream().sorted((x, y) -> {
+            if (x.length() > y.length()) {
+                return 1;
+            } else if (x.length() == y.length()) {
+                return 0;
+            } else {
+                return -1;
+            }
+        });
+        sorted.forEach(System.out::println);
     }
 
 
