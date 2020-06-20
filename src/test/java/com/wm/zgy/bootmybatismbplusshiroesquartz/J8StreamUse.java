@@ -81,6 +81,19 @@ public class J8StreamUse {
         List<String> list = Arrays.asList("aa","bb","ccc","dd");
         list.stream().map(String::toUpperCase).forEach(System.out::println);
 
+        System.out.println("-----------------------");
+        Stream<Stream<Character>> s2tm =
+                list.stream().map(x -> J8StreamUse.filterCharacter(x));
+        // 流中取流
+        s2tm.forEach(sm ->{
+            sm.forEach(System.out::println);
+        });
+
+    }
+
+    public static Stream<Character> filterCharacter(String str){
+        List<Character> list = new ArrayList<>();
+        return list.stream();
     }
 
 
