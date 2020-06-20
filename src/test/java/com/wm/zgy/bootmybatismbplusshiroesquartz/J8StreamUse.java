@@ -244,6 +244,13 @@ public class J8StreamUse {
                         }
                 )));
         System.out.println(mapMap);
+
+        // 分区， 满足条件一个区，不满足条件的一个区
+        Map<Boolean, List<LittleDog>> mapDog =
+                dogs.stream().collect(Collectors.partitioningBy(x -> x.getHeight() > 60));
+        System.out.println(mapDog);
+
+
     }
 
 
