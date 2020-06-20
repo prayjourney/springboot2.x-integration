@@ -258,6 +258,10 @@ public class J8StreamUse {
         System.out.println(statistics.getCount());
         System.out.println(statistics.getSum());
 
+        // 连接
+        String collect1 = dogs.stream().map(LittleDog::getName).collect(Collectors.joining(","));
+        System.out.println(collect1);
+
 
     }
 
