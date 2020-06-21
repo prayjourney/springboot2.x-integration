@@ -2,9 +2,7 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
