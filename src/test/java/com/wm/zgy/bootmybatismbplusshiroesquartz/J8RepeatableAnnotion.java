@@ -26,7 +26,7 @@ public class J8RepeatableAnnotion {
 
     }
 
-    // 解析该对象的信息
+    // 解析该对象的信息， 这个其实就是注解的解析器
     public static void getPersonNames(PersonInfo p) throws NoSuchFieldException {
         Class<PersonInfo> pClass = PersonInfo.class;
         Method[] methods = pClass.getMethods();
