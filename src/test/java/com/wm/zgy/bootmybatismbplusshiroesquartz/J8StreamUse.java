@@ -1,6 +1,5 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
-import io.swagger.models.auth.In;
 import lombok.Builder;
 import lombok.Data;
 
