@@ -37,7 +37,13 @@ public class J8RepeatableAnnotion {
             System.out.println(ma.value());
         }
 
-        
+        // 这个还是空的
+        System.out.println(p.toString());
+        // 赋值, 不过这个时候，它的值被多次赋值冲掉了
+        for (MyAnnotation ma : fieldAnnotationsByType){
+            p.setName(ma.value());
+        }
+        System.out.println(p.toString());
     }
 
     @Data
