@@ -30,4 +30,16 @@ public class J8Optional {
         System.out.println(hello.get());
     }
 
+    @Test
+    public void testCreateOptional02(){
+        // ofNullable, 如果为空就创建null, 不为空就正常创建
+        Optional<String> s = Optional.ofNullable(null);
+        if (s.isPresent()){
+            System.out.println();
+        }
+        // 如果为空，提供了一个默认值
+        String ss = s.orElse(new String("hello mmmm"));
+        System.out.println(ss);
+    }
+
 }
