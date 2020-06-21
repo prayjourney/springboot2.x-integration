@@ -11,9 +11,11 @@ public class J8MyInterfaceUse {
         System.out.println(MyInterface.getVersion());
         System.out.println(new HelloWorld().version());
         System.out.println(new HelloWorld().getName());
+        // 类优先原则， 调用的是抽象类MyAbstractClass的myName方法
+        System.out.println(new HelloWorld().myName());
     }
 
-    static class HelloWorld implements MyInterface{
+    static class HelloWorld extends MyAbstractClass implements MyInterface{
         @Override
         public String getName() {
             return "hello";
@@ -22,10 +24,12 @@ public class J8MyInterfaceUse {
 }
 
 interface MyInterface{
+    // default关键字， 可以定义多个default的方法
     default String myInfo(){
         return "myinfo";
     }
 
+    // 可以定义静态的有方法体的方法
     public static String getVersion(){
         return "1.0";
     }
@@ -34,5 +38,16 @@ interface MyInterface{
         return "1.0";
     }
 
+    default String myName(){
+        return "Hong Kong";
+    }
+
+    // 普通的方法不能有方法体
     public String getName();
+}
+
+abstract class MyAbstractClass{
+    public String myName(){
+        return "香港";
+    }
 }
