@@ -37,6 +37,9 @@ public class J8StreamUse {
         reduceMethod();
         System.out.println("==========3.终止操作: 收集===============");
         collectMethod();
+
+        // 普通的使用
+        commonUseStream();
     }
 
     /**
@@ -265,6 +268,27 @@ public class J8StreamUse {
 
     }
 
+    /**
+     * 综合使用
+     */
+    public static void commonUseStream(){
+
+        List<Integer> ls = Arrays.asList(1, 2, 100, 6, 33, 9, -2, 122, 58, 39, 199);
+        // 创建流
+        Stream<Integer> stream = ls.stream();
+        // 中间操作 + 终止操作
+        String collect = stream.filter(x -> x > 2).sorted((e1, e2) -> {
+            if (e1 > e2) {
+                return -1;
+            } else if (e1 < e2) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }).map(e -> e + 2 + "").collect(Collectors.joining(","));
+        System.out.println(collect);
+
+    }
 
     @Data
     @Builder
