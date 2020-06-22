@@ -8,8 +8,11 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresGuest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,9 +82,10 @@ public class ShiroController {
     }
 
     @RequestMapping("unauthor")
-    @ResponseBody
+    // @ResponseBody
     public String unauthor(){
-        return "页面未经授权，不得访问！";
+        // return "页面未经授权，不得访问！";
+        return "unauthor";
     }
 
     // 权限的检测
