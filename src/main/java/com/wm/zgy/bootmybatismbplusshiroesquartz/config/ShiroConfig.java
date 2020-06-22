@@ -121,6 +121,9 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
+    /**
+     * 如果没有登录, 则直接跳到登录页面, 如果没有权限, 则跳到未授权页面, 在此处设置
+     */
     @Bean
     public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
         SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();

@@ -93,11 +93,13 @@ public class ShiroController {
     @GetMapping("getmoney")
     public String getMoney(){
         try{
-            // TODO: 问题，如果没有登录，则直接跳到登录页面，如果没有权限，则跳到未授权页面，不应该在这儿再次处理了吧？
-            // Subject subject = SecurityUtils.getSubject();
+            // 问题，如果没有登录，则直接跳到登录页面，如果没有权限，则跳到未授权页面，不应该在这儿再次处理了吧？
+            // ShiroConfig simpleMappingExceptionResolver解决了这个问题
+            // Subject subject = SecurityUtils.getSubject(); // 权限是一开始就回去检测和检查, 根本不应该来这儿操作
             System.out.println("获取1000元!");
             return "getmoney";
         }catch (AuthorizationException e){
+            // 权限是一开始就回去检测和检查, 根本不应该来这儿操作
             System.out.println(e.getCause());
             return "login";
         }
@@ -107,13 +109,8 @@ public class ShiroController {
     @RequiresRoles("role:admin")
     @GetMapping("getallinfo")
     public String getAllInfo(){
-        try{
-            System.out.println("我是管理，想干啥就干啥！");
-            return "allinfo";
-        }catch (AuthenticationException e){
-            System.out.println(e.getCause());
-            return "login";
-        }
+        System.out.println("我是管理，想干啥就干啥！");
+        return "allinfo";
     }
 
     @GetMapping("logout")
