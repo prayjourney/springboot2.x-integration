@@ -9,9 +9,11 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @Author: renjiaxin
@@ -98,6 +100,28 @@ public class ShiroConfig {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(getDefaultWebSecurityManager(userRealm()));
         return authorizationAttributeSourceAdvisor;
+    }
+
+    @Bean
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+        SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+        Properties properties = new Properties();
+
+        /**
+         * 未授权处理页, 未授权: 没有某种权限, 没有某种角色都是未授权, 不是指定用户, 或者不是游客等, 都是未授权, 有如下的情况
+         *     @RequiresUser
+         *     @RequiresGuest
+         *     @RequiresAuthentication
+         *     @RequiresPermissions("user:money")
+         *     @RequiresRoles("role:admin")
+         */
+        properties.setProperty("org.apache.shiro.authz.UnauthorizedException", "/unauthor");
+        /**
+         * 身份没有验证
+         */
+        properties.setProperty("org.apache.shiro.authz.UnauthenticatedException", "/login");
+        resolver.setExceptionMappings(properties);
+        return resolver;
     }
 
 }
