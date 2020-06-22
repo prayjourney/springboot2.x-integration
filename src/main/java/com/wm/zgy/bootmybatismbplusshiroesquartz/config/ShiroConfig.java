@@ -26,7 +26,7 @@ import java.util.Properties;
  * https://www.jianshu.com/p/74304ebb7d30/
  * https://blog.csdn.net/yali_aini/article/details/84000271
  * https://www.jianshu.com/p/1f77702e4947
- * https://blog.csdn.net/zhuzhaofeng0703/article/details/86574022
+ * https://blog.csdn.net/zhuzhaofeng0703/article/details/86574022  没有权限时候就去跳转的设置
  * https://juejin.im/post/5ac78b31f265da237411387e
  * https://www.cnblogs.com/qlqwjy/p/9032968.html
  * https://objcoding.com/2017/05/27/Shiro(1)/#%E6%8E%88%E6%9D%83
