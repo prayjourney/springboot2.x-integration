@@ -90,6 +90,7 @@ public class ShiroConfig {
      */
     @Bean
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+        // 生成代理, 用于注解的解析和相关权限的验证
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
