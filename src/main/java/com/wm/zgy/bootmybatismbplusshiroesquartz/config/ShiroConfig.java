@@ -1,6 +1,7 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.config;
 
 import org.apache.shiro.mgt.DefaultSecurityManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -26,7 +27,7 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
-    // ShiroFilterFactoryBean
+    // ShiroFilterFactoryBean, 在此处我们可以自己去定义访问页面和登录未登录等情况的设置, 这样集中管理, 不太灵活
     @Bean(name = "shiroFilterFactoryBean")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("securityManager") DefaultSecurityManager securityManager) {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
@@ -65,10 +66,18 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    // 创建realm， 需要自定义类
+    // 创建realm, 需要自定义类
     @Bean
     public MyRealm userRealm() {
         return new MyRealm();
+    }
+
+    /**
+     * Shiro 生命周期处理器, 这个在简单的操作之中，其实加不加都可以的
+     */
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
     }
 
     // 使用getShiroFilterFactoryBean, 在filterChainDefinitionMap之中添加授权的map链接和角色，权限等，是传统的授权的方式，
@@ -90,4 +99,5 @@ public class ShiroConfig {
         authorizationAttributeSourceAdvisor.setSecurityManager(getDefaultWebSecurityManager(userRealm()));
         return authorizationAttributeSourceAdvisor;
     }
+
 }
