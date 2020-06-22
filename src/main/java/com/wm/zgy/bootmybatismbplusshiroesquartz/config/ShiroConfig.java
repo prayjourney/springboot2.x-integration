@@ -26,6 +26,20 @@ import java.util.Properties;
  * https://www.jianshu.com/p/74304ebb7d30/
  * https://blog.csdn.net/yali_aini/article/details/84000271
  * https://www.jianshu.com/p/1f77702e4947
+ * https://blog.csdn.net/zhuzhaofeng0703/article/details/86574022
+ * https://juejin.im/post/5ac78b31f265da237411387e
+ * https://www.cnblogs.com/qlqwjy/p/9032968.html
+ * https://objcoding.com/2017/05/27/Shiro(1)/#%E6%8E%88%E6%9D%83
+ * http://jeesite.com/docs/permi-shiro/
+ * https://www.kancloud.cn/digest/javaframe/125587
+ * https://www.jianshu.com/p/09abe74c3d48
+ * http://www.zhaojun.im/shiro-10/
+ * https://cloud.tencent.com/developer/article/1448332
+ * https://blog.csdn.net/qq_35981283/article/details/78631924
+ * https://www.cnblogs.com/BAYOUA/p/11827239.html
+ * https://www.cnblogs.com/pingxin/p/p00115.html
+ * https://developer.okta.com/blog/2017/07/13/apache-shiro-spring-boot
+ * https://www.programcreek.com/java-api-examples/?api=org.apache.shiro.authz.annotation.RequiresRoles
  */
 @Configuration
 public class ShiroConfig {
