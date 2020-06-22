@@ -35,13 +35,14 @@ public class ShiroConfig {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         bean.setSecurityManager(securityManager);
 
-        // 添加shiro的内置过滤器， 在这个bean之中配置
         /**
-         * anon:  无需认证就可访问， 不是anno, 而是anon
+         * 添加shiro的内置过滤器, 在这个ShiroFilterFactoryBean之中配置, 即可生效
+         *
+         * anon: 无需认证就可访问, 不是anno, 而是anon
          * authc: 必须认证了才能访问
-         * user:  必须拥有记住我的功能才能访问
+         * user: 必须拥有记住我的功能才能访问
          * perms: 必须拥有对某个资源的全向才能访问
-         * role:  拥有某个角色权限才能访问
+         * role: 拥有某个角色权限才能访问
          */
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         filterChainDefinitionMap.put("/shiro/addmsg", "authc"); //需要认证
