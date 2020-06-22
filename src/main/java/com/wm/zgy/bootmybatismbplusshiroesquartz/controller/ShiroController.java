@@ -1,5 +1,6 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.controller;
 
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.User;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -9,11 +10,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -110,6 +109,20 @@ public class ShiroController {
         }catch (AuthenticationException e){
             System.out.println(e.getCause());
             return "login";
+        }
+    }
+
+    @GetMapping("logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+        if (null != user){
+            subject.logout();
+            log.warn("退出成功");
+            return "index";
+        }else{
+            log.warn("没有用户登陆，不需要退出");
+            return "index";
         }
     }
 }
