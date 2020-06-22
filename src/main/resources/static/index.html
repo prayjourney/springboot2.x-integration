@@ -8,6 +8,16 @@
                 font-family: "微软雅黑 Light";
                 color: darkorchid;
             }
+            span{
+                font-size: small;
+                color: darkorange;
+            }
+            #a1,#a2,#a3,#a4{
+                color: deepskyblue;
+                text-decoration: none;
+            }
+
+
         </style>
     </head>
     <body>
@@ -32,9 +42,9 @@
         <a href="/jd/" style="color: #ff70ad">点击到达京东搜索页面</a>
 
         <h2>测试 shiro</h2>
-        <a href="/shiro/addmsg">添加msg, &nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href="/shiro/getmsg">获取msg, &nbsp;&nbsp;&nbsp;&nbsp;</a><br>
-        <a href="/shiro/getmoney">取1000元! &nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href="/shiro/getallinfo">获取所有的信息! &nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a id=a1 href="/shiro/addmsg">添加msg!<span >需要验证，没有权限的话，跳转到登陆页面，在ShiroConfig之中配置好了</span></a><br>
+        <a id=a2 href="/shiro/getmsg">获取msg!<span>不需要验证</span></a><br>
+        <a id=a3 href="/shiro/getmoney">取1000元!<span>需要验证，权限验证</span></a><br>
+        <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
     </body>
 </html>
