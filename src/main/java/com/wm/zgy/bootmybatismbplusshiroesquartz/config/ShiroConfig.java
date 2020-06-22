@@ -82,9 +82,12 @@ public class ShiroConfig {
         return new LifecycleBeanPostProcessor();
     }
 
-    // 使用getShiroFilterFactoryBean, 在filterChainDefinitionMap之中添加授权的map链接和角色，权限等，是传统的授权的方式，
-    // 我们也可以使用@RequiresPermissions，但是这个需要需借助SpringAOP扫描使用Shiro注解的类, 并在必要时进行安全逻辑验证
-    // 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)
+    /**
+     * 使用getShiroFilterFactoryBean, 在filterChainDefinitionMap之中添加授权的map链接和角色和权限等配置, 是传统的授权的方式,
+     * 我们也可以使用@RequiresPermissions, @RequiresRoles, @RequiresAuthentication, @RequiresGuest, @RequiresUser注解,
+     * 使用注解这样更加方便和灵活, 而且可以对每个URL进行设置, 配置明确, 容易检查。但是这个需要需借助SpringAOP扫描使用Shiro注解的类,
+     * 并在必要时进行安全逻辑验证, 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)
+     */
     @Bean
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
