@@ -177,6 +177,14 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.0</version>
         </dependency>
+
+        <!-- easyexcel -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
