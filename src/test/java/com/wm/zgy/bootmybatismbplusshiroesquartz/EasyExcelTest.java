@@ -1,6 +1,9 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.builder.ExcelReaderBuilder;
+import com.alibaba.excel.read.builder.ExcelReaderSheetBuilder;
+import com.alibaba.excel.read.metadata.ReadSheet;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.FileUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -74,6 +77,14 @@ public class EasyExcelTest {
     }
 
     // 简单的读
+    @Test
+    public void simpleReadTest(){
+        String fileName = "d:\\数据标注6-03.xlsx";
+        ExcelReaderBuilder read = EasyExcel.read(fileName);
+        ExcelReaderSheetBuilder readerSheet = read.sheet("Sheet1");
+        ReadSheet readSheet = readerSheet.build();
+
+    }
 
 
 
