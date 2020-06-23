@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -71,4 +72,32 @@ public class EasyExcelTest {
         }
         EasyExcel.write(fileName, Apple.class).sheet("myapple").doWrite(cats());
     }
+
+    @Test
+    public void testCreateDir(){
+        // 创建了一个3层的目录, d -> c -> 4.txt
+        String path ="d://b/c/4.txt";
+        File file = new File(path);
+        file.mkdirs();
+    }
+
+    @Test
+    public void testIsMultiPath(){
+        System.out.println(FileUtil.isMultiPath("d:\\1\\2\\3\\4.txt"));
+    }
+
+    // 测试系统的分隔符
+    @Test
+    public void testFileSperator(){
+        System.out.println(File.separator);
+    }
+
+    @Test
+    public void testSystem(){
+        String osName = System.getProperty("os.name");
+        String userName = System.getProperty("user.name");
+        System.out.println(osName);
+        System.out.println(userName);
+    }
+
 }
