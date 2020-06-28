@@ -40,6 +40,7 @@ public class FileOptController {
 
     @Autowired
     StudentMapper mapper;
+    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
 
     public String pictureName = "s1.xxx";
     public String picturePath = "d://";

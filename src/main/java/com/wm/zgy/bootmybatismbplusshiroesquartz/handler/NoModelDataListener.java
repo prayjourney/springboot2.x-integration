@@ -27,11 +27,11 @@ import java.util.stream.Stream;
 /**
  * @Author renjiaxin
  * @Date 2020/6/24
- * @Description
+ * @Description NoModelDataListener不能使用spring管理，所以需要自己注入，通过set注入
  */
-
 @Slf4j
 public class NoModelDataListener extends AnalysisEventListener<Map<Integer, String>> {
+    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
     StudentMapper mapper;
 
     // JdbcTemplate template;
