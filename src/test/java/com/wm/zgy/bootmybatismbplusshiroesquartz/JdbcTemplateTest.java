@@ -52,4 +52,12 @@ public class JdbcTemplateTest {
                 " values(?, ?, ?, ?, ?, ?, ?, ?)";
         int i = template.update(sql, 99, "张飞", 22, 0, 1, 2, "北京", 22);
     }
+
+
+    @Test
+    public void testInsertJdbc02() {
+        String sql = "insert into student(`stName`,`stAge`,`stGender`,`classId`,`hobbyGroupId`,`stHome`,`cityId`)" +
+                " values(?, ?, ?, ?, ?, ?, ?)";
+        int i = template.update(sql, "张飞", 22, 0, 1, 2, "北京", 99);
+    }
 }
