@@ -81,8 +81,8 @@ public class EasyExcelTest {
     @Test
     public void simpleReadTest(){
         String fileName = "d:\\数据标注6-03.xlsx";
-        ExcelReaderBuilder readerBuilder = EasyExcel.read(fileName, new NoModelDataListener());
-        readerBuilder.sheet(0).doRead();
+        //ExcelReaderBuilder readerBuilder = EasyExcel.read(fileName, new NoModelDataListener());
+        //readerBuilder.sheet(0).doRead();
     }
 
 

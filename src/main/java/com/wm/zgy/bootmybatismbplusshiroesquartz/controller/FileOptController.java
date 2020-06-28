@@ -6,6 +6,8 @@ import com.wm.zgy.bootmybatismbplusshiroesquartz.handler.NoModelDataListener;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @RestController
 public class FileOptController {
+    @Autowired
+    JdbcTemplate template;
+
     public String pictureName = "s1.xxx";
     public String picturePath = "d://";
     private static List<String> excelFile =
@@ -215,19 +220,19 @@ public class FileOptController {
         }
         // 写入文件, 写入文件之后, 然后就去新的线程之中处理
         file.transferTo(fileTempObj);
-        new Thread(()->{
+        //new Thread(()->{
             String name = fileTempObj.getAbsolutePath();
             File excelFile = new File(name);
             try
             {
-                ExcelReaderBuilder readerBuilder = EasyExcel.read(excelFile, new NoModelDataListener());
+                ExcelReaderBuilder readerBuilder = EasyExcel.read(excelFile, new NoModelDataListener(template));
                 readerBuilder.sheet(0).doRead();
             }catch (Exception e){
                 log.error("解析excel文件发生了错误, 原因是:{} !", e.getMessage());
             }
             excelFile.delete();
             log.info("上传到服务器的excel文件处理完毕, 已经删除!");
-        },"task: operate file").start();
+        //},"task: operate file").start();
         return "upload okay!";
 
     }

@@ -2,15 +2,20 @@ package com.wm.zgy.bootmybatismbplusshiroesquartz.handler;
 
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.mapper.StudentMapper;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.pojo.Student;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.configurationprocessor.json.JSONStringer;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,9 +29,21 @@ import java.util.stream.Stream;
  * @Date 2020/6/24
  * @Description
  */
-@Component
+
 @Slf4j
 public class NoModelDataListener extends AnalysisEventListener<Map<Integer, String>> {
+    // @Autowired
+    // StudentMapper mapper;
+
+    @Autowired
+    JdbcTemplate template;
+    /**
+     * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
+     */
+    public NoModelDataListener(JdbcTemplate template) {
+        this.template = template;
+    }
+
     private static final int BATCH_COUNT = 3000;
     List<Map<Integer, String>> list = new ArrayList<Map<Integer, String>>();
 
@@ -81,6 +98,17 @@ public class NoModelDataListener extends AnalysisEventListener<Map<Integer, Stri
             array.put(object);
         }
         log.info("query : {}, stringArray: {} !", query, array.toString());
+        save(query, array.toString());
 
+    }
+
+    public void save(String query, String entities) {
+        // QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        // queryWrapper.gt("stId", -100);
+        // Integer count = mapper.selectCount(queryWrapper);
+        // log.info("count===>{}", count);
+        String sql = "select * from ner_test_data";
+        List<Map<String, Object>> mapList = template.queryForList(sql);
+        System.out.println(mapList.size());
     }
 }
