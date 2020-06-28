@@ -215,11 +215,19 @@ public class FileOptController {
         }
         // 写入文件, 写入文件之后, 然后就去新的线程之中处理
         file.transferTo(fileTempObj);
-        //new Thread(()->{
+        new Thread(()->{
             String name = fileTempObj.getAbsolutePath();
-            ExcelReaderBuilder readerBuilder = EasyExcel.read(name, new NoModelDataListener());
-            readerBuilder.sheet(0).doRead();
-        //},"task: operate file");
+            File excelFile = new File(name);
+            try
+            {
+                ExcelReaderBuilder readerBuilder = EasyExcel.read(excelFile, new NoModelDataListener());
+                readerBuilder.sheet(0).doRead();
+            }catch (Exception e){
+                log.error("解析excel文件发生了错误, 原因是:{} !", e.getMessage());
+            }
+            excelFile.delete();
+            log.info("上传到服务器的excel文件处理完毕, 已经删除!");
+        },"task: operate file").start();
         return "upload okay!";
 
     }
