@@ -26,11 +26,11 @@
         <!-- 最原始的上传文件的前端控件 -->
         <br>
         <h2>原始的上传文件的控件</h2>
-        <form action='xxx' enctype="multipart/form-data" type='post'>
-            <input type="file"> <!-- 这个是上传文件的一个关键的地方，type是file -->
+        <form action='/uploadFile' enctype="multipart/form-data" method='post'>
+            <input type="file" name="file"/> <!-- 这个是上传文件的一个关键的地方，type是file -->
             <!-- <input type='hidden' name='userid'> -->
             <!-- <input type='hidden' name='signature'> -->
-            <button>提交</button>
+            <input type="submit" value="提交"/>
         </form>
         <br>
         <br>
