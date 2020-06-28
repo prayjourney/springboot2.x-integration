@@ -32,18 +32,19 @@ import java.util.stream.Stream;
 
 @Slf4j
 public class NoModelDataListener extends AnalysisEventListener<Map<Integer, String>> {
-    // @Autowired
-    // StudentMapper mapper;
+    StudentMapper mapper;
 
-    @Autowired
-    JdbcTemplate template;
+    // JdbcTemplate template;
     /**
      * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
      */
-    public NoModelDataListener(JdbcTemplate template) {
-        this.template = template;
-    }
+    //public NoModelDataListener(JdbcTemplate template) {
+    //    this.template = template;
+    //}
 
+    public NoModelDataListener(StudentMapper  mapper){
+        this.mapper = mapper;
+    }
     private static final int BATCH_COUNT = 3000;
     List<Map<Integer, String>> list = new ArrayList<Map<Integer, String>>();
 
@@ -103,12 +104,14 @@ public class NoModelDataListener extends AnalysisEventListener<Map<Integer, Stri
     }
 
     public void save(String query, String entities) {
-        // QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
-        // queryWrapper.gt("stId", -100);
-        // Integer count = mapper.selectCount(queryWrapper);
-        // log.info("count===>{}", count);
-        String sql = "select * from ner_test_data";
-        List<Map<String, Object>> mapList = template.queryForList(sql);
-        System.out.println(mapList.size());
+        // jdbctemplate
+        // String sql = "select * from ner_test_data";
+        // List<Map<String, Object>> mapList = template.queryForList(sql);
+        // System.out.println(mapList.size());
+
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.gt("stId", -100);
+        Integer count = mapper.selectCount(queryWrapper);
+        log.info("count===>{}", count);
     }
 }
