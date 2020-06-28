@@ -1,27 +1,41 @@
 package com.wm.zgy.bootmybatismbplusshiroesquartz.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.builder.ExcelReaderBuilder;
+import com.wm.zgy.bootmybatismbplusshiroesquartz.handler.NoModelDataListener;
 import com.wm.zgy.bootmybatismbplusshiroesquartz.utils.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author renjiaxin
  * @Date 2020/5/18
  * @Description
  */
+@Slf4j
 @RestController
 public class FileOptController {
     public String pictureName = "s1.xxx";
     public String picturePath = "d://";
+    private static List<String> excelFile =
+            Arrays.asList(".xlsx",".xlsm",".xlsb",".xls", ".xltx",".xltm", ".xlt", ".xlam", "xla", ".ods");
 
     //文件下载相关代码
     @ResponseBody
@@ -176,6 +190,37 @@ public class FileOptController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @ResponseBody
+    @RequestMapping("/uploadFile")
+    public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
+        if(file.isEmpty()){
+            return "file is empty!";
+        }
+        String fileName = file.getOriginalFilename();
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        log.info("上传文件名称为:{}, 后缀名为:{}!", fileName, suffixName);
+        if (StringUtils.isBlank(suffixName) || !excelFile.contains(suffixName)){
+            return "文件不符合要求! 请重新上传符合格式的excel文件!";
+        }
+        // classes目录的绝对路径
+        String fileTempPath =  ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        String fileTempAllPath = fileTempPath + File.separator + "upload" +File.separator +fileName;
+        File fileTempObj = new File(fileTempAllPath);
+        // 检测目录是否存在
+        if (!fileTempObj.getParentFile().exists()){
+            fileTempObj.getParentFile().mkdirs();
+        }
+        // 写入文件, 写入文件之后, 然后就去新的线程之中处理
+        file.transferTo(fileTempObj);
+        //new Thread(()->{
+            String name = fileTempObj.getAbsolutePath();
+            ExcelReaderBuilder readerBuilder = EasyExcel.read(name, new NoModelDataListener());
+            readerBuilder.sheet(0).doRead();
+        //},"task: operate file");
+        return "upload okay!";
 
     }
 
