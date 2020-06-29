@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Slf4j
 @SpringBootApplication
-@MapperScan("com.wm.zgy.bootmybatismbplusshiroesquartz.mapper") // 扫描mapper文件夹
+@MapperScan("com.zgy.bootintegration.mapper") // 扫描mapper文件夹
 @EnableScheduling // 开启定时任务
 @EnableAsync(proxyTargetClass=true) //aop的代理，使用cglib方式，默认是jdk方式
 public class BootApplication {
