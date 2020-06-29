@@ -41,7 +41,7 @@ public class CodeAutoGenerator {
         dsc.setUrl("jdbc:mysql://localhost:3306/myschool?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("renjiaxin");
+        dsc.setPassword("123456");
         dsc.setDbType(DbType.MYSQL);
         ag.setDataSource(dsc);
 
