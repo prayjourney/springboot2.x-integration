@@ -8,10 +8,10 @@
         <version>2.1.14.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.wm.zgy</groupId>
-    <artifactId>boot-mybatis-mbplus-shiro-es-quartz</artifactId>
+    <groupId>com.zgy</groupId>
+    <artifactId>bootintegration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-mybatis-mbplus-shiro-es-quartz</name>
+    <name>springboot2.x-integration</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
