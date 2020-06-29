@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgy.bootintegration.mapper.StudentMapper">
+    <select id="getAllStudentList" resultType="com.zgy.bootintegration.pojo.Student">
+        SELECT `stId`,`stName`,`stAge`,`stGender`,`classId`,`hobbyGroupId`,`stHome`,`cityId`
+        FROM student
+    </select>
+
+    <update id="updateStudent" parameterType="com.zgy.bootintegration.pojo.Student">
+        UPDATE `student`
+        <set>
+            <if test="stAge !=null">
+                stAge = #{stAge},
+            </if>
+            <if test="stGender !=null">
+                stGender = #{stGender}
+            </if>
+        </set>
+        <where>
+            stId = #{stId}
+        </where>
+    </update>
+</mapper>
