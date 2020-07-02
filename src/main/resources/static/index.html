@@ -16,9 +16,9 @@
                 color: deepskyblue;
                 text-decoration: none;
             }
-
-
         </style>
+        <!-- 使用了jquery -->
+        <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
     </head>
     <body>
         <h1>springboot2.x-integration</h1>
@@ -47,5 +47,43 @@
         <a id=a2 href="/shiro/getmsg">获取msg!<span>不需要验证</span></a><br>
         <a id=a3 href="/shiro/getmoney">取1000元!<span>需要验证，权限验证</span></a><br>
         <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
+
+
+        <h2>form表单序列化为json</h2>
+        <form id="myForm" method='post'>
+            stName: <input type='text' name='stName'> &nbsp;&nbsp;&nbsp;&nbsp;
+            stAge: <input type='text' name='stAge'>&nbsp;&nbsp;&nbsp;&nbsp;
+            classId: <input type='text' name='classId'>&nbsp;&nbsp;&nbsp;&nbsp;
+            stHome: <select name="stHome" style="width:80px; height:22px; margin-right: 20px;">
+                <option selected="selected">beijing</option>
+                <option>chengdu</option>
+                <option>nanjing</option>
+                <option>hangzhou</option>
+                <option>wuhan</option>
+            </select>
+            <input id ="tijiao" type="submit" value="提交" onclick="tijiaomethod()"/>
+        </form>
+
+        <script type="text/javascript">
+            <!--序列化form数据，然后传递给后端处理  -->
+            let formData = $("#myForm").serialize();
+            console.log(formData)
+            //下面这种就是只要页面一刷新或者加载就会去执行
+            //$(function () {
+            //    $("#tijiao").click(function () {
+            //        $.post("/student/info", function (formData) {
+            //            console.log(formData);
+            //        })
+            //    })
+            //})
+
+            // 下面这种不起作用
+            $("#tijiao").click(function () {
+                $.post("/student/info", function (formData) {
+                    console.log(formData);
+                })
+            })
+
+        </script>
     </body>
 </html>
