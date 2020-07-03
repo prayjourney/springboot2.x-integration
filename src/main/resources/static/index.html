@@ -87,7 +87,10 @@
 
             // 这种才会是正宗的处理方法
             function tijiaomethod(){
-                let formData = $("#myForm").serialize();
+                let formDataTemp = $("#myForm").serialize();
+                // jquery form表单.serialize()序列化后中文乱码问题原因及解决
+                // https://blog.csdn.net/w1014074794/article/details/43987689
+                let formData= decodeURIComponent(formDataTemp, true);
                 console.log(formData)
                 // $.post("/student/info", function (formData) {
                 //     console.log(formData);
