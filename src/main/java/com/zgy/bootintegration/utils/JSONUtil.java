@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class JSONUtil {
     private static ObjectMapper mapper = new ObjectMapper();
 
+    // Object -> String
     public static String getJsonFromObject(Object obj) throws JsonProcessingException {
         return mapper.writeValueAsString(obj);
     }
