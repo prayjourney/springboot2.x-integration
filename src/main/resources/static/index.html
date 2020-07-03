@@ -49,8 +49,9 @@
         <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
 
 
+        <!-- 如果没input或者select没有name,name就不会序列化到他-->
         <h2>form表单序列化为json</h2>
-        <form id="myForm" method='post'>
+        <form id="myForm" method="post">
             stName: <input type='text' name='stName'> &nbsp;&nbsp;&nbsp;&nbsp;
             stAge: <input type='text' name='stAge'>&nbsp;&nbsp;&nbsp;&nbsp;
             classId: <input type='text' name='classId'>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -78,11 +79,31 @@
             //})
 
             // 下面这种不起作用
-            $("#tijiao").click(function () {
-                $.post("/student/info", function (formData) {
-                    console.log(formData);
+            //$("#tijiao").click(function () {
+            //    $.post("/student/info", function (formData) {
+            //        console.log(formData);
+            //    })
+            //})
+
+            // 这种才会是正宗的处理方法
+            function tijiaomethod(){
+                let formData = $("#myForm").serialize();
+                console.log(formData)
+                // $.post("/student/info", function (formData) {
+                //     console.log(formData);
+                // })
+                $.ajax({
+                    type: "POST",
+                    url: "/student/info",
+                    dataType: "text",
+                    data: {"info": formData},
+                    success: function (data) {
+                       console.log(data)
+                    }
                 })
-            })
+                // 这样相当于新开了一个页面
+                window.open("studentinfo.html")
+            }
 
         </script>
     </body>
