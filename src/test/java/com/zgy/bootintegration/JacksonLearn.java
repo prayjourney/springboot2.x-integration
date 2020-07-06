@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author renjiaxin
@@ -26,6 +30,14 @@ public class JacksonLearn {
         // obj -> str
         ChinaBigCity bigCity = ChinaBigCity.builder().name("南京").province("江苏").postCode("331908").area(189345.6f).build();
         obj2Str(bigCity);
+
+        // map -> str
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "hello");
+        map.put("ls", Arrays.asList("张三","李四","Lily","小明"));
+        map.put("city", ChinaBigCity.builder().name("成都").postCode("232341").province("四川省").area(476522.f).build());
+        map.put("array", new Integer[]{1, 2, 34, 55});
+        map2Str(map);
 
         // obj -> 序列化为json file
         objWrite2JSON(bigCity);
@@ -60,13 +72,29 @@ public class JacksonLearn {
         ChinaBigCity city = mapper.readValue(file, ChinaBigCity.class);
         System.out.println(city.toString());
     }
+
+    // map -> str
+    public static void map2Str(Map<String, Object> map) throws JsonProcessingException {
+        String str = mapper.writeValueAsString(map);
+        System.out.println(str);
+    }
+
+    // str -> map
+    public static void str2Map(String str) throws JsonProcessingException {
+        Map<String, Object> map = mapper.readValue(str, Map.class);
+        String name = (String)map.get("name");
+        List<String> ls = (List<String>) map.get("list");
+        ChinaBigCity city = (ChinaBigCity) map.get("city");
+    }
+
+
 }
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-class ChinaBigCity{
+class ChinaBigCity {
     // 名字
     private String name;
     // 省份
