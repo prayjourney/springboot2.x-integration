@@ -99,7 +99,8 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json Str
         writeTree();
 
-        list2Array();
+        // 创建一个JsonArray
+        createJsonArray();
 
 
         System.out.println("\n\n=============================使用流式API，来读写json str的内容===========================");
@@ -229,8 +230,8 @@ public class JacksonLearn {
         System.out.println(writer.toString());
     }
 
-    // list -> json array
-    public static void list2Array() throws IOException {
+    // create json array
+    public static void createJsonArray() throws IOException {
         /**
         [
             {
@@ -269,6 +270,7 @@ public class JacksonLearn {
         JsonGenerator generator = jsonFactory.createGenerator(writer);
         mapper.writeTree(generator, arrayNode);
         System.out.println(writer.toString());
+        // [{"name":"张三","age":22},{"name":"李四","age":22,"school":"清华大学","home":"洛阳","gender":"男"},{"city":"天水"}]
     }
 
 
