@@ -40,15 +40,15 @@ public class JacksonLearn {
     static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
-        // str -> obj
+        // json Str -> obj
         String jsonStr = "{\"name\": \"北京\", \"province\": \"北京\", \"postCode\": \"010\", \"area\": 192345.9}";
         str2Obj(jsonStr);
 
-        // obj -> str
+        // obj -> json Str
         ChinaBigCity bigCity = ChinaBigCity.builder().name("南京").province("江苏").postCode("331908").area(189345.6f).build();
         obj2Str(bigCity);
 
-        // map -> str
+        // map -> json Str
         Map<String, Object> map = new HashMap<>();
         map.put("name", "hello");
         map.put("ls", Arrays.asList("张三","李四","Lily","小明"));
@@ -56,7 +56,7 @@ public class JacksonLearn {
         map.put("array", new Integer[]{1, 2, 34, 55});
         map2Str(map);
 
-        // str -> map
+        // json Str -> map
         String str ="{\"city\":{\"name\":\"成都\",\"province\":\"四川省\",\"postCode\":\"232341\",\"area\":476522.0}," +
                 "\"ls\":[\"张三\",\"李四\",\"Lily\",\"小明\"],\"name\":\"hello\"}";
         str2Map(str);
@@ -68,11 +68,11 @@ public class JacksonLearn {
         File file = new File("chinabigcity.json");
         readJSON2Obj(file, ChinaBigCity.class);
 
-        // 使用jackson树模型来读取json str内容
+        // 使用jackson树模型来读取json Str内容
         String jsonString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
         readTree(jsonString);
 
-        // 使用jackson树模型来写入内容到json str
+        // 使用jackson树模型来写入内容到json Str
         writeTree();
 
         // 使用JsonParser+JsonFactory 来解析 json Str
