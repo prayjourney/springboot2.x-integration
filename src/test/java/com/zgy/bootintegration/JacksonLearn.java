@@ -136,6 +136,7 @@ public class JacksonLearn {
 
     // 使用jackson的树模型，写入内容到jsonStr
     public static void writeTree() throws IOException {
+        // JsonNodeFactory是单例的, 可以全局使用
         JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
         // 根节点
         ObjectNode rootNode = jsonNodeFactory.objectNode();
