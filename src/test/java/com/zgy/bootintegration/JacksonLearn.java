@@ -6,28 +6,20 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.TextNode;
-import com.fasterxml.jackson.dataformat.smile.SmileGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.StringWriter;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -107,6 +99,8 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json Str
         writeTree();
 
+        list2Array();
+
 
         System.out.println("\n\n=============================使用流式API，来读写json str的内容===========================");
         // 使用JsonParser+JsonFactory 来解析 json Str
@@ -117,9 +111,8 @@ public class JacksonLearn {
         generate2File();
         generate2String();
 
-        List<Map<String, Object>> list = Arrays.asList(map1, map2, map3);
-
-        ls2Array(list);
+        // List<Map<String, Object>> list = Arrays.asList(map1, map2, map3);
+        // ls2Array(list);
 
     }
 
@@ -232,6 +225,49 @@ public class JacksonLearn {
         mapper.writeTree(generator, rootNode);
         System.out.println(writer.toString());
     }
+
+    // list -> json array
+    public static void list2Array() throws IOException {
+        /**
+        [
+            {
+                "petName": "kitty",
+                    "petAge": 3
+            },
+            {
+                "petName": "kitty",
+                    "petAge": 3
+            },
+            {
+                "petName": "kitty",
+                    "petAge": 3
+            }
+        ]
+        */
+        JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
+        // 当做根节点
+        ArrayNode arrayNode = jsonNodeFactory.arrayNode();
+        ObjectNode rootNode1 = jsonNodeFactory.objectNode();
+        ObjectNode rootNode2 = jsonNodeFactory.objectNode();
+        ObjectNode rootNode3 = jsonNodeFactory.objectNode();
+        rootNode1.put("name", "张三");
+        rootNode1.put("age", 22);
+        rootNode2.put("name", "李四");
+        rootNode2.put("age", 22);
+        rootNode2.put("school", "清华大学");
+        rootNode2.put("home", "洛阳");
+        rootNode2.put("gender", "男");
+        rootNode3.put("city", "天水");
+        arrayNode.add(rootNode1);
+        arrayNode.add(rootNode2);
+        arrayNode.add(rootNode3);
+        JsonFactory jsonFactory = new JsonFactory();
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = jsonFactory.createGenerator(writer);
+        mapper.writeTree(generator, arrayNode);
+        System.out.println(writer.toString());
+    }
+
 
     //================================================================================//
     //================================================================================//
