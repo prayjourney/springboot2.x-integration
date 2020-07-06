@@ -83,7 +83,6 @@ public class JacksonLearn {
         map3.put("province", "云南");
         List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
         list2Array(chinaBigCities);
-        System.out.println("ppppppppppppppppp");
 
         // jsonArray(jsonStr) -> list(map)
         String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
@@ -160,7 +159,7 @@ public class JacksonLearn {
         System.out.println(value);
     }
 
-    // jsonArray(jsonStr) -> list(map)
+    // jsonArray(jsonStr) -> list(map) // 这个处理有问题
     public static void array2List(String strArray) throws JsonProcessingException {
         List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
         System.out.println(value.size());
