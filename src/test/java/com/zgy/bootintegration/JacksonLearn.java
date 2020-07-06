@@ -75,7 +75,7 @@ public class JacksonLearn {
         map3.put("name", "昆明");
         map3.put("province", "云南");
         List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
-        list2Array(chinaBigCities);
+        // list2Array(chinaBigCities);
 
         // jsonArray(jsonStr) -> list(map)
         String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
@@ -113,7 +113,6 @@ public class JacksonLearn {
 
         // List<Map<String, Object>> list = Arrays.asList(map1, map2, map3);
         // ls2Array(list);
-
     }
 
 
@@ -151,19 +150,6 @@ public class JacksonLearn {
         System.out.println(city.toString());
     }
 
-    // list(map) -> jsonArray(jsonStr)
-    public static <T> void list2Array(List<T> list) throws JsonProcessingException {
-        String value = mapper.writeValueAsString(list.toString()).replaceAll("=",":");
-        System.out.println(value);
-    }
-
-    // jsonArray(jsonStr) -> list(map) // 这个处理有问题
-    public static void array2List(String strArray) throws JsonProcessingException {
-        List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
-        System.out.println(value.size());
-        System.out.println(value.get(0));
-    }
-
     // obj 序列化为json文件
     public static void objWrite2JSON(Object obj, String fileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -175,6 +161,23 @@ public class JacksonLearn {
         Object city = mapper.readValue(file, cls);
         System.out.println(city.toString());
     }
+
+    // list(map) -> jsonArray(jsonStr)
+    /**
+     * public static <T> void list2Array(List<T> list) throws JsonProcessingException {
+     *    String value = mapper.writeValueAsString(list.toString()).replaceAll("=",":");
+     *    System.out.println(value);
+     * }
+     */
+
+    // jsonArray(jsonStr) -> list(map) // 这个处理有问题
+    /**
+     * public static void array2List(String strArray) throws JsonProcessingException {
+     *     List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
+     *     System.out.println(value.size());
+     *     System.out.println(value.get(0));
+     *}
+     */
 
 
     //================================================================================//
