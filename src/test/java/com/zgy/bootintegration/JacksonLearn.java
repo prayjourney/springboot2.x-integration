@@ -39,14 +39,17 @@ public class JacksonLearn {
         map.put("array", new Integer[]{1, 2, 34, 55});
         map2Str(map);
 
+        // str -> map
+        String str ="{\"city\":{\"name\":\"成都\",\"province\":\"四川省\",\"postCode\":\"232341\",\"area\":476522.0}," +
+                "\"ls\":[\"张三\",\"李四\",\"Lily\",\"小明\"],\"name\":\"hello\"}";
+        str2Map(str);
+
         // obj -> 序列化为json file
         objWrite2JSON(bigCity);
 
         // json file 反序列化 -> obj
         File file = new File("chinabigcity.json");
         readJSON2Obj(file);
-
-
     }
 
     // str -> obj
@@ -83,8 +86,10 @@ public class JacksonLearn {
     public static void str2Map(String str) throws JsonProcessingException {
         Map<String, Object> map = mapper.readValue(str, Map.class);
         String name = (String)map.get("name");
-        List<String> ls = (List<String>) map.get("list");
-        ChinaBigCity city = (ChinaBigCity) map.get("city");
+        List<String> ls = (List<String>) map.get("ls");
+        Object city = map.get("city");
+        System.out.println(name + ", " +ls.size());
+        System.out.println(city.toString());
     }
 
 
