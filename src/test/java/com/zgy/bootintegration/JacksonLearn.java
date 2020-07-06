@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -74,7 +75,11 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json str
         writeTree();
 
-        // 使用jsonGenerator+JsonFactory 来生成json, 写到文件, 写到字符串
+        // 使用JsonParser+JsonFactory 来解析 json Str
+        String parseString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
+        parse4String(parseString);
+
+        // 使用JsonGenerator+JsonFactory 来生成 json Str, 写到文件, 写到字符串
         generate2File();
         generate2String();
 
@@ -184,9 +189,33 @@ public class JacksonLearn {
     //================================================================================//
 
     // 使用jackson的JsonParser来解析JSON对象, 可以从字符串解析，也可以从文件解析
-    public static void parse4String(String str){
+    public static void parse4String(String str) throws IOException {
+        JsonFactory jsonFactory = new JsonFactory();
+        JsonParser jsonParser = jsonFactory.createParser(str);
+        while (jsonParser.nextToken()!= JsonToken.END_OBJECT){
+            String fieldName = jsonParser.getCurrentName();
 
-
+            if ("name".equals(fieldName)) {
+                jsonParser.nextToken();
+                System.out.println(jsonParser.getText());
+            }
+            if("age".equals(fieldName)){
+                jsonParser.nextToken();
+                System.out.println(jsonParser.getNumberValue());
+            }
+            if("verified".equals(fieldName)){
+                jsonParser.nextToken();
+                System.out.println(jsonParser.getBooleanValue());
+            }
+            if("marks".equals(fieldName)){
+                //move to [
+                jsonParser.nextToken();
+                // loop till token equal to "]"
+                while (jsonParser.nextToken() != JsonToken.END_ARRAY) {
+                    System.out.println(jsonParser.getNumberValue());
+                }
+            }
+        }
     }
 
     // 使用jackson的JsonGenerator来构建JSON对象, 写入到字符串
