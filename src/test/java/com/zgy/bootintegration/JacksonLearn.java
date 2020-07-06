@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -115,6 +116,10 @@ public class JacksonLearn {
         // 使用JsonGenerator+JsonFactory 来生成 json Str, 写到文件, 写到字符串
         generate2File();
         generate2String();
+
+        List<Map<String, Object>> list = Arrays.asList(map1, map2, map3);
+
+        ls2Array(list);
 
     }
 
@@ -318,7 +323,42 @@ public class JacksonLearn {
         jsonGenerator.close();
     }
 
+    /**
+     * 感觉这个流式操作，不得行啊
+    // list(map) -> jsonArray(jsonStr)
+    public static <T> void ls2Array(List<Map<String, Object>> list) throws IOException {
+        StringWriter sw = new StringWriter();
+        JsonFactory jsonFactory = new JsonFactory();
+        JsonGenerator generator = jsonFactory.createGenerator(sw);
+        // 开始写入
+        generator.writeStartObject();
+        for (int i = 0; i < list.size(); i++) {
+            generator.writeFieldName("hello" + i);
+            generator.writeStartArray();
+            generator.writeStringField("name", list.get(i).get("name").toString());
+            generator.writeStringField("province", list.get(i).get("province").toString());
+            generator.writeStringField("postCode", list.get(i).get("postCode").toString());
+            generator.writeEndArray();
+        }
+        generator.writeEndObject();
+        generator.close();
+        System.out.println(sw.toString());
 
+    }
+
+    // jsonArray(jsonStr) -> list(map)
+    public static <T> void array2Ls(String string) throws IOException {
+        StringWriter sw = new StringWriter();
+        JsonFactory jsonFactory = new JsonFactory();
+        JsonParser parser = jsonFactory.createParser(string);
+
+        // 开始解析"["
+        if (parser.isExpectedStartArrayToken()) {
+            String currentName = parser.getCurrentName();
+            JsonToken jsonToken = parser.nextToken();
+        }
+    }
+    **/
 
 }
 
