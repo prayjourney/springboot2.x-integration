@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * @Author renjiaxin
  * @Date 2020/7/6
@@ -15,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class JacksonLearn {
     static ObjectMapper mapper = new ObjectMapper();
 
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) throws IOException {
         // str -> obj
         String jsonStr = "{\"name\": \"北京\", \"province\": \"北京\", \"postCode\": \"010\", \"area\": 192345.9}";
         str2Obj(jsonStr);
@@ -23,6 +26,9 @@ public class JacksonLearn {
         // obj -> str
         ChinaBigCity bigCity = ChinaBigCity.builder().name("南京").province("江苏").postCode("331908").area(189345.6f).build();
         obj2Str(bigCity);
+
+        // obj -> 序列化为json file
+        objWriteJSON(bigCity);
 
 
     }
@@ -37,6 +43,12 @@ public class JacksonLearn {
     public static void obj2Str(Object obj) throws JsonProcessingException {
         String str = mapper.writeValueAsString(obj);
         System.out.println(str);
+    }
+
+    // obj 序列化为json文件
+    public static void objWriteJSON(Object obj) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(new File("chinabigcity.json"), obj);
     }
 }
 
