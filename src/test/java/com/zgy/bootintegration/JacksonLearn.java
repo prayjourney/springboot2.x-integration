@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -23,6 +22,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -99,8 +99,13 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json Str
         writeTree();
 
-        // 创建一个JsonArray
-        createJsonArray();
+        // 创建一个JsonArray的String
+        createJsonArrayString();
+
+        // 读取一个JsonArray的String
+        String jsonArrayStr = "[{\"name\":\"张三\",\"age\":22},{\"name\":\"李四\",\"age\":22,\"school\":\"清华大学\"," +
+                "\"home\":\"洛阳\",\"gender\":\"男\"},{\"city\":\"天水\"}]";
+        readJsonArrayString(jsonArrayStr);
 
 
         System.out.println("\n\n=============================使用流式API，来读写json str的内容===========================");
@@ -230,8 +235,8 @@ public class JacksonLearn {
         System.out.println(writer.toString());
     }
 
-    // create json array
-    public static void createJsonArray() throws IOException {
+    // 创建 jsonArray的String
+    public static void createJsonArrayString() throws IOException {
         /**
         [
             {
@@ -271,6 +276,28 @@ public class JacksonLearn {
         mapper.writeTree(generator, arrayNode);
         System.out.println(writer.toString());
         // [{"name":"张三","age":22},{"name":"李四","age":22,"school":"清华大学","home":"洛阳","gender":"男"},{"city":"天水"}]
+    }
+
+    public static void readJsonArrayString(String str) throws JsonProcessingException {
+        // 使用ObjectMapper的readValue方法将json字符串解析到JsonNode实例中
+        JsonNode rootNode = mapper.readTree(str);
+        // 直接从rootNode中获取某个键的值, 这种方式在如果我们只需要一个长json串中某个字段值时非常方便
+        if (rootNode.isArray()){
+            int size = rootNode.size();
+            for (int i = 0; i < size; i++){
+                Iterator<Map.Entry<String, JsonNode>> nodes = rootNode.get(i).fields();
+                Map.Entry<String, JsonNode> nodeEntry = nodes.next();
+                System.out.println("key: " + nodeEntry.getKey() + ",  value: " + nodeEntry.getValue());
+
+                // Iterator<String> fieldNames = rootNode.get(i).fieldNames();
+                // while (fieldNames.hasNext()) {
+                //     String fieldName = fieldNames.next();
+                //     System.out.println(fieldName);
+                // }
+            }
+        }
+        // http://cn.voidcc.com/question/p-esesbdru-vn.html
+        // http://www.itkeyword.com/doc/8040207729284257879/JsonNode-jackson-json
     }
 
 
