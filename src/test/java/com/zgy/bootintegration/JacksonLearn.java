@@ -3,10 +3,16 @@ package com.zgy.bootintegration;
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.dataformat.smile.SmileGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,9 +67,12 @@ public class JacksonLearn {
         File file = new File("chinabigcity.json");
         readJSON2Obj(file, ChinaBigCity.class);
 
-        // 使用jackson树模型来读取json内容
+        // 使用jackson树模型来读取json str内容
         String jsonString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
         readTree(jsonString);
+
+        // 使用jackson树模型来写入内容到json str
+        writeTree();
 
         // 使用jsonGenerator + JsonFactory 来生成json, 写到字符串, 写到文件
         writeTree2String();
@@ -123,6 +132,34 @@ public class JacksonLearn {
         // 直接通过关键字获取node对象
         String jsonNodeStr = rootNode.path("name").asText();
         System.out.println(jsonNodeStr);
+    }
+
+    // 使用jackson的树模型，写入内容到jsonStr
+    public static void writeTree() throws IOException {
+        JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
+        // 根节点
+        ObjectNode rootNode = jsonNodeFactory.objectNode();
+        rootNode.put("token","123");
+        rootNode.put("name","张三");
+        rootNode.put("age",22);
+        // 往根节点中添加一个子对象
+        ObjectNode petsNode = jsonNodeFactory.objectNode();
+        petsNode.put("petName","kitty")
+                .put("petAge",3);
+        rootNode.set("pets", petsNode);
+        // 往根节点中添加一个数组
+        ArrayNode arrayNode = jsonNodeFactory.arrayNode();
+        arrayNode.add("java")
+                .add("linux")
+                .add("mysql");
+        rootNode.set("skills", arrayNode);
+
+        // 调用ObjectMapper的writeTree方法根据节点生成最终json字符串
+        JsonFactory jsonFactory = new JsonFactory();
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = jsonFactory.createGenerator(writer);
+        mapper.writeTree(generator, rootNode);
+        System.out.println(writer.toString());
     }
 
     // 使用jackson的JsonGenerator来构建JSON对象, 写入到字符串
