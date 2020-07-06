@@ -13,8 +13,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -61,6 +64,10 @@ public class JacksonLearn {
         // 使用jackson树模型来读取json内容
         String jsonString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
         readTree(jsonString);
+
+        // 使用jsonGenerator + JsonFactory 来生成json, 写到字符串, 写到文件
+        writeTree2String();
+        writeTree2File();
 
     }
 
@@ -116,6 +123,60 @@ public class JacksonLearn {
         // 直接通过关键字获取node对象
         String jsonNodeStr = rootNode.path("name").asText();
         System.out.println(jsonNodeStr);
+    }
+
+    // 使用jackson的JsonGenerator来构建JSON对象, 写入到字符串
+    public static void writeTree2String() throws IOException {
+        StringWriter sw = new StringWriter();
+        JsonFactory jsonFactory = new JsonFactory();
+        JsonGenerator jsonGenerator = jsonFactory.createGenerator(sw);
+        // 开始写入
+        jsonGenerator.writeStartObject();
+        // 写入字段和值
+        jsonGenerator.writeStringField("name", "eric");
+        jsonGenerator.writeNumberField("age", 21);
+        jsonGenerator.writeBooleanField("verified", false);
+        jsonGenerator.writeStringField("name", "eric");
+
+        // 写入Array
+        jsonGenerator.writeFieldName("marks");
+        jsonGenerator.writeStartArray();
+        jsonGenerator.writeNumber(100);
+        jsonGenerator.writeNumber(90);
+        jsonGenerator.writeNumber(85);
+        jsonGenerator.writeEndArray();
+
+        // 结束写入
+        jsonGenerator.writeEndObject();
+        jsonGenerator.close();
+        System.out.println(sw.toString());
+    }
+
+    // 使用jackson的JsonGenerator来构建JSON对象, 写入到文件
+    public static void writeTree2File() throws IOException {
+        JsonFactory jsonFactory = new JsonFactory();
+        JsonGenerator jsonGenerator = jsonFactory.createGenerator(new File("file.json"), JsonEncoding.UTF8);
+        // 开始写入
+        jsonGenerator.writeStartObject();
+        // 写入字段和值
+        jsonGenerator.writeStringField("name", "eric");
+        jsonGenerator.writeNumberField("age", 21);
+        jsonGenerator.writeBooleanField("verified", false);
+        String cities = "\'上海\', \'北京\', \'东京\', \'墨尔本\', \'伦敦\', \'柏林\'";
+        jsonGenerator.writeBinaryField("cities", cities.getBytes());
+        jsonGenerator.writeStringField("name", "eric");
+
+        // 写入Array
+        jsonGenerator.writeFieldName("marks");
+        jsonGenerator.writeStartArray();
+        jsonGenerator.writeNumber(100);
+        jsonGenerator.writeNumber(90);
+        jsonGenerator.writeNumber(85);
+        jsonGenerator.writeEndArray();
+
+        // 结束写入
+        jsonGenerator.writeEndObject();
+        jsonGenerator.close();
     }
 
 
