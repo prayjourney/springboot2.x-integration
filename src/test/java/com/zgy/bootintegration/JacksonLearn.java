@@ -52,16 +52,32 @@ public class JacksonLearn {
         readJSON2Obj(file);
     }
 
-    // str -> obj
+    // jsonStr -> obj
     public static void str2Obj(String str) throws JsonProcessingException {
         ChinaBigCity city = mapper.readValue(str, ChinaBigCity.class);
         System.out.println(city.toString());
     }
 
-    // obj -> str
+    // obj -> jsonStr
     public static void obj2Str(Object obj) throws JsonProcessingException {
         String str = mapper.writeValueAsString(obj);
         System.out.println(str);
+    }
+
+    // map -> jsonStr
+    public static void map2Str(Map<String, Object> map) throws JsonProcessingException {
+        String str = mapper.writeValueAsString(map);
+        System.out.println(str);
+    }
+
+    // jsonStr -> map
+    public static void str2Map(String str) throws JsonProcessingException {
+        Map<String, Object> map = mapper.readValue(str, Map.class);
+        String name = (String)map.get("name");
+        List<String> ls = (List<String>) map.get("ls");
+        Object city = map.get("city");
+        System.out.println(name + ", " +ls.size());
+        System.out.println(city.toString());
     }
 
     // obj 序列化为json文件
@@ -73,22 +89,6 @@ public class JacksonLearn {
     // obj 反序列化，从json文件中获取对象
     public static void readJSON2Obj(File file) throws IOException {
         ChinaBigCity city = mapper.readValue(file, ChinaBigCity.class);
-        System.out.println(city.toString());
-    }
-
-    // map -> str
-    public static void map2Str(Map<String, Object> map) throws JsonProcessingException {
-        String str = mapper.writeValueAsString(map);
-        System.out.println(str);
-    }
-
-    // str -> map
-    public static void str2Map(String str) throws JsonProcessingException {
-        Map<String, Object> map = mapper.readValue(str, Map.class);
-        String name = (String)map.get("name");
-        List<String> ls = (List<String>) map.get("ls");
-        Object city = map.get("city");
-        System.out.println(name + ", " +ls.size());
         System.out.println(city.toString());
     }
 
