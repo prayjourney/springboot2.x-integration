@@ -74,9 +74,9 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json str
         writeTree();
 
-        // 使用jsonGenerator + JsonFactory 来生成json, 写到字符串, 写到文件
-        writeTree2String();
-        writeTree2File();
+        // 使用jsonGenerator+JsonFactory 来生成json, 写到文件, 写到字符串
+        generate2File();
+        generate2String();
 
     }
 
@@ -183,8 +183,14 @@ public class JacksonLearn {
     //================================================================================//
     //================================================================================//
 
+    // 使用jackson的JsonParser来解析JSON对象, 可以从字符串解析，也可以从文件解析
+    public static void parse4String(String str){
+
+
+    }
+
     // 使用jackson的JsonGenerator来构建JSON对象, 写入到字符串
-    public static void writeTree2String() throws IOException {
+    public static void generate2String() throws IOException {
         StringWriter sw = new StringWriter();
         JsonFactory jsonFactory = new JsonFactory();
         JsonGenerator jsonGenerator = jsonFactory.createGenerator(sw);
@@ -211,7 +217,7 @@ public class JacksonLearn {
     }
 
     // 使用jackson的JsonGenerator来构建JSON对象, 写入到文件
-    public static void writeTree2File() throws IOException {
+    public static void generate2File() throws IOException {
         JsonFactory jsonFactory = new JsonFactory();
         JsonGenerator jsonGenerator = jsonFactory.createGenerator(new File("file.json"), JsonEncoding.UTF8);
         // 开始写入
