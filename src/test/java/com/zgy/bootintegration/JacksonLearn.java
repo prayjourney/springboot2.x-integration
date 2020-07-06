@@ -28,7 +28,11 @@ public class JacksonLearn {
         obj2Str(bigCity);
 
         // obj -> 序列化为json file
-        objWriteJSON(bigCity);
+        objWrite2JSON(bigCity);
+
+        // json file 反序列化 -> obj
+        File file = new File("chinabigcity.json");
+        readJSON2Obj(file);
 
 
     }
@@ -46,9 +50,15 @@ public class JacksonLearn {
     }
 
     // obj 序列化为json文件
-    public static void objWriteJSON(Object obj) throws IOException {
+    public static void objWrite2JSON(Object obj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File("chinabigcity.json"), obj);
+    }
+
+    // obj 反序列化，从json文件中获取对象
+    public static void readJSON2Obj(File file) throws IOException {
+        ChinaBigCity city = mapper.readValue(file, ChinaBigCity.class);
+        System.out.println(city.toString());
     }
 }
 
