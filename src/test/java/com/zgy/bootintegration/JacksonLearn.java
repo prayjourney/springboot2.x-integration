@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Arrays;
@@ -40,6 +41,7 @@ public class JacksonLearn {
     static ObjectMapper mapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
+        System.out.println("=============================使用ObjectMapper，来读写json str的内容===========================");
         // json Str -> obj
         String jsonStr = "{\"name\": \"北京\", \"province\": \"北京\", \"postCode\": \"010\", \"area\": 192345.9}";
         str2Obj(jsonStr);
@@ -61,6 +63,24 @@ public class JacksonLearn {
                 "\"ls\":[\"张三\",\"李四\",\"Lily\",\"小明\"],\"name\":\"hello\"}";
         str2Map(str);
 
+        // list(map) -> jsonArray(jsonStr)
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        Map<String, Object> map3 = new HashMap<String, Object>();
+        map1.put("name", "西安");
+        map1.put("province", "陕西");
+        map1.put("postCode", "232849");
+        map1.put("area", 123789.3f);
+        map2.put("name", "桂林");
+        map2.put("province", "广西");
+        map2.put("postCode", "123222");
+        map2.put("area", 443789.3f);
+        map3.put("name", "昆明");
+        map3.put("province", "云南");
+        List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
+        list2Array(chinaBigCities);
+        // "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林, postCode=123222}, {province=云南, name=昆明}]"
+
         // obj -> 序列化为json file
         objWrite2JSON(bigCity, "chinabigcity.json");
 
@@ -68,6 +88,8 @@ public class JacksonLearn {
         File file = new File("chinabigcity.json");
         readJSON2Obj(file, ChinaBigCity.class);
 
+
+        System.out.println("\n\n=============================使用树形模型，来读写json str的内容===========================");
         // 使用jackson树模型来读取json Str内容
         String jsonString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
         readTree(jsonString);
@@ -75,6 +97,8 @@ public class JacksonLearn {
         // 使用jackson树模型来写入内容到json Str
         writeTree();
 
+
+        System.out.println("\n\n=============================使用流式API，来读写json str的内容===========================");
         // 使用JsonParser+JsonFactory 来解析 json Str
         String parseString = "{\"name\":\"Mahesh Kumar\", \"age\":21,\"verified\":false,\"marks\": [100,90,85]}";
         parse4String(parseString);
@@ -118,6 +142,12 @@ public class JacksonLearn {
         Object city = map.get("city");
         System.out.println(name + ", " +ls.size());
         System.out.println(city.toString());
+    }
+
+    // list(map) -> jsonArray(jsonStr)
+    public static <T> void list2Array(List<T> list) throws JsonProcessingException {
+        String value = mapper.writeValueAsString(list.toString());
+        System.out.println(value);
     }
 
     // obj 序列化为json文件
