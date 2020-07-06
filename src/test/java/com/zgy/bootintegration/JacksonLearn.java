@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.JsonGeneratorDelegate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,9 +65,12 @@ public class JacksonLearn {
         str2Map(str);
 
         // list(map) -> jsonArray(jsonStr)
-        Map<String, Object> map1 = new HashMap<String, Object>();
-        Map<String, Object> map2 = new HashMap<String, Object>();
-        Map<String, Object> map3 = new HashMap<String, Object>();
+        Map<String, Object> map1 = new HashMap<>();
+        Map<String, Object> map2 = new HashMap<>();
+        Map<String, Object> map3 = new HashMap<>();
+        // 输出结果
+        // "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林,
+        // postCode=123222}, {province=云南, name=昆明}]"
         map1.put("name", "西安");
         map1.put("province", "陕西");
         map1.put("postCode", "232849");
@@ -79,7 +83,13 @@ public class JacksonLearn {
         map3.put("province", "云南");
         List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
         list2Array(chinaBigCities);
-        // "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林, postCode=123222}, {province=云南, name=昆明}]"
+        System.out.println("ppppppppppppppppp");
+
+        // jsonArray(jsonStr) -> list(map)
+        String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
+                "{\"area\" : \"443789.3\", \"province\" : \"广西\", \"name\" : \"桂林\", \"postCode\" : \"123222\"}, " +
+                "{\"province\" : \"云南\", \"name\" : \"昆明\"}]";
+        // array2List(arrayStr);
 
         // obj -> 序列化为json file
         objWrite2JSON(bigCity, "chinabigcity.json");
@@ -146,8 +156,15 @@ public class JacksonLearn {
 
     // list(map) -> jsonArray(jsonStr)
     public static <T> void list2Array(List<T> list) throws JsonProcessingException {
-        String value = mapper.writeValueAsString(list.toString());
+        String value = mapper.writeValueAsString(list.toString()).replaceAll("=",":");
         System.out.println(value);
+    }
+
+    // jsonArray(jsonStr) -> list(map)
+    public static void array2List(String strArray) throws JsonProcessingException {
+        List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
+        System.out.println(value.size());
+        System.out.println(value.get(0));
     }
 
     // obj 序列化为json文件
