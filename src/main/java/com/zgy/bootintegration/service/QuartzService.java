@@ -3,7 +3,7 @@ package com.zgy.bootintegration.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zgy.bootintegration.mapper.StudentMapper;
 import com.zgy.bootintegration.pojo.Student;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -61,7 +61,7 @@ public class QuartzService {
                 .build();
         studentMapper.insert(student);
         log.info("插入学生成功，时间是： "+ LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
-        return JSONUtil.getJsonFromObject(student);
+        return JacksonUtil.getJsonFromObject(student);
     }
 
     // 每一分钟执行一次, 但是一分钟执行不完

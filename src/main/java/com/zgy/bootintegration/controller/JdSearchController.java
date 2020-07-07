@@ -1,7 +1,7 @@
 package com.zgy.bootintegration.controller;
 
 import com.zgy.bootintegration.service.ContentService;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +38,6 @@ public class JdSearchController {
                          @PathVariable("pageNo") int pageNo,
                          @PathVariable("pageSize") int pageSize) throws IOException {
         List<Map<String, Object>> vueBooks = service.searchContentWithPage(keyword, pageNo, pageSize);
-        return JSONUtil.getJsonFromObject(vueBooks);
+        return JacksonUtil.getJsonFromObject(vueBooks);
     }
 }

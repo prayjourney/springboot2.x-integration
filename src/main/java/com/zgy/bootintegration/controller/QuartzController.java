@@ -2,7 +2,7 @@ package com.zgy.bootintegration.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zgy.bootintegration.service.QuartzService;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,6 +30,6 @@ public class QuartzController {
     @ResponseBody
     public String printTime() throws JsonProcessingException {
         log.info("print time ok" + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
-        return JSONUtil.getJsonFromObject(service.printTimeEveryMinutes());
+        return JacksonUtil.getJsonFromObject(service.printTimeEveryMinutes());
     }
 }

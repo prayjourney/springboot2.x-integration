@@ -6,7 +6,7 @@ import com.zgy.bootintegration.mapper.SearchLocationMapper;
 import com.zgy.bootintegration.pojo.Book;
 import com.zgy.bootintegration.pojo.MathTeacher;
 import com.zgy.bootintegration.pojo.SearchLocation;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -121,7 +121,7 @@ public class ElasticSearchService {
         request.timeout(TimeValue.timeValueSeconds(timeOut));
 
         // 将数据放入到请求之中
-        String bookJsonStr = JSONUtil.getJsonFromObject(book);
+        String bookJsonStr = JacksonUtil.getJsonFromObject(book);
         System.out.println(bookJsonStr);
         request.source(bookJsonStr, XContentType.JSON);
 
@@ -162,7 +162,7 @@ public class ElasticSearchService {
     public int updateBookDocument(Book book, String indexName, String id, Integer timeOut) throws IOException {
         UpdateRequest request = new UpdateRequest(indexName, id);
         request.timeout(TimeValue.timeValueSeconds(timeOut));
-        request.doc(JSONUtil.getJsonFromObject(book), XContentType.JSON);
+        request.doc(JacksonUtil.getJsonFromObject(book), XContentType.JSON);
 
         UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
         return response.status().getStatus();
@@ -210,7 +210,7 @@ public class ElasticSearchService {
             request.add(
                     new IndexRequest(indexName)
                             .id("" + (curStart + i))
-                            .source(JSONUtil.getJsonFromObject(as.get(i)), XContentType.JSON)
+                            .source(JacksonUtil.getJsonFromObject(as.get(i)), XContentType.JSON)
             );
         }
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
@@ -270,7 +270,7 @@ public class ElasticSearchService {
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         request.source(searchSourceBuilder);
         SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
+        System.out.println(JacksonUtil.getJsonFromObject(response.getHits()));
     }
 
     // 按照名字精确查询Document
@@ -284,7 +284,7 @@ public class ElasticSearchService {
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         request.source(searchSourceBuilder);
         SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
+        System.out.println(JacksonUtil.getJsonFromObject(response.getHits()));
     }
 
 
@@ -307,7 +307,7 @@ public class ElasticSearchService {
         request.timeout(TimeValue.timeValueSeconds(10));
         // 批量处理
         for (int i = 0; i < ids.size(); i++) {
-            request.add(new UpdateRequest(indexName, ids.get(i)).doc(JSONUtil.getJsonFromObject(contents.get(i)), XContentType.JSON));
+            request.add(new UpdateRequest(indexName, ids.get(i)).doc(JacksonUtil.getJsonFromObject(contents.get(i)), XContentType.JSON));
         }
         BulkResponse bulkResponse = client.bulk(request, RequestOptions.DEFAULT);
         System.out.println(bulkResponse.status().getStatus());
@@ -353,8 +353,8 @@ public class ElasticSearchService {
         searchSourceBuilder.timeout(TimeValue.timeValueSeconds(10));
         //request.searchType(SearchType.DEFAULT);
         SearchResponse response = client.search(request, RequestOptions.DEFAULT);
-        System.out.println(JSONUtil.getJsonFromObject(response.getHits()));
-        System.out.println(JSONUtil.getJsonFromObject(response.getAggregations()));
+        System.out.println(JacksonUtil.getJsonFromObject(response.getHits()));
+        System.out.println(JacksonUtil.getJsonFromObject(response.getAggregations()));
     }
 
     // 聚合操作, 目前有问题

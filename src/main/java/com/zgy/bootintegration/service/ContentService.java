@@ -2,7 +2,7 @@ package com.zgy.bootintegration.service;
 
 import com.zgy.bootintegration.pojo.Content;
 import com.zgy.bootintegration.utils.HtmlParseUtil;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -55,7 +55,7 @@ public class ContentService {
         BulkRequest bulkRequest = new BulkRequest();
         bulkRequest.timeout("2m");
         for (int i = 0; i < contents.size(); i++) {
-            bulkRequest.add(new IndexRequest("jd_goods").source(JSONUtil.getJsonFromObject(contents.get(i)), XContentType.JSON));
+            bulkRequest.add(new IndexRequest("jd_goods").source(JacksonUtil.getJsonFromObject(contents.get(i)), XContentType.JSON));
         }
         BulkResponse bulk = restHighLevelClient.bulk(bulkRequest, RequestOptions.DEFAULT);
         return !bulk.hasFailures();

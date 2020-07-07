@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zgy.bootintegration.mapper.StudentMapper;
 import com.zgy.bootintegration.pojo.Student;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -45,8 +45,8 @@ public class NoModelDataListener extends AnalysisEventListener<Map<Integer, Stri
     @Override
     public void invoke(Map<Integer, String> data, AnalysisContext context) {
         try {
-            log.info("读取到一条数据: {} !", JSONUtil.getJsonFromObject(data));
-            String originStr = JSONUtil.getJsonFromObject(data);
+            log.info("读取到一条数据: {} !", JacksonUtil.getJsonFromObject(data));
+            String originStr = JacksonUtil.getJsonFromObject(data);
             String str = originStr.substring(1, originStr.length() - 1);
             String[] stringArray = str.split(",");
             Stream<String> stream = Stream.of(stringArray);

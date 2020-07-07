@@ -4,7 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.read.builder.ExcelReaderBuilder;
 import com.zgy.bootintegration.handler.NoModelDataListener;
 import com.zgy.bootintegration.mapper.StudentMapper;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -123,7 +129,7 @@ public class FileOptController {
         }
 
         //byte[] buffer = new byte[1024];
-        byte[] buffer = JSONUtil.getJsonFromObject(hm).getBytes("UTF-8");
+        byte[] buffer = JacksonUtil.getJsonFromObject(hm).getBytes("UTF-8");
 
         FileInputStream fis = new FileInputStream(file);   //这样文件的内容是空的，下载下来也是空的，因为里面是没有什么内容的
         BufferedInputStream bis = new BufferedInputStream(fis);
@@ -158,7 +164,7 @@ public class FileOptController {
         response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
 
         //byte[] buffer = new byte[1024];
-        byte[] buffer = JSONUtil.getJsonFromObject(hm).getBytes("UTF-8");
+        byte[] buffer = JacksonUtil.getJsonFromObject(hm).getBytes("UTF-8");
         File file = new File(fileName);
         if (!file.exists()) {
             file.createNewFile();
