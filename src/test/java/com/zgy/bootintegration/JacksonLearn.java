@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.zgy.bootintegration.utils.JSONUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +23,9 @@ import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author renjiaxin
@@ -75,7 +76,8 @@ public class JacksonLearn {
         map3.put("name", "昆明");
         map3.put("province", "云南");
         List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
-        // list2Array(chinaBigCities);
+        System.out.println(JSONUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
+        System.out.println(list2JsonArrayStr(chinaBigCities));
 
         // jsonArray(jsonStr) -> list(map)
         String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
@@ -297,6 +299,28 @@ public class JacksonLearn {
         }
         // http://cn.voidcc.com/question/p-esesbdru-vn.html
         // http://www.itkeyword.com/doc/8040207729284257879/JsonNode-jackson-json
+    }
+
+    // 从list(map) -> jsonArray的String
+    public static <K, V> String list2JsonArrayStr(List<Map<K, V>> list) throws IOException {
+        JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
+        // 当做根节点
+        ArrayNode arrayNode = jsonNodeFactory.arrayNode();
+        for (int i = 0; i < list.size(); i++) {
+            ObjectNode rootNode = jsonNodeFactory.objectNode();
+            Set<Map.Entry<K, V>> entries = list.get(i).entrySet();
+            Iterator<Map.Entry<K, V>> iterator = entries.iterator();
+            while(iterator.hasNext()){
+                Map.Entry<K, V> kvEntry = iterator.next();
+                rootNode.put(kvEntry.getKey().toString(), kvEntry.getValue().toString());
+            }
+            arrayNode.add(rootNode);
+        }
+        JsonFactory jsonFactory = new JsonFactory();
+        StringWriter writer = new StringWriter();
+        JsonGenerator generator = jsonFactory.createGenerator(writer);
+        mapper.writeTree(generator, arrayNode);
+        return writer.toString();
     }
 
 
