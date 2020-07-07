@@ -59,37 +59,6 @@ public class JacksonLearn {
                 "\"ls\":[\"张三\",\"李四\",\"Lily\",\"小明\"],\"name\":\"hello\"}";
         str2Map(str);
 
-        // list(map) -> jsonArray(jsonStr)
-        Map<String, Object> map1 = new HashMap<>();
-        Map<String, Object> map2 = new HashMap<>();
-        Map<String, Object> map3 = new HashMap<>();
-        // 输出结果
-        // "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林,
-        // postCode=123222}, {province=云南, name=昆明}]"
-        map1.put("name", "西安");
-        map1.put("province", "陕西");
-        map1.put("postCode", "232849");
-        map1.put("area", 123789.3f);
-        map2.put("name", "桂林");
-        map2.put("province", "广西");
-        map2.put("postCode", "123222");
-        map2.put("area", 443789.3f);
-        map3.put("name", "昆明");
-        map3.put("province", "云南");
-        List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
-        // 直接转化为string, 有问题
-        System.out.println(JSONUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
-
-        // list(map) -> jsonArray(jsonStr)
-        String list2JsonArrayStr = list2JsonArrayStr(chinaBigCities);
-        System.out.println(list2JsonArrayStr);
-
-        // jsonArray(jsonStr) -> list(map)
-        String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
-                "{\"area\" : \"443789.3\", \"province\" : \"广西\", \"name\" : \"桂林\", \"postCode\" : \"123222\"}, " +
-                "{\"province\" : \"云南\", \"name\" : \"昆明\"}]";
-        jsonArrayStr2List(arrayStr);
-
         // obj -> 序列化为json file
         objWrite2JSON(bigCity, "chinabigcity.json");
 
@@ -113,6 +82,36 @@ public class JacksonLearn {
         String jsonArrayStr = "[{\"name\":\"张三\",\"age\":22},{\"name\":\"李四\",\"age\":22,\"school\":\"清华大学\"," +
                 "\"home\":\"洛阳\",\"gender\":\"男\"},{\"city\":\"天水\"}]";
         readJsonArrayString(jsonArrayStr);
+
+        // list(map) -> jsonArray(jsonStr)
+        Map<String, Object> map1 = new HashMap<>();
+        Map<String, Object> map2 = new HashMap<>();
+        Map<String, Object> map3 = new HashMap<>();
+        map1.put("name", "西安");
+        map1.put("province", "陕西");
+        map1.put("postCode", "232849");
+        map1.put("area", 123789.3f);
+        map2.put("name", "桂林");
+        map2.put("province", "广西");
+        map2.put("postCode", "123222");
+        map2.put("area", 443789.3f);
+        map3.put("name", "昆明");
+        map3.put("province", "云南");
+        List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
+
+        // 直接转化为string, 有问题
+        // 输出结果: "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林, postCode=123222}, {province=云南, name=昆明}]"
+        System.out.println(JSONUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
+
+        // list(map) -> jsonArray(jsonStr)
+        String list2JsonArrayStr = list2JsonArrayStr(chinaBigCities);
+        System.out.println(list2JsonArrayStr);
+
+        // jsonArray(jsonStr) -> list(map)
+        String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
+                "{\"area\" : \"443789.3\", \"province\" : \"广西\", \"name\" : \"桂林\", \"postCode\" : \"123222\"}, " +
+                "{\"province\" : \"云南\", \"name\" : \"昆明\"}]";
+        jsonArrayStr2List(arrayStr);
 
 
         System.out.println("\n\n=============================使用流式API，来读写json str的内容===========================");
