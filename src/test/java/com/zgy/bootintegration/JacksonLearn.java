@@ -278,6 +278,7 @@ public class JacksonLearn {
         // [{"name":"张三","age":22},{"name":"李四","age":22,"school":"清华大学","home":"洛阳","gender":"男"},{"city":"天水"}]
     }
 
+    // 解析 jsonArray的String
     public static void readJsonArrayString(String str) throws JsonProcessingException {
         // 使用ObjectMapper的readValue方法将json字符串解析到JsonNode实例中
         JsonNode rootNode = mapper.readTree(str);
@@ -285,15 +286,13 @@ public class JacksonLearn {
         if (rootNode.isArray()){
             int size = rootNode.size();
             for (int i = 0; i < size; i++){
-                Iterator<Map.Entry<String, JsonNode>> nodes = rootNode.get(i).fields();
-                Map.Entry<String, JsonNode> nodeEntry = nodes.next();
-                System.out.println("key: " + nodeEntry.getKey() + ",  value: " + nodeEntry.getValue());
-
-                // Iterator<String> fieldNames = rootNode.get(i).fieldNames();
-                // while (fieldNames.hasNext()) {
-                //     String fieldName = fieldNames.next();
-                //     System.out.println(fieldName);
-                // }
+                // 获取每一个子node下面的所有的节点，包括key和value
+                Iterator<Map.Entry<String, JsonNode>> fields = rootNode.get(i).fields();
+                while(fields.hasNext()){
+                    Map.Entry<String, JsonNode> nodeKey = fields.next();
+                    System.out.print("key: " + nodeKey.getKey() + ",  value: " + nodeKey.getValue() + "  . ");
+                }
+                System.out.println("  第" + i + "个节点遍历完毕！");
             }
         }
         // http://cn.voidcc.com/question/p-esesbdru-vn.html
