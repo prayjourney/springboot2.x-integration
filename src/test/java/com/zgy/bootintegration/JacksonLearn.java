@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -76,14 +77,18 @@ public class JacksonLearn {
         map3.put("name", "昆明");
         map3.put("province", "云南");
         List<Map<String, Object>> chinaBigCities = Arrays.asList(map1, map2, map3);
+        // 直接转化为string, 有问题
         System.out.println(JSONUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
-        System.out.println(list2JsonArrayStr(chinaBigCities));
+
+        // list(map) -> jsonArray(jsonStr)
+        String list2JsonArrayStr = list2JsonArrayStr(chinaBigCities);
+        System.out.println(list2JsonArrayStr);
 
         // jsonArray(jsonStr) -> list(map)
         String arrayStr = "[{\"area\" : 123789.3, \"province\" : \"陕西\", \"name\" : \"西安\", \"postCode\" : \"232849\"}, " +
                 "{\"area\" : \"443789.3\", \"province\" : \"广西\", \"name\" : \"桂林\", \"postCode\" : \"123222\"}, " +
                 "{\"province\" : \"云南\", \"name\" : \"昆明\"}]";
-        // array2List(arrayStr);
+        jsonArrayStr2List(arrayStr);
 
         // obj -> 序列化为json file
         objWrite2JSON(bigCity, "chinabigcity.json");
@@ -321,6 +326,26 @@ public class JacksonLearn {
         JsonGenerator generator = jsonFactory.createGenerator(writer);
         mapper.writeTree(generator, arrayNode);
         return writer.toString();
+    }
+
+    // 从jsonArray的String -> list(map)
+    public static <K, V> List<Map<K, V>> jsonArrayStr2List(String str) throws JsonProcessingException {
+        List<Map<K, V>> list = new ArrayList<>();
+        JsonNode rootNode = mapper.readTree(str);
+        if (rootNode.isArray()) {
+            int size = rootNode.size();
+            for (int i = 0; i < size; i++) {
+                // 获取每一个子node下面的所有的节点，包括key和value
+                Iterator<Map.Entry<String, JsonNode>> fields = rootNode.get(i).fields();
+                Map<K, V> map = new HashMap<>();
+                while (fields.hasNext()) {
+                    Map.Entry<String, JsonNode> nodeKey = fields.next();
+                    map.put((K) nodeKey.getKey(), (V) nodeKey.getValue().asText());
+                }
+                list.add(map);
+            }
+        }
+        return list;
     }
 
 
