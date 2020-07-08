@@ -42,6 +42,9 @@
             }
 
         </style>
+
+        <!-- 使用了jquery -->
+        <!--  <script src="http://code.jquery.com/jquery-3.4.0.min.js"/>-->
     </head>
     <body>
         <a href="index.html#indextop">跳转到首页</a>
@@ -63,11 +66,19 @@
             五花马、千金裘，呼儿将出换美酒，与尔同销万古愁。<br/>
         </p>
         <hr/>
+        <p id ="wodeshi">
+            <input title="" type="text" readonly value="我的诗" placeholder="我的诗" style="text-align: center;
+            border-style: none; font-size: 20px;">
+            <br/>
+            <textarea placeholder="请输入您的诗歌内容" id="mypoem" rows="20" cols="50" oninput="write2side();"></textarea>
+            <textarea placeholder="请输入您的诗歌内容" id="mypoem-copy" rows="20" cols="50" readonly></textarea>
+        </p>
+        <hr/>
         <img src="./images/qiangjingjiu.gif" alt="李白将进酒书法作品" title="李白将进酒书法作品">
         <hr/>
-        <img src="./images/qiangjinjiu.gif" alt="李白将进酒书法作品" title="李白将进酒书法作品">
+        <img src="./images/qiangjinjiu.gif1" alt="李白将进酒书法作品" title="李白将进酒书法作品">
         <hr/>
-        <img src="./images/qiangjinjiu2.jpg" alt="李白将进酒书画作品" title="李白将进酒书画作品">
+        <img src="./images/qiangjinjiu2.jpg1" alt="李白将进酒书画作品" title="李白将进酒书画作品">
 
         <hr>
         <a href="#top">回到顶部</a>
@@ -114,6 +125,15 @@
                 <span><img src="./images/rocket2-2.png" class="effect" style="padding-left: 0px"></span>
             </a>
         </p>
-
+        <script>
+            function write2side() {
+                // 获取信息
+                let value = document.getElementById('mypoem').value;
+                // 设置值
+                document.getElementById("mypoem-copy").value = value;
+                // let value2 = document.getElementById("mypoem-copy").value;
+                // console.log(value2)
+            }
+        </script>
     </body>
 </html>
