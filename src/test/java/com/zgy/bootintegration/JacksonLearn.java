@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.zgy.bootintegration.utils.JSONUtil;
+import com.zgy.bootintegration.utils.JacksonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -101,7 +101,7 @@ public class JacksonLearn {
 
         // 直接转化为string, 有问题
         // 输出结果: "[{area=123789.3, province=陕西, name=西安, postCode=232849}, {area=443789.3, province=广西, name=桂林, postCode=123222}, {province=云南, name=昆明}]"
-        System.out.println(JSONUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
+        System.out.println(JacksonUtil.getJsonFromObject("chinaBigCities:  " + chinaBigCities));
 
         // list(map) -> jsonArray(jsonStr)
         String list2JsonArrayStr = list2JsonArrayStr(chinaBigCities);
