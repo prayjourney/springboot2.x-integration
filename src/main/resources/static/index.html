@@ -16,6 +16,14 @@
                 color: deepskyblue;
                 text-decoration: none;
             }
+
+            /*小火箭的阴影效果，但是效果不太理想*/
+            .effect{
+                position: relative;
+                -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
+                -moz-box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
+                box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
+            }
         </style>
         <!-- 使用了jquery -->
         <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -66,6 +74,12 @@
             </select>
             <input id ="tijiao" type="submit" value="提交" onclick="tijiaomethod()"/>
         </form>
+
+        <p id="back-top" style="display: block; padding-left: 93%; padding-bottom: 3%;" transparent;>
+            <a href="#top" title="回到顶部">
+                <span><img src="./images/rocket2-2.png" class="effect" style="padding-left: 0px"></span>
+            </a>
+        </p>
 
         <script type="text/javascript">
             <!--序列化form数据，然后传递给后端处理  -->
