@@ -24,6 +24,24 @@
                 -moz-box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
                 box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
             }
+            /*后代选择器*/
+            form[id=upfile] input{
+                border-radius:5px 5px 5px 5px;
+                border-color: #ff70ad;
+                font-size: 12px;
+                color: #551A8B;
+                float: left;
+                margin-right: 100px;
+                display: block;
+                width: 200px;
+                height: 25px;
+            }
+
+            /*这个上传框，设置好像不起作用的啊？*/
+            input#file-upload-button{
+                color: darkviolet;
+            }
+
         </style>
         <!-- 使用了jquery -->
         <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
@@ -37,7 +55,7 @@
         <!-- 最原始的上传文件的前端控件 -->
         <br>
         <h2>原始的上传文件的控件</h2>
-        <form action='/uploadFile' enctype="multipart/form-data" method='post'>
+        <form id="upfile" action='/uploadFile' enctype="multipart/form-data" method='post'>
             <input type="file" name="file"/> <!-- 这个是上传文件的一个关键的地方，type是file -->
             <!-- <input type='hidden' name='userid'> -->
             <!-- <input type='hidden' name='signature'> -->
