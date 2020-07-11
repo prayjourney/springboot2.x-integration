@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>css的高级玩法</title>
         <style>
-            div{
+            #s1{
                 width: 100px;
                 height: 100px;
                 border-radius: 50px;
@@ -15,12 +15,38 @@
                 /*盒子阴影*/
                 box-shadow: 10px 10px 50px yellow;
             }
+            div{
+                color: #ff0036;
+            }
+            div.inline{
+                color: tomato;
+                font-size: 18px;
+
+                display: inline-block;
+            }
         </style>
     </head>
     <body>
-        <div>
+        <div id="s1">
 
         </div>
         <img src="images/lf1.jpg">
+        <hr>
+        <div>首页</div>
+        <div>生活</div>
+        <div>资讯</div>
+        <div>体育</div>
+        <div>卫生</div>
+        <div>医疗</div>
+        <div>人文</div>
+        <br/>
+        <hr>
+        <div class="inline">首页</div>
+        <div class="inline">生活</div>
+        <div class="inline">资讯</div>
+        <div class="inline">体育</div>
+        <div class="inline">卫生</div>
+        <div class="inline">医疗</div>
+        <div class="inline">人文</div>
     </body>
 </html>
