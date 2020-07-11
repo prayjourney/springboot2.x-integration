@@ -1,8 +1,15 @@
+#nav{
+    width: 300px;
+    background: whitesmoke;
+}
+
 .title{
     font-size: 25px;
     font-weight: bold;
     text-indent: 1em;
     line-height: 30px;
+    /*颜色，图片，图片位置，平铺方式*/
+    background: whitesmoke url("../images/black-down.png") 270px 10px no-repeat ;
 
 }
 /*ul li*/
@@ -10,6 +17,11 @@ ul li{
     height: 30px;
     list-style: none;
     text-indent: 1em;
+    background-color: whitesmoke;
+    /*颜色，图片，图片位置，平铺方式*/
+    background-image: url("../images/black-right.png");
+    background-repeat: no-repeat ;
+    background-position: 230px 2px;
 }
 
 a{
