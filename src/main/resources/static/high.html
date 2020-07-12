@@ -25,10 +25,18 @@
                 display: inline-block;
             }
             #father{
-                border: 2px salmon solid;
+                border: 2px #66cbfa solid;
+                /*方法1: 父级元素增加高度*/
                 /*height: 900px;*/
-                overflow: auto;
+                /*方法2: 父级元素增加overflow属性*/
+                /*overflow: auto;*/
                 /*overflow: hidden;*/  /*auto和hidden效果一样*/
+            }
+            /*方法4: 使用伪类，增加小的块属性*/
+            #father:after{
+                content: "";
+                display: block;
+                clear: both;
             }
             .layer01{
                 border: 1px #ff0036 solid;
@@ -102,6 +110,7 @@
             <div class="layer03">浮动的盒子可以左浮动也可以右边浮动</div>
             <div class="layer04"><img src="images/lf2.png" alt =""></div>
         </div>
+        <!-- 方法3: 增加一个新的空div -->
         <!-- <div class="clear"><span>123, hello world!</span></div>-->
 
         <hr>
