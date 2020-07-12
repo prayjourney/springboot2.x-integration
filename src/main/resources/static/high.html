@@ -161,6 +161,41 @@
                 position: absolute;
 
             }
+            #mycontent{
+                padding: 5px;
+                margin: 5px;
+                font-size: 22px;
+                line-height: 25px;
+                border: 1px #fac54b solid;
+            }
+            #myimg{
+                border-radius: 300px 0px 300px 0px;
+                box-shadow: 10px 10px 30px lightpink;
+            }
+            ul li{
+                padding: 0px;
+                margin: 0px;
+                list-style: none;
+            }
+            /*父级元素相对定位*/
+            #mycontent li{
+                position: relative;
+            }
+            .tipBg, .tipText {
+                position :absolute;
+                width: 300px;
+                height: 25px;
+                top: -70px;
+            }
+            .tipText{
+                color: #66cbfa;
+                z-index: 0;/*图层，默认是0，最大无限*/
+            }
+            .tipBg{
+                background: #3388bb;
+                opacity: 0.5;/*背景透明度*/
+            }
+
         </style>
     </head>
     <body>
@@ -229,6 +264,22 @@
 
         <br/>
         <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <hr/>
+        <div id="mycontent">
+            <ul>
+                <li><img id="myimg" src="images/lf1.jpg"></li>
+                <li class="tipText">学习加油啊！</li>
+                <li class="tipBg"></li>
+                <li>时间：2099-09-09</li>
+                <li>地点：月球一号基地</li>
+            </ul>
+        </div>
 
 
     </body>
