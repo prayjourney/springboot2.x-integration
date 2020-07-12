@@ -27,6 +27,8 @@
             #father{
                 border: 2px salmon solid;
                 /*height: 900px;*/
+                overflow: auto;
+                /*overflow: hidden;*/  /*auto和hidden效果一样*/
             }
             .layer01{
                 border: 1px #ff0036 solid;
@@ -56,6 +58,11 @@
                 clear: both;
                 margin: 0px;
                 padding: 0px;
+            }
+            #testdiv{
+                width: 200px;
+                height: 100px;
+                overflow: scroll;
             }
         </style>
     </head>
@@ -95,7 +102,17 @@
             <div class="layer03">浮动的盒子可以左浮动也可以右边浮动</div>
             <div class="layer04"><img src="images/lf2.png" alt =""></div>
         </div>
-        <div class="clear"><span>123, hello world!</span></div>
+        <!-- <div class="clear"><span>123, hello world!</span></div>-->
+
+        <hr>
+        <div id="testdiv">
+            CSS的优势：
+            1、内容和表现分离；
+            2、网页结构表现统一，可以实现复用
+            3、样式十分的丰富
+            4、建议使用独立于html的css文件
+            5、利用SEO，容易被搜索引擎收录！
+        </div>
 
     </body>
 </html>
