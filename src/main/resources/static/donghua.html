@@ -5,7 +5,7 @@
         <title>动画</title>
     </head>
     <style>
-        #xuanzhuan1 {
+        #staticRotate {
             width: 200px;
             height: 100px;
             font: 30px 华文楷体;
@@ -16,11 +16,45 @@
             /*表示旋转30度，deg是度的意思，一周是360度*/
             transform: rotate(30deg);
         }
+
+        #rotate2D {
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            font: 18px 华文楷体;
+            color: #58bbff;
+            text-align: center;
+            line-height: 100px;
+            background-color: #fab9d9;
+        }
     </style>
     </head>
     <body>
+        <div id="staticRotate">旋转30度</div>
+        <div id="rotate2D" onmouseover="rotateDIV()">鼠标悬浮，然后旋转</div>
+        <script>
+            <!-- 全局变量，需要首先声明，然后赋值，最后调用 -->
+            var rotINT = 0, n=0;
+            function rotateDIV() {
+                x = document.getElementById("rotate2D")
+                clearInterval(rotINT)
+                rotINT = setInterval("startRotate()", 10)
+            }
 
-        <div id="xuanzhuan1">旋转</div>
-
+            function startRotate() {
+                n = n + 1
+                // 鼠标悬浮在div上面，自动添加style属性
+                x.style.transform = "rotate(" + n + "deg)"
+                x.style.webkitTransform = "rotate(" + n + "deg)"
+                x.style.OTransform = "rotate(" + n + "deg)"
+                x.style.MozTransform = "rotate(" + n + "deg)"
+                if (n == 180 || n == 360) {
+                    clearInterval(rotINT)
+                    if (n == 360) {
+                        n = 0
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
