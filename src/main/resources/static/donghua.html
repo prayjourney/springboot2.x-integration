@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>动画</title>
+        <!--  https://www.runoob.com/css3/css3-3dtransforms.html -->
+    </head>
+    <style>
+        #staticRotate {
+            width: 200px;
+            height: 100px;
+            font: 30px 华文楷体;
+            color: #ff70ad;
+            text-align: center;
+            line-height: 100px;
+            background-color: lightgoldenrodyellow;
+            /*表示旋转30度，deg是度的意思，一周是360度*/
+            transform: rotate(30deg);
+        }
+
+        #rotate2D {
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            font: 30px 华文楷体 bold;
+            color: #58bbff;
+            text-align: center;
+            line-height: 100px;
+            background-color: #fab9d9;
+        }
+
+        #rotate3D {
+            margin: 30px;
+            width: 200px;
+            height: 100px;
+            font: 30px 隶书;
+            color: #b64cff;
+            text-align: center;
+            line-height: 100px;
+            background-color: rgba(133, 175, 250, 0.33);
+        }
+    </style>
+    </head>
+    <body>
+        <div id="staticRotate">旋转30度</div>
+        <div id="rotate2D" onmouseover="rotateDIV()">2D旋转</div>
+        <div id="rotate3D" onmouseover="rotate3dDIV()">3D旋转</div>
+        <script>
+            <!-- 全局变量，需要首先声明，然后赋值，最后调用 -->
+            let rotINT = 0, n = 0;
+            let x, y, nx = 0, ny = 0, rotYINT = 0;
+            function rotateDIV() {
+                x = document.getElementById("rotate2D")
+                clearInterval(rotINT)
+                rotINT = setInterval("startRotate()", 10)
+            }
+
+            function startRotate() {
+                n = n + 1
+                // 鼠标悬浮在div上面，自动添加style属性
+                x.style.transform = "rotate(" + n + "deg)"
+                // 下面的三个都是兼容性代码
+                // x.style.webkitTransform = "rotate(" + n + "deg)"
+                // x.style.OTransform = "rotate(" + n + "deg)"
+                // x.style.MozTransform = "rotate(" + n + "deg)"
+                if (n == 180 || n == 360) {
+                    clearInterval(rotINT)
+                    if (n == 360) {
+                        n = 0
+                    }
+                }
+            }
+
+            // 3d旋转的函数
+            function rotate3dDIV() {
+                y = document.getElementById("rotate3D")
+                clearInterval(rotYINT)
+                rotYINT = setInterval("startYRotate()", 10)
+            }
+
+            function startYRotate() {
+                ny = ny + 1
+                nx = nx + 2
+                // y.style.transform = "rotate3d(" + "," + nx + "," + ny + ","  + 30 + ")"
+                // y.style.transform = "rotateY(" + ny + "deg); rotateX(" + nx + "deg)"
+                y.style.transform = "rotateY(" + ny + "deg)"
+                if (ny == 180 || ny >= 360) {
+                    clearInterval(rotYINT)
+                    if (ny >= 360) {
+                        ny = 0
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
