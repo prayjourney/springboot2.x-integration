@@ -38,3 +38,18 @@ var tangsanzang = {
 
 // this指向了shawujing, 如果不指向的话，那就会谁调用，指向谁
 home().apply(shawujing,[])
+
+// JSON字符串和对象的转换
+var person = {
+    name : "张三",
+    age:22,
+    home:'北京'
+}
+// 对象转字符串
+var pStr = JSON.stringify(person)
+
+let pStr2obj = '{"name":"张三","age":22,"home":"北京"}'
+// 字符串转对象
+var pObj = JSON.parse(pStr)
+
+
