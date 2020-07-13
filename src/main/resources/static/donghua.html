@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>动画</title>
+        <!--  https://www.runoob.com/css3/css3-3dtransforms.html -->
     </head>
     <style>
         #staticRotate {
@@ -46,8 +47,8 @@
         <div id="rotate3D" onmouseover="rotate3dDIV()">3D旋转</div>
         <script>
             <!-- 全局变量，需要首先声明，然后赋值，最后调用 -->
-            var rotINT = 0, n = 0;
-            var x, y, nx = 0, ny = 0, rotYINT = 0;
+            let rotINT = 0, n = 0;
+            let x, y, nx = 0, ny = 0, rotYINT = 0;
             function rotateDIV() {
                 x = document.getElementById("rotate2D")
                 clearInterval(rotINT)
