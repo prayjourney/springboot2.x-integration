@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-if</title>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+           <!-- v-if -->
+            <h1 v-if="ok">Yes</h1>
+            <h1 v-else>No</h1>
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    ok:true
+                }
+            });
+        </script>
+    </body>
+</html>
