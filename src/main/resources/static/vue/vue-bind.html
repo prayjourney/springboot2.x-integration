@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-bind</title>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+           <!--  v-bind，可以绑定属性 和{{}}的作用是一样的  -->
+           <span v-bind:title="message">
+               查看动态绑定的提示信息！
+           </span>
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    message: '页面加载于：' + new Date().toLocaleString()
+                }
+            });
+        </script>
+    </body>
+</html>
