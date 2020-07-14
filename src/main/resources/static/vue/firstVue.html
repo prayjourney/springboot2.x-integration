@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>first vue</title>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            {{message}}
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    message: "hello vue!"
+                }
+            });
+        </script>
+    </body>
+</html>
