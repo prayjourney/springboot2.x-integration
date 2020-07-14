@@ -7,9 +7,13 @@
     <body>
         <!-- view层模版 -->
         <div id="app">
-           <!-- v-if -->
-            <h1 v-if="ok">Yes</h1>
-            <h1 v-else>No</h1>
+            <!-- v-if -->
+            <!-- <h1 v-if="ok">Yes</h1> -->
+            <!-- <h1 v-else>No</h1> -->
+            <h1 v-if="type==='A'">A</h1>
+            <h1 v-else-if="type==='B'">B</h1>
+            <h1 v-else>其他</h1>
+
         </div>
         <!-- 导入vue.js -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
@@ -18,7 +22,8 @@
                 el: "#app",
                 // model：数据
                 data: {
-                    ok:true
+                    // ok:true
+                    type : 'A'
                 }
             });
         </script>
