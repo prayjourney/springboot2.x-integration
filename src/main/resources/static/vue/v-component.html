@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-on</title>
+        <style>
+            #mm{
+                border-width: 10px;
+                height: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            <ol>
+                <!-- 创建一个 todo-item 组件的实例 -->
+                <todo-item></todo-item>
+                <todo-item></todo-item>
+                <todo-item></todo-item>
+            </ol>
+
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+
+            // 定义名为 todo-item 的新组件
+            Vue.component('todo-item', {
+                template: '<li>这是个待办项</li>'
+            })
+
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    message: "123"
+                }
+            });
+        </script>
+    </body>
+</html>
