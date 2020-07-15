@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": "扩展部分",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 8

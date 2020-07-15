@@ -6,22 +6,41 @@
         <!-- 导入vue.js, 引入axios-->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- v-clock解决闪烁问题 -->
+        <style>
+            [v-clock] {
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <div id="app">
-
+            {{info.extends}}
         </div>
 
         <script>
             var vm = new Vue({
-                el:"#app",
+                el: "#app",
+                data() {
+                    return {
+                        // 请求的返回参数格式，必须和json字符串一样
+                        info: {
+                            extends: null,
+                            parserOptions: {
+                                sourceType: null,
+                                ecmaVersion: null
+                            }
+                        }
+                    }
+                },
                 // 钩子函数，链式编程
-                mounted(){
-                    axios.get('./test.json').then(response=>(console.log(response.data)));
+                mounted() {
+                    // axios.get('./test.json').then(response => (console.log(response.data)));
+                    axios.get('./test.json').then(response => (this.info = response.data));
                 }
 
             });
         </script>
-        
+
     </body>
 </html>
