@@ -71,7 +71,8 @@
                 }
             })
 
-            // 定义了一个名为poem的组件
+            // 定义了一个名为poem的组件， props是船体的数据，template是这个组件要代表的一个模板，模板其中使用了props提供的数据
+            // 在html的数据之中，我们则通过循环，判断，绑定等方式去让其显示出来
             Vue.component("poem", {
                 props: ['words'],
                 template: '<p>{{ words.sentence }}</p>'
@@ -80,11 +81,11 @@
             let pm = new Vue({
                 el: "#mypoem",
                 data: {
-                    zengwanglun:[
-                        {sentence:"李白乘舟将欲行"},
-                        {sentence:"忽闻岸上踏歌声"},
-                        {sentence:"桃花潭水深千丈"},
-                        {sentence:"不及汪伦赠我情"}
+                    zengwanglun: [
+                        {sentence: "李白乘舟将欲行"},
+                        {sentence: "忽闻岸上踏歌声"},
+                        {sentence: "桃花潭水深千丈"},
+                        {sentence: "不及汪伦赠我情"}
                     ]
                 }
             });
