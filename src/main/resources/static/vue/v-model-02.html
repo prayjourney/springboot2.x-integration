@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-model</title>
+        <style>
+            #value{
+                font: 25px 华文楷体;
+                color: tomato;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            <!-- v-model把message和组件绑定到了一起-->
+            <span>选择的是：</span><select v-model="selected">
+                <option value="" disabled>---</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <br>
+            <span id="value">值是：{{selected}} </span>
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    selected: ""
+                }
+            });
+        </script>
+    </body>
+</html>
