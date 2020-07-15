@@ -29,6 +29,12 @@
                 ></todo-item>
             </ol>
         </div>
+
+        <hr/>
+
+        <div id="mypoem">
+            <poem v-for="word in zengwanglun" v-bind:words="word"></poem>
+        </div>
         <!-- 导入vue.js -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
         <script>
@@ -64,6 +70,24 @@
                     ]
                 }
             })
+
+            // 定义了一个名为poem的组件
+            Vue.component("poem", {
+                props: ['words'],
+                template: '<p>{{ words.sentence }}</p>'
+            })
+
+            let pm = new Vue({
+                el: "#mypoem",
+                data: {
+                    zengwanglun:[
+                        {sentence:"李白乘舟将欲行"},
+                        {sentence:"忽闻岸上踏歌声"},
+                        {sentence:"桃花潭水深千丈"},
+                        {sentence:"不及汪伦赠我情"}
+                    ]
+                }
+            });
         </script>
     </body>
 </html>
