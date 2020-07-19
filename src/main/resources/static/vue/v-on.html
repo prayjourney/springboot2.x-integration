@@ -37,5 +37,30 @@
 
             });
         </script>
+
+        <!-- view层模版，使用简化的语法 -->
+        <div id="app2">
+            <span> {{age}}</span>
+            <!-- 使用简化的绑定语法   -->
+            <input type="button" value="改变count为指定的值" @click="changeAge(23,'小黑')">
+        </div>
+        <script>
+            Vue.config.devtools = true
+            let vm2 = new Vue({
+                el: "#app2",
+                data: {
+                    age: ''
+                },
+                methods: {
+                    // 新的方式定义方法，并且使用新的方式定义方法
+                    changeAge(age, name) {
+                        this.age = age;
+                        alert(name)
+                    }
+                }
+
+            });
+        </script>
+
     </body>
 </html>
