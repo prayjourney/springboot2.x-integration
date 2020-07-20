@@ -117,10 +117,10 @@ GET kuangsheng/user/_search
 {
   "query": {
     "match": {
-      "name": "狂神" 
+      "name": "狂神"
     }
   }
-  
+
 }
 
 # 甄选出我们需要的字段，其余的不要了
@@ -128,11 +128,11 @@ GET kuangsheng/user/_search
 {
   "query": {
     "match": {
-      "name": "狂神" 
+      "name": "狂神"
     }
   },
   "_source": ["age", "name", "desc"]
-  
+
 }
 
 # 排序,sort这样的，其中的格式符合json格式就行
@@ -140,7 +140,7 @@ GET kuangsheng/user/_search
 {
   "query": {
     "match": {
-      "name": "狂神" 
+      "name": "狂神"
     }
   },
   "sort":{
@@ -148,7 +148,7 @@ GET kuangsheng/user/_search
       "order":"desc"
     }
   }
-  
+
 }
 
 # 分页查询，和sort一样，都是在query之外，数据查出来，才能排序分页
@@ -156,7 +156,7 @@ GET kuangsheng/user/_search
 {
   "query": {
     "match": {
-      "name": "狂神" 
+      "name": "狂神"
     }
   },
   "sort":{
@@ -164,11 +164,43 @@ GET kuangsheng/user/_search
       "order":"desc"
     }
   },
-  "from": 0, 
+  "from": 0,
   "size": 2
-  
+
 }
 
+# 获取总的数量，"track_total_hits":true
+POST xuandui_job_v4/_doc/_search
+{
+  "track_total_hits":true,
+  "query":{
+    "bool":{
+      "must":[
+            {
+              "range":{
+                  "job_hot_value":{
+                  "lt":"0"
+                }
+              }
+            }
+      ],
+      "must_not":[
+
+      ],
+      "should":[
+
+      ]
+    }
+  },
+  "from":0,
+  "size":10000,
+  "sort":[
+
+  ],
+  "aggs":{
+
+  }
+}
 
 
 # 布尔值查询
@@ -191,7 +223,7 @@ GET kuangsheng/user/_search
       ]
     }
   }
-  
+
 }
 
 # should(or), 满足一个即可，就好比是 where id =1 or name =xxx这种操作形式
@@ -213,7 +245,7 @@ GET kuangsheng/user/_search
       ]
     }
   }
-  
+
 }
 
 # must_not(not), 反向操作，就好比是 where id <> 1这种操作形式
@@ -221,7 +253,7 @@ GET kuangsheng/user/_search
 {
   "query": {
     "bool": {
-      "must_not": 
+      "must_not":
         {
           "match": {
             "age": 23
@@ -229,7 +261,7 @@ GET kuangsheng/user/_search
         }
     }
   }
-  
+
 }
 
 # 过滤器filter，gt大于，gte大于等于，lt小于，lte小于等于
@@ -237,7 +269,7 @@ GET kuangsheng/user/_search
 {
   "query": {
     "bool": {
-      "must": 
+      "must":
         {
           "match": {
             "name": "狂神"
@@ -332,8 +364,8 @@ GET kuangsheng/user/_search
 # from和size是分页操作，如果size是0，就不会显示数据
 GET kuangsheng/user/_search
 {
-  "from": 0, 
-  "size": 20, 
+  "from": 0,
+  "size": 20,
   "aggs": {
     "per_count": {
       "terms": {
@@ -348,7 +380,7 @@ GET kuangsheng/user/_search
 # mytest是我们给这个聚合取的一个名字,sum是类型，field是字段
 GET kuangsheng/user/_search
 {
-  "size": 0, 
+  "size": 0,
   "aggs": {
     "mytest": {
       "terms": {
@@ -390,7 +422,7 @@ GET kuangsheng/user/_search
 GET kuangsheng/user/_search
 {
   "size": 0,
-  "aggs": 
+  "aggs":
       {
         "mytest1":{
           "max":{

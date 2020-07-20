@@ -72,17 +72,38 @@ PUT /kuangsheng/user/9
   "tags":["技术宅","暖男"]
 }
 
+# 获取总的数量，"track_total_hits":true
+POST xuandui_job_v4/_doc/_search
+{
+  "track_total_hits":true,
+  "query":{
+      "bool":{
+        "must":[
+          {
+            "range":{
+              "job_hot_value":{
+              "lt":"0"
+              }
+            }
+          }
+        ],
+        "must_not":[
 
+        ],
+        "should":[
 
+        ]
+      }
+  },
+  "from":0,
+  "size":10000,
+  "sort":[
 
+  ],
+  "aggs":{
 
-
-
-
-
-
-
-
+  }
+}
 
 
 
