@@ -1,0 +1,794 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+# 创建一个文档，指定了文档类型
+PUT /kuangsheng/user/1
+{
+  "name":"狂神",
+  "age":23,
+  "desc":"一顿操作猛如虎，一看工资2500",
+  "tags":["技术宅","暖男","直男"]
+}
+
+PUT /kuangsheng/user/155
+{
+  "name":"张海涛",
+  "age":132,
+  "desc":"卡蜜儿",
+  "tags":["技术宅","渣男"]
+}
+
+
+PUT /kuangsheng/user/3
+{
+  "name":"张二狗",
+  "age":6,
+  "desc":"张二狗",
+  "tags":["小逗比","撩妹高手"]
+}
+
+
+
+
+PUT /kuangsheng/user/4
+{
+  "name":"梦幻张三",
+  "age":6,
+  "desc":"女张三",
+  "tags":["大逗逼","撩汉高手"]
+}
+
+
+
+
+PUT /kuangsheng/user/259
+  "name":"小狂神",
+  "age":32,
+  "desc":"狂神来了",
+  "tags":["学习达人","热爱分享"]
+}
+
+
+
+PUT /kuangsheng/user/141
+{
+  "name":"ldsfhgh楞",
+  "age":7,
+  "desc":"最强张二楞",
+  "tags":["智障","白痴","二傻子"]
+}
+
+
+
+PUT /kuangsheng/user/9
+{
+  "name":"狂神说前端",
+  "age":19,
+  "desc":"狂神说前端",
+  "tags":["技术宅","暖男"]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GET kuangsheng/user/_search
+{
+  "size": 0, 
+  "aggs": {
+    "myaggs": {
+      "terms": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+
+
+GET xuandui_company/_doc/_search
+{
+  "size": 2, 
+  "aggs": {
+    "myaggs": {
+      "terms": {
+        "field": "industry_second_id"
+      }
+    }
+  }
+}
+
+# 部分匹配
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂"
+    }
+  }
+}
+
+GET kuangsheng/user/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": "狂神"
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET kuangsheng/user/_search
+{
+  "query": {
+    "term": {
+      "age": 23
+    }
+  }
+}
+
+# 按照条件查询
+POST kuangsheng/user/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.desc =1234"
+  },
+  "query":{
+    "term":{
+      "age":23
+    }
+  }
+  
+}
+
+
+
+POST twitter/_update_by_query
+{
+  "script": {
+    "source": "ctx._source.likes++",
+    "lang": "painless"
+  },
+  "query": {
+    "term": {
+      "user": "kimchy"
+    }
+  }
+}
+
+
+
+POST /kuangsheng/user/6/_update
+{
+  "doc":{
+    "name":"张二楞1231",
+    "age":1111
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GET kuangsheng/user/_search
+{
+  "size": 0, 
+  "aggs": {
+    "test":{
+        "max": {
+           "field": "age"
+      }
+    }
+  }
+}
+
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "the_terms": {
+      "terms": {
+        "size": 10,
+        "field": "age"
+      }
+    }
+  }
+}
+GET kuangsheng/user/_search
+{
+  "aggregations": {
+    "dddddsf": {
+      "max": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GET company/_doc/_search
+{
+  "size":1000,
+  "query": {
+    "match_all": {}
+  }
+}
+GET company/_doc/_search
+{
+  "size":1000,
+  "query": {
+    "match": {
+      "_id":"xv_m3XEBfaJNtOBsm-ty"
+    }
+  }
+}
+
+# nAIE33EBfaJNtOBsZ-wK
+
+
+GET job/_doc/_search
+{
+  "size":1000,
+  "query": {
+    "match": {
+      "_id":"nAIE33EBfaJNtOBsZ-wK"
+    }
+  }
+}
+# 按照条件查询
+GET job/_doc/_search
+{
+  "query":{
+    "match":{
+      "company_show_name":"爱灰(上海)文化艺术有限公司"
+    }
+  }
+  
+}
+
+# 按照条件查询
+GET job/_doc/_search
+{
+  "query":{
+    "match":{
+      "company_show_name":"四川吾言文化传播有限公司"
+    }
+  }
+  
+}
+
+# term
+GET job/_doc/_search
+{
+  "size": 1000,
+  "query":{
+    "term": {
+      "industry_second_id": 88
+    }
+  }
+  
+}
+# match
+GET job/_doc/_search
+{
+  "query":{
+    "match": {
+      "industry_second_id": 88
+    }
+  },
+  "size":200
+  
+}
+GET job/_doc/_search
+{
+  "query":{
+    "match": {
+      "_id": "zwLH3nEBfaJNtOBsRzZ6"
+    }
+  }
+  
+}
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "match": {
+      "_id": "CgLZ3nEBfaJNtOBs-HAj"
+    }
+  }
+  
+}
+
+
+GET job/_doc/_search
+{
+  "query":{
+    "match": {
+      "industry_second_id": 66
+    }
+  }
+  
+}
+
+
+# 按照条件查询
+GET company/_doc/_search
+{
+  "query":{
+    "match":{
+      "company_show_name":"爱灰(上海)文化艺术有限公司"
+    }
+  }
+  
+}
+
+# 按照条件查询
+GET company/_doc/_search
+{
+  "query":{
+    "match_all":{
+    }
+  }
+  
+}
+
+
+# 按照条件查询
+GET books/_doc/_search
+{
+  "query":{
+    "match":{
+      "author":"吴承恩"
+    }
+  }
+  
+}
+
+
+
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "size": 0, 
+  "aggs": {
+    "myaggs": {
+      "terms": {
+        "field": "company_id",
+        "size":10000
+      }
+    }
+  }
+}
+
+
+
+#BwBC3nEBfaJNtOBsxr6v
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "match":{
+      "_id":"BwBC3nEBfaJNtOBsxr6v"
+    }
+  }
+}
+
+
+GET xuandui_company/_doc/_search
+{
+    "size": 0,
+    "aggs": {
+        "myaggs": {
+            "match": {
+                "field": "city_id",
+                         "size":10000
+                    }
+                }
+            }
+}
+    GET xuandui_job/_doc/_search
+    {
+        "size": 0,
+        "aggs": {
+            "myaggs": {
+                "terms": {
+                    "field": "company_id",
+                            "size":10000
+                    }
+                }
+            }
+    }
+
+GET xuandui_company/_doc/_search
+{
+    "size": 0,
+    "aggs": {
+        "myaggs": {
+            "terms": {
+                "field": "city_id",
+                         "size":10000
+                    }
+                }
+            }
+}
+
+GET xuandui_company/_doc/_search
+{
+	"size": 0,
+	"aggs": {
+		"myaggs": {
+			"terms": {
+				"field": "city_id",
+						"size":10000
+				}
+			}
+		}
+}
+
+
+
+POST xuandui_company/_doc/_search
+{
+  "size":0,
+  "aggs": {
+    "myaggs123": {
+      "terms": {
+        "field": "city_id",
+        "size":200
+      }
+    }
+  }
+}
+
+
+POST xuandui_job/_doc/_search
+{
+  "size":0,
+  "aggs": {
+    "myaggs123": {
+      "terms": {
+        "field": "city_id",
+        "size":200
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+POST /kuangsheng/user/25/_update
+{
+  "doc":{
+    "type":3
+  }
+}
+
+
+
+
+# 求age聚合
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "mytest": {
+      "terms": {
+        "field": "age"
+      }
+    }
+  }
+}
+
+
+# 求age的最大值
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": 
+      {
+        "mytest1":{
+          "max":{
+          "field": "age"
+          }
+        }
+      }
+}
+
+
+# 先聚合，然后求最大值
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "mytest": {
+      "terms": {
+        "field": "type"
+      }
+    }
+  }
+}
+
+
+
+GET kuangsheng/user/_search
+{
+  "size": 0,
+  "aggs": {
+    "uuuuu": {
+      "terms": {
+        "field": "type",
+        "size": 10
+      },
+      "aggs": {
+        "max_score": {
+          "max": {
+            "field": "age"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "size": 0,
+  "aggs": {
+    "uuuuu": {
+      "terms": {
+        "field": "industry_second_id",
+        "size": 100
+      },
+      "aggs": {
+        "max_score": {
+          "max": {
+            "field": "monthly_salary_upper"
+          }
+        }
+      }
+    }
+  }
+}
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "term":{
+      "industry_second_id":64
+    }
+  }
+}
+
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "term":{
+      "_id": "7gBD3nEBfaJNtOBsXb-v"
+    }
+  }
+}
+
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "term":{
+      "_id": "1AFy3nEBfaJNtOBsaz-h"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+GET xuandui_job/_doc/_search
+{
+    "size": 0,
+    "aggs": {
+        "myaggs": {
+            "match": {
+                "field": "city_id",
+                         "size":10000
+                    }
+                }
+            }
+}
+
+
+
+
+POST xuandui_job/_doc/_search
+{
+  "size":0,
+  "aggs": {
+    "myaggs123": {
+      "terms": {
+        "field": "city_id",
+        "size":200
+      }
+    }
+  }
+}
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "match":{
+      "city_id":"350"
+    }
+  }
+}
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "match":{
+      "industry_second_id":34
+    }
+  }
+}
+
+
+
+GET xuandui_job/_doc/_search
+{
+  "query":{
+    "match":{
+      "_id":"BwBC3nEBfaJNtOBsxr6v"
+      
+    }
+  }
+}
+
+
+PUT /kuangsheng/user/998 
+{
+  "name":"狂神",
+  "age":23,
+  "desc":"一顿操作猛如虎，一看工资2500",
+  "tags":["技术宅","暖男","直男"]
+}
+
+
+GET kuangsheng/user/_search
+{
+  "query": {
+    "match": {
+      "name": "狂神" 
+    }
+  },
+  "_source": ["age", "name", "desc"]
+  
+}
+
+
+PUT /xuandui_job/_doc/1120
+{
+  "industry_second_name": [
+  "计算机软件"
+  ],
+  "industry_first_name": [
+  "电子·通信·信息技术"
+  ],
+  "company_show_name": "浙江慧中地理信息技术有限公司杭州分公司",
+  "monthly_salary_lower": 1000,
+  "district_name": "余杭区",
+  "city_name": "杭州",
+  "work_experience_id": "null",
+  "company_size_name": "少于50人",
+  "country_name": "中国",
+  "need_stay_office": "null",
+  "id": 3030460,
+  "financing_stage_name": "未融资",
+  "job_title": "实习生",
+  "address": "文一西路1378号杭州师范大学科技园E座503",
+  "company_alias_list": "",
+  "company_id": "30cef2a3d65b4aadb9b331b45a4a9648",
+  "financing_stage_id": "1",
+  "job_desc": "<p>上述各专业领域的实习生。</p>",
+  "industry_second_id": [
+  "-2"
+  ],
+  "province_name": "浙江",
+  "monthly_salary_upper": 3000,
+  "company_size_id": "1",
+  "company_type_id": "null",
+  "edu_background_id": "4",
+  "province_id": "13",
+  "job_id": "1120",
+  "industry_first_id": [
+  "2"
+  ],
+  "district_id": "1028",
+  "monthly_salary_number": 12,
+  "publish_date": "2020-05-23T00:00:00+0800",
+  "country_id": "1",
+  "city_id": "216",
+  "company_registration_name": [
+  "浙江慧中地理信息技术有限公司杭州分公司"
+  ],
+  "status": 1,
+  "industry_hot_value": 0.85714287,
+  "city_hot_value": 0.98663104,
+  "company_hot_value": 0.2302383127922482,
+  "job_hot_value": 0
+}
