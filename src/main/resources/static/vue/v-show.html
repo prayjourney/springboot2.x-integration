@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-show="http://www.w3.org/1999/xhtml"
+      xmlns:v-text="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-show</title>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            <sapn v-show="showwhat" v-text="items[2].message"></sapn>
+            <hr/>
+            <input id="mybutton" value="点我隐藏或者展示span标签" type="button" @click="showOrNot">
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            Vue.config.devtools = true
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    items: [
+                        {message: "hello"},
+                        {message: "world"},
+                        {message: "长风破浪会有时，直挂云帆济沧海"}
+                    ],
+                    showwhat: true
+                },
+                // 方法必须定义到vue的methods对象之中, v-on来绑定事件
+                methods: {
+                    sayHello: function (event) {
+                        alert(this.items[0].message)
+                    },
+                    // 新的函数定义方式, 省略了function, 直接定义即可
+                    showOrNot() {
+                        this.showwhat = !this.showwhat;
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
