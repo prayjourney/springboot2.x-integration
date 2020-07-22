@@ -1142,4 +1142,101 @@ public class ElasticSearchService {
 
     }
 
+    // 循环滚动 更新
+    public void loopToUpdateWithScroll(String indexName) throws IOException {
+        int m = 1;
+        Date date = new Date();
+        String[] columnsInner = {"job_id", "industry_second_id", "id", "job_hot_value", "monthly_salary_upper"};
+
+        // 初始化scroll
+        final Scroll scroll = new Scroll(TimeValue.timeValueMinutes(1L)); //设定滚动时间间隔
+        SearchRequest searchRequest001 = new SearchRequest(indexName);
+        searchRequest001.scroll(scroll);
+
+        SearchSourceBuilder sourceBuilder001 = new SearchSourceBuilder();
+        sourceBuilder001.size(200);
+        sourceBuilder001.fetchSource(columnsInner, null).sort("id", SortOrder.ASC);
+
+        BoolQueryBuilder bool = new BoolQueryBuilder();
+        RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery("job_hot_value");
+        rangeQueryBuilder.lt(0);
+        bool.filter(rangeQueryBuilder);
+        sourceBuilder001.query(bool);
+        searchRequest001.source(sourceBuilder001);
+        // log.info(sourceBuilder001.toString());
+
+        SearchResponse searchResponse = null;
+        try {
+            searchResponse = client.search(searchRequest001, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String scrollId = searchResponse.getScrollId();
+        SearchHit[] searchHits = searchResponse.getHits().getHits();
+
+        log.info("第{}次进入处理job_hot_value小于0的循环！日期是: {}!", m, date);
+        List<String> jobIdList01 = new ArrayList<>();
+        List<Map<String, Object>> hotValueList01 = new ArrayList<>();
+        for (SearchHit searchHit : searchHits) {
+            Map<String, Object> mp = new HashMap<>();
+
+            String docId = searchHit.getId();
+            Object oldJobHotValue = searchHit.getSourceAsMap().get("job_hot_value");
+            if (Double.valueOf(oldJobHotValue.toString()) < 0) {
+                mp.put("job_hot_value", 0.0);
+            }
+
+            jobIdList01.add(docId);
+            hotValueList01.add(mp);
+        }
+        // 批量更新插入
+        // batchUpdateByMap.batchUpdateByMap(indexName, jobIdList01, hotValueList01);
+
+        // 遍历搜索命中的数据，直到没有数据
+        while (searchHits != null && searchHits.length > 0) {
+            m++;
+            SearchScrollRequest scrollRequest = new SearchScrollRequest(scrollId);
+            scrollRequest.scroll(scroll);
+            try {
+                searchResponse = client.scroll(scrollRequest, RequestOptions.DEFAULT);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            scrollId = searchResponse.getScrollId();
+            searchHits = searchResponse.getHits().getHits();
+            if (searchHits != null && searchHits.length > 0) {
+                log.info("第{}次进入处理job_hot_value小于0的循环！日期是: {}!", m, date);
+
+                List<String> jobIdList02 = new ArrayList<>();
+                List<Map<String, Object>> hotValueList02 = new ArrayList<>();
+                for (SearchHit searchHit : searchHits) {
+                    Map<String, Object> mp = new HashMap<>();
+
+                    String docId = searchHit.getId();
+                    Object oldJobHotValue = searchHit.getSourceAsMap().get("job_hot_value");
+                    if (Double.valueOf(oldJobHotValue.toString()) < 0) {
+                        mp.put("job_hot_value", 0.0);
+                    }
+
+                    jobIdList02.add(docId);
+                    hotValueList02.add(mp);
+                }
+                // 批量更新插入
+                // batchUpdateByMap.batchUpdateByMap(indexName, jobIdList02, hotValueList02);
+            }
+        }
+
+        ClearScrollRequest clearScrollRequest = new ClearScrollRequest();
+        clearScrollRequest.addScrollId(scrollId);
+        ClearScrollResponse clearScrollResponse = null;
+        try {
+            clearScrollResponse = client.clearScroll(clearScrollRequest, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        boolean succeeded = clearScrollResponse.isSucceeded();
+        log.info("scroll清除是否成功: " + succeeded);
+    }
+
 }
