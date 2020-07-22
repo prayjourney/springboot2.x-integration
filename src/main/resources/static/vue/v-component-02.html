@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>v-component-02</title>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    </head>
+    <body>
+        <div id="app">
+            <zhangsan v-for="item in courses" v-bind:item="item" ></zhangsan>
+            <hr/>
+            <zhangsan v-for="item in courses" :item="item" ></zhangsan>
+            <hr/>
+            <zhangsan1 v-for="item in courses" :item="item" ></zhangsan1>
+        </div>
+        <script>
+            Vue.config.devtools = true;
+
+            // 组件就是一个标签，可重复使用的，自定义的
+            Vue.component("zhangsan",{
+                // props用来访问外部的数据
+                props: ['item'],
+                template: '<li>{{item}}</li>'
+            });
+
+            // vue对象绑定了div
+            let vueObj = new Vue({
+               el: "#app",
+               data:{
+                   courses:["Java", 'C++', 'Linux']
+               }
+            });
+        </script>
+        
+    </body>
+</html>
