@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-solt</title>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            <todo>
+                <!-- 组件之中有部分内容，需要填充，填充的部分就是插槽，插槽也是一个组件todo-title和todo-items都是插件 -->
+                <todo-title slot="todo-title" :title="title"></todo-title>
+                <todo-items slot="todo-items" v-for="item in todoItems" :oneItem="item"></todo-items>
+            </todo>
+
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            Vue.config.devtools = true
+
+            // 留了两个插槽slot，插槽之中也是插入组件component
+            Vue.component("todo", {
+                template: '<div><slot name="todo-title"></slot><ul><slot name="todo-items"></slot></ul></div>'
+            });
+            Vue.component("todo-title", {
+                props: ['title'],
+                template: '<div>{{title}}</div>'
+            });
+            Vue.component("todo-items", {
+                props: ['oneItem'],
+                template: '<li>{{oneItem}}</li>'
+            });
+
+            // // 留了两个插槽slot，插槽之中也是插入组件component
+            // Vue.component("todo", {
+            //     template: '<div><slot></slot><ul><slot></slot></ul></div>'
+            // });
+            // Vue.component("todo-title", {
+            //     template: '<div>标题</div>'
+            // });
+            // Vue.component("todo-items", {
+            //     template: '<li>Java</li>'
+            // });
+
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    title: "what?!",
+                    todoItems: ['Hello', 'World', 'Mount']
+                }
+            });
+        </script>
+
+    </body>
+</html>
