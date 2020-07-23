@@ -12,13 +12,14 @@
             <hr/>
             <zhangsan v-for="item in courses" :item="item" ></zhangsan>
             <hr/>
-            <zhangsan1 v-for="item in courses" :item="item" ></zhangsan1>
+            <!-- 下面这个有问题 -->
+            <!--<zhangsan1 v-for="item in courses" :item="item" ></zhangsan1>-->
         </div>
         <script>
             Vue.config.devtools = true;
 
-            // 组件就是一个标签，可重复使用的，自定义的
-            Vue.component("zhangsan",{
+            // 组件就是一个标签，可重复使用的，自定义的，zhangsan就是我们的这个component的名称
+            Vue.component("zhangsan", {
                 // props用来访问外部的数据
                 props: ['item'],
                 template: '<li>{{item}}</li>'
