@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-css="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>v-slot-learn，学习v-slot插槽</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div style="font-size: 20px; color: #ff70ad">默认插槽的例子</div>
+            我的爱好：
+            <myhobby v-bind:hobby="hobby"></myhobby>
+            <hr/>
+        </div>
+
+
+        <script>
+            Vue.config.devtools = true
+
+            // 默认插槽
+            Vue.component("myhobby", {
+                props: ['hobby'],
+                template: '<span><slot>{{hobby}}</slot></span>'
+            });
+
+            let vue001 = new Vue({
+                el: "#app",
+                data: {
+                    hobby: "LOL",
+                    sports: [
+                        "篮球", "足球", "乒乓球", "手球"
+                    ],
+                    city: {
+                        "hunan": '长沙',
+                        "hebei": '邯郸',
+                        "hubei": '武汉',
+                        "xinjiang": '乌鲁木齐',
+                        "guangdong": '广州'
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
