@@ -14,8 +14,8 @@
             <hr/>
             <div style="font-size: 20px; color: #ff70ad">具名插槽的例子</div>
             <trip v-bind:message="message">
-                <province v-for="(item, key, index) in cities" :pname="key"></province>
-                <city v-for="x in sports" v-bind:cname="x"></city>
+                <province slot="province" v-for="(item, key, index) in cities" :pname="key"></province>
+                <city slot="city" v-for="x in sports" v-bind:cname="x"></city>
             </trip>
         </div>
 
