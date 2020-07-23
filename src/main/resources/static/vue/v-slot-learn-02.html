@@ -39,12 +39,12 @@
                     '    </div>'
             });
             Vue.component("province", {
-                props: ['province'],
-                template: '<span><slot>{{hobby}}</slot></span>'
+                props: ['pname'],
+                template: '<p>{{pname}}</p>'
             });
             Vue.component("city", {
-                props: ['tripcity'],
-                template: '<span><slot>{{hobby}}</slot></span>'
+                props: ['cname'],
+                template: '<li>{{cname}}</li>'
             });
 
             let vue001 = new Vue({
