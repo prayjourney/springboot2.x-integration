@@ -8,10 +8,10 @@
     </head>
     <body>
         <div id="app">
-            <zhangsan v-for="item in courses" v-bind:oneItem="item" ></zhangsan>
+            <zhangsan v-for="item in courses" v-bind:oneitem="item" ></zhangsan>
             <hr/>
             <!-- v-for是循环， v-bind绑定数据， 绑定的后面是props之中的名称，后面的item是循环出来的数据-->
-            <zhangsan v-for="item in courses" :oneItem="item" ></zhangsan>
+            <zhangsan v-for="item in courses" :oneitem="item" ></zhangsan>
             <hr/>
             <!-- 下面这个有问题 -->
             <!--<zhangsan1 v-for="item in courses" :item="item" ></zhangsan1>-->
@@ -19,11 +19,12 @@
         <script>
             Vue.config.devtools = true;
 
+            // props之中的属性最好都是小写，或者下划线，-或者是驼峰有可能误认为减号或者是转为小写
             // 组件就是一个标签，可重复使用的，自定义的，zhangsan就是我们的这个component的名称
             Vue.component("zhangsan", {
                 // props用来访问外部的数据，template中的数据也是这个名称oneItem
-                props: ['oneItem'],
-                template: '<li>{{oneItem}}</li>'
+                props: ['oneitem'],
+                template: '<li>{{oneitem}}</li>'
             });
 
             // vue对象绑定了div
