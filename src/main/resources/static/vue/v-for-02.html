@@ -37,6 +37,20 @@
             </li>
             <hr/>
 
+            <div class="redbig">获取对象的key和value, 能不能二次嵌套呢？：这样是不行的！</div>
+            <!-- 此处可不可以嵌套呢？ -->
+            <li v-for="(item, key, index) in cities">
+                {{item}}, {{key}}, {{index}}
+            <li v-for="x in '{{item}}'">{{x}}</li>
+            </li>
+            <hr/>
+
+            <div class="redbig">获取对象的key和value, 能不能二次嵌套呢？：借助插槽slot</div>
+            <!-- 此处可不可以嵌套呢？ -->
+            <li v-for="(item, key, index) in cities">
+                {{key}}
+                <secondinsert v-for="(it, index) in item" v-bind:secontent="it">{{it}}, {{index}}</secondinsert>
+            </li>
 
 
         </div>
@@ -44,6 +58,13 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
         <script>
             Vue.config.devtools = true
+
+            Vue.component("secondinsert", {
+                props: ['secontent'],
+                // 二级li
+                template: '<ul><li><slot>{{secontent}}</slot></li></ul>'
+            })
+
             let vm = new Vue({
                 el: "#app",
                 // model：数据
