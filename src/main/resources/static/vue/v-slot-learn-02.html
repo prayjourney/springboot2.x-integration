@@ -31,6 +31,7 @@
             // 具名插槽，有名字的插槽
             Vue.component("trip", {
                 props: ['message'],
+                // 这个写起来还是没有.vue里面舒服，这边相当于是字符串的拼接，.vue是直接的HTML开发
                 template: '    <div>\n' +
                     '        {{message}}' +
                     '        <slot name="province"></slot>\n' +
