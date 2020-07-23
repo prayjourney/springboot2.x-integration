@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"
->
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>使用v-solt</title>
@@ -9,7 +8,7 @@
         <!-- view层模版 -->
         <div id="app">
             <todo>
-                <!-- 例如"to-do", toItem这种，可能会出现问题，前者被当做是"减号"，后者全变为小写， 所以要避免中划线-和驼峰 -->
+                <!-- 如"to-do", toItem这种, 可能会出现问题, 前者被当做是"减号", 后者全变为小写, 所以要避免中划线-和驼峰, 避免保留字关键字 -->
                 <!-- 组件之中有部分内容，需要填充，填充的部分就是插槽，插槽也是一个组件todo-title和todo-items都是插件 -->
                 <todo_title slot="todo_title" :title="title"></todo_title>
                 <todo_items slot="todo_items" v-for="item in todoitems" v-bind:oneitem="item"></todo_items>
