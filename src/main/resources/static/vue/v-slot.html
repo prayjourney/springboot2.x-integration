@@ -9,9 +9,12 @@
         <!-- view层模版 -->
         <div id="app">
             <todo>
+                <!-- 例如"to-do", toItem这种，可能会出现问题，前者被当做是"减号"，后者全变为小写， 所以要避免中划线-和驼峰 -->
                 <!-- 组件之中有部分内容，需要填充，填充的部分就是插槽，插槽也是一个组件todo-title和todo-items都是插件 -->
-                <todo-title slot="todo-title" :title="title"></todo-title>
-                <todo-items slot="todo-items" v-for="item in todoItems" :oneItem="item"></todo-items>
+                <todo_title slot="todo_title" :title="title"></todo_title>
+                <todo_items slot="todo_items" v-for="item in todoitems" v-bind:oneitem="item"></todo_items>
+                <!-- <todo-items slot="todo-items" v-for="item in ['1','2','3312321']" v-bind:one-item="item"></todo-items> -->
+                <!-- <todo-items slot="todo-items" v-for="item in ['1','2','3312321']">{{item}}</todo-items> -->
             </todo>
 
         </div>
@@ -22,15 +25,15 @@
 
             // 留了两个插槽slot，插槽之中也是插入组件component
             Vue.component("todo", {
-                template: '<div><slot name="todo-title"></slot><ul><slot name="todo-items"></slot></ul></div>'
+                template: '<div><slot name="todo_title"></slot><ul><slot name="todo_items"></slot></ul></div>'
             });
-            Vue.component("todo-title", {
+            Vue.component("todo_title", {
                 props: ['title'],
                 template: '<div>{{title}}</div>'
             });
-            Vue.component("todo-items", {
-                props: ['oneItem'],
-                template: '<li>{{oneItem}}</li>'
+            Vue.component("todo_items", {
+                props: ['oneitem'],
+                template: '<li>{{oneitem}}</li>'
             });
 
             // // 留了两个插槽slot，插槽之中也是插入组件component
@@ -48,7 +51,7 @@
                 el: "#app",
                 data: {
                     title: "what?!",
-                    todoItems: ['Hello', 'World', 'Mount']
+                    todoitems: ['Hello', 'World', 'Mount']
                 }
             });
         </script>
