@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-solt-copy</title>
+    </head>
+    <body>
+        <div id="app">
+            <myplan>
+                <!-- 如"to-do", toItem这种, 可能会出现问题, 前者被当做是"减号", 后者全变为小写, 所以要避免中划线-和驼峰, 避免保留字关键字 -->
+                <plan_title slot="plan_title" :title="title"></plan_title>
+                <plan_items slot="plan_items" v-for="item in my_items" v-bind:one_item="item"></plan_items>
+            </myplan>
+
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            Vue.config.devtools = true
+
+            // 留了两个插槽slot，插槽之中也是插入组件component
+            Vue.component("myplan", {
+                template: '<div><slot name="plan_title"></slot><ul><slot name="plan_items"></slot></ul></div>'
+            });
+            Vue.component("plan_title", {
+                props: ['title'],
+                template: '<div>{{title}}</div>'
+            });
+            Vue.component("plan_items", {
+                props: ['one_item'],
+                template: '<li>{{one_item}}</li>'
+            });
+
+            let vm = new Vue({
+                el: "#app",
+                data: {
+                    title: "计划列表",
+                    my_items: ['减肥50公斤（总体重100斤，哈哈）', '环游世界（220人民币）', '睡醒每一天']
+                }
+            });
+        </script>
+
+    </body>
+</html>
