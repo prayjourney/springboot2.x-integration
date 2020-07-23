@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>使用v-for, 高级循环</title>
+        <style>
+            .redbig {
+                font: 20px 微软雅黑;
+                color: orangered;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- view层模版 -->
+        <div id="app">
+            <div class="redbig">获取字符串值</div>
+            <li>
+                {{message}}
+            </li>
+            <hr/>
+
+            <div class="redbig">获取数组中的值</div>
+            <li v-for="sport in sports">
+                {{sport}}
+            </li>
+            <hr/>
+
+            <div class="redbig">获取数组中的对象的值</div>
+            <li v-for="item in items">
+                {{item.message}}
+            </li>
+            <hr/>
+
+            <div class="redbig">获取对象的key和value</div>
+            <li v-for="(item, key, index) in cities">
+                {{item}}, {{key}}, {{index}}
+            </li>
+            <hr/>
+
+
+
+        </div>
+        <!-- 导入vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            Vue.config.devtools = true
+            let vm = new Vue({
+                el: "#app",
+                // model：数据
+                data: {
+                    message: '去过的地方',
+                    sports: [
+                        "篮球", "足球", "乒乓球", "手球"
+                    ],
+                    items: [
+                        {message: "hello"},
+                        {message: "world"},
+                        {message: "china"},
+                        {message: "japan"},
+                        {message: "usa"},
+                        {message: "british"}
+                    ],
+                    cities: {
+                        "hunan": [
+                            '长沙',
+                            '桂阳'
+                        ],
+                        "hebei": [
+                            '邯郸',
+                            '秦皇岛',
+                            '石家庄',
+                            '保定'
+                        ],
+                        "hubei": [
+                            '武汉',
+                            '黄梅',
+                            '荆门'
+                        ],
+                        "xinjiang": [
+                            '乌鲁木齐',
+                            '喀什',
+                            '莎车'
+                        ],
+                        "guangdong": [
+                            '广州'
+                        ]
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
