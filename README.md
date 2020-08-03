@@ -6,4 +6,5 @@
 [![license](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)
 
 整合springboot, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用easyexcel处理excel文件等几项技术
-
+子模块bootvue整合了springboot和vue以及bootstrap，在这一部分之中，我们仅仅使用bootstrap的css，不使用他的js，js部分功能，由vue来实现。前后端没有分离，只不过使用了vue
+技术的html页面。
