@@ -28,17 +28,18 @@
                 <div class="col-md-8" style="margin-left: 15px">
                     <form class="form-inline">
                         <div class="form-group">
-                            <label for="name">姓名：</label>
-                            <input type="text" class="form-control" id="name">
+                            <label for="searchName">姓名：</label>
+                            <input type="text" class="form-control" id="searchName">
                         </div>
                         <div class="form-group">
-                            <label for="email">邮箱：</label>
-                            <input type="text" class="form-control" id="email">
+                            <label for="searchEmail">邮箱：</label>
+                            <input type="text" class="form-control" id="searchEmail">
                         </div>
                         <button type="submit" class="btn btn-info">搜索</button>
                     </form>
                 </div>
             </div>
+
             <div class="col-md-8" style="margin-top: 20px">
                 <!-- 用户信息展示 -->
                 <table class="table table-striped table-bordered table-hover">
@@ -83,6 +84,29 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="col-md-4" style="margin-top: 20px">
+                <form>
+                    <div class="form-group">
+                        <label for="username">姓名：</label>
+                        <input type="text" class="form-control" id="username" placeholder="请输入姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">年龄：</label>
+                        <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">工资：</label>
+                        <input type="text" class="form-control" id="salary" placeholder="请输入工资">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneCode">电话号码：</label>
+                        <input type="text" class="form-control" id="phoneCode" placeholder="请输入电话号码">
+                    </div>
+                    <button type="submit" class="btn btn-info">提交保存</button>
+                    <button type="submit" class="btn btn-danger">重置</button>
+                </form>
             </div>
         </div>
 
