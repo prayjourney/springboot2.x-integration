@@ -23,7 +23,23 @@
         </nav>
         <!-- 中心布局 -->
         <div class="container-fluid">
-            <div class="col-md-8">
+            <!-- 搜索框-->
+            <div class="row">
+                <div class="col-md-8" style="margin-left: 15px">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="name">姓名：</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱：</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <button type="submit" class="btn btn-info">搜索</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8" style="margin-top: 20px">
                 <!-- 用户信息展示 -->
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
@@ -41,6 +57,26 @@
                             <th>23</th>
                             <th>3200</th>
                             <th>17788991234</th>
+                            <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
+                                    class="btn btn-primary">删除
+                            </button></th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>波多野结衣</th>
+                            <th>27</th>
+                            <th>33200</th>
+                            <th>15988991233</th>
+                            <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
+                                    class="btn btn-primary">删除
+                            </button></th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>小泽玛利亚</th>
+                            <th>23</th>
+                            <th>13200</th>
+                            <th>1773291234</th>
                             <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
                                     class="btn btn-primary">删除
                             </button></th>
