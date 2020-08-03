@@ -38,7 +38,7 @@ public class WeatherController {
     public Map<String, String> findWeatherByCity(String name) {
         Map<String, String> map = new HashMap<>();
         String weather = getWeathers(name);
-        map.put(name, weather);
+        map.put("message", weather);
         return map;
     }
 
