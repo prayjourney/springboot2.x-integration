@@ -5,6 +5,11 @@
         <title>用户管理界面</title>
         <!-- 引入bootstarap 的css样式 -->
         <link rel="stylesheet" href="bootvue/css/bootstrap.css">
+        <!-- 需要放在的调用的前面 -->
+        <!-- 引入vuejs-->
+        <script src="bootvue/js/vue.min.js"></script>
+        <!-- 引入axios-->
+        <script src="bootvue/js/axios.min.js"></script>
     </head>
     <body>
         <div id="app">
@@ -53,7 +58,7 @@
                             <th>操作</th>
                         </tr>
                         <tbody>
-                        <tr v-for="person in users">
+                        <tr v-for="person in users" :key = "person.id">
                             <th>{{person.id}}</th>
                             <th>{{person.name}}</th>
                             <th>{{person.age}}</th>
@@ -99,14 +104,15 @@
                 el: "#app",
                 data: {
                     users: [
-                        {'id': "1", 'name': "张三", 'age': 22, 'salary': '3200', 'phoneCode': '17788991234'},
-                        {'id': "2", 'name': "李四", 'age': 23, 'salary': '3200', 'phoneCode': '15988991233'},
-                        {'id': "3", 'name': "王五", 'age': 35, 'salary': '3200', 'phoneCode': '1773291234'},
-                        {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, 'phoneCode': '14588991234'},
-                        {id: "5", name: "天海翼", age: 29, salary: 15200, 'phoneCode': '17788565234'},
-                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, 'phoneCode': '17334491234'},
-                        {id: "8", name: "波多野结衣", age: 29, salary: 33200, 'phoneCode': '16768991234'},
-                        {id: "9", name: "樱井莉亚", age: 40, salary: 62005, 'phoneCode': '15188996634'}
+                        // 是否给key加双引号，貌似问题不太大
+                        {"id": "1", "name": "张三", "age": 22, "salary": '3200', "phoneCode": '17788991234'},
+                        {id: "2", name: "李四", age: 23, salary: '3200', phoneCode: '15988991233'},
+                        {id: "3", name: "王五", age: 35, salary: '3200', phoneCode: '1773291234'},
+                        {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, phoneCode: '14588991234'},
+                        {id: "5", name: "天海翼", age: 29, salary: 15200, phoneCode: '17788565234'},
+                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'},
+                        {id: "8", name: "波多野结衣", age: 29, salary: 33200, phoneCode: '16768991234'},
+                        {id: "9", name: "樱井莉亚", age: 40, salary: 62005, phoneCode: '15188996634'}
                     ]
                 },
                 methods: {},
@@ -114,10 +120,5 @@
                 // 其他的钩子函数
             });
         </script>
-
-        <!-- 引入vuejs-->
-        <script src="bootvue/js/vue.min.js"></script>
-        <!-- 引入axios-->
-        <script src="bootvue/js/axios.min.js"></script>
     </body>
 </html>
