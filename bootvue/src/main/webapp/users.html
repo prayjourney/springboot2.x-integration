@@ -53,34 +53,12 @@
                             <th>操作</th>
                         </tr>
                         <tbody>
-                        <tr>
-                            <th>1</th>
-                            <th>张三</th>
-                            <th>23</th>
-                            <th>3200</th>
-                            <th>17788991234</th>
-                            <th>
-                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
-                                <button class="btn btn-primary">修改</button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th>波多野结衣</th>
-                            <th>27</th>
-                            <th>33200</th>
-                            <th>15988991233</th>
-                            <th>
-                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
-                                <button class="btn btn-primary">修改</button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th>小泽玛利亚</th>
-                            <th>23</th>
-                            <th>13200</th>
-                            <th>1773291234</th>
+                        <tr v-for="person in users">
+                            <th>{{person.id}}</th>
+                            <th>{{person.name}}</th>
+                            <th>{{person.age}}</th>
+                            <th>{{person.salary}}</th>
+                            <th>{{person.phoneCode}}</th>
                             <th>
                                 <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
                                 <button class="btn btn-primary">修改</button>
@@ -119,13 +97,20 @@
             Vue.config.devtools = true
             var vm = new Vue({
                 el: "#app",
-                data:{
-                    message :"hello world!"
+                data: {
+                    users: [
+                        {'id': "1", 'name': "张三", 'age': 22, 'salary': '3200', 'phoneCode': '17788991234'},
+                        {'id': "2", 'name': "李四", 'age': 23, 'salary': '3200', 'phoneCode': '15988991233'},
+                        {'id': "3", 'name': "王五", 'age': 35, 'salary': '3200', 'phoneCode': '1773291234'},
+                        {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, 'phoneCode': '14588991234'},
+                        {id: "5", name: "天海翼", age: 29, salary: 15200, 'phoneCode': '17788565234'},
+                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, 'phoneCode': '17334491234'},
+                        {id: "8", name: "波多野结衣", age: 29, salary: 33200, 'phoneCode': '16768991234'},
+                        {id: "9", name: "樱井莉亚", age: 40, salary: 62005, 'phoneCode': '15188996634'}
+                    ]
                 },
-                methods:{
-                },
-                computed:{
-                }
+                methods: {},
+                computed: {}
                 // 其他的钩子函数
             });
         </script>
