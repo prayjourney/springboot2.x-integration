@@ -7,60 +7,62 @@
         <link rel="stylesheet" href="bootvue/css/bootstrap.css">
     </head>
     <body>
-        <!-- 导航 -->
-        <nav class="navbar navbar-default">
+        <div id="app">
+            <!-- 导航 -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">用户管理系统</a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">欢迎:XXX</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- 中心布局 -->
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">用户管理系统</a>
+                <!-- 搜索框-->
+                <div class="row">
+                    <div class="col-md-8" style="margin-left: 15px">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="searchName">姓名：</label>
+                                <input type="text" class="form-control" id="searchName">
+                            </div>
+                            <div class="form-group">
+                                <label for="searchEmail">邮箱：</label>
+                                <input type="text" class="form-control" id="searchEmail">
+                            </div>
+                            <button type="submit" class="btn btn-info">搜索</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">欢迎:XXX</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- 中心布局 -->
-        <div class="container-fluid">
-            <!-- 搜索框-->
-            <div class="row">
-                <div class="col-md-8" style="margin-left: 15px">
-                    <form class="form-inline">
-                        <div class="form-group">
-                            <label for="searchName">姓名：</label>
-                            <input type="text" class="form-control" id="searchName">
-                        </div>
-                        <div class="form-group">
-                            <label for="searchEmail">邮箱：</label>
-                            <input type="text" class="form-control" id="searchEmail">
-                        </div>
-                        <button type="submit" class="btn btn-info">搜索</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-8" style="margin-top: 20px">
-                <!-- 用户信息展示 -->
-                <table class="table table-striped table-bordered table-hover">
-                    <tr>
-                        <th>ID</th>
-                        <th>姓名</th>
-                        <th>年龄</th>
-                        <th>工资</th>
-                        <th>电话号码</th>
-                        <th>操作</th>
-                    </tr>
-                    <tbody>
+                <div class="col-md-8" style="margin-top: 20px">
+                    <!-- 用户信息展示 -->
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th>ID</th>
+                            <th>姓名</th>
+                            <th>年龄</th>
+                            <th>工资</th>
+                            <th>电话号码</th>
+                            <th>操作</th>
+                        </tr>
+                        <tbody>
                         <tr>
                             <th>1</th>
                             <th>张三</th>
                             <th>23</th>
                             <th>3200</th>
                             <th>17788991234</th>
-                            <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
-                                    class="btn btn-primary">删除
-                            </button></th>
+                            <th>
+                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                                <button class="btn btn-primary">修改</button>
+                            </th>
                         </tr>
                         <tr>
                             <th>2</th>
@@ -68,9 +70,10 @@
                             <th>27</th>
                             <th>33200</th>
                             <th>15988991233</th>
-                            <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
-                                    class="btn btn-primary">删除
-                            </button></th>
+                            <th>
+                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                                <button class="btn btn-primary">修改</button>
+                            </th>
                         </tr>
                         <tr>
                             <th>3</th>
@@ -78,37 +81,54 @@
                             <th>23</th>
                             <th>13200</th>
                             <th>1773291234</th>
-                            <th><button class="btn btn-danger">删除</button>&nbsp;&nbsp;<button
-                                    class="btn btn-primary">删除
-                            </button></th>
+                            <th>
+                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                                <button class="btn btn-primary">修改</button>
+                            </th>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="col-md-4" style="margin-top: 20px">
-                <form>
-                    <div class="form-group">
-                        <label for="username">姓名：</label>
-                        <input type="text" class="form-control" id="username" placeholder="请输入姓名">
-                    </div>
-                    <div class="form-group">
-                        <label for="age">年龄：</label>
-                        <input type="text" class="form-control" id="age" placeholder="请输入年龄">
-                    </div>
-                    <div class="form-group">
-                        <label for="salary">工资：</label>
-                        <input type="text" class="form-control" id="salary" placeholder="请输入工资">
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneCode">电话号码：</label>
-                        <input type="text" class="form-control" id="phoneCode" placeholder="请输入电话号码">
-                    </div>
-                    <button type="submit" class="btn btn-info">提交保存</button>
-                    <button type="submit" class="btn btn-danger">重置</button>
-                </form>
+                <div class="col-md-4" style="margin-top: 20px">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">姓名：</label>
+                            <input type="text" class="form-control" id="username" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">年龄：</label>
+                            <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">工资：</label>
+                            <input type="text" class="form-control" id="salary" placeholder="请输入工资">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneCode">电话号码：</label>
+                            <input type="text" class="form-control" id="phoneCode" placeholder="请输入电话号码">
+                        </div>
+                        <button type="submit" class="btn btn-info">提交保存</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-danger">重置</button>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <script>
+            Vue.config.devtools = true
+            var vm = new Vue({
+                el: "#app",
+                data:{
+                    message :"hello world!"
+                },
+                methods:{
+                },
+                computed:{
+                }
+                // 其他的钩子函数
+            });
+        </script>
 
         <!-- 引入vuejs-->
         <script src="bootvue/js/vue.min.js"></script>
