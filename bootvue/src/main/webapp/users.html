@@ -120,7 +120,9 @@
                 computed: {},
                 // 其他的钩子函数
                 created(){
-                    axios.get("").then(function (resp) {
+                    let _this = this;
+                    axios.get('http://localhost:8988/user/findall').then(function (resp) {
+                        _this.data = resp;
                         console.log(resp)
                     }).catch(function (err) {
                         console.log(err)
