@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Author renjiaxin
  * @Date 2020/8/6
  * @Description 生成cookie, 读取Cookie, https://blog.csdn.net/qq_35387940/article/details/83501886
+ * https://www.cnblogs.com/Johnfx-home/p/7125847.html，https://blog.csdn.net/qq_26321411/article/details/80665162
  */
 @Controller
 @RequestMapping("cookie")
