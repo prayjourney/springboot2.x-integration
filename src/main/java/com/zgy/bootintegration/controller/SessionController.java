@@ -28,7 +28,7 @@ public class SessionController {
      */
     @GetMapping("create")
     @ResponseBody
-    public String cookie(HttpServletRequest request) {
+    public String createSession(HttpServletRequest request) {
         log.info("如果是第一次请求，那就创建session");
         // true表示如果这个HTTP请求中有session，则直接通过getSession获取当前的session，若没有session，则会自动新建一个session
         HttpSession session = request.getSession(true);
@@ -39,4 +39,29 @@ public class SessionController {
         session.setAttribute("password","tommmm");
         return "已经创建好了session, 给前端返回了session id";
     }
+
+
+    /**
+     * 创建session, 并且给前端返回sessionID
+     *
+     * @param request
+     * @return str
+     */
+    @GetMapping("create2browser")
+    @ResponseBody
+    public String createSession2Browser(HttpServletRequest request, HttpServletResponse response) {
+        log.info("如果是第一次请求，那就创建session");
+        // true表示如果这个HTTP请求中有session，则直接通过getSession获取当前的session，若没有session，则会自动新建一个session
+        HttpSession session = request.getSession(true);
+        // false表示只能获取当前请求中的session，如果没有也不能自动创建。
+        // HttpSession session=request.getSession(false);
+
+        session.setAttribute("username","TOM");
+        session.setAttribute("password","tommmm");
+        Cookie c1 = new Cookie("name", "zhangsan");
+        response.addCookie(c1);
+        return "已经创建好了session, 给前端返回了session id, cookie值，请通过F12在network之中查看";
+    }
+
+
 }
