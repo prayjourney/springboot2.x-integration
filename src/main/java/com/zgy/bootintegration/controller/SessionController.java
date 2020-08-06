@@ -74,24 +74,28 @@ public class SessionController {
     @ResponseBody
     public String getSession(HttpServletRequest request) {
         log.info("如果是第一次请求，那就创建session");
-        // false表示只能获取当前请求中的session，如果没有也不能自动创建。
-        HttpSession session=request.getSession(true);
-        String sessionId = session.getId();
-        String userName = session.getAttribute("username").toString();
-        log.info("从session之中获取sessionId:" + sessionId);
-        log.info("从session之中获取userName:" + userName);
+        // false表示只能获取当前请求中的session，如果没有也不能自动创建, 当没有持久化的时候，就会为null
+        HttpSession session=request.getSession(false);
+        if(null != session){
+            String sessionId = session.getId();
+            String userName = session.getAttribute("username").toString();
+            log.info("从session之中获取sessionId:" + sessionId);
+            log.info("从session之中获取userName:" + userName);
 
-        Cookie[] cookies = request.getCookies();
-        for (int i = 0; i < cookies.length; i++) {
-            String name = cookies[i].getName();
-            String value = cookies[i].getValue();
-            log.info("从cookie之中获取key：" + name);
-            log.info("从cookie之中获取value:" + value);
-            if (sessionId.equals(value)){
-                log.info("前端传来的sessionID和后端的sessionID相等!" + sessionId + "," + value);
+            Cookie[] cookies = request.getCookies();
+            for (int i = 0; i < cookies.length; i++) {
+                String name = cookies[i].getName();
+                String value = cookies[i].getValue();
+                log.info("从cookie之中获取key：" + name);
+                log.info("从cookie之中获取value:" + value);
+                if (sessionId.equals(value)){
+                    log.info("前端传来的sessionID和后端的sessionID相等!" + sessionId + "," + value);
+                }
             }
+            return "已经创建好了session, 给前端返回了session id, cookie值，请通过F12在network之中查看";
+        }else {
+            return "session为空！";
         }
-        return "已经创建好了session, 给前端返回了session id, cookie值，请通过F12在network之中查看";
     }
 
 
