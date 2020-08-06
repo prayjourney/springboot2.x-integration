@@ -30,7 +30,7 @@ public class CookieContorller {
      */
     @GetMapping("create")
     @ResponseBody
-    public String cookie(HttpServletResponse response) {
+    public String createCookie(HttpServletResponse response) {
         log.info("正在创建Cookie");
         Cookie c1 = new Cookie("name", "zhangsan");
         Cookie c2 = new Cookie("hobby", "跳舞");
@@ -47,7 +47,7 @@ public class CookieContorller {
      */
     @GetMapping("get")
     @ResponseBody
-    public String cookie(HttpServletRequest request) {
+    public String getCookie(HttpServletRequest request) {
         log.info("正在获取Cookie");
         StringBuilder cookieStr = new StringBuilder();
         Cookie[] cookies = request.getCookies();
@@ -65,7 +65,7 @@ public class CookieContorller {
      */
     @GetMapping("/annoget")
     @ResponseBody
-    public String testCookieValue(@CookieValue("JSESSIONID") String JSESSIONID) {
+    public String getCookieValue(@CookieValue("JSESSIONID") String JSESSIONID) {
         log.info("通过注解获取Cookie的值");
         //前提是已经创建了或者已经存在cookie了，那么下面这个就直接把对应的key值拿出来了。
         String str = "JSESSIONID: " + JSESSIONID;
