@@ -3,6 +3,8 @@ package com.zgy.bootintegration.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -66,6 +68,9 @@ public class SessionController {
 
     /**
      * 获取session, 查看sessionid和前端返回的是否一致
+     * session没有持久化的时候，获取Session就会为null, 虽然我们看到在浏览器之中，开多个窗口，每次返回的JSESSIONID都是一样的
+     * 但是，这是JSESSIONID，而不是SESSION，换句话说，就是说，JSESSIONID是tomcat帮我们生成好的，返回给了浏览器，
+     * 所以如果此处我们没有持久化，那就不会取到Session的值，是这样吗？
      *
      * @param request
      * @return str
@@ -99,4 +104,35 @@ public class SessionController {
     }
 
 
+    /**
+     * 添加用户与属性
+     *
+     * @param request
+     * @param name
+     * @param value
+     * @return str
+     */
+    @PostMapping("/add/{name}/{value}")
+    @ResponseBody
+    public String addSession(HttpServletRequest request, @PathVariable("name") String name, @PathVariable("value") String value) {
+        HttpSession session = request.getSession();
+        session.setAttribute(name, value);
+        return "sessionId: " + session.getId() + " name:" + name;
+    }
+
+
+    /**
+     * 获取sessionid
+     *
+     * @param request
+     * @param name
+     * @return str
+     */
+    @GetMapping("/get/{name}")
+    @ResponseBody
+    public String getSesseion(HttpServletRequest request, @PathVariable("name") String name) {
+        HttpSession session = request.getSession();
+        String value = (String) session.getAttribute(name);
+        return "sessionId:" + session.getId() + " value:" + value;
+    }
 }
