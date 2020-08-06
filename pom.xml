@@ -185,6 +185,13 @@
             <version>2.1.6</version>
         </dependency>
 
+
+        <!-- redis的starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
