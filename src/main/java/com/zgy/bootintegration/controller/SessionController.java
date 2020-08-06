@@ -68,9 +68,10 @@ public class SessionController {
 
     /**
      * 获取session, 查看sessionid和前端返回的是否一致
-     * session没有持久化的时候，获取Session就会为null, 虽然我们看到在浏览器之中，开多个窗口，每次返回的JSESSIONID都是一样的
-     * 但是，这是JSESSIONID，而不是SESSION，换句话说，就是说，JSESSIONID是tomcat帮我们生成好的，返回给了浏览器，
-     * 所以如果此处我们没有持久化，那就不会取到Session的值，是这样吗？
+     * HttpSession session=request.getSession(flag),flag为flase或者为空，就不去创建session, 这时如果去获取，就会为null
+     * Session能不能取到和是否持久化无关，只是和：HttpSession session=request.getSession(ture); 之前有没有调用这句话有关系
+     * 不管有没有持久化，session只要创建了就会存在，如果没有创建就不存在，就会为null, 和是否持久化无关, 体现了session确实是在
+     * 服务器的内存之中存在的
      *
      * @param request
      * @return str
@@ -79,7 +80,8 @@ public class SessionController {
     @ResponseBody
     public String getSession(HttpServletRequest request) {
         log.info("如果是第一次请求，那就创建session");
-        // false表示只能获取当前请求中的session，如果没有也不能自动创建, 当没有持久化的时候，就会为null
+        // false表示只能获取当前请求中的session，如果没有也不能自动创建, 当没有持久化的时候，就会为null--->错误
+        // 不管有没有持久化，session只要创建了就会存在，如果没有创建就不存在，就会为null, 和是否持久化无关
         HttpSession session=request.getSession(false);
         if(null != session){
             String sessionId = session.getId();
