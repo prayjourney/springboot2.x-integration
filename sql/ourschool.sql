@@ -32,6 +32,7 @@ CREATE TABLE `search_location` (
 -- ----------------------------
 -- Records of search_location
 -- ----------------------------
+
 -- https://docs.spring.io/spring-session/docs/2.1.0.M2/reference/html5/?spm=a2c6h.12873639.0.0.577133bcQsjG5Q#httpsession-jdbc
 -- ----------------------------
 -- Table structure for spring_session
