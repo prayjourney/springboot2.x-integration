@@ -15,7 +15,7 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 // 配置的两个类：EnableRedisHttpSession 和 EnableJdbcHttpSession, 里面的一些配置情况可以看一下，表名，命名空间这些
 // @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800, redisFlushMode = RedisFlushMode.ON_SAVE,
 //         redisNamespace = "springboot2.x-integration")
-@EnableJdbcHttpSession(maxInactiveIntervalInSeconds = 1800, tableName = "spring_session")
+// @EnableJdbcHttpSession(maxInactiveIntervalInSeconds = 1800, tableName = "spring_session")
 public class SessionConfig {
 
 }
