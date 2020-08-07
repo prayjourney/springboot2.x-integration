@@ -8,6 +8,17 @@
     </head>
 
     <body class="pg">
+        <h2 style="display: none">
+            这个网页是放在templates之下的，而配置spring.thymeleaf.prefix=classpath:/static/，spring.thymeleaf.suffix=.html，
+            所以，这个会去到classpath:/static/下面找对应的页面，所以如果只是放在templates之中是找不到的！
+            虽然我们设置了静态的spring.resources.static-locations=classpath:/static/,classpath:/templates/，也就是设置了两个位置
+            但是，由于如果需要在springboot之中使用模板，生成html, 那就必须使用thymeleaf或者是freemaker等模板引擎技术，所以必须配置
+            spring.thymeleaf.prefix=classpath:/static/，spring.thymeleaf.suffix=.html，spring.thymeleaf.encoding=UTF-8，
+            这三个配置项目，目前spring.thymeleaf.prefix只能支持单一的的配置，无法支持多个文位置的配置，那么导致如果只是放在templates/
+            的话，我们就无法访问这个页面，为此，将在templates之中的jd.html复制到static目录之中，然后保留在templates之中的jd.html, 改名为
+            jd_copy.html, 特此说明。
+
+        </h2>
         <div class="page" id="app">
             <div id="mallPage" class=" mallist tmall- page-not-market ">
 
