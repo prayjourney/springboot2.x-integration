@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 
 /**
  * @Author renjiaxin
@@ -136,5 +137,54 @@ public class SessionController {
         HttpSession session = request.getSession();
         String value = (String) session.getAttribute(name);
         return "sessionId:" + session.getId() + " value:" + value;
+    }
+
+
+    /**
+     * 添加用户与属性, 与上面的函数作用相同, 为了显示使用jdbc存储, 所以添加了jdbc的url
+     *
+     * @param request
+     * @param name
+     * @param value
+     * @return str
+     */
+    @PostMapping("/jdbc/add/{name}/{value}")
+    @ResponseBody
+    public String addSessionJDBC(HttpServletRequest request, @PathVariable("name") String name,
+                              @PathVariable("value") String value) {
+        log.info("使用jdbc存取session!");
+        HttpSession session = request.getSession();
+        // 看看session里面到底是什么
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()){
+            log.info(attributeNames.nextElement().toString());
+        }
+
+        // 往session里面添加内容
+        session.setAttribute(name, value);
+        return "sessionId: " + session.getId() + ", name:" + name;
+    }
+
+
+    /**
+     * 获取sessionid, 与上面的函数作用相同, 为了显示使用jdbc存储, 所以添加了jdbc的url
+     *
+     * @param request
+     * @param name
+     * @return str
+     */
+    @GetMapping("/jdbc/get/{name}")
+    @ResponseBody
+    public String getSesseionJDBC(HttpServletRequest request, @PathVariable("name") String name) {
+        log.info("使用jdbc存取session!");
+        HttpSession session = request.getSession();
+        // 看看session里面到底是什么
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()){
+            log.info(attributeNames.nextElement().toString());
+        }
+
+        String value = (String) session.getAttribute(name);
+        return "sessionId:" + session.getId() + ", value:" + value;
     }
 }
