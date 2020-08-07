@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -21,7 +22,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     // 主键自增策略，有uuid, 自增id, 雪花算法， redis, zookeeper
     // @TableId(type = IdType.AUTO)
     @TableId(type = IdType.ID_WORKER)
