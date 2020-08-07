@@ -200,6 +200,12 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
+        <!-- 使用jdbc来保存session -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
