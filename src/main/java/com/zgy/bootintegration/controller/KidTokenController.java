@@ -55,9 +55,13 @@ public class KidTokenController {
         } else {
             String token = tokenService.getToken(kid001);
             tokenMap.put("token", token);
-            Cookie cookie = new Cookie("token", token);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            // 1. 把token添加到了cookie之中
+             Cookie cookie = new Cookie("token", token);
+             cookie.setPath("/");
+             response.addCookie(cookie);
+
+            // 2. 把token添加到了header之中
+            // response.addHeader("token", token);
 
             return tokenMap;
         }
