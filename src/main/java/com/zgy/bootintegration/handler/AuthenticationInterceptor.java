@@ -21,9 +21,8 @@ import java.lang.reflect.Method;
 
 /**
  * 配置拦截器去获取token并验证token，实现一个拦截器就需要实现HandlerInterceptor接口
- * <p>
  * 主要流程:
- * 1. 从 http 请求头中取出 token，
+ * 1. 从http请求头中取出token，或者从cookie之中取出cookie，这个要看设置的情况
  * 2. 判断是否映射到方法
  * 3. 检查是否有passtoken注释，有则跳过认证
  * 4. 检查有没有需要用户登录的注解，有则需要取出并验证
