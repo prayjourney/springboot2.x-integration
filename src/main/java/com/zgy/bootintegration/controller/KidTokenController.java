@@ -57,9 +57,9 @@ public class KidTokenController {
             // String token = tokenService.createTokenHeader(kid001);
             tokenMap.put("token", token);
             // 1. 把token添加到了cookie之中
-             Cookie cookie = new Cookie("token", token);
-             cookie.setPath("/");
-             response.addCookie(cookie);
+            Cookie cookie = new Cookie("token", token);
+            cookie.setPath("/");
+            response.addCookie(cookie);
 
             // 2. 把token添加到了header之中
             // response.addHeader("token", token);
@@ -75,7 +75,7 @@ public class KidTokenController {
     @RequestMapping(value = "/getmessage", method = RequestMethod.GET)
     public String getMessage() {
         // 取出token中带的用户id 进行操作
-        log.info(JwtTokenUtil.getTokenKidId());
+        log.info("用户id是：" + JwtTokenUtil.getTokenKidId());
         return "您已通过验证";
     }
 }

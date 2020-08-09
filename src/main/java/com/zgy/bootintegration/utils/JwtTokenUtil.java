@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class JwtTokenUtil {
-
     // 这只是一个测试的方法
     public static String getTokenKidId() {
         // 从 http 请求头中取出 token
