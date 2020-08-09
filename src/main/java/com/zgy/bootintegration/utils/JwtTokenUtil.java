@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class JwtTokenUtil {
 
-    public static String getTokenUserId() {
+    public static String getTokenKidId() {
         // 从 http 请求头中取出 token
         String token = getRequest().getHeader("token");
         String kidId = JWT.decode(token).getAudience().get(0);

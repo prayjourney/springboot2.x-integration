@@ -16,7 +16,7 @@ import java.util.Date;
 @Service
 public class TokenService {
 
-    public String getToken(Kid kid) {
+    public String createToken(Kid kid) {
         Date start = new Date();
         long currentTime = System.currentTimeMillis() + 60 * 60 * 1000;//一小时有效时间
         Date end = new Date(currentTime);

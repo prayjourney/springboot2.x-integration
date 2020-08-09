@@ -53,7 +53,7 @@ public class KidTokenController {
             tokenMap.put("message", "登录失败,密码错误");
             return tokenMap;
         } else {
-            String token = tokenService.getToken(kid001);
+            String token = tokenService.createToken(kid001);
             tokenMap.put("token", token);
             // 1. 把token添加到了cookie之中
              Cookie cookie = new Cookie("token", token);
@@ -74,7 +74,7 @@ public class KidTokenController {
     @RequestMapping(value = "/getmessage", method = RequestMethod.GET)
     public String getMessage() {
         // 取出token中带的用户id 进行操作
-        log.info(JwtTokenUtil.getTokenUserId());
+        log.info(JwtTokenUtil.getTokenKidId());
         return "您已通过验证";
     }
 }
