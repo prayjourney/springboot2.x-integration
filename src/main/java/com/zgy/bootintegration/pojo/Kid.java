@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Kid {
-    String id;
+    Integer id;
     String username;
     String password;
 }
