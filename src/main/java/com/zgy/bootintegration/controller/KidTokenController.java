@@ -53,7 +53,8 @@ public class KidTokenController {
             tokenMap.put("message", "登录失败,密码错误");
             return tokenMap;
         } else {
-            String token = tokenService.createToken(kid001);
+            String token = tokenService.createTokenCookie(kid001);
+            // String token = tokenService.createTokenHeader(kid001);
             tokenMap.put("token", token);
             // 1. 把token添加到了cookie之中
              Cookie cookie = new Cookie("token", token);
