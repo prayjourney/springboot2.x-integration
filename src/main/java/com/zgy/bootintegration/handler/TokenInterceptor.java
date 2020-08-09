@@ -35,34 +35,42 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-        // 1. 如果token放到了header之中，则从http请求头中取出token
-        // String token = httpServletRequest.getHeader("token");
-
-        // 2.如果token放到了cookie之中，则从cookie之中获取
-        Cookie[] cookies = httpServletRequest.getCookies();
-        String token = null;
-        for (int i= 0; i<  cookies.length; i++){
-            if (cookies[i].getName().equals("token")){
-                token = cookies[i].getValue();
-            }
-        }
-
         // 如果不是映射到方法直接通过
         if (!(object instanceof HandlerMethod)) {
             return true;
         }
         HandlerMethod handlerMethod = (HandlerMethod) object;
         Method method = handlerMethod.getMethod();
-        //检查是否有passtoken注释，有则跳过认证
+
+        // 当前将没有注解的也设置为跳过认证
+        if (null == method.getAnnotation(PassToken.class)){
+            return true;
+        }
+
+        // 检查是否有passtoken注释，有则跳过认证
         if (method.isAnnotationPresent(PassToken.class)) {
             PassToken passToken = method.getAnnotation(PassToken.class);
             if (passToken.required()) {
                 return true;
             }
         }
-        //检查有没有需要用户权限的注解
+
+        // 检查有没有需要用户权限的注解
         if (method.isAnnotationPresent(KidLoginToken.class)) {
             KidLoginToken kidLoginToken = method.getAnnotation(KidLoginToken.class);
+
+            // 1. 如果token放到了header之中，则从http请求头中取出token
+            // String token = httpServletRequest.getHeader("token");
+
+            // 2.如果token放到了cookie之中，则从cookie之中获取
+            Cookie[] cookies = httpServletRequest.getCookies();
+            String token = null;
+            for (int i= 0; i<  cookies.length; i++){
+                if (cookies[i].getName().equals("token")){
+                    token = cookies[i].getValue();
+                }
+            }
+
             if (kidLoginToken.required()) {
                 // 执行认证
                 if (token == null) {
