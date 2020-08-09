@@ -17,13 +17,13 @@ public class KidService {
     @Autowired
     KidMapper kidMapper;
 
-    public Kid findKidById(String kidId) {
+    public Kid findKidById(Integer kidId) {
         return kidMapper.selectById(kidId);
     }
 
     public Kid findKidByName(String kidName) {
         QueryWrapper queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name", kidName);
+        queryWrapper.eq("username", kidName);
         return kidMapper.selectOne(queryWrapper);
     }
 }
