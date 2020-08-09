@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
  * 5. 认证通过则可以访问，不通过会报相关错误信息
  */
 @Component
-public class AuthenticationInterceptor implements HandlerInterceptor {
+public class TokenInterceptor implements HandlerInterceptor {
     @Autowired
     KidService kidService;
 

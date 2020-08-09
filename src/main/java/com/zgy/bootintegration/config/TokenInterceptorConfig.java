@@ -1,6 +1,6 @@
 package com.zgy.bootintegration.config;
 
-import com.zgy.bootintegration.handler.AuthenticationInterceptor;
+import com.zgy.bootintegration.handler.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @Modified by:
  */
 @Configuration
-public class InterceptorConfig implements WebMvcConfigurer {
+public class TokenInterceptorConfig implements WebMvcConfigurer {
     @Autowired
-    AuthenticationInterceptor interceptor;
+    TokenInterceptor interceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
