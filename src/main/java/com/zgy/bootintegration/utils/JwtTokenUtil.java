@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -16,10 +17,22 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class JwtTokenUtil {
 
+    // 这只是一个测试的方法
     public static String getTokenKidId() {
         // 从 http 请求头中取出 token
-        String token = getRequest().getHeader("token");
-        String kidId = JWT.decode(token).getAudience().get(0);
+        // String token = getRequest().getHeader("token");
+        // String kidId = JWT.decode(token).getAudience().get(0);
+
+        // 可以从header之中获取，也可以从cookie之中获取，要看你把token放到了哪儿
+        Cookie[] cookies = getRequest().getCookies();
+        String token = null;
+        String kidId = null;
+        for (int i= 0; i<  cookies.length; i++){
+            if (cookies[i].getName().equals("token")){
+                token = cookies[i].getValue();
+                kidId = JWT.decode(token).getAudience().get(0);
+            }
+        }
         return kidId;
     }
 
