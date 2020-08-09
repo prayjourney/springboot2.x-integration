@@ -72,7 +72,7 @@ public class StudentController {
         } else {
             studentService.deleteStudentById(stId);
             log.warn("删除了数据库值! 时间是：{}", LocalDateTime.now());
-            return JacksonUtil.obj2Str("删除redis缓存, 删除了数据库值!");
+            return JacksonUtil.obj2Str("删除了数据库值!");
         }
     }
 }

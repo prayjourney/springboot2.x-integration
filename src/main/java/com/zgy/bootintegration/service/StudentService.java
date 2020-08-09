@@ -26,6 +26,7 @@ public class StudentService {
     List<String> names = Arrays.asList("张三", "lisi", "雨涵", "kiristina", "MG-HOTdog!");
     List<String> cities = Arrays.asList("四川省乐山市", "四川省成都市", "江苏省南京市", "广东省广州市", "北京市");
 
+
     // 插入学生
     public void insertStudent() {
         Student student = Student.builder().cityId(1).classId(2).hobbyGroupId(1).stAge(22).stGender('男')
@@ -35,6 +36,7 @@ public class StudentService {
                 .build();
         mapper.insert(student);
     }
+
 
     // 更新学生信息，部分更新===============》会更新全部的字段不符合要求，需要注意！
     public void updateStudent() {
@@ -49,22 +51,27 @@ public class StudentService {
     }
 
 
-    public void getStudentById(int id){
+    public Student getStudentById(int id) {
         // 直接使用自带的selectById， 这样不行啊
-        // Student student = mapper.selectById(id);
-        // System.out.println(student.toString());
+        // return mapper.selectById(id);
 
         Map<String, Object> mp = new HashMap<>();
-        mp.put("stId",id);
+        mp.put("stId", id);
         List<Student> students = mapper.selectByMap(mp);
-        System.out.println(students.get(0).toString());
+        return students.get(0);
     }
 
+
     // 按照其他条件查询
-    public void getStudentByName(String name){
+    public Student getStudentByName(String name) {
         Map<String, Object> mp = new HashMap<>();
-        mp.put("stName",name);
+        mp.put("stName", name);
         List<Student> students = mapper.selectByMap(mp);
-        System.out.println(students.get(0).toString());
+        return students.get(0);
+    }
+
+
+    public int deleteStudentById(Integer stId) {
+        return mapper.deleteByStudentId(stId);
     }
 }
