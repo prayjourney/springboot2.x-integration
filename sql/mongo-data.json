@@ -1,0 +1,28 @@
+[
+
+  {
+    "stId" : 200,
+    "stName" : "关二爷",
+    "stGender" : "男",
+    "stGrade" : "三年级",
+    "stClass" : "2班"
+  },
+
+
+  {
+    "stId" : 300,
+    "stName" : "刘亦菲",
+    "stGender" : "女",
+    "stGrade" : "三年级",
+    "stClass" : "1班"
+  },
+
+
+  {
+    "stId" : 100,
+    "stName" : "张三丰",
+    "stGender" : "男",
+    "stGrade" : "五年级",
+    "stClass" : "3班"
+  }
+]
