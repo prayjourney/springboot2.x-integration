@@ -5,6 +5,8 @@ import com.zgy.bootintegration.pojo.Student;
 import com.zgy.bootintegration.service.RedisService;
 import com.zgy.bootintegration.service.StudentService;
 import com.zgy.bootintegration.utils.JacksonUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Controller
 @RequestMapping("student")
+@Api(value = "学生Controller", tags = "学生管理的接口")
 public class StudentController {
     @Autowired
     private RedisService redisService;
@@ -47,6 +50,7 @@ public class StudentController {
 
     @ResponseBody
     @GetMapping("get")
+    @ApiOperation(value = "按照id查询学生", notes = "按照id查询学生", httpMethod = "GET")
     public String getStudentById(Integer stId) throws JsonProcessingException {
         // 先到缓存之中查，如果没有然后到数据库中查询并且缓存到缓存之中
         if (redisService.hasKey("student:" + String.valueOf(stId))) {
@@ -62,6 +66,7 @@ public class StudentController {
 
     @ResponseBody
     @PostMapping("delete")
+    @ApiOperation(value = "按照id删除学生", notes = "按照id删除学生", httpMethod = "POST")
     public String deleteStudentById(Integer stId) throws JsonProcessingException {
         if (redisService.hasKey("student:" + String.valueOf(stId))) {
             // 先删除redis缓存，然后删除数据库值
