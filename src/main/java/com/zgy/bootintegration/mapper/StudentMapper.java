@@ -17,4 +17,6 @@ public interface StudentMapper extends BaseMapper<Student> {
     List<Student> getAllStudentList();
 
     void updateStudent(Student student);
+
+    int deleteByStudentId(int stId);
 }

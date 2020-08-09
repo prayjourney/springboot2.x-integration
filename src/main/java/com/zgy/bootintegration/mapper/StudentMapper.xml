@@ -20,4 +20,9 @@
             stId = #{stId}
         </where>
     </update>
+
+    <delete id="deleteByStudentId" parameterType="integer" resultType="com.zgy.bootintegration.pojo.Student">
+        DELETE  FROM `student`
+        WHERE stId = #{stId}
+    </delete>
 </mapper>
