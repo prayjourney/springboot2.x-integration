@@ -52,7 +52,7 @@ public class MybatisPlusConfiguration {
     public PerformanceInterceptor performanceInterceptor(){
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         performanceInterceptor.setFormat(true);
-        performanceInterceptor.setMaxTime(100);  // 1ms设置sql执行的最大时间，超过就不去执行
+        performanceInterceptor.setMaxTime(1000);  // 1ms设置sql执行的最大时间，超过就不去执行
         return  performanceInterceptor;
 
     }
