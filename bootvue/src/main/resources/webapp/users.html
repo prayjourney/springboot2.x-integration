@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>用户管理界面</title>
@@ -76,22 +76,26 @@
                 <div class="col-md-4" style="margin-top: 20px">
                     <form>
                         <div class="form-group">
-                            <label for="username">姓名：</label>
-                            <input type="text" class="form-control" id="username" placeholder="请输入姓名">
+                            <label for="name">姓名：</label>
+                            <input type="text" class="form-control" id="name"  v-model="saveuser.name"
+                                   placeholder="请输入姓名">
                         </div>
                         <div class="form-group">
                             <label for="age">年龄：</label>
-                            <input type="text" class="form-control" id="age" placeholder="请输入年龄">
+                            <input type="text" class="form-control" id="age" v-model="saveuser.age"
+                                   placeholder="请输入年龄">
                         </div>
                         <div class="form-group">
                             <label for="salary">工资：</label>
-                            <input type="text" class="form-control" id="salary" placeholder="请输入工资">
+                            <input type="text" class="form-control" id="salary" v-model="saveuser.salary"
+                                   placeholder="请输入工资">
                         </div>
                         <div class="form-group">
                             <label for="phoneCode">电话号码：</label>
-                            <input type="text" class="form-control" id="phoneCode" placeholder="请输入电话号码">
+                            <input type="text" class="form-control" id="phoneCode" v-model="saveuser.phoneCode"
+                                   placeholder="请输入电话号码">
                         </div>
-                        <button type="submit" class="btn btn-info">提交保存</button>&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-info" v-on:click="saveUserInfo">提交保存</button>&nbsp;&nbsp;
                         <button type="submit" class="btn btn-danger">重置</button>
                     </form>
                 </div>
@@ -112,9 +116,15 @@
                         {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, phoneCode: '14588991234'},
                         {id: "5", name: "天海翼", age: 29, salary: 15200, phoneCode: '17788565234'},
                         {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'}
-                    ]
+                    ],
+                    // 用于数据双向绑定
+                    saveuser:{}
                 },
-                methods: {},
+                methods: {
+                    saveUserInfo(){
+                        console.log(this.saveuser)
+                    }
+                },
                 computed: {},
                 // 其他的钩子函数
                 created(){
