@@ -5,4 +5,8 @@
     <select id="findAll" resultType="com.zgy.learn.bootvue.pojo.User">
         SELECT * FROM t_user;
     </select>
+
+    <insert id="saveUser" parameterType="com.zgy.learn.bootvue.pojo.User">
+        INSERT INTO `t_user`(`name`, `age`, `salary`, `phoneCode`)  VALUES (#{name}, #{age}, #{salary}, #{phoneCode})
+    </insert>
 </mapper>

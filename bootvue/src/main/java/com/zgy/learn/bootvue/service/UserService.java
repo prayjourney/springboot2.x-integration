@@ -23,4 +23,9 @@ public class UserService {
     public List<User> findAll() {
         return mapper.findAll();
     }
+
+    public Integer saveUser(User user){
+        return mapper.saveUser(user);
+        // return mapper.insert(user);
+    }
 }
