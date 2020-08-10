@@ -111,9 +111,7 @@
                         {id: "3", name: "王五", age: 35, salary: '3200', phoneCode: '1773291234'},
                         {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, phoneCode: '14588991234'},
                         {id: "5", name: "天海翼", age: 29, salary: 15200, phoneCode: '17788565234'},
-                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'},
-                        {id: "8", name: "波多野结衣", age: 29, salary: 33200, phoneCode: '16768991234'},
-                        {id: "9", name: "樱井莉亚", age: 40, salary: 62005, phoneCode: '15188996634'}
+                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'}
                     ]
                 },
                 methods: {},
@@ -121,9 +119,9 @@
                 // 其他的钩子函数
                 created(){
                     let _this = this;
-                    axios.get('http://localhost:8988/user/findall').then(function (resp) {
-                        _this.data = resp;
-                        console.log(resp)
+                    axios.get('http://localhost:8988/bootvue/user/findall').then(function (resp) {
+                        _this.users = resp.data;
+                        console.log(resp.data)
                     }).catch(function (err) {
                         console.log(err)
                     })
