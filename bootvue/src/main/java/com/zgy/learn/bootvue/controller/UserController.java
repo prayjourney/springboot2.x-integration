@@ -23,19 +23,20 @@ import java.util.Map;
  */
 @Slf4j
 @Controller
+@CrossOrigin  // 跨域
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService service;
 
-    @CrossOrigin // 跨域
+
     @ResponseBody
     @RequestMapping("findall")
     public List<User> findAll() {
         return service.findAll();
     }
 
-    @CrossOrigin
+
     @ResponseBody
     @PostMapping("saveuser") // @RequestBody是必须的
     public Map<String, Object> saveUser(@RequestBody User user) {
@@ -45,6 +46,15 @@ public class UserController {
             mp.put("message", "用户保存失败！");
             log.error("输入的user是null!");
         }
-        return (Map<String, Object>) (service.saveUser(user) == 1 ? mp.put("sucess", true) : mp.put("sucess", true));
+        Integer result = service.saveUser(user);
+        if (result == 1){
+            mp.put("sucess", true);
+            log.error("用户保存成功!");
+        }else {
+            mp.put("sucess", false);
+            mp.put("message", "用户保存失败！");
+            log.error("用户保存失败!");
+        }
+        return mp;
     }
 }
