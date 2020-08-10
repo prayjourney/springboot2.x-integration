@@ -122,9 +122,28 @@
                 },
                 methods: {
                     saveUserInfo() {
+                        let _this = this;
                         // console.log(this.saveuser)
                         // 保存数据, 传递参数
-                        axios.post('http://localhost:8988/bootvue/user/saveuser', this.saveuser).then(function (resp) {
+                        axios.post('http://localhost:8988/bootvue/user/saveuser', _this.saveuser).then(function (resp) {
+                            if (resp.data.success) {
+                                console.log(resp.data);
+                                // 刷新
+                                _this.findAll();
+                                // 提交后置空
+                                _this.saveuser = {}
+                            } else {
+                                console.log(this.resp.data.success);
+                                alert(this.resp.data.message);
+                            }
+                        }).catch(function (err) {
+                            console.log(err)
+                        })
+                    },
+                    findAll() {
+                        let _this = this;
+                        axios.get('http://localhost:8988/bootvue/user/findall').then(function (resp) {
+                            _this.users = resp.data;
                             console.log(resp.data)
                         }).catch(function (err) {
                             console.log(err)
@@ -134,13 +153,7 @@
                 computed: {},
                 // 其他的钩子函数
                 created() {
-                    let _this = this;
-                    axios.get('http://localhost:8988/bootvue/user/findall').then(function (resp) {
-                        _this.users = resp.data;
-                        console.log(resp.data)
-                    }).catch(function (err) {
-                        console.log(err)
-                    })
+                    this.findAll();
                 }
             });
         </script>

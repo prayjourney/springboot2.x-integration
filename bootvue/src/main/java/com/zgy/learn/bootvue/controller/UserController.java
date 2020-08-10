@@ -49,7 +49,7 @@ public class UserController {
         Integer result = service.saveUser(user);
         if (result == 1){
             mp.put("sucess", true);
-            log.error("用户保存成功!");
+            log.info("用户保存成功!");
         }else {
             mp.put("sucess", false);
             mp.put("message", "用户保存失败！");
