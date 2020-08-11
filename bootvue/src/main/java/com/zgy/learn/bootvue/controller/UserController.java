@@ -70,16 +70,18 @@ public class UserController {
         if (null != id) {
             Integer result = service.deleteUserById(id);
             if (result >= 1) {
-                log.error("id为{}的用户删除成功！", id);
                 mp.put("sucess", true);
                 mp.put("message", "用户删除成功！");
+                log.info("id为{}的用户删除成功！", id);
             } else {
                 mp.put("sucess", false);
                 mp.put("message", "用户删除失败！");
+                log.info("id为{}的用户删除失败！", id);
             }
         }else{
             mp.put("sucess", false);
             mp.put("message", "输入的用户id不合法！");
+            log.warn("输入的用户id不合法!");
         }
         return mp;
     }
