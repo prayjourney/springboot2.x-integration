@@ -22,4 +22,6 @@ public interface UserMapper extends BaseMapper<User> {
     Integer deleteUserById(Integer id);
 
     User selectUserById(Integer id);
+
+    Integer updateUserById(User user);
 }

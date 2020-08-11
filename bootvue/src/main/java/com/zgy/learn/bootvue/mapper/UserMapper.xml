@@ -16,4 +16,9 @@
     <delete id="deleteUserById" parameterType="int">
         DELETE FROM `t_user` WHERE id = #{id};
     </delete>
+
+    <update id="updateUserById">
+        UPDATE `t_user` SET `name` = #{name}, `age` = #{age}, `salary` = #{salary}, `phoneCode` =#{phoneCode} WHERE
+        `id` = #{id};
+    </update>
 </mapper>

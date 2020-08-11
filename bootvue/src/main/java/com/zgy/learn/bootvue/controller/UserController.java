@@ -79,7 +79,7 @@ public class UserController {
                 mp.put("message", "用户删除失败！");
                 log.info("id为{}的用户删除失败！", id);
             }
-        }else{
+        } else {
             mp.put("success", false);
             mp.put("message", "输入的用户id不合法！");
             log.warn("输入的用户id不合法!");
@@ -92,5 +92,23 @@ public class UserController {
     @GetMapping("selectuserbyid")
     public User selectUserById(@Param("id") Integer id) {
         return service.selectUserById(id);
+    }
+
+    @CrossOrigin
+    @ResponseBody
+    @PostMapping("updateuserbyid")
+    public Map<String, Object> updateUserById(@RequestBody User user) {
+        Map<String, Object> mp = new HashMap<>();
+        Integer result = service.updateUserById(user);
+        if (result == 1) {
+            mp.put("success", true);
+            mp.put("message", "用户更新成功！");
+            log.info("用户更新成功!");
+        } else {
+            mp.put("success", false);
+            mp.put("message", "用户更新失败！");
+            log.error("用户更新失败!");
+        }
+        return mp;
     }
 }

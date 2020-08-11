@@ -24,15 +24,19 @@ public class UserService {
         return mapper.findAll();
     }
 
-    public Integer saveUser(User user){
+    public Integer saveUser(User user) {
         return mapper.saveUser(user);
     }
 
-    public Integer deleteUserById(Integer id){
+    public Integer deleteUserById(Integer id) {
         return mapper.deleteUserById(id);
     }
 
-    public User selectUserById(Integer id){
+    public User selectUserById(Integer id) {
         return mapper.selectUserById(id);
+    }
+
+    public Integer updateUserById(User user) {
+        return mapper.updateUserById(user);
     }
 }
