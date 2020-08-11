@@ -86,4 +86,11 @@ public class UserController {
         }
         return mp;
     }
+
+    @CrossOrigin
+    @ResponseBody
+    @GetMapping("selectuserbyid")
+    public User selectUserById(@Param("id") Integer id) {
+        return service.selectUserById(id);
+    }
 }

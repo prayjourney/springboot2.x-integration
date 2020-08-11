@@ -20,4 +20,6 @@ public interface UserMapper extends BaseMapper<User> {
     Integer saveUser(User user);
 
     Integer deleteUserById(Integer id);
+
+    User selectUserById(Integer id);
 }

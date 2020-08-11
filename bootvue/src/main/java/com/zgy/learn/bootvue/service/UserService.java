@@ -31,4 +31,8 @@ public class UserService {
     public Integer deleteUserById(Integer id){
         return mapper.deleteUserById(id);
     }
+
+    public User selectUserById(Integer id){
+        return mapper.selectUserById(id);
+    }
 }
