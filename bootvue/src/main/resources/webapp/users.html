@@ -146,7 +146,7 @@
                         // console.log(id)
                         let _this = this;
                         axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id='+id).then(function (resp) {
-                            console.log(resp.data)
+                            // console.log(resp.data)
                             // 此处可以进行提示
                             if (resp.data.success){
                                 _this.findAll()
