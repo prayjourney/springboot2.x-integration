@@ -26,6 +26,9 @@ public class UserService {
 
     public Integer saveUser(User user){
         return mapper.saveUser(user);
-        // return mapper.insert(user);
+    }
+
+    public Integer deleteUserById(Integer id){
+        return mapper.deleteUserById(id);
     }
 }
