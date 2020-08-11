@@ -145,16 +145,18 @@
                     deleteByUserId(id){
                         // console.log(id)
                         let _this = this;
-                        axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id='+id).then(function (resp) {
-                            // console.log(resp.data)
-                            // 此处可以进行提示
-                            if (resp.data.success){
-                                _this.findAll()
-                                alert(resp.data.message)
-                            }
-                        }).catch(function (err) {
-                            console.log(err)
-                        })
+                        if (window.confirm('确认要删除id为 ' + id + " 的用户吗？")) {
+                            axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id=' + id).then(function (resp) {
+                                // console.log(resp.data)
+                                // 此处可以进行提示
+                                if (resp.data.success) {
+                                    _this.findAll()
+                                    alert(resp.data.message)
+                                }
+                            }).catch(function (err) {
+                                console.log(err)
+                            })
+                        }
                     },
                     findAll() {
                         let _this = this;
