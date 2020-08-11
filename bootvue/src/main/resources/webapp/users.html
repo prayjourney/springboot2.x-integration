@@ -65,7 +65,7 @@
                             <th>{{person.salary}}</th>
                             <th>{{person.phoneCode}}</th>
                             <th>
-                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                                <button class="btn btn-danger" @click="deleteByUserId(person.id)">删除</button>&nbsp;&nbsp;
                                 <button class="btn btn-primary">修改</button>
                             </th>
                         </tr>
@@ -142,6 +142,15 @@
                     },
                     resetUserInfo() {
                         this.saveuser = {};
+                    },
+                    // 删除用户id
+                    deleteByUserId(id){
+                        console.log(id)
+                        axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id='+id).then(function (resp) {
+                            console.log(resp.data)
+                        }).catch(function (err) {
+                            console.log(err)
+                        })
                     },
                     findAll() {
                         let _this = this;
