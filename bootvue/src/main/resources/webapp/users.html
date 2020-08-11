@@ -96,7 +96,7 @@
                                    placeholder="请输入电话号码">
                         </div>
                         <button type="button" class="btn btn-info" v-on:click="saveUserInfo">提交保存</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-danger" @click="resetUserInfo">重置</button>
+                        <button type="reset" class="btn btn-danger" @click="resetUserInfo">重置</button>
                     </form>
                 </div>
             </div>
@@ -122,19 +122,17 @@
                 },
                 methods: {
                     saveUserInfo() {
+                        // 外部的this, 主要是和axios内部的做区别，一般习惯用_this来表示
                         let _this = this;
-                        // console.log(this.saveuser)
                         // 保存数据, 传递参数
                         axios.post('http://localhost:8988/bootvue/user/saveuser', _this.saveuser).then(function (resp) {
                             if (resp.data.success) {
-                                console.log(resp.data);
                                 // 刷新
                                 _this.findAll();
                                 // 提交后置空
                                 _this.saveuser = {}
                             } else {
-                                console.log(this.resp.data.success);
-                                alert(this.resp.data.message);
+                                console.log(resp.data.success);
                             }
                         }).catch(function (err) {
                             console.log(err)
@@ -145,9 +143,15 @@
                     },
                     // 删除用户id
                     deleteByUserId(id){
-                        console.log(id)
+                        // console.log(id)
+                        let _this = this;
                         axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id='+id).then(function (resp) {
                             console.log(resp.data)
+                            // 此处可以进行提示
+                            if (resp.data.success){
+                                _this.findAll()
+                                alert(resp.data.message)
+                            }
                         }).catch(function (err) {
                             console.log(err)
                         })
@@ -156,7 +160,8 @@
                         let _this = this;
                         axios.get('http://localhost:8988/bootvue/user/findall').then(function (resp) {
                             _this.users = resp.data;
-                            console.log(resp.data)
+                            // 调试使用
+                            // console.log(resp.data)
                         }).catch(function (err) {
                             console.log(err)
                         })
