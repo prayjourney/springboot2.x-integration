@@ -127,7 +127,6 @@
                         // 保存数据, 传递参数
                         axios.post('http://localhost:8988/bootvue/user/saveuser', _this.saveuser).then(function (resp) {
                             if (resp.data.success) {
-                                console.log(resp.data);
                                 // 刷新
                                 _this.findAll();
                                 // 提交后置空
@@ -145,9 +144,7 @@
                     },
                     // 删除用户id
                     deleteByUserId(id){
-                        console.log(id)
                         axios.get('http://localhost:8988/bootvue/user/deleteuserbyid?id='+id).then(function (resp) {
-                            console.log(resp.data)
                         }).catch(function (err) {
                             console.log(err)
                         })
@@ -156,7 +153,6 @@
                         let _this = this;
                         axios.get('http://localhost:8988/bootvue/user/findall').then(function (resp) {
                             _this.users = resp.data;
-                            console.log(resp.data)
                         }).catch(function (err) {
                             console.log(err)
                         })
