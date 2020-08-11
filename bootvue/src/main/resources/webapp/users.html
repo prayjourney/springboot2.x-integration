@@ -65,7 +65,7 @@
                             <th>{{person.salary}}</th>
                             <th>{{person.phoneCode}}</th>
                             <th>
-                                <button class="btn btn-danger">删除</button>&nbsp;&nbsp;
+                                <button class="btn btn-danger" @click="deleteUserById(person.id)">删除</button>&nbsp;&nbsp;
                                 <button class="btn btn-primary">修改</button>
                             </th>
                         </tr>
@@ -96,7 +96,7 @@
                                    placeholder="请输入电话号码">
                         </div>
                         <button type="button" class="btn btn-info" v-on:click="saveUserInfo">提交保存</button>&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-danger">重置</button>
+                        <button type="reset" class="btn btn-danger">重置</button>
                     </form>
                 </div>
             </div>
@@ -139,6 +139,9 @@
                         }).catch(function (err) {
                             console.log(err)
                         })
+                    },
+                    deleteUserById(id){
+                      console.log(123, id)
                     },
                     findAll() {
                         let _this = this;
