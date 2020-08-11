@@ -95,7 +95,8 @@
                             <input type="text" class="form-control" id="phoneCode" v-model="saveuser.phoneCode"
                                    placeholder="请输入电话号码">
                         </div>
-                        <button type="button" class="btn btn-info" v-on:click="saveUserInfo">提交保存</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-info" v-on:click="saveUserInfo(saveuser.id)">提交保存
+                        </button>&nbsp;&nbsp;
                         <button type="reset" class="btn btn-danger" @click="resetUserInfo">重置</button>
                     </form>
                 </div>
@@ -121,28 +122,45 @@
                     saveuser: {}
                 },
                 methods: {
-                    saveUserInfo() {
+                    saveUserInfo(id) {
                         // 外部的this, 主要是和axios内部的做区别，一般习惯用_this来表示
                         let _this = this;
-                        // 保存数据, 传递参数
-                        axios.post('http://localhost:8988/bootvue/user/saveuser', _this.saveuser).then(function (resp) {
-                            if (resp.data.success) {
-                                // 刷新
-                                _this.findAll();
-                                // 提交后置空
-                                _this.saveuser = {}
-                            } else {
-                                console.log(resp.data.success);
-                            }
-                        }).catch(function (err) {
-                            console.log(err)
-                        })
+                        // 新创建则没有id
+                        if (undefined == id) {
+                            // 保存数据, 传递参数
+                            axios.post('http://localhost:8988/bootvue/user/saveuser', _this.saveuser).then(function (resp) {
+                                if (resp.data.success) {
+                                    // 刷新
+                                    _this.findAll();
+                                    // 提交后置空
+                                    _this.saveuser = {}
+                                } else {
+                                    console.log(resp.data.success);
+                                }
+                            }).catch(function (err) {
+                                console.log(err)
+                            })
+                        } else {
+                            // 保存数据, 传递参数
+                            axios.post('http://localhost:8988/bootvue/user/updateuserbyid', _this.saveuser).then(function (resp) {
+                                if (resp.data.success) {
+                                    // 刷新
+                                    _this.findAll();
+                                    // 提交后置空
+                                    _this.saveuser = {}
+                                } else {
+                                    console.log(resp.data.success);
+                                }
+                            }).catch(function (err) {
+                                console.log(err)
+                            })
+                        }
                     },
                     resetUserInfo() {
                         this.saveuser = {};
                     },
                     // 删除用户id
-                    deleteByUserId(id){
+                    deleteByUserId(id) {
                         // console.log(id)
                         let _this = this;
                         if (window.confirm('确认要删除id为 ' + id + " 的用户吗？")) {
@@ -159,7 +177,7 @@
                         }
                     },
                     // 更新用户
-                    updateByUserId(id){
+                    updateByUserId(id) {
                         console.log(id)
                         let _this = this;
                         axios.get('http://localhost:8988/bootvue/user/selectuserbyid?id=' + id).then(function (resp) {
