@@ -18,4 +18,6 @@ public interface UserMapper extends BaseMapper<User> {
     List<User> findAll();
 
     Integer saveUser(User user);
+
+    Integer deleteUserById(Integer id);
 }
