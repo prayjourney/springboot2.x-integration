@@ -45,16 +45,17 @@ public class UserController {
     public Map<String, Object> saveUser(@RequestBody User user) {
         Map<String, Object> mp = new HashMap<>();
         if (null == user) {
-            mp.put("sucess", false);
+            mp.put("success", false);
             mp.put("message", "用户信息不合法！");
             log.error("输入的user是null!");
         }
         Integer result = service.saveUser(user);
         if (result == 1) {
-            mp.put("sucess", true);
+            mp.put("success", true);
+            mp.put("message", "用户保存成功！");
             log.info("用户保存成功!");
         } else {
-            mp.put("sucess", false);
+            mp.put("success", false);
             mp.put("message", "用户保存失败！");
             log.error("用户保存失败!");
         }
@@ -70,16 +71,16 @@ public class UserController {
         if (null != id) {
             Integer result = service.deleteUserById(id);
             if (result >= 1) {
-                mp.put("sucess", true);
+                mp.put("success", true);
                 mp.put("message", "用户删除成功！");
                 log.info("id为{}的用户删除成功！", id);
             } else {
-                mp.put("sucess", false);
+                mp.put("success", false);
                 mp.put("message", "用户删除失败！");
                 log.info("id为{}的用户删除失败！", id);
             }
         }else{
-            mp.put("sucess", false);
+            mp.put("success", false);
             mp.put("message", "输入的用户id不合法！");
             log.warn("输入的用户id不合法!");
         }
