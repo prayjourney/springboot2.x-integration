@@ -66,7 +66,7 @@
                             <th>{{person.phoneCode}}</th>
                             <th>
                                 <button class="btn btn-danger" @click="deleteByUserId(person.id)">删除</button>&nbsp;&nbsp;
-                                <button class="btn btn-primary">修改</button>
+                                <button class="btn btn-primary" v-on:click="updateByUserId(person.id)">修改</button>
                             </th>
                         </tr>
                         </tbody>
@@ -157,6 +157,17 @@
                                 console.log(err)
                             })
                         }
+                    },
+                    // 更新用户
+                    updateByUserId(id){
+                        console.log(id)
+                        let _this = this;
+                        axios.get('http://localhost:8988/bootvue/user/selectuserbyid?id=' + id).then(function (resp) {
+                            console.log(resp.data)
+                            _this.saveuser = resp.data;
+                        }).catch(function (err) {
+                            console.log(err)
+                        })
                     },
                     findAll() {
                         let _this = this;
