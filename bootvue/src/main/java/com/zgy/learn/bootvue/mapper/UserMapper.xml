@@ -26,10 +26,10 @@
     <select id="selectByUserNameOrPhoneCode" resultType="com.zgy.learn.bootvue.pojo.User">
         SELECT * FROM `t_user`
         <where>
-            <if test="name != null">
+            <if test="name != null and name !=''">
                 name = #{name}
             </if>
-            <if test="phoneCode != null">
+            <if test="phoneCode != null and phoneCode !=''">
                 AND phoneCode = #{phoneCode}
             </if>
         </where>
@@ -41,10 +41,10 @@
         SELECT * FROM `t_user`
         WHERE
         1 = 1
-        <if test="name != null">
+        <if test="name != null and name !=''">
             AND name = #{name}
         </if>
-        <if test="phoneCode != null">
+        <if test="phoneCode != null and phoneCode !=''">
             AND phoneCode = #{phoneCode}
         </if>
     </select>
