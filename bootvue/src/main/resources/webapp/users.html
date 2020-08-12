@@ -34,14 +34,17 @@
                     <div class="col-md-8" style="margin-left: 15px">
                         <form class="form-inline">
                             <div class="form-group">
-                                <label for="searchName">姓名：</label>
-                                <input type="text" class="form-control" id="searchName">
+                                <label for="seName">姓名：</label>
+                                <!-- input之中的值和searchName绑定 -->
+                                <input type="text" class="form-control" id="seName" v-model="searchName">
                             </div>
                             <div class="form-group">
-                                <label for="searchEmail">邮箱：</label>
-                                <input type="text" class="form-control" id="searchEmail">
+                                <label for="sePhoneCode">电话号码：</label>
+                                <input type="text" class="form-control" id="sePhoneCode" v-model="searchPhoneCode">
                             </div>
-                            <button type="submit" class="btn btn-info">搜索</button>
+                            <!-- 阻止了默认行为 -->
+                            <button type="button" class="btn btn-info" v-on:click.pre="searchUser">搜索
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -119,7 +122,10 @@
                         {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'}
                     ],
                     // 用于数据双向绑定
-                    saveuser: {}
+                    saveuser: {},
+                    // 搜索使用, 双向绑定
+                    searchName: "",
+                    searchPhoneCode: ""
                 },
                 methods: {
                     saveUserInfo(id) {
@@ -193,6 +199,17 @@
                             _this.users = resp.data;
                             // 调试使用
                             // console.log(resp.data)
+                        }).catch(function (err) {
+                            console.log(err)
+                        })
+                    },
+                    searchUser(){
+                        console.log(this.searchName )
+                        console.log(this.searchPhoneCode)
+                        let _this = this
+                        axios.get('http://localhost:8988/bootvue/user/selectuserbynameorphonecode?name=' +
+                            _this.searchName + "&phoneCode=" + _this.searchPhoneCode).then(function (resp) {
+                            _this.users = resp.data;
                         }).catch(function (err) {
                             console.log(err)
                         })
