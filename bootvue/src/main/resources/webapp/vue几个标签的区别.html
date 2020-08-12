@@ -12,10 +12,16 @@
             <hr/>
             <h4 v-text="msg"></h4>
             <div v-html="colormsg"></div>
+            <hr/>
 
             <!-- v-text和v-html只是展示文字，v-bind可以做更多，绑定不同的属性 -->
             <button v-bind:id="msg">我是一个button, v-bind:xx绑定的是id</button>
             <button v-bind:type="type" v-bind:id="msg2" v-text="buttonvalue"></button>
+            <hr/>
+
+            <!-- v-model的使用 -->
+            <input id="helloinput" type="text" v-model="poem">
+            <p>{{poem}}</p>
         </div>
 
         <script>
@@ -36,6 +42,7 @@
                         {id: "5", name: "天海翼", age: 29, salary: 15200, phoneCode: '17788565234'},
                         {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'}
                     ],
+                    poem: "我寄愁心与明月"
                 },
                 methods: {}
             });
