@@ -111,4 +111,13 @@ public class UserController {
         }
         return mp;
     }
+
+    @CrossOrigin
+    @ResponseBody
+    @PostMapping("selectuserbynameorphonecode")
+    public List<User> selectByUserNameOrPhoneCode(@Param("name")String name, @Param("phoneCode")String phoneCode){
+        // 可以使用java代码控制多个情况的问题，也可以使用动态sql
+        return service.selectByUserNameOrPhoneCode(name, phoneCode);
+
+    }
 }

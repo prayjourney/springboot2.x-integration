@@ -21,4 +21,31 @@
         UPDATE `t_user` SET `name` = #{name}, `age` = #{age}, `salary` = #{salary}, `phoneCode` =#{phoneCode} WHERE
         `id` = #{id};
     </update>
+
+    <!-- 查询的话，按条件就必须有where， 有where后面就要有条件，如果使用WHERE就要有一个 1=1 的真条件，或者使用<where>, 使用<where>优雅点-->
+    <select id="selectByUserNameOrPhoneCode" resultType="com.zgy.learn.bootvue.pojo.User">
+        SELECT * FROM `t_user`
+        <where>
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="phoneCode != null">
+                AND phoneCode = #{phoneCode}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 查询的话，按条件就必须有where， 有where后面就要有条件，如果使用WHERE就要有一个 1=1 的真条件，或者使用<WHERE>   -->
+    <select id="selectByUserNameOrPhoneCode02" resultType="com.zgy.learn.bootvue.pojo.User">
+        SELECT * FROM `t_user`
+        WHERE
+        1 = 1
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="phoneCode != null">
+            AND phoneCode = #{phoneCode}
+        </if>
+    </select>
 </mapper>

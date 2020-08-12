@@ -39,4 +39,8 @@ public class UserService {
     public Integer updateUserById(User user) {
         return mapper.updateUserById(user);
     }
+
+    public List<User> selectByUserNameOrPhoneCode(String name, String phoneCode){
+        return mapper.selectByUserNameOrPhoneCode(name, phoneCode);
+    }
 }
