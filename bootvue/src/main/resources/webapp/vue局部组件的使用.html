@@ -18,8 +18,15 @@
             Vue.config.devtools = true
             // 定义组件，这个组件，使用它自己里面的属性
             let login = {
-                template: '<div><h2>欢迎：{{ name }}, 年龄是: {{ age }}</h2></div>',
-                props: ['name', 'age']
+                template: '<div><h2>欢迎：{{ name }}, 年龄是: {{ age }}, 使用组件自己的内容：{{home}}</h2></div>',
+                props: ['name', 'age'],
+                // 定义自己组件内部的数据
+                data(){
+                    return{
+                        msg: 'hello',
+                        home: 'tianshui'
+                    }
+                }
             }
 
             // vue对象
