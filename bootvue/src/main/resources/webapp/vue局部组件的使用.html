@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>vue局部组件的使用</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 使用组件，name是login组件里面的属性 -->
+            <login v-bind:name="username" :age="userage"></login>
+
+        </div>
+
+        <script>
+            // 开启vue调试工具
+            Vue.config.devtools = true
+            // 定义组件，这个组件，使用它自己里面的属性
+            let login = {
+                template: '<div><h2>欢迎：{{ name }}, 年龄是: {{ age }}</h2></div>',
+                props: ['name', 'age']
+            }
+
+            // vue对象
+            let vm = new Vue({
+                el: '#app',
+                data: {
+                    username: "张飞",
+                    userage: "22"
+                },
+                methods: {},
+                // 注册组件
+                components: {login}
+            });
+        </script>
+    </body>
+</html>
