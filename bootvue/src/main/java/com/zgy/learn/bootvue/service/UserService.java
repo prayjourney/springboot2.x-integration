@@ -40,6 +40,7 @@ public class UserService {
         return mapper.updateUserById(user);
     }
 
+    // 动态sql:https://www.jianshu.com/p/6b0227935d0f
     public List<User> selectByUserNameOrPhoneCode(String name, String phoneCode){
         return mapper.selectByUserNameOrPhoneCode(name, phoneCode);
     }
