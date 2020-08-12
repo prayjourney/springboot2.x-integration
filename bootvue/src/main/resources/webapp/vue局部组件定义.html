@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>vue组件</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 使用组件 -->
+            <mycomponent></mycomponent>
+
+            <!-- 然后组件的数据和vue对象的数据， 就交互起来了-->
+            <login v-bind:name="username"></login>
+
+
+            <!-- 组件的定义 -->
+            <template id="templatedemo">
+                <h2>组件</h2>
+            </template>
+        </div>
+
+        <script>
+
+            // 组件对象，局部组件mycomponent， 具体的内容在上述id为mytemplate的标签里
+            let mycomponent = {
+                template: '#templatedemo'
+            }
+
+            // 标签里面直接是template的定义, 里面的name就相当于是login组建的属性了，可以使用绑定了
+            const login ={
+                template: '<div><h2>欢迎： {{ name }}</h2></div>',
+                props:['name']
+            }
+
+            // Vue对象
+            let vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: "hello",
+                    username:"张飞"
+                },
+                methods: {},
+                components: {
+                    // 注册组件
+                    login, mycomponent
+                }
+            });
+        </script>
+    </body>
+</html>
