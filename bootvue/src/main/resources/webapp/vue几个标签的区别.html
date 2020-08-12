@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>v-text(v-html,{{ }}), v-bind, v-model的区别</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h4>{{msg}}</h4>
+            <hr/>
+            <h4 v-text="msg"></h4>
+            <div v-html="colormsg"></div>
+
+
+        </div>
+
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: "hello",
+                    colormsg: "<h4 style=\"color: blue\">我是一个彩色的消息</h4>",
+                    users: [
+                        // 是否给key加双引号，貌似问题不太大
+                        {"id": "1", "name": "张三", "age": 22, "salary": '3200', "phoneCode": '17788991234'},
+                        {id: "2", name: "李四", age: 23, salary: '3200', phoneCode: '15988991233'},
+                        {id: "3", name: "王五", age: 35, salary: '3200', phoneCode: '1773291234'},
+                        {id: "4", name: "小泽玛利亚", age: 32, salary: 13200, phoneCode: '14588991234'},
+                        {id: "5", name: "天海翼", age: 29, salary: 15200, phoneCode: '17788565234'},
+                        {id: "7", name: "北条麻妃", age: 31, salary: 22200, phoneCode: '17334491234'}
+                    ],
+                },
+                methods: {}
+            });
+        </script>
+    </body>
+</html>
