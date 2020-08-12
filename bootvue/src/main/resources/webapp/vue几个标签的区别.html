@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>v-text(v-html,{{ }}), v-bind, v-model的区别</title>
@@ -13,7 +13,9 @@
             <h4 v-text="msg"></h4>
             <div v-html="colormsg"></div>
 
-
+            <!-- v-text和v-html只是展示文字，v-bind可以做更多，绑定不同的属性 -->
+            <button v-bind:id="msg">我是一个button, v-bind:xx绑定的是id</button>
+            <button v-bind:type="type" v-bind:id="msg2" v-text="buttonvalue"></button>
         </div>
 
         <script>
@@ -21,7 +23,10 @@
                 el: '#app',
                 data: {
                     msg: "hello",
+                    msg2: "hello2",
                     colormsg: "<h4 style=\"color: blue\">我是一个彩色的消息</h4>",
+                    buttonvalue: "我是一个button, v-bind:xx绑定的是id 和type",
+                    type: 'submit',
                     users: [
                         // 是否给key加双引号，貌似问题不太大
                         {"id": "1", "name": "张三", "age": 22, "salary": '3200', "phoneCode": '17788991234'},
