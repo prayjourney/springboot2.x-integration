@@ -10,13 +10,18 @@
         <div id="app">
             <div class="container">
                 <div class="row" style="margin-top: 70px"></div>
-                <div class="col-md-10 col-md-offset-4">
-
-                    <ul class="nav nav-pills">
-                        <li role="presentation" class="active"><a href="#">首页</a></li>
-                        <li role="presentation"><a href="#">用户管理</a></li>
-                        <li role="presentation"><a href="#">学生管理</a></li>
+                <div class="col-md-10 col-md-offset-1">
+                    <ul class="nav nav-pills nav-justified">
+                        <li role="presentation" class="active"><a href="#/home">首页</a></li>
+                        <li role="presentation"><a href="#/user">用户管理</a></li>
+                        <li role="presentation"><a href="#/student">学生管理</a></li>
                     </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <!-- 显示路由组件的内容 -->
+                    <router-view></router-view>
                 </div>
             </div>
 
@@ -42,6 +47,8 @@
             // 使用路由
             let vueRouter = new VueRouter({
                 routes: [
+                    // 默认路由的重定向
+                    {path:'/', redirect: '/home'},
                     {path: '/home', component: home},
                     {path: '/user', component: user},
                     {path: '/student', component: student}
