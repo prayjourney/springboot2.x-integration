@@ -72,11 +72,11 @@
                         <th>邮箱</th>
                         <th>操作</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>张三</td>
-                        <td>大学本科</td>
-                        <td>35426978@qq.com</td>
+                    <tr v-for="s in students">
+                        <td>{{s.id}}</td>
+                        <td>{{s.name}}</td>
+                        <td>{{s.age}}</td>
+                        <td>{{s.email}}</td>
                         <td><a href="" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
                                                                                                 class="btn btn-danger">删除
                         </a></td>
@@ -106,7 +106,7 @@
                 created(){
                     let _this = this;
                     axios.get('http://localhost:8988/bootvue/teacher/all').then(function (resp) {
-                       console.log(resp.data)
+                       // console.log(resp.data)
                         _this.teachers = resp.data;
                     }).catch(function (err) {
                         console.log(err)
@@ -115,7 +115,23 @@
             };
             // 3.学生管理组件
             const student = {
-                template: '#student'
+                template: '#student',
+                // 定义数据
+                data(){
+                    return{
+                        students:[]
+                    }
+                },
+                // 初始化的时候就去查询
+                created(){
+                    let _this = this;
+                    axios.get('http://localhost:8988/bootvue/student/all').then(function (resp) {
+                        console.log(resp.data)
+                        _this.students = resp.data;
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                }
             };
             // 使用路由
             let vueRouter = new VueRouter({
