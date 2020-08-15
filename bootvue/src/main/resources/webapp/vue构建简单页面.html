@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>vue构建简单页面</title>
+        <!-- 引入bootstarap 的css样式 -->
+        <link rel="stylesheet" href="bootvue/css/bootstrap.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="bootvue/js/vue-router.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div class="container">
+                <div class="row" style="margin-top: 70px"></div>
+                <div class="col-md-10 col-md-offset-4">
+
+                    <ul class="nav nav-pills">
+                        <li role="presentation" class="active"><a href="#">首页</a></li>
+                        <li role="presentation"><a href="#">用户管理</a></li>
+                        <li role="presentation"><a href="#">学生管理</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            let vm = new Vue({
+                el: '#app',
+                data: {
+                    msg: "hello"
+                },
+                methods: {}
+            });
+        </script>
+    </body>
+</html>
