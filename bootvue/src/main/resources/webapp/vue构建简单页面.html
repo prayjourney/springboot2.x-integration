@@ -49,11 +49,11 @@
                         <th>教师学历</th>
                         <th>操作</th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>张三</td>
-                        <td>22</td>
-                        <td>1992-01-01</td>
+                    <tr v-for="t in teachers">
+                        <td>{{t.id}}</td>
+                        <td>{{t.name}}</td>
+                        <td>{{t.age}}</td>
+                        <td>{{t.grade}}</td>
                         <td><a href="" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
                                                                                                 class="btn btn-danger">删除
                         </a></td>
@@ -92,7 +92,26 @@
             };
             // 2.教师管理组件
             const teacher = {
-                template: '#teacher'
+                template: '#teacher',
+                // 数据
+                data(){
+                    return{
+                        teachers :[]
+                    }
+                },
+                methods: {
+
+                },
+                // 初始化的时候就去查询
+                created(){
+                    let _this = this;
+                    axios.get('http://localhost:8988/bootvue/teacher/all').then(function (resp) {
+                       console.log(resp.data)
+                        _this.teachers = resp.data;
+                    }).catch(function (err) {
+                        console.log(err)
+                    })
+                }
             };
             // 3.学生管理组件
             const student = {
