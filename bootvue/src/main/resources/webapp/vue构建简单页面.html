@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
         <title>vue构建简单页面</title>
@@ -12,9 +12,18 @@
                 <div class="row" style="margin-top: 70px;">
                     <div class="col-md-10 col-md-offset-1">
                         <ul class="nav nav-pills nav-justified">
-                            <li role="presentation" class="active"><a href="#/home">首页</a></li>
-                            <li role="presentation"><a href="#/teacher">教师管理</a></li>
-                            <li role="presentation"><a href="#/student">学生管理</a></li>
+                            <li role="presentation"
+                                v-bind:class="showActive=='home' ? 'active':''"><a href="#/home"
+                                                                                 @click="changeActive('home')">首页
+                            </a></li>
+                            <li role="presentation"
+                                :class="showActive=='teacher' ? 'active':''"><a href="#/teacher"
+                                                                              @click="changeActive('teacher')">教师管理</a>
+                            </li>
+                            <li role="presentation"
+                                :class="showActive=='student' ? 'active':''"><a href="#/student"
+                                                                              @click="changeActive('student')">学生管理</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -94,19 +103,17 @@
             const teacher = {
                 template: '#teacher',
                 // 数据
-                data(){
-                    return{
-                        teachers :[]
+                data() {
+                    return {
+                        teachers: []
                     }
                 },
-                methods: {
-
-                },
+                methods: {},
                 // 初始化的时候就去查询
-                created(){
+                created() {
                     let _this = this;
                     axios.get('http://localhost:8988/bootvue/teacher/all').then(function (resp) {
-                       // console.log(resp.data)
+                        // console.log(resp.data)
                         _this.teachers = resp.data;
                     }).catch(function (err) {
                         console.log(err)
@@ -117,13 +124,13 @@
             const student = {
                 template: '#student',
                 // 定义数据
-                data(){
-                    return{
-                        students:[]
+                data() {
+                    return {
+                        students: []
                     }
                 },
                 // 初始化的时候就去查询
-                created(){
+                created() {
                     let _this = this;
                     axios.get('http://localhost:8988/bootvue/student/all').then(function (resp) {
                         console.log(resp.data)
@@ -147,9 +154,15 @@
             let vm = new Vue({
                 el: '#app',
                 data: {
-                    msg: "hello"
+                    msg: "hello",
+                    // 用来控制active
+                    showActive: "home"
                 },
-                methods: {},
+                methods: {
+                    changeActive(value) {
+                        this.showActive = value;
+                    }
+                },
                 // 注册路由
                 router: vueRouter
             });
