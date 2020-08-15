@@ -9,13 +9,14 @@
     <body>
         <div id="app">
             <div class="container">
-                <div class="row" style="margin-top: 70px"></div>
-                <div class="col-md-10 col-md-offset-1">
-                    <ul class="nav nav-pills nav-justified">
-                        <li role="presentation" class="active"><a href="#/home">首页</a></li>
-                        <li role="presentation"><a href="#/user">用户管理</a></li>
-                        <li role="presentation"><a href="#/student">学生管理</a></li>
-                    </ul>
+                <div class="row" style="margin-top: 70px;">
+                    <div class="col-md-10 col-md-offset-1">
+                        <ul class="nav nav-pills nav-justified">
+                            <li role="presentation" class="active"><a href="#/home">首页</a></li>
+                            <li role="presentation"><a href="#/user">用户管理</a></li>
+                            <li role="presentation"><a href="#/student">学生管理</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -30,19 +31,36 @@
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="bootvue/js/vue-router.js"></script>
+        <template id="home">
+            <div>
+                <h1>主页</h1>
+            </div>
+        </template>
+
+        <template id="user">
+            <div>
+                <h1>用户管理</h1>
+            </div>
+        </template>
+
+        <template id="student">
+            <div>
+                <h1>学生管理</h1>
+            </div>
+        </template>
 
         <script>
             // 1. 主页组件
             const home = {
-                template: "<h1>主页数据</h1>"
+                template: '#home'
             };
             // 2.用户管理组件
             const user = {
-                template: "<h1>用户信息</h1>"
+                template: '#user'
             };
             // 3.学生管理组件
             const student = {
-                template: "<h1>学生信息</h1>"
+                template: '#student'
             };
             // 使用路由
             let vueRouter = new VueRouter({
