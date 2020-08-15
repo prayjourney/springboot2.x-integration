@@ -13,7 +13,7 @@
                     <div class="col-md-10 col-md-offset-1">
                         <ul class="nav nav-pills nav-justified">
                             <li role="presentation" class="active"><a href="#/home">首页</a></li>
-                            <li role="presentation"><a href="#/user">用户管理</a></li>
+                            <li role="presentation"><a href="#/teacher">教师管理</a></li>
                             <li role="presentation"><a href="#/student">学生管理</a></li>
                         </ul>
                     </div>
@@ -39,14 +39,14 @@
             </div>
         </template>
 
-        <template id="user">
+        <template id="teacher">
             <div>
                 <table class="table table-striped">
                     <tr>
                         <th>id</th>
-                        <th>姓名</th>
+                        <th>教师姓名</th>
                         <th>年龄</th>
-                        <th>生日</th>
+                        <th>教师学历</th>
                         <th>操作</th>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                     <tr>
                         <th>id</th>
                         <th>学生姓名</th>
-                        <th>学历</th>
+                        <th>年龄</th>
                         <th>邮箱</th>
                         <th>操作</th>
                     </tr>
@@ -90,9 +90,9 @@
             const home = {
                 template: '#home'
             };
-            // 2.用户管理组件
-            const user = {
-                template: '#user'
+            // 2.教师管理组件
+            const teacher = {
+                template: '#teacher'
             };
             // 3.学生管理组件
             const student = {
@@ -104,7 +104,7 @@
                     // 默认路由的重定向
                     {path: '/', redirect: '/home'},
                     {path: '/home', component: home},
-                    {path: '/user', component: user},
+                    {path: '/teacher', component: teacher},
                     {path: '/student', component: student}
                 ]
             });
