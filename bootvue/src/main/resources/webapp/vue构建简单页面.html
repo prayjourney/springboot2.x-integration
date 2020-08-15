@@ -33,19 +33,55 @@
         <script src="bootvue/js/vue-router.js"></script>
         <template id="home">
             <div>
-                <h1>主页</h1>
+                <div class="jumbotron" style="margin-top: 30px;">
+                    <p>Hello World! Hello World! Hello World! Hello World! Hello World!</p>
+                </div>
             </div>
         </template>
 
         <template id="user">
             <div>
-                <h1>用户管理</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th>id</th>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>生日</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>22</td>
+                        <td>1992-01-01</td>
+                        <td><a href="" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
+                                                                                                class="btn btn-danger">删除
+                        </a></td>
+                    </tr>
+                </table>
             </div>
         </template>
 
         <template id="student">
             <div>
-                <h1>学生管理</h1>
+                <table class="table table-striped">
+                    <tr>
+                        <th>id</th>
+                        <th>学生姓名</th>
+                        <th>学历</th>
+                        <th>邮箱</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>张三</td>
+                        <td>大学本科</td>
+                        <td>35426978@qq.com</td>
+                        <td><a href="" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
+                                                                                                class="btn btn-danger">删除
+                        </a></td>
+                    </tr>
+                </table>
             </div>
         </template>
 
@@ -66,7 +102,7 @@
             let vueRouter = new VueRouter({
                 routes: [
                     // 默认路由的重定向
-                    {path:'/', redirect: '/home'},
+                    {path: '/', redirect: '/home'},
                     {path: '/home', component: home},
                     {path: '/user', component: user},
                     {path: '/student', component: student}
