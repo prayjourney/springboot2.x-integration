@@ -17,8 +17,12 @@
           <td>{{ t.grade }}</td>
 
           <td>
-            <a href="#/teacher/add" class="btn btn-success btn-sm">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="btn btn-danger btn-sm">删除</a>
+            <a href="/#/student/add" class="glyphicon glyphicon-plus" title="添加老师"
+               style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" class="glyphicon glyphicon-refresh" title="更新老师"
+               style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" class="glyphicon glyphicon-remove warning" title="删除老师"
+               style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
       </table>
@@ -60,6 +64,10 @@
 </script>
 
 <style scoped>
+  table{
+    font-size: medium;
+  }
+
   th {
     border: 1px;
     border-style: solid;
