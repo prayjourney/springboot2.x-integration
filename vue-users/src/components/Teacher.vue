@@ -19,9 +19,9 @@
           <td>
             <a href="/#/teacher/add" class="glyphicon glyphicon-plus" title="添加老师"
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="glyphicon glyphicon-refresh" title="更新老师"
+            <a href="javascript:viod(0)" class="glyphicon glyphicon-refresh" title="更新老师"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="glyphicon glyphicon-remove warning" title="删除老师" @click="deleteTeacherById(t.id)"
+            <a href="javascript:viod(0)" class="glyphicon glyphicon-remove warning " title="删除老师" @click="deleteTeacherById(t.id)"
                style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
