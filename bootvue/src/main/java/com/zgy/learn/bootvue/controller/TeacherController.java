@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,7 +45,7 @@ public class TeacherController {
     // 添加一个老师
     @CrossOrigin
     @PostMapping("add")
-    public Integer addTeacher(Teacher teacher) {
+    public Integer addTeacher(@RequestBody Teacher teacher) {
         log.info("添加一个老师， 老师是:{} !", teacher.toString());
         return teacherService.addTeacher(teacher);
     }
@@ -60,7 +61,7 @@ public class TeacherController {
     // 更新一个老师
     @CrossOrigin
     @PostMapping("update")
-    public Integer updateTeacherById(Teacher teacher) {
+    public Integer updateTeacherById(@RequestBody Teacher teacher) {
         log.info("更新一个老师， 老师是:{} !", teacher.toString());
         return teacherService.updateTeacherById(teacher);
     }
