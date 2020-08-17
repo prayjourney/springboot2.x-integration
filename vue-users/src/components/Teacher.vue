@@ -49,6 +49,15 @@
       }
     },
     methods: {
+      // 查询所有
+      findAll() {
+        this.$http.get('http://localhost:8988/bootvue/teacher/all').then(resp => {
+          this.teachers = resp.data
+          console.log(resp.data)
+        }).catch(reason => {
+          console.log(reason)
+        })
+      },
       deleteTeacherById(id) {
         this.$http.post('http://localhost:8988/bootvue/teacher/delete?id=' + id).then(resp => {
           console.log(resp.data)
@@ -62,12 +71,7 @@
       Footer: Footer
     },
     created() {
-      this.$http.get('http://localhost:8988/bootvue/teacher/all').then(resp => {
-        this.teachers = resp.data
-        console.log(resp.data)
-      }).catch(reason => {
-        console.log(reason)
-      })
+      this.findAll();
     }
   }
 </script>
