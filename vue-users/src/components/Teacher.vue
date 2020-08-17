@@ -21,7 +21,7 @@
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="" class="glyphicon glyphicon-refresh" title="更新老师"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="glyphicon glyphicon-remove warning" title="删除老师"
+            <a href="" class="glyphicon glyphicon-remove warning" title="删除老师" @click="deleteTeacherById(t.id)"
                style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
@@ -46,6 +46,15 @@
           {id: 4, name: "关云长", age: 26, grade: "本科"},
           {id: 5, name: "杨过", age: 12, grade: "硕士"}
         ]
+      }
+    },
+    methods: {
+      deleteTeacherById(id) {
+        this.$http.post('http://localhost:8988/bootvue/teacher/delete?id=' + id).then(resp => {
+          console.log(resp.data)
+        }).catch(reason => {
+          console.log(reason)
+        })
       }
     },
     components: {
