@@ -15,9 +15,10 @@
         <td>{{ t.age }}</td>
         <td>{{ t.grade }}</td>
 
-        <td><a href="#/teacher/add" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=""
-                                                                                class="btn btn-danger">删除
-        </a></td>
+        <td>
+          <a href="#/teacher/add" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="" class="btn btn-danger">删除</a>
+        </td>
       </tr>
     </table>
     <router-view></router-view>
@@ -38,7 +39,7 @@
           {id: 3, name: "Amy", age: 24, grade: "高职"},
           {id: 4, name: "关云长", age: 26, grade: "本科"},
           {id: 5, name: "杨过", age: 12, grade: "硕士"}
-          ]
+        ]
       }
     },
     components: {
