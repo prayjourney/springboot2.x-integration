@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
-      <h1>学生页面</h1>
+       <h2>学生页面</h2>
       <table class="table table-bordered table-striped table-hover">
         <tr class="tr-m">
           <th>id</th>
