@@ -31,7 +31,7 @@
           }
         }).then(resp => {
           console.log(resp.data);
-          // 如果成功，切换路由，跳转到/teacher
+          // 添加如果成功，切换路由，跳转到/teacher, 也就是为了隐藏添加页面，然后在teacher之中监听url的变化，如果改变了，就重新获取数据
           if (1 == resp.data) {
             console.log("success")
             this.$router.push("/teacher")

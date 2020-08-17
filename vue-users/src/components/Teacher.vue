@@ -76,6 +76,19 @@
     },
     created() {
       this.findAll();
+    },
+    // 用来监听，主要是检测url的变化
+    watch:{
+      $route:{
+        handler: function (val, oldVal) {
+          console.log(123)
+          console.log(val);
+          if (val.path == "/teacher"){
+            this.findAll();
+          }
+        }
+      }
+
     }
   }
 </script>
