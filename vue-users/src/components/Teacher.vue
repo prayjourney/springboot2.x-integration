@@ -19,10 +19,11 @@
           <td>
             <a href="/#/teacher/add" class="glyphicon glyphicon-plus" title="添加老师"
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="javascript:viod(0)" class="glyphicon glyphicon-refresh" title="更新老师"
+            <a v-bind:href="'/#/teacher/update?id=' + t.id" class="glyphicon glyphicon-refresh" title="更新老师"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="javascript:viod(0)" class="glyphicon glyphicon-remove warning " title="删除老师" @click="deleteTeacherById(t.id)"
-               style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- javascript:viod(0)阻止<a>标签默认行为https://www.jianshu.com/p/8a2bd9792eec -->
+            <a href="javascript:viod(0)" class="glyphicon glyphicon-remove warning " title="删除老师"
+               @click="deleteTeacherById(t.id)" style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
       </table>
@@ -62,7 +63,7 @@
         this.$http.get('http://localhost:8988/bootvue/teacher/delete?id=' + id).then(resp => {
           console.log(resp.data)
           // 删除成功后自动刷新
-          if (1 == resp.data){
+          if (1 == resp.data) {
             this.findAll();
           }
         }).catch(reason => {
@@ -78,12 +79,12 @@
       this.findAll();
     },
     // 用来监听，主要是检测url的变化
-    watch:{
-      $route:{
+    watch: {
+      $route: {
         handler: function (val, oldVal) {
           console.log(123)
           console.log(val);
-          if (val.path == "/teacher"){
+          if (val.path == "/teacher") {
             this.findAll();
           }
         }
