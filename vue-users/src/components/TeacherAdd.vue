@@ -16,9 +16,24 @@
     name: "TeacherAdd",
     data() {
       return {
-        teacher: ""
+        teacher: {name: '小龙女', age: '29', grade: '本科'}
       }
     },
+    methods: {
+      saveTeacher(teacher) {
+        this.$http.post('http://localhost:8988/bootvue/teacher/add', teacher).then(resp => {
+          console.log(resp.data);
+          if (1 == resp.data) {
+            console.log("success")
+          }
+        }).catch(function (err) {
+          console.log(err)
+        })
+      },
+      reset() {
+        this.teacher = "";
+      }
+    }
   }
 </script>
 
