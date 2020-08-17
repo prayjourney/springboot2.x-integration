@@ -17,7 +17,7 @@
           <td>{{ t.grade }}</td>
 
           <td>
-            <a href="/#/student/add" class="glyphicon glyphicon-plus" title="添加老师"
+            <a href="/#/teacher/add" class="glyphicon glyphicon-plus" title="添加老师"
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="" class="glyphicon glyphicon-refresh" title="更新老师"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;

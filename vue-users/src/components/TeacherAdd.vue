@@ -5,8 +5,8 @@
       <span>老师姓名：</span><input type="text" name="name" placeholder="小龙女" v-model="teacher.name"></input>
       <span>老师年龄：</span><input type="text" name="age" placeholder="29" v-model="teacher.age"></input>
       <span>老师学历：</span><input type="text" name="grade" placeholder="本科" v-model="teacher.grade"></input>
-      <input type="submit" value="提交" style="margin: 10px; " @click="saveTeacher(teacher)">
-      <input type="reset" value="取消" style="margin: 10px; " @click="reset">
+      <input type="submit" value="提交" class="btn btn-success btn-sm" @click="saveTeacher(teacher)">&nbsp;&nbsp;
+      <input type="reset" value="取消" class="btn btn-primary btn-sm" @click="reset">
     </form>
   </div>
 </template>
@@ -38,5 +38,7 @@
 </script>
 
 <style scoped>
-
+  form{
+    font-size: 14px;
+  }
 </style>
