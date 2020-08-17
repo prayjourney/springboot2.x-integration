@@ -23,8 +23,10 @@
       saveTeacher(teacher) {
         this.$http.post('http://localhost:8988/bootvue/teacher/add', teacher).then(resp => {
           console.log(resp.data);
+          // 如果成功，切换路由，跳转到/teacher
           if (1 == resp.data) {
             console.log("success")
+            this.$router.push("/teacher")
           }
         }).catch(function (err) {
           console.log(err)
@@ -38,7 +40,7 @@
 </script>
 
 <style scoped>
-  form{
+  form {
     font-size: 14px;
   }
 </style>
