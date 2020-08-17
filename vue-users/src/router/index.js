@@ -5,6 +5,7 @@ import Teacher from "../components/Teacher";
 import Student from "../components/Student";
 import TeacherAdd from "../components/TeacherAdd";
 import StudentAdd from "../components/StudentAdd";
+import TeacherUpdate from "../components/TeacherUpdate";
 
 Vue.use(Router)
 
@@ -16,7 +17,8 @@ export default new Router({
       path: '/teacher', name: 'teacher', component: Teacher,
       children: [
         // 子路由不用加'/', 否则的话就不会展示相应的页面了，https://www.jianshu.com/p/7d6c716d8eb8
-        {path: 'add', name: 'teacheradd', component: TeacherAdd}
+        {path: 'add', name: 'teacheradd', component: TeacherAdd},
+        {path: 'update', name: 'teacherupdate', component: TeacherUpdate}
       ]
     },
     {
