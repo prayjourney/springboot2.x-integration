@@ -1,29 +1,30 @@
 <template>
-  <div>
-    <h1>学生页面</h1>
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <h1>学生页面</h1>
+      <table class="table table-bordered table-striped table-hover table-cell">
+        <tr class="tr-m">
+          <th>id</th>
+          <th>学生姓名</th>
+          <th>年龄</th>
+          <th>邮箱</th>
+          <th>操作</th>
+        </tr>
+        <tr v-for="s in students">
+          <td>{{ s.id }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.age}}</td>
+          <td>{{ s.email }}</td>
 
-    <table style="border: 1px salmon inset;margin-left: 45%">
-      <tr>
-        <th>id</th>
-        <th>学生姓名</th>
-        <th>年龄</th>
-        <th>邮箱</th>
-        <th>操作</th>
-      </tr>
-      <tr v-for="s in students">
-        <td>{{ s.id }}</td>
-        <td>{{ s.name }}</td>
-        <td>{{ s.age}}</td>
-        <td>{{ s.email }}</td>
-
-        <td>
-          <a href="/#/student/add" class="btn btn-success">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="" class="btn btn-danger"> 删除 </a>
-        </td>
-      </tr>
-    </table>
-    <router-view/>
-    <Footer></Footer>
+          <td>
+            <a href="/#/student/add" class="btn btn-success btn-sm">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="" class="btn btn-danger btn-sm"> 删除 </a>
+          </td>
+        </tr>
+      </table>
+      <router-view/>
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 
@@ -74,5 +75,15 @@
 </script>
 
 <style scoped>
+  th {
+    border: 1px;
+    border-style: solid;
+    text-align: center;
+    border-color: black;
+  }
 
+  tr, td {
+    border: 1px;
+    border-style: solid;
+  }
 </style>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
       <h1>教师页面</h1>
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped table-hover table-cell">
         <tr>
           <th>id</th>
           <th>教师姓名</th>
