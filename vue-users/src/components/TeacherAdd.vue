@@ -6,7 +6,7 @@
       <span>老师年龄：</span><input type="text" name="age" placeholder="29" v-model="teacher.age"></input><br/>
       <span>老师学历：</span><input type="text" name="grade" placeholder="本科" v-model="teacher.grade"></input><br/>
       <input type="submit" value="提交" style="margin: 10px; " @click="saveTeacher(teacher)">
-      <input type="submit" value="取消" style="margin: 10px; " @click="reset">
+      <input type="reset" value="取消" style="margin: 10px; " @click="reset">
     </form>
   </div>
 </template>
