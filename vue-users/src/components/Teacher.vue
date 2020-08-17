@@ -59,7 +59,7 @@
         })
       },
       deleteTeacherById(id) {
-        this.$http.post('http://localhost:8988/bootvue/teacher/delete?id=' + id).then(resp => {
+        this.$http.get('http://localhost:8988/bootvue/teacher/delete?id=' + id).then(resp => {
           console.log(resp.data)
           // 删除成功后自动刷新
           if (1 == resp.data){
