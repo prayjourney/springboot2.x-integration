@@ -1,11 +1,12 @@
 <template>
   <div>
     <h2>添加老师</h2>
+    <!-- 改成button，然后这儿就不乱跳了，感觉好像是只有formzi自己带了action的时候，input才设置为submit,如果是异步的方式，都设置成为button -->
     <form action="" class="form-inline">
       <span>老师姓名：</span><input type="text" name="name" placeholder="小龙女" v-model="teacher.name"></input>
       <span>老师年龄：</span><input type="text" name="age" placeholder="29" v-model="teacher.age"></input>
       <span>老师学历：</span><input type="text" name="grade" placeholder="本科" v-model="teacher.grade"></input>
-      <input type="submit" value="提交" class="btn btn-success btn-sm" @click="saveTeacher(teacher)">&nbsp;&nbsp;
+      <input type="button" value="提交" class="btn btn-success btn-sm" @click="saveTeacher(teacher)">&nbsp;&nbsp;
       <input type="reset" value="取消" class="btn btn-primary btn-sm" @click="reset">
     </form>
   </div>
