@@ -15,13 +15,14 @@ export default new Router({
     {
       path: '/teacher', name: 'teacher', component: Teacher,
       children: [
-        {path: '/add', name: 'teacheradd', component: TeacherAdd}
+        // 子路由不用加'/', 否则的话就不会展示相应的页面了，https://www.jianshu.com/p/7d6c716d8eb8
+        {path: 'add', name: 'teacheradd', component: TeacherAdd}
       ]
     },
     {
       path: '/student', name: 'student', component: Student,
       children: [
-        {path: '/add', name: 'studentadd', component: StudentAdd}
+        {path: 'add', name: 'studentadd', component: StudentAdd}
       ]
     }
   ]
