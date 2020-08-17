@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>添加老师</h2>
-    <form action="">
+    <form action="" class="form-inline">
       <span>老师姓名：</span><input type="text" name="name" placeholder="小龙女" v-model="teacher.name"></input>
       <span>老师年龄：</span><input type="text" name="age" placeholder="29" v-model="teacher.age"></input>
       <span>老师学历：</span><input type="text" name="grade" placeholder="本科" v-model="teacher.grade"></input>

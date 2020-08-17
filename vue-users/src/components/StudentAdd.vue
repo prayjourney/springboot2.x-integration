@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>添加学生</h2>
-    <form action="">
+    <form action="" class="form-inline">
       <span>学生姓名：</span><input type="text" v-model="student.name" placeholder="杨过" name="name">
       <span>学生年龄：</span><input type="text" v-model="student.age" placeholder="22" name="name">
       <span>学生邮箱：</span><input type="text" v-model="student.email" placeholder="yanguo@88.com" name="name">
