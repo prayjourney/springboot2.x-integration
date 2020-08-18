@@ -23,7 +23,7 @@
             <a v-bind:href="'/#/student/update?id=' + s.id" class="glyphicon glyphicon-refresh" title="更新学生"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="javascript:void(0);" class="glyphicon glyphicon-remove warning" title="删除学生"
-               style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
+               @click="deleteStudentById(s.id)" style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
       </table>
@@ -54,30 +54,30 @@
       }
     },
     methods: {
-      saveTeacher(student) {
-        this.$http.post('http://localhost:8988/bootvue/student/add', student).then(resp => {
-          console.log(resp.data);
-          if (1 == resp.data) {
-            console.log("success")
-          }
-        }).catch(function (err) {
-          console.log(err)
+      findAll() {
+        this.$http.get('http://localhost:8988/bootvue/student/all').then(resp => {
+          this.students = resp.data
+          console.log(resp.data)
+        }).catch(reason => {
+          console.log(reason)
         })
       },
-      reset() {
-        this.teacher = "";
+      deleteStudentById(id) {
+        this.$http.get('http://localhost:8988/bootvue/student/delete?id=' + id).then(resp => {
+          console.log(resp.data)
+          // 删除成功后自动刷新
+          if (1 == resp.data) {
+            this.findAll();
+          }
+        }).catch(reason => {
+          console.log(reason)
+        })
       }
     },
     created() {
-      this.$http.get('http://localhost:8988/bootvue/student/all').then(resp => {
-        this.students = resp.data
-        console.log(resp.data)
-      }).catch(reason => {
-        console.log(reason)
-      })
+      this.findAll();
     },
     watch: {
-      // 路由跳转和监听
       $route: {
         handler: function (val, oldVal) {
           console.log(val);
