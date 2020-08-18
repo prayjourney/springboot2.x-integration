@@ -20,7 +20,7 @@
       return {
         teacher: {
           // 表示id属性一定有
-          id : ""
+          id: ""
         }
       }
     },
@@ -47,7 +47,7 @@
         this.teacher = "";
       },
 
-      getTeacherById(){
+      getTeacherById() {
         this.$http.get('http://localhost:8988/bootvue/teacher/get?id=' + this.teacher.id).then(function (resp) {
           // TeacherUpdate.vue?bc81:52 Uncaught (in promise) TypeError: Cannot set property 'teacher' of undefined
           this.teacher = resp.data
@@ -57,7 +57,7 @@
     // 此处就可以接收路由传参的id了
     created() {
       console.log("修改的老师的id: " + this.$route.query.id)
-      this.teacher.id =this.$route.query.id;
+      this.teacher.id = this.$route.query.id;
       this.getTeacherById();
     }
   }
