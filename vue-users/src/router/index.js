@@ -24,7 +24,8 @@ export default new Router({
     {
       path: '/student', name: 'student', component: Student,
       children: [
-        {path: 'add', name: 'studentadd', component: StudentAdd}
+        {path: 'add', name: 'studentadd', component: StudentAdd},
+        {path: 'update', name: 'studentupdate', component: StudentUpdate}
       ]
     }
   ]
