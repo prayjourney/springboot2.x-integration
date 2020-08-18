@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="col-md-10 col-md-offset-1">
-       <h2>学生页面</h2>
+      <h2>学生页面</h2>
       <table class="table table-bordered table-striped table-hover">
         <tr class="tr-m">
           <th>id</th>
@@ -75,12 +75,23 @@
       }).catch(reason => {
         console.log(reason)
       })
+    },
+    watch: {
+      // 路由跳转和监听
+      $route: {
+        handler: function (val, oldVal) {
+          console.log(val);
+          if (val.path == "/student") {
+            this.findAll();
+          }
+        }
+      }
     }
   }
 </script>
 
 <style scoped>
-  table{
+  table {
     font-size: medium;
   }
 
