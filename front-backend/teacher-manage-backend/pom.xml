@@ -11,7 +11,7 @@
     <groupId>com.zgy.learn</groupId>
     <artifactId>bootvue</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bootvue</name>
+    <name>teacher-manage-backend</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
