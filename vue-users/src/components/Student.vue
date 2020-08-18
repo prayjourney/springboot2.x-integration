@@ -22,7 +22,7 @@
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="" class="glyphicon glyphicon-refresh" title="更新学生"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="glyphicon glyphicon-remove warning" title="删除学生"
+            <a href="javascript:viod(0)" class="glyphicon glyphicon-remove warning" title="删除学生"
                style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
