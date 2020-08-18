@@ -21,8 +21,9 @@
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a v-bind:href="'/#/teacher/update?id=' + t.id" class="glyphicon glyphicon-refresh" title="更新老师"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <!-- javascript:viod(0)阻止<a>标签默认行为https://www.jianshu.com/p/8a2bd9792eec -->
-            <a href="javascript:viod(0)" class="glyphicon glyphicon-remove warning " title="删除老师"
+            <!-- javascript:viod(0);阻止<a>标签默认行为 -->
+            <!-- https://www.jianshu.com/p/8a2bd9792eec, https://blog.csdn.net/judas_jia/article/details/51166406 -->
+            <a href="javascript:void(0);" class="glyphicon glyphicon-remove warning " title="删除老师"
                @click="deleteTeacherById(t.id)" style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
           </td>
         </tr>
