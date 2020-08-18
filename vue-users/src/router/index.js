@@ -6,6 +6,7 @@ import Student from "../components/Student";
 import TeacherAdd from "../components/TeacherAdd";
 import StudentAdd from "../components/StudentAdd";
 import TeacherUpdate from "../components/TeacherUpdate";
+import StudentUpdate from "../components/StudentUpdate";
 
 Vue.use(Router)
 

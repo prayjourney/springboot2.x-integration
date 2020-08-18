@@ -20,7 +20,7 @@
             <!-- 字体小图标设置颜色： https://www.itranslater.com/qa/details/2128961776657105920 -->
             <a href="/#/student/add" class="glyphicon glyphicon-plus" title="添加学生"
                style="color: lightgreen"/>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="glyphicon glyphicon-refresh" title="更新学生"
+            <a v-bind:href="'/#/student/update?id=' + s.id" class="glyphicon glyphicon-refresh" title="更新学生"
                style="color: deepskyblue"/>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="javascript:void(0);" class="glyphicon glyphicon-remove warning" title="删除学生"
                style="color: red"/>&nbsp;&nbsp;&nbsp;&nbsp;
