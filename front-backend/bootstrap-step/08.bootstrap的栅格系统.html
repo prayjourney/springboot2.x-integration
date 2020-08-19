@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="static/css/bootstrap.css">
     </head>
     <body>
-        <!-- 容器 -->
+        <!-- 栅格系统必须放在容器之中，容器 -->
         <div class="container" style="margin-top: 30px">
             <div class="row">
                 <!-- 一行最多12列，12个多余的，就会自动移到下一行 -->
@@ -30,6 +30,13 @@
                     </div>
                 </div>
                 <div class="col-lg-2" style="border: 1px lightblue solid">world</div>
+            </div>
+
+            <div class="row" style="margin-top: 20px">
+                <!-- 偏移3个格子， 占用6个格子-->
+                <div class="col-sm-6 col-sm-offset-3" style="border: 1px red solid">李白</div>
+                <!-- 偏移7个格子， 占用4个格子-->
+                <div class="col-sm-4 col-sm-offset-7" style="border: 1px purple solid">白居易</div>
             </div>
         </div>
 
