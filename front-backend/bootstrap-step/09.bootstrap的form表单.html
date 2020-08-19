@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>09.bootstrap的form表单</title>
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+    </head>
+    <body>
+        <!-- 基本表单 -->
+        <div class="container">
+            <form>
+                <div class="row">
+                    <!-- 放在了同一行 -->
+                    <div class="form-group-sm col-sm-10 form-inline">
+                        <label for="username"><strong>用户名：</strong></label>
+                        <input id="username" type="text" class="form-control">
+                    </div>
+                    <!-- 放在了同一行 -->
+                    <div class="form-group-sm col-sm-10 form-inline">
+                        <label for="password"><strong>密码：</strong></label>
+                        <input id="password" type="text" class="form-control">
+                    </div>
+                </div>
+            </form>
+            <hr/>
+
+            <form>
+                <!-- 表示控件是一行一行的排列的 -->
+                <div class="row">
+                    <!-- 没有放在同一行，偏移1个格子 -->
+                    <div class="form-group-sm col-sm-10 col-sm-offset-1">
+                        <label for="name"><strong>用户名：</strong></label>
+                        <input id="name" type="text" class="form-control">
+                    </div>
+                    <div class="form-group-sm col-sm-10 col-sm-offset-1">
+                        <label for="pwd"><strong>密码：</strong></label>
+                        <input id="pwd" type="text" class="form-control">
+                    </div>
+                    <!-- 放在这个div, 控制一下边框的范围大小 -->
+                    <div class="form-group-sm col-sm-10 col-sm-offset-1" style="margin-top: 10px">
+                        <input id="sub" type="button" value="提交" class="btn-block btn btn-info">
+                        <input id="res" type="button" value="重置" class="btn-block btn btn-warning">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>
+
