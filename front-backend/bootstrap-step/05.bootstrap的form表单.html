@@ -2,21 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>09.bootstrap的form表单</title>
+        <title>05.bootstrap的form表单</title>
         <link rel="stylesheet" href="static/css/bootstrap.css">
     </head>
     <body>
         <!-- 基本表单 -->
         <div class="container">
+            <span class="lead">1. 基本表单, 垂直表单</span>
             <form>
                 <div class="row">
                     <!-- 放在了同一行 -->
-                    <div class="form-group-sm col-sm-10 form-inline">
+                    <div class="form-group-sm col-sm-10">
                         <label for="username"><strong>用户名：</strong></label>
                         <input id="username" type="text" class="form-control">
                     </div>
                     <!-- 放在了同一行 -->
-                    <div class="form-group-sm col-sm-10 form-inline">
+                    <div class="form-group-sm col-sm-10">
                         <label for="password"><strong>密码：</strong></label>
                         <input id="password" type="text" class="form-control">
                     </div>
@@ -24,6 +25,7 @@
             </form>
             <hr/>
 
+            <span class="lead">1. 基本表单, 垂直表单， 做了简单的布局偏移</span>
             <form>
                 <!-- 表示控件是一行一行的排列的 -->
                 <div class="row">
@@ -43,6 +45,19 @@
                     </div>
                 </div>
             </form>
+
+            <hr/>
+            <span class="lead">2. 内联表单，在一行，控制了样式，放在中间，偏移</span>
+            <div class="row">
+                <form class="col-sm-8 col-lg-offset-2 form-inline">
+                    <label for="user"><strong>用户名：</strong></label>
+                    <input id="user" type="text" class="form-control">
+                    <label for="pwds"><strong>密码：</strong></label>
+                    <input id="pwds" type="text" class="form-control">
+                    <input type="button" value="提交" class="form-control btn btn-success">
+                    <input type="button" value="重置" class="form-control btn btn-warning">
+                </form>
+            </div>
         </div>
 
     </body>
