@@ -3,7 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>06.bootstrap的字体图标与下拉按钮</title>
+
+        <!-- bootstrap的样式 -->
         <link rel="stylesheet" href="static/css/bootstrap.css">
+        <!-- bootstrap的js -->
+        <script src="static/js/bootstrap.js"></script>
     </head>
     <body>
         <!-- 容器 -->
@@ -36,6 +40,18 @@
                 君不见吴中张翰称达生，秋风忽忆江东行。<br/>
                 且乐生前一杯酒，何须身后千载名？<br/>
             </blockquote>
+
+            <hr/>
+            <!-- 下拉按钮 -->
+            <div class="dropdown">
+                <button class="btn btn-primary" data-toggle="dropdown">选择技术门类：<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li>Spring MVC</li>
+                    <li>Spring Boot</li>
+                    <li>Spring Cloud</li>
+                </ul>
+            </div>
+
         </div>
 
     </body>
