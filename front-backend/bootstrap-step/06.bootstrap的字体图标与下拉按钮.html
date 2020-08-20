@@ -58,7 +58,7 @@
 
             <!-- 下拉按钮的分割线 -->
             <div class="dropdown" style="margin-top: 30px;">
-                <button class="btn btn-primary" data-toggle="dropdown">选择技术门类：<span class="caret"></span></button>
+                <button class="btn btn-warning" data-toggle="dropdown">选择技术门类：<span class="caret"></span></button>
                 <ul class="dropdown-menu">
                     <!-- li之中加不加a标签都可以，加的话就是可以添加跳转的链接了，也可以获取相关的请求 -->
                     <li><a href="">Spring MVC</a></li>
@@ -67,6 +67,22 @@
                     <li><a href="">Spring Boot</a></li>
                     <li class="divider"></li>
                     <li><a href="">Spring Cloud</a></li>
+                </ul>
+            </div>
+
+            <!-- 下拉按钮的标题和分割线, 禁止选择 -->
+            <div class="dropdown" style="margin-top: 30px;">
+                <button class="btn btn-success" data-toggle="dropdown">选择技术门类：<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header">Spring 技术栈</li>
+                    <li><a href="">Spring MVC</a></li>
+                    <li class="divider"></li>
+                    <li><a href="">Spring Boot</a></li>
+                    <li><a href="">Spring Cloud</a></li>
+                    <li class="dropdown-header">NoSQL 技术栈</li>
+                    <li><a href="">Redis</a></li>
+                    <li><a href="">MongoDB</a></li>
+                    <li class="disabled"><a href="">ElasticSearch</a></li>
                 </ul>
             </div>
         </div>
