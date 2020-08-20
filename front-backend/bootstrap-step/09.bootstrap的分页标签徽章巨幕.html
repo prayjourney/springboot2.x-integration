@@ -25,7 +25,8 @@
 
             <!-- 分页 -->
             <div class="row">
-                <nav aria-label="分页器">
+                <!-- <nav aria-label="分页器"> -->
+                <nav>
                     <ul class="pagination">
                         <li>
                             <a href="#" aria-label="Previous">
@@ -54,8 +55,39 @@
             <!-- <nav aria-label="nav"> -->
             <nav>
                 <ul class="pager">
-                    <li><a href=""><span class="glyphicon glyphicon-arrow-left"></span> previous </a> </li>
+                    <li><a href=""><span class="glyphicon glyphicon-arrow-left"></span> previous </a></li>
                     <li><a href=""> next <span class="glyphicon glyphicon-arrow-right"></span> </a></li>
+                </ul>
+            </nav>
+
+
+            <!-- 禁用与激活, aria-xxx都去掉，是给盲人用的，暂时不用管 -->
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#">
+                            <span>&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li class="disabled"><a href="#">3</a></li>
+                    <li class="active"><a href="#">4</a></li>
+                    <li><a href="#">8</a></li>
+                    <li>
+                        <a href="#">
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- 分页主要是nav +ul， class=pagination, li之中是链接 -->
+            <nav>
+                <ul class="pagination">
+                    <li><a href="">0</a> </li>
+                    <li><a href="">1</a> </li>
+                    <li><a href="">2</a> </li>
                 </ul>
             </nav>
 
