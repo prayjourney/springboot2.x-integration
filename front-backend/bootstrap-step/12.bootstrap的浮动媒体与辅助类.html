@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>12.bootstrap的浮动媒体与辅助类</title>
+        <!-- bootstrap的动态功能都是依靠jquery的， 所以要引入jquery，而且要在它的前面-->
+        <!-- jquery库, bootstrap依赖于jquery -->
+        <script src="static/js/jquery-3.4.1.js"></script>
+        <!-- bootstrap的样式 -->
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+        <!-- bootstrap的js -->
+        <script src="static/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <!-- 文字辅助类 -->
+                    <h3><span class="text-info">Hello world!</span> <span class="caret"></span></h3>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <!-- 快速浮动. pull-right， pull-left -->
+                    <h3><span class="text-info pull-right">Hello world! <span class="caret"></span> </span> </h3>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
