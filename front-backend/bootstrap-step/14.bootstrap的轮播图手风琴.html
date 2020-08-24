@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>14.bootstrap的轮播图手风琴</title>
+        <!-- bootstrap的动态功能都是依靠jquery的， 所以要引入jquery，而且要在它的前面-->
+        <!-- jquery库, bootstrap依赖于jquery -->
+        <script src="static/js/jquery-3.4.1.js"></script>
+        <!-- bootstrap的样式 -->
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+        <!-- bootstrap的js -->
+        <script src="static/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h2 class="lead"><span class="text-left text-primary"><strong>我的轮播图</strong></span></h2>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- 轮播图指示 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- 轮播图切换 -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="static/img/desert.jpg" style="width: 1200px; height: 500px;" alt="富士山">
+                            <!-- 轮播图说明 -->
+                            <div class="carousel-caption"><span class="text-info">沙漠</span></div>
+                        </div>
+                        <div class="item">
+                            <img src="static/img/mountain.jpg" style="width: 1200px; height: 500px;" alt="男女">
+                            <div class="carousel-caption"><span class="text-info">山峦</span></div>
+                        </div>
+                        <div class="item">
+                            <img src="static/img/ocean.jpg" style="width: 1200px; height: 500px;" alt="颐和园">
+                            <div class="carousel-caption"><span class="text-info">海洋</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 控制 -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <!-- 这个文字是一个提示，可以不让其显示，span class="sr-only"即可 -->
+                        <span class="sr-only">上一个</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <!-- 字形图标 -->
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">下一个</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
