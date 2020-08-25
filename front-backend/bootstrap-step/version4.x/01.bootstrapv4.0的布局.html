@@ -3,24 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <title>01.bootstrapv4.0的布局</title>
-        <link rel="stylesheet" href="static/css/bootstrap.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     </head>
     <body>
         <!-- 容器 -->
         <div class="container">
-            <!-- 副标题 -->
-            <h2>Bootstrap的使用<small>副标题v1.1</small></h2>
-            <p>
-                <!-- 强调-->
-                <span class="lead">秋思</span><br/>
-                          [唐] 李白 <br/>
-                春阳如昨日，碧树鸣黄鹂。<br/>
-                芜然蕙草暮，飒尔凉风吹。<br/>
-                天秋木叶下，月冷莎鸡悲。<br/>
-                坐愁群芳歇，白露凋华滋。<br/>
-            </p>
+            <!-- 栅格系统. bootstrap4的布局，固定的布局，不会随着屏幕的变化而改变布局的样子 -->
+            <div class="row">
+                <div class="col-10 offset-1 text-center lead"> 江南逢李龟年</div>
+                <div class="col-6 border border-info text-center">岐王宅里寻常见</div>
+                <div class="col-6 border border-danger text-center">崔九堂前几度闻</div>
+                <div class="col-6 border border-dark text-center">正是江南好风景</div>
+                <div class="col-6 border border-primary text-center">落花时节又逢君</div>
+            </div>
         </div>
-
+        <!-- 引入js文件 -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/popper.min.js"></script>
     </body>
 </html>
 
