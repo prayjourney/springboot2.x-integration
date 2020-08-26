@@ -12,8 +12,9 @@
         <script src="static/js/bootstrap.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container" style="margin-top: 10px">
             <div class="row">
+                <span class="lead"> 手风琴 </span><br/>
                 <!-- 控制弹出和关闭 -->
                 <a class="btn btn-success" data-toggle="collapse" href="#collapseExample"> a链接 </a>
                 <button class="btn btn-default" data-toggle="collapse" data-target="#collapseExample"> 按钮</button>
@@ -26,6 +27,63 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <p class="lead">李白诗三首</p>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">古朗月行</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    小时不识月，呼作白玉盘。<br/>
+                                    又疑瑶台镜，飞在青云端。<br/>
+                                    仙人垂两足，桂树何团团。<br/>
+                                    白兔捣药成，问言与谁餐。<br/>
+                                    蟾蜍蚀圆影，大明夜已残。<br/>
+                                    羿昔落九乌，天人清且安。<br/>
+                                    阴精此沦惑，去去不足观。<br/>
+                                    忧来其如何，凄怆摧心肝。<br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">关山月</a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    明月出天山，苍茫云海间。<br/>
+                                    长风几万里，吹度玉门关。<br/>
+                                    汉下白登道，胡窥青海湾。<br/>
+                                    由来征战地，不见有人还。<br/>
+                                    戍客望边色，思归多苦颜。<br/>
+                                    高楼当此夜，叹息未应闲。<br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">峨眉山月歌 </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    峨眉山月半轮秋，影入平羌江水流。<br/>
+                                    夜发清溪向三峡，思君不见下渝州。<br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
