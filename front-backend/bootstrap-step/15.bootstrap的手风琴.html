@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>15.bootstrap的手风琴</title>
+        <!-- bootstrap的动态功能都是依靠jquery的， 所以要引入jquery，而且要在它的前面-->
+        <!-- jquery库, bootstrap依赖于jquery -->
+        <script src="static/js/jquery-3.4.1.js"></script>
+        <!-- bootstrap的样式 -->
+        <link rel="stylesheet" href="static/css/bootstrap.css">
+        <!-- bootstrap的js -->
+        <script src="static/js/bootstrap.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <!-- 控制弹出和关闭 -->
+                <a class="btn btn-success" data-toggle="collapse" href="#collapseExample"> a链接 </a>
+                <button class="btn btn-default" data-toggle="collapse" data-target="#collapseExample"> 按钮</button>
+
+                <!-- 简单的手风琴 -->
+                <div class="collapse" id="collapseExample">
+                    <div class="well">
+                        <span class="text-info bg-secondary">生我何用?不能欢笑.</span><br/>
+                        <span class="text-info bg-secondary">灭我何用?不减狂骄.</span><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
