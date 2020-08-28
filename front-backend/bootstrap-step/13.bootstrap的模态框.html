@@ -15,12 +15,21 @@
                 console.log("hello world");
             }
 
-            $(function () {
-                // 页面加载之后，立即展示模态框
+            /**
+                $(function () {
+                    // 页面加载之后，立即展示模态框
+                    $('#myModal002').modal({
+                        show: true
+                    });
+                });
+            */
+            // 自定义绑定触发事件
+            function showModal() {
+                // 展示模态框
                 $('#myModal002').modal({
                     show: true
                 });
-            });
+            }
 
         </script>
     </head>
@@ -95,7 +104,7 @@
 
                 <!-- 手动触发模态框 -->
                 <div class="col-sm-10 col-sm-offset-1">
-                    <button class="btn btn-danger btn-block" data-toggle="modal">触发模态框</button>
+                    <button class="btn btn-danger btn-block" data-toggle="modal" onclick="showModal()">触发模态框</button>
                 </div>
             </div>
         </div>
