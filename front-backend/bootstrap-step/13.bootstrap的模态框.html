@@ -14,6 +14,14 @@
             function hello() {
                 console.log("hello world");
             }
+
+            $(function () {
+                // 页面加载之后，立即展示模态框
+                $('#myModal002').modal({
+                    show: true
+                });
+            });
+
         </script>
     </head>
     <body>
@@ -48,11 +56,46 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="modal fade" tabindex="-1" id="myModal002">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                    <h4 class="modal-title">模态框标题</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        秋思<br/>
+                                        燕支黄叶落，妾望自登台。<br/>
+                                        海上碧云断，单于秋色来。<br/>
+                                        胡兵沙塞合，汉使玉关回。<br/>
+                                        征客无归日，空悲蕙草摧。<br/>
+                                    </p>
+                                    <input type="text" id="texxx"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- 这样也可以触发方法，更加灵活一点，相对而言没有提供的那么方便 -->
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                            onclick="hello()">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <!-- data-toggle="modal"表示是模态框 data-target="#myModal"表示和具体的模态框绑定-->
                 <div class="col-sm-10 col-sm-offset-1">
                     <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal">触发模态框</button>
+                </div>
+
+                <!-- 手动触发模态框 -->
+                <div class="col-sm-10 col-sm-offset-1">
+                    <button class="btn btn-danger btn-block" data-toggle="modal">触发模态框</button>
                 </div>
             </div>
         </div>
