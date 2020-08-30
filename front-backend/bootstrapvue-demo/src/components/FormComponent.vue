@@ -30,6 +30,40 @@
     </div>
     <hr/>
 
+    <!-- 放在了同一行， 但是对的不齐， 栅格系统排布 -->
+    <div class="row">
+      <div class="col col-12">
+        <b-form @submit="onSubmit2" @reset="onReset2" v-if="show">
+          <b-form-group id="input-group-1">
+            <label label-for="input_5" class="col col-2">邮箱：</label>
+            <b-form-input class="col col-10 float-right" id="input_5" v-model="form.email" type="email" required placeholder="输入邮箱"></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-2">
+            <label label-for="input-6" class="col col-2 float-left">姓名：</label>
+            <b-form-input id="input-6" class="col col-10" v-model="form.name" required placeholder="输入姓名"></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-3" class="form-group">
+            <label label-for="input-7" class="col col-2 float-left">食物：</label>
+            <b-form-select id="input-7" class="col col-10" v-model="form.food" :options="foods" required></b-form-select>
+          </b-form-group>
+
+          <b-form-group id="input-group-4">
+            <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
+              <b-form-checkbox value="me">Check me out</b-form-checkbox>
+              <b-form-checkbox value="that">Check that out</b-form-checkbox>
+            </b-form-checkbox-group>
+          </b-form-group>
+
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="reset" variant="danger">Reset</b-button>
+        </b-form>
+      </div>
+    </div>
+
+    <hr/>
+
     <!-- 行内的form -->
     <div>
       <b-form inline>
