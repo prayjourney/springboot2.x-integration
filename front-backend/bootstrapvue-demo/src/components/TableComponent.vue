@@ -12,6 +12,16 @@
         </div>
       </div>
     </div>
+    <hr/>
+
+    <!--- b-table之中可以使用class来设置样式，但是推荐直接使用属性，这样更加方便 --->
+    <div row>
+      <div class="col col-12">
+        <div>
+          <b-table class="table-bordered table-striped table-info" hover :items="book"></b-table>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
