@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    name: "MyComponent001",
+    name: "MethodTest",
     data() {
 
     },
