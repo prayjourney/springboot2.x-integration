@@ -36,7 +36,7 @@
         </b-nav>
       </div>
 
-      <!-- 下拉菜单导航, 循环获取 -->
+      <!-- 下拉菜单导航, 循环获取菜单项 -->
       <span class="lead text-info text-center"> 充满的所占页面的一个导航 </span>
       <div>
         <b-nav tabs fill>
