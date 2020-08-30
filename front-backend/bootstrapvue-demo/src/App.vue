@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="./assets/logo.png"><br/>
+    <a href="#/">主页</a>
+    <a href="#/nav">导航栏</a>
+    <a href="#/form">表单提交</a>
+    <a href="#/method">方法测试</a>
     <router-view/>
   </div>
 </template>
