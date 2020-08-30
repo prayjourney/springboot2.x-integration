@@ -1,8 +1,13 @@
 <template>
   <div>
     <b-container>
-      <b-row>
-        <b-button size="sm" class="my-2 my-1 btn-info" @click="hello()">hello</b-button>
+      <b-row class="col col-10 offset-1">
+        <b-button size="sm" class="btn btn-danger btn-block" @click="hello()">hello</b-button>
+        <b-alert class="alert alert-warning col col-12" v-model="showonnot">
+          <p class="mb-0">
+            我是一个警告条框！！！
+          </p>
+        </b-alert>
       </b-row>
     </b-container>
   </div>
@@ -13,11 +18,18 @@
   export default {
     name: "MethodTest",
     data() {
+      return {
+        showonnot: false
+      }
 
     },
     methods: {
-      hello(){
-        alert("123")
+      hello() {
+        if (this.showonnot == true) {
+          this.showonnot = false
+        } else {
+          this.showonnot = true
+        }
       }
     }
   }
