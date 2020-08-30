@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MyComponent001 from "../components/MyComponent001";
+import NavComponent from "../components/NavComponent";
+import MethodTest from "../components/MethodTest";
+import FormComponent from "../components/FormComponent";
 
 Vue.use(Router)
 
@@ -8,8 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'MyComponent001',
-      component: MyComponent001
+      name: 'MethodTest',
+      component: MethodTest
+    },
+    {
+      path: '/form',
+      name: 'FormComponent',
+      component: FormComponent
+    },
+    {
+      path: '/nav',
+      name: '',
+      component: NavComponent
     }
   ]
 })
