@@ -22,6 +22,27 @@
         </div>
       </div>
     </div>
+
+    <!-- 按钮， 按钮组 -->
+    <div row>
+      <div class="col col-12">
+        <div>
+          <b-button variant="info">hello</b-button>
+          <b-button variant="danger">hello</b-button>
+          <b-button variant="success">hello</b-button>
+        </div>
+      </div>
+      <!-- 按钮组 -->
+      <div class="col col-12">
+        <div>
+          <b-button-group>
+            <b-button variant="info">hello</b-button>
+            <b-button variant="danger">hello</b-button>
+            <b-button variant="success">hello</b-button>
+          </b-button-group>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
