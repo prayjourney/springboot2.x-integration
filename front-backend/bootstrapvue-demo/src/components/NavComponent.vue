@@ -35,6 +35,19 @@
           <b-nav-item disabled>关于</b-nav-item>
         </b-nav>
       </div>
+
+      <!-- 下拉菜单导航, 循环获取 -->
+      <span class="lead text-info text-center"> 充满的所占页面的一个导航 </span>
+      <div>
+        <b-nav tabs fill>
+          <b-nav-item active>首页</b-nav-item>
+          <b-nav-item>新闻</b-nav-item>
+          <b-nav-item-dropdown id="mynavitem2" text="金庸小说" toggle-class="nav-link-custom">
+            <b-dropdown-item v-for="x in booklist">{{x}}</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item disabled>关于</b-nav-item>
+        </b-nav>
+      </div>
       <br/>
       <br/>
       <br/>
@@ -58,7 +71,14 @@
 
 <script>
   export default {
-    name: "NavComponent"
+    name: "NavComponent",
+    data(){
+      return{
+        booklist:[
+          "倚天屠龙记","神雕侠侣","射雕英雄传","笑傲江湖"
+        ]
+      }
+    }
   }
 </script>
 
