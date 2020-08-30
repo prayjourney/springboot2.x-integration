@@ -5,6 +5,7 @@ import MethodTest from "../components/MethodTest";
 import NavComponent from "../components/NavComponent";
 import FormComponent from "../components/FormComponent";
 import CarouselComponent from "../components/CarouselComponent";
+import TableComponent from "../components/TableComponent";
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/carousel',
       name: 'CarouselComponent',
       component: CarouselComponent
+    },
+    {
+      path: '/table',
+      name: 'TableComponent',
+      component: TableComponent
     }
   ]
 })
