@@ -5,6 +5,7 @@
     <a href="#/nav">导航栏</a>
     <a href="#/form">表单提交</a>
     <a href="#/method">方法测试</a>
+    <a href="#/carousel">轮播图</a>
     <router-view/>
   </div>
 </template>
