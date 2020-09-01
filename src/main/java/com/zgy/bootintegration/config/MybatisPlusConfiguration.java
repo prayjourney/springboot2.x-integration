@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @Modified by:
  */
 @EnableTransactionManagement // 开启事务管理
-@MapperScan("com.wm.zgy.bootmybatismbplusshiro.mapper") //扫描mapper文件夹
+@MapperScan("com.zgy.bootintegration.mapper") //扫描mapper文件夹
 @Configuration
 public class MybatisPlusConfiguration {
     // 注册乐观锁插件
