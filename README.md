@@ -11,6 +11,7 @@
 | [Quartz](#Quartz) | [Springboot](#Springboot) | [ElasticSearch](#ElasticSearch) | [Swagger](#Swagger) | [Kaptcha](#Kaptcha) | [Mybatis](#Mybatis) | [Shiro](#Shiro) | [Redis](#Redis) | 
 |   🍇   |    🍌   |    🎫   |   🎁  |   ✨   |   ⚽    |       |       |
 |[Bootstrap](#Bootstrap) | [axios](#axios) | [Vue](#Vue) | [Zipkin](#Zipkin) | [MongoDb](#MongoDb) | [Mysql](#Mysql) |
+
 ### 项目说明
 整个项目分为两部分，springboot2.x-integration与teacher-manage-backend， 二者没有父子模块的关系。
 ##### springboot2.x-integration
@@ -23,3 +24,9 @@ teacher-manage-backend与springboot2.x-integration没有隶属的关系，teache
 是原始的vue开发方式，在html页面之中使用vue, 创建vue对象，然后进行数据和行为的绑定以及控制。使用了bootstrap的ui。在这一部分之中，
 我们仅仅使用bootstrap的css，不使用他的js，js部分功能，由vue来实现。bootvue目录没有前后分离，只不过使用了vue技术的html页面。
 teacher-manage-backend项目的前端部分，在该项目下的teacher-manage-front，基于vue2.x，启动的时候依次运行`npm install`, `npm run dev`启动。
+
+### 问题解决
+1. springboot2.x-integration项目启动， 需要首先启动redis, 否则就会报错， windows下，命令行下面启动redis-server.exe可能会报错，需要执行
+redis-server.exe redis.conf，如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`，后面的redis.conf是配置文件。
+2. 由于打包可能会出问题，可能无法把两个项目之中的配置文件打包到运行其中，则需要手动拷贝，也就是target的classes目录下，如下图：
+![configfile.png](./asset/configfile.png)
