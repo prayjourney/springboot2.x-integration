@@ -22,6 +22,7 @@
         <elasticsearch.version>7.6.0</elasticsearch.version>
         <elasticsearch.rest.client.version>7.6.0</elasticsearch.rest.client.version>
         <elasticsearch.high.rest.client.version>7.6.0</elasticsearch.high.rest.client.version>
+        <zipkin.version>3.9.0</zipkin.version>
     </properties>
 
     <dependencies>
@@ -233,6 +234,32 @@
             <version>2.3.2</version>
         </dependency>
 
+        <!-- zipkin -->
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-core</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-spancollector-http</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-web-servlet-filter</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-apache-http-interceptors</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-okhttp</artifactId>
+            <version>${zipkin.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
