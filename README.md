@@ -6,10 +6,11 @@
 [![license](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)
 
 ### 涉及技术
-|   🚀  |   🔫   |  🌍  |   🎃   |    📐  |   🌷   |   🎯   |   📚   |   🍇   |    🍌   |    🎫   |     🎁 |   ✨   |   ⚽    |
-| :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-| [Quartz](#Quartz) | [Springboot](#Springboot) | [ElasticSearch](#ElasticSearch) | [Swagger](#Swagger) | [Kaptcha](#Kaptcha) | [Mybatis](#Mybatis) | [Shiro](#Shiro) | [Redis](#Redis) | [Bootstrap](#Bootstrap) | [axios](#axios) | [Vue](#Vue) | [Zipkin](#Zipkin) | [MongoDb](#MongoDb) | [Mysql](#Mysql) |
-
+|   🚀  |   🔫   |  🌍  |   🎃   |    📐  |   🌷   |   🎯   |   📚   |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: | 
+| [Quartz](#Quartz) | [Springboot](#Springboot) | [ElasticSearch](#ElasticSearch) | [Swagger](#Swagger) | [Kaptcha](#Kaptcha) | [Mybatis](#Mybatis) | [Shiro](#Shiro) | [Redis](#Redis) | 
+|   🍇   |    🍌   |    🎫   |   🎁  |   ✨   |   ⚽    |       |       |
+|[Bootstrap](#Bootstrap) | [axios](#axios) | [Vue](#Vue) | [Zipkin](#Zipkin) | [MongoDb](#MongoDb) | [Mysql](#Mysql) |
 ### 项目说明
 整个项目分为两部分，springboot2.x-integration与teacher-manage-backend， 二者没有父子模块的关系。
 ##### springboot2.x-integration
