@@ -30,3 +30,30 @@ teacher-manage-backend项目的前端部分，在该项目下的teacher-manage-f
 redis-server.exe redis.conf，如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`，后面的redis.conf是配置文件。
 2. 由于打包可能会出问题，可能无法把两个项目之中的配置文件打包到运行其中，则需要手动拷贝，也就是target的classes目录下，如下图：
 ![configfile.png](./asset/configfile.png)
+3. 打包问题的解决, 添加两个资源包， 一个是打包mapper.xml文件，一个是打包resources目录下的文件，这样两个就都能打包target的class或者jar包里了。
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+    <resources>
+        <!-- mapper下面的xxx.xml文件要打包 -->
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </resource>
+        <!-- 包含resources文件夹以及子文件夹下所有资源 -->
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </resource>
+    </resources>
+</build>
+```
