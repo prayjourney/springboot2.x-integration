@@ -3,7 +3,10 @@ package com.zgy.bootintegration.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 
@@ -12,8 +15,10 @@ import java.time.LocalDate;
  * @Date 2020/5/20
  * @Description
  */
-@Data
+@Setter
+@Getter
 @Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 //@Document(indexName = "book", type = "mybook")

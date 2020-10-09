@@ -7,21 +7,30 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @Author: renjiaxin
- * @Despcription:
+ * @Despcription: 使用@DATA注解涉及的东西太多, 最好使用个明确的getter, setter来代替，而equals和hashcode最好自己去写
  * @Date: Created in 2020/5/17 21:41
  * @Modified by:
  */
-@Data
-@AllArgsConstructor
+@Setter
+@Getter
+@Builder
+@Accessors(chain = true)
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 

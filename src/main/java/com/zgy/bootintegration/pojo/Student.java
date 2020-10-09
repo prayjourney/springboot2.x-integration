@@ -3,7 +3,10 @@ package com.zgy.bootintegration.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * @Author: renjiaxin
@@ -11,10 +14,12 @@ import lombok.NoArgsConstructor;
  * @Date: Created in 2020/5/17 21:41
  * @Modified by:
  */
-@Data
+@Setter
+@Getter
 @Builder
-@AllArgsConstructor
+@Accessors(chain = true)
 @NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     private int stId;
     private String stName;

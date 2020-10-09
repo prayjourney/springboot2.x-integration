@@ -3,7 +3,10 @@ package com.zgy.bootintegration.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * @Author: renjiaxin
@@ -11,8 +14,10 @@ import lombok.NoArgsConstructor;
  * @Date: Created in 2020/5/22 2:39
  * @Modified by:
  */
-@Data
+@Setter
+@Getter
 @Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class MathTeacher {

@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.apache.ibatis.type.Alias;
 
@@ -18,11 +20,12 @@ import java.util.Date;
  * @Description
  */
 @Alias("searchLocation")
-@Data
+@Setter
+@Getter
 @Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(chain = true)
 public class SearchLocation implements Serializable {
 
     private static final long serialVersionUID = 1L;

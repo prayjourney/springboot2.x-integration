@@ -3,7 +3,10 @@ package com.zgy.bootintegration.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -13,8 +16,10 @@ import java.time.LocalDate;
  * @Date 2020/6/23
  * @Description 测试序列化
  */
-@Data
+@Setter
+@Getter
 @Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CatSerialize implements Serializable {
