@@ -17,8 +17,8 @@
 ##### springboot2.x-integration
 整合springboot2.x, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
 进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件等几项技术。主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看
-application.properties配置文件与config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。
-使用了mysql与MongoDB存储，redis作为缓存。
+application.properties配置文件与config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，
+redis作为缓存。
 ##### teacher-manage-backend
 teacher-manage-backend与springboot2.x-integration没有隶属的关系，teacher-manage-backend是教师管理系统的后台，作为一个后台系统，
 其中主要使用了Druid, Mybatis， MybatisPlus技术， 主要是提供给前台增删改查的CRUD功能。 resources文件夹下的bootvue目录，bootvue目录，
