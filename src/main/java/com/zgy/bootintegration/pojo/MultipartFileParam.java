@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,9 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @Getter
 @Builder
-@Accessors(chain = true)
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 public class MultipartFileParam {
     // 文件传输任务ID
     private String taskId;
@@ -37,4 +39,7 @@ public class MultipartFileParam {
 
     // 分块文件传输对象
     private MultipartFile file;
+
+    // MD5值
+    private String md5;
 }
