@@ -23,7 +23,7 @@
         <script>
             var $btn = $('#ctlBtn');
             var $theList = $('#theList');
-            // 设置chunkSize是5MB, 这个需要前后设定同样的大小
+            // 设置chunkSize是10MB, 这个需要前后设定同样的大小
             var chunkSize = 10 * 1024 * 1024;
 
             // 注意：这个必须要再uploader实例化前面
@@ -47,7 +47,7 @@
                         // file.uid = new Date().getTime() + "_" + Math.random() * 100;
                         file.uid = WebUploader.Base.guid();
                         // 进行md5判断, 判断是否上传或者上传部分
-                        $.post("index/checkFileMd5", {uid: file.uid, md5: file.md5},
+                        $.post("bigfile/checkFileMd5", {uid: file.uid, md5: file.md5},
                             function (data) {
                                 console.log(data.status);
                                 var status = data.status.value;
@@ -114,7 +114,7 @@
                 chunked: true,
                 chunkSize: chunkSize, // 字节1M分块
                 threads: 3,
-                server: 'index/fileUpload',
+                server: 'bigfile/fileUpload',
                 auto: false,
 
                 // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
