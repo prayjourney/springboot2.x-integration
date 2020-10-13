@@ -160,9 +160,15 @@ public class BigFileUploadService {
             isComplete = (byte) (isComplete & completeList[i]);
             System.out.println("check part " + i + " complete?:" + completeList[i]);
         }
-
         accessConfFile.close();
+
         if (isComplete == Byte.MAX_VALUE) {
+            // 上传完成，删除旧的部分，只记录完成的条目
+            QueryWrapper queryWrapper = new QueryWrapper();
+            queryWrapper.eq("fileMd5", param.getMd5());
+            fileUploadStatusMapper.delete(queryWrapper);
+
+            // 插入完成的条目
             FileUploadStatus status = new FileUploadStatus();
             status.setFileMd5(param.getMd5());
             status.setUploadStatus("true");
