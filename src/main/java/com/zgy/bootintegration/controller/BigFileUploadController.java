@@ -2,6 +2,7 @@ package com.zgy.bootintegration.controller;
 
 import com.zgy.bootintegration.mapper.FileMd5Mapper;
 import com.zgy.bootintegration.mapper.FileUploadStatusMapper;
+import com.zgy.bootintegration.pojo.FileUploadStatus;
 import com.zgy.bootintegration.pojo.MultipartFileParam;
 import com.zgy.bootintegration.service.BigFileUploadService;
 import com.zgy.bootintegration.utils.Constants;
@@ -54,12 +55,11 @@ public class BigFileUploadController {
     @ResponseBody
     public Object checkFileMd5(String md5) throws IOException {
         // 从redis之中获取MD5信息, 用来检测
-        Object processingObj = fileUploadStatusMapper.selectFileMd5Obj(md5);
+        FileUploadStatus processingObj = fileUploadStatusMapper.selectFileMd5Obj(md5);
         if (processingObj == null) {
             return new ResultVo(ResultStatus.NO_HAVE);
         }
-        String processingStr = processingObj.toString();
-        boolean processing = Boolean.parseBoolean(processingStr);
+        boolean processing = Boolean.parseBoolean(processingObj.getUploadStatus());
         String value = fileMd5Mapper.selectFilePath(Constants.FILE_MD5_KEY + md5);
         if (processing) {
             return new ResultVo(ResultStatus.IS_HAVE, value);
