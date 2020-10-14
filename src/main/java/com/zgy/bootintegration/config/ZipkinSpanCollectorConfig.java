@@ -17,6 +17,24 @@ import org.springframework.context.annotation.Configuration;
  * @Author renjiaxin
  * @Date 2020/9/30
  * @Description zipkin收集器的配置
+ * zipkin是cs的架构，代码之中集成了c端，要使用就需要让server启动，server启动有两种方式，要么自己打包，要么启动别人编译好的包，参见：
+ * # 已经下载好的时候
+ * curl -sSL https://zipkin.io/quickstart.sh | bash -s
+ * java -jar zipkin.jar
+ * # 自己去打包运行
+ * ## get the latest source
+ * git clone https://github.com/openzipkin/zipkin
+ * cd zipkin
+ * ## Build the server and also make its dependencies
+ * ./mvnw -DskipTests --also-make -pl zipkin-server clean install
+ * ## Run the server
+ * java -jar ./zipkin-server/target/zipkin-server-*exec.jar
+ * 下载位置：https://zipkin.io/pages/quickstart.html，https://search.maven.org/remote_content?g=io.zipkin.java&a=zipkin-server&v=LATEST&c=exec
+ * 参考：
+ *  * https://blog.csdn.net/ffzhihua/article/details/95474166，https://www.cnblogs.com/xushuyi/p/10443769.html，
+ *  * https://www.cnblogs.com/mengyixin/p/9839049.html，https://www.cnblogs.com/haixiang/p/11498439.html，
+ *  * https://zipkin.io/pages/quickstart，https://blog.csdn.net/yangchuanan/article/details/83549345，
+ *  * https://github.com/openzipkin/zipkin，https://www.csdn.net/gather_2b/MtjaEgzsNjQwNDYtYmxvZwO0O0OO0O0O.html
  */
 @Configuration
 public class ZipkinSpanCollectorConfig {
