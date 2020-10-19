@@ -1,7 +1,8 @@
 # vue-users
-vue cli版本是2.x
-当前修改前端项目的端口是8877
-vue-cli2的修改端口方法见：https://www.cnblogs.com/atjinna/p/6907369.html
+vue cli版本是2.x<br/>
+当前修改前端项目的端口是8877<br/>
+vue-cli2的修改端口方法见：https://www.cnblogs.com/atjinna/p/6907369.html<br/>
+运行时候可能出现的问题：https://blog.csdn.net/weixin_45247365/article/details/103725882<br/>
 
 > A Vue.js project
 
