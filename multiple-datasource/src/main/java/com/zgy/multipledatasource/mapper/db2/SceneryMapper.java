@@ -2,7 +2,6 @@ package com.zgy.multipledatasource.mapper.db2;
 
 import com.zgy.multipledatasource.pojo.Scenery;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
