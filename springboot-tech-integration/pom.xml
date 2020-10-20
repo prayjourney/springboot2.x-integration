@@ -209,7 +209,7 @@
         <!-- https://blog.csdn.net/ljk126wy/article/details/93971421 -->
         <!-- https://www.cnblogs.com/yingsong/p/9838198.html -->
 
-        <!-- 使用jdbc来保存session -->
+        <!-- session-jdbc -->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-jdbc</artifactId>
