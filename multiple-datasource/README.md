@@ -96,3 +96,11 @@ public class DB1DataSourceConfig {
 二者的差别就是mybatis和mybatis-plus的差别，由于mybatis-plus集成了BaseMapper，所以我们可以写很少的方法，而对于Mapper.xml和Mapper接口本身的
 位置和配置的问题，其实没有任何差别。
 使用mybatis-plus的starter的时候，不需要引入mybatis的starter，使用mybatis-plus的starter之中已经引入了mybatis的jar包，我们不需要额外引入。
+
+##### 参考：
+[springboot-整合多数据源配置](https://www.cnblogs.com/aizen-sousuke/p/11756279.html), 
+[手把手教你用springboot配置多数据源](https://blog.csdn.net/qq_41076797/article/details/82889770), 
+[dynamic-datasource-spring-boot-starter 多数据源配置](https://www.jianshu.com/p/0b408e4e14a4), 
+https://github.com/baomidou/dynamic-datasource-spring-boot-starter, 
+https://github.com/CtrlZ1/MultipleDataSource, https://www.jianshu.com/p/099c0850ba16, https://blog.csdn.net/qq_38058332/article/details/84325009, 
+https://blog.csdn.net/z357904947/article/details/89157281
