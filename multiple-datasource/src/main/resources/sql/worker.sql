@@ -6,4 +6,10 @@ CREATE TABLE `worker` (
   `sex` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别：0-男，1-女',
   `addr` varchar(100) DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of worker
+-- ----------------------------
+INSERT INTO `worker` VALUES ('1', '张三', '22', '0', '北京大兴');
+INSERT INTO `worker` VALUES ('2', '李四', '25', '1', '安徽合肥');
