@@ -32,6 +32,7 @@ public class DB2DataSourceConfig {
     public SqlSessionFactory db1SqlSessionFactory(@Qualifier("db2DataSource") DataSource dataSource) throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
+        // 最好在此处设置, 在application.yml之中, 设置不设置都可以, 但是此处必须设置, 否则只有@Primary的可以使用
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/db2/*.xml"));
         return bean.getObject();
     }

@@ -12,3 +12,7 @@ spring:
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
+
+# \u8FD9\u4E2A\u53EF\u4EE5\u5199\u53EF\u4EE5\u4E0D\u5199, \u5199\u7684\u8BDD\u4E5F\u884C, \u4E0D\u5199\u7684\u8BDD\u4E5F\u884C, \u4E3B\u8981\u6700\u597D\u5728dbconfig\u4E4B\u4E2D\u8BBE\u7F6E\u597D, \u5C31\u53EF\u4EE5\u4E86
+# mybatis:
+#   mapper-locations: classpath:mapper/db1/*.xml,classpath*:mapper/db2/*.xml
