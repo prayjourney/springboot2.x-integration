@@ -20,14 +20,17 @@ public class WorkerService {
     private WorkerMapper workerMapper;
 
     public Worker selectWorkerById(Integer id) {
+        log.info("selectWorkerById, WorkerMapper!");
         return workerMapper.selectById(id);
     }
 
     public int deleteWorkerById(Integer id) {
+        log.info("deleteWorkerById, WorkerMapper!");
         return workerMapper.deleteById(id);
     }
 
     public String getWorkerNameById(Integer id) {
+        log.info("getWorkerNameById, WorkerMapper!");
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("id", id);
         return workerMapper.selectOne(wrapper).getName();

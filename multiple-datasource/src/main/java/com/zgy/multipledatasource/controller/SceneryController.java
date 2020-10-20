@@ -22,21 +22,25 @@ public class SceneryController {
 
     @RequestMapping("info")
     public Scenery selectSceneryById(Integer id) {
+        log.info("selectSceneryById");
         return sceneryService.selectSceneryById(id);
     }
 
     @RequestMapping("delete")
     public int deleteSceneryById(Integer id) {
+        log.info("deleteSceneryById");
         return sceneryService.deleteSceneryById(id);
     }
 
     @RequestMapping("country")
     public String selectSceneryCountryById(Integer id) {
+        log.info("selectSceneryCountryById");
         return sceneryService.selectSceneryCountryById(id);
     }
 
     @RequestMapping("name")
     public String getSceneryNameById(Integer id) {
+        log.info("getSceneryNameById" );
         return sceneryService.getSceneryNameById(id);
     }
 }

@@ -22,16 +22,19 @@ public class WorkerController {
 
     @RequestMapping("info")
     public Worker selectWorkerById(Integer id) {
+        log.info("selectWorkerById");
         return workerService.selectWorkerById(id);
     }
 
     @RequestMapping("delete")
     public int deleteWorkerById(Integer id) {
+        log.info("deleteWorkerById");
         return workerService.deleteWorkerById(id);
     }
 
     @RequestMapping("name")
     public String getWorkerNameById(Integer id) {
+        log.info("getWorkerNameById");
         return workerService.getWorkerNameById(id);
     }
 }

@@ -20,18 +20,22 @@ public class SceneryService {
     private SceneryMapper sceneryMapper;
 
     public Scenery selectSceneryById(Integer id) {
+        log.info("selectSceneryById, SceneryMapper!");
         return sceneryMapper.selectById(id);
     }
 
     public int deleteSceneryById(Integer id) {
+        log.info("deleteSceneryById, SceneryMapper!");
         return sceneryMapper.deleteById(id);
     }
 
     public String selectSceneryCountryById(Integer id) {
+        log.info("selectSceneryCountryById, SceneryMapper!");
         return sceneryMapper.selectById(id).getCountry();
     }
 
     public String getSceneryNameById(Integer id) {
+        log.info("getSceneryNameById, SceneryMapper!");
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.eq("id", id);
         return sceneryMapper.selectOne(wrapper).getName();
