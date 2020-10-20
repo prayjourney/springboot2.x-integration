@@ -28,7 +28,7 @@ import java.time.Duration;
  * @Modified by: https://segmentfault.com/a/1190000020314044, https://blog.csdn.net/weixin_38312502/article/details/80916222
  */
 @Configuration
-//public class RedisConfig extends CachingConfigurerSupport {        //--------------->1
+// public class RedisConfig extends CachingConfigurerSupport {  //--------------->1
 public class RedisConfig {
     @Value("${spring.redis.host}")
     private String host;
@@ -40,11 +40,11 @@ public class RedisConfig {
     private Duration timeToLive = Duration.ZERO;
 
     @Bean(name = "myStringRedisTemplate")
-    //@Bean                     //--------------->1
+    // @Bean  // --------------->1
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
-        //使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
+        // 使用Jackson2JsonRedisSerializer来序列化和反序列化redis的value值
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
