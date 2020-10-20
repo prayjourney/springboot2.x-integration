@@ -184,6 +184,7 @@ public class SessionController {
             log.info(attributeNames.nextElement().toString());
         }
 
+        // 获取值
         String value = (String) session.getAttribute(name);
         return "sessionId:" + session.getId() + ", value:" + value;
     }
