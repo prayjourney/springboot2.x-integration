@@ -18,9 +18,10 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class RedisService {
-    //@Qualifier(value = "myStringRedisTemplate")           // 这个现在不必限定，也是可以的
+    // 这个现在不必限定，也是可以的 @Qualifier(value = "myStringRedisTemplate")
+    // 应该是根据类型，推断出来的
     @Autowired(required = false)
-    RedisTemplate<String, Object> redisTemplate; // 应该是根据类型，推断出来的
+    RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 指定缓存失效时间
@@ -82,8 +83,8 @@ public class RedisService {
         }
     }
 
-    //============================String=============================
 
+    //============================String=============================//
     /**
      * 普通缓存获取
      *
@@ -162,8 +163,8 @@ public class RedisService {
         return redisTemplate.opsForValue().increment(key, -delta);
     }
 
-    //================================Map=================================
 
+    //================================Map=================================//
     /**
      * HashGet
      *
@@ -308,8 +309,8 @@ public class RedisService {
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
 
-    //============================set=============================
 
+    //============================Set=============================//
     /**
      * 根据key获取Set中的所有值
      *
@@ -409,8 +410,9 @@ public class RedisService {
             return 0;
         }
     }
-    //===============================list=================================
 
+
+    //===============================List=================================//
     /**
      * 获取list缓存的内容
      *
