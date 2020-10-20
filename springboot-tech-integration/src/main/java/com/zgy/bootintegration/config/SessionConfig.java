@@ -1,7 +1,6 @@
 package com.zgy.bootintegration.config;
 
-import org.springframework.session.data.redis.RedisFlushMode;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
 /**
  * @Author: renjiaxin
@@ -11,7 +10,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  * @Modified by:
  * @Url: https://blog.csdn.net/ljk126wy/article/details/93971421, https://www.cnblogs.com/yingsong/p/9838198.html
  */
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 1800, redisFlushMode = RedisFlushMode.ON_SAVE, redisNamespace = "springboot2.x-integration")
+@EnableJdbcHttpSession(maxInactiveIntervalInSeconds = 1800, tableName = "spring_session")
 public class SessionConfig {
 
 }
