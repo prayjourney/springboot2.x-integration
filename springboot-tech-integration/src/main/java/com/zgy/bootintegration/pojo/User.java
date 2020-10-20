@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,12 +37,17 @@ public class User implements Serializable {
     // @TableId(type = IdType.AUTO)
     @TableId(type = IdType.ID_WORKER)
     private Long id;
+
     private String name;
+
     private Integer age;
+
     private String email;
 
     private String password;
+
     private String perms;
+
     private String roles;
 
     // 字段添加填充内容
@@ -52,8 +56,8 @@ public class User implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
-    // 乐观锁字段
-    @Version // 乐观锁的注解
+    // 乐观锁字段, @Version是乐观锁的注解
+    @Version
     private int version;
 
     // 逻辑删除字段
