@@ -1,7 +1,5 @@
 package com.zgy.multipledatasource.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +24,6 @@ public class Worker {
     /**
      * 工人id
      */
-    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
