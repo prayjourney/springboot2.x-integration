@@ -59,12 +59,18 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- mybatis 依赖 -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+        <!-- mybatis依赖 -->
+         <dependency>
+             <groupId>org.mybatis.spring.boot</groupId>
+             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
-        </dependency>
+         </dependency>
+        <!-- mybatis-plus, 有了mybatisplus, 就不用了去添加mybatis的依赖了, 因为其中已经使用了mybatis的依赖, 这种方式不太行 -->
+        <!-- <dependency>-->
+        <!--     <groupId>com.baomidou</groupId>-->
+        <!--     <artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--     <version>3.0.5</version>-->
+        <!-- </dependency>-->
     </dependencies>
 
     <build>
