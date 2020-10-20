@@ -1,0 +1,41 @@
+server:
+  port: 8188
+
+spring:
+  datasource:
+    dynamic:
+      primary: db1 # 配置默认数据库
+      datasource:
+        db1: # 数据源1配置
+          url: jdbc:mysql://localhost:3306/db1?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        db2: # 数据源2配置
+          url: jdbc:mysql://localhost:3306/db2?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+      durid:
+        initial-size: 1
+        max-active: 20
+        min-idle: 1
+        max-wait: 60000 # 单位是毫秒
+        time-between-eviction-runs-millis: 60000 # 这个下面的不配置也是可以的, 不配置就不用去写druid的config, 也没有对应监控功能
+        min-evictable-idle-time-millis: 300000 # 这个下面的不配置也是可以的, 不配置就不用去写druid的config, 也没有对应监控功能
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        test-on-borrow: false
+        test-on-return: false
+        pool-prepared-statements: true
+        filters: stat,wall # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+        maxPoolPreparedStatementPerConnectionSize: 20
+        seGlobalDataSourceStat: true
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure # 去除druid配置, 如果不设置, 则在启动类设置@SpringBootApplication(exclude = DruidDataSourceAutoConfigure.class)
+
+# 配置slq打印日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
