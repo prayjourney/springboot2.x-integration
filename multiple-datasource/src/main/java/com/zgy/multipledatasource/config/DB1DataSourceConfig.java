@@ -20,7 +20,7 @@ import javax.sql.DataSource;
  * @Description
  */
 @Configuration
-@MapperScan(basePackages = "com.zgy.multipledatasource.mapper.db2", sqlSessionFactoryRef = "db1SqlSessionFactory")
+@MapperScan(basePackages = {"com.zgy.multipledatasource.mapper.db1"}, sqlSessionFactoryRef = "db1SqlSessionFactory")
 public class DB1DataSourceConfig {
 
     // @Primary 表示这个数据源是默认数据源, 这个注解必须要加，因为不加的话spring将分不清楚那个为主数据源（默认数据源）

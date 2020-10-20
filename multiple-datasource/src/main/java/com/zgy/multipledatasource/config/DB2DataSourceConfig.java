@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * @Description
  */
 @Configuration
-@MapperScan(basePackages = "com.zgy.multipledatasource.mapper.db2", sqlSessionFactoryRef = "db2SqlSessionFactory")
+@MapperScan(basePackages = {"com.zgy.multipledatasource.mapper.db2"}, sqlSessionFactoryRef = "db2SqlSessionFactory")
 public class DB2DataSourceConfig {
 
     @Bean("db2DataSource")
