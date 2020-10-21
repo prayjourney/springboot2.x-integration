@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage;
 /**
  * @Author renjiaxin
  * @Date 2020/8/28
- * @Description
+ * @Description Kaptcha验证码生成
  */
 @Controller
 public class ImageKaptchaController {
