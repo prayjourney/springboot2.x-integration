@@ -62,6 +62,12 @@ public class HutoolCaptchaController {
     @GetMapping("/verify")
     @ResponseBody
     public String verify(HttpServletRequest request, String input) {
+        // 从session中获取验证码对象
+        // CircleCaptcha captcha = (CircleCaptcha)request.getSession().getAttribute("code");
+        // 判断验证码是否输入正确
+        // boolean verify = captcha.verify(input);
+
+        // 从session中获取验证码的String值
         String code = (String) request.getSession().getAttribute("code");
         if (code.equals(input)) {
             return "验证通过";
