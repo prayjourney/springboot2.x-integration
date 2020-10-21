@@ -138,19 +138,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
-        <!-- 需要在其中指定elasticsearch的版本，一般而言有可能和elasticsearch的starter中提供的不一样-->
+        <!-- 需要在其中指定elasticsearch的版本，一般而言有可能和elasticsearch的starter中提供的不一样 -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
         </dependency>
-        <!-- elasticsearch-rest-high-level-client基于elasticsearch-rest-client-->
+        <!-- elasticsearch-rest-high-level-client基于elasticsearch-rest-client -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-client</artifactId>
             <version>${elasticsearch.rest.client.version}</version>
         </dependency>
-        <!--elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致-->
+        <!-- elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致 -->
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
             <artifactId>elasticsearch-rest-high-level-client</artifactId>
@@ -228,7 +228,7 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
-        <!-- hutool-all, hutool工具集合-->
+        <!-- hutool-all, hutool工具集合 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
