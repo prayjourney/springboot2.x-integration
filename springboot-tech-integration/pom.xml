@@ -235,7 +235,7 @@
             <version>5.3.10</version>
         </dependency>
 
-        <!-- kaptcha验证码 -->
+        <!-- kaptcha验证码的依赖 -->
         <dependency>
             <groupId>com.github.penggle</groupId>
             <artifactId>kaptcha</artifactId>
