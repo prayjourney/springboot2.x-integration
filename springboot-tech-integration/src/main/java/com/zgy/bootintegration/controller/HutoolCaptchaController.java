@@ -6,6 +6,7 @@ import cn.hutool.captcha.LineCaptcha;
 import com.zgy.bootintegration.utils.KaptchaUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class HutoolCaptchaController {
         response.setContentType("image/jpeg");
 
         // 生成验证码图片
-        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(200, 30, 5, 25);
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(120, 30, 5, 6);
 
         try {
             ServletOutputStream outputStream = response.getOutputStream();
@@ -58,7 +59,7 @@ public class HutoolCaptchaController {
         return circleCaptcha.getCode();
     }
 
-    @RequestMapping("/verify")
+    @GetMapping("/verify")
     @ResponseBody
     public String verify(HttpServletRequest request, String input) {
         String code = (String) request.getSession().getAttribute("code");
