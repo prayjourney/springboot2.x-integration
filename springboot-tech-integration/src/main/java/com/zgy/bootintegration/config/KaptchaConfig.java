@@ -10,7 +10,7 @@ import java.util.Properties;
 /**
  * @Author renjiaxin
  * @Date 2020/8/28
- * @Description KaptchaConfig的配置类
+ * @Description Kaptcha验证码的配置类，生成Producer
  */
 @Configuration
 public class KaptchaConfig {
