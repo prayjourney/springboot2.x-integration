@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -11,7 +12,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @MapperScan("com.zgy.bootintegration.mapper") // 扫描mapper文件夹
 @EnableScheduling // 开启定时任务
-@EnableAsync(proxyTargetClass=true) //aop的代理，使用cglib方式，默认是jdk方式
+@EnableAsync(proxyTargetClass = true) //aop的代理，使用cglib方式，默认是jdk方式
+@ImportResource(locations = {"classpath:kaptcha.xml"})
 public class BootApplication {
 
     public static void main(String[] args) {
