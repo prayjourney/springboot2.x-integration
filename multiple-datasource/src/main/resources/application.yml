@@ -1,21 +1,21 @@
 server:
-  port: 8188 # \u542F\u52A8\u7AEF\u53E3
+  port: 8188 # 启动端口
 spring:
   datasource:
-    db1: # \u6570\u636E\u6E901
+    db1: # 数据源1
       jdbc-url: jdbc:mysql://localhost:3306/db1?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
-    db2: # \u6570\u636E\u6E902
+    db2: # 数据源2
       jdbc-url: jdbc:mysql://localhost:3306/db2?characterEncoding=utf8&useUnicode=true&useSSL=false&serverTimezone=GMT%2B8
       username: root
       password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
 
-# \uD83D\uDC7C\uD83D\uDC7C\uD83D\uDC7C\u5728\u6BCF\u4E00\u4E2A\u6570\u636E\u6E90\u7684Config\u8BBE\u7F6E\u4E4B\u4E2D, Mapper\u63A5\u53E3\u548C\u5BF9\u5E94\u7684Mapper.xml\u5FC5\u987B\u8BBE\u7F6E\u597D\uFF0C\u5426\u5219\u5C31\u4F1A\u53EA\u6709@Primary\u7684\u53EF\u4EE5\u4F7F\u7528\u76F8\u6BD4\u8F83\u4E0B\u6765\uFF0C
-# \u8FD8\u662F\u4F7F\u7528mybatis-plus+dynamic-datasource-spring-boot-starter\u7684\u65B9\u5F0F\u66F4\u52A0\u65B9\u4FBF\u7075\u6D3B\uFF0C\u6B64\u79CD\u65B9\u5F0F\u53EA\u662F\u4E00\u4E2A\u914D\u7F6E\u5B9E\u9A8C\u3002
+# 👼👼👼在每一个数据源的Config设置之中, Mapper接口和对应的Mapper.xml必须设置好，否则就会只有@Primary的可以使用相比较下来，
+# 还是使用mybatis-plus+dynamic-datasource-spring-boot-starter的方式更加方便灵活，此种方式只是一个配置实验。
 
-# \u8FD9\u4E2A\u53EF\u4EE5\u5199\u53EF\u4EE5\u4E0D\u5199, \u5199\u7684\u8BDD\u4E5F\u884C, \u4E0D\u5199\u7684\u8BDD\u4E5F\u884C, \u4E3B\u8981\u6700\u597D\u5728dbconfig\u4E4B\u4E2D\u8BBE\u7F6E\u597D, \u5C31\u53EF\u4EE5\u4E86
+# 这个可以写可以不写, 写的话也行, 不写的话也行, 主要最好在dbconfig之中设置好, 就可以了
 # mybatis:
 #   mapper-locations: classpath:mapper/db1/*.xml,classpath*:mapper/db2/*.xml
