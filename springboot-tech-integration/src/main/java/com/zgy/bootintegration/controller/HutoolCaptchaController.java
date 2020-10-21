@@ -2,12 +2,16 @@ package com.zgy.bootintegration.controller;
 
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.CircleCaptcha;
+import cn.hutool.captcha.LineCaptcha;
+import com.zgy.bootintegration.utils.KaptchaUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -33,7 +37,7 @@ public class HutoolCaptchaController {
         response.setContentType("image/jpeg");
 
         // 生成验证码图片
-        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(200, 100, 4, 25);
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(200, 30, 5, 25);
 
         try {
             ServletOutputStream outputStream = response.getOutputStream();
@@ -52,5 +56,17 @@ public class HutoolCaptchaController {
         }
         // 返回生成的验证码
         return circleCaptcha.getCode();
+    }
+
+    @RequestMapping("/verify")
+    @ResponseBody
+    public String verify(HttpServletRequest request, String input) {
+        String code = (String) request.getSession().getAttribute("code");
+        if (code.equals(input)) {
+            return "验证通过";
+        } else {
+            // 此处需要重新生成一个，否则有点问题
+            return "验证码错误！";
+        }
     }
 }
