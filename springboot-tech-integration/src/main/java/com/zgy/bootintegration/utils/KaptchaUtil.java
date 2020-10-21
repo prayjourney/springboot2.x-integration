@@ -16,7 +16,7 @@ public class KaptchaUtil {
      *
      * @param request
      * @param key
-     * @return
+     * @return String str
      */
     public static String getString(HttpServletRequest request, String key) {
         try {

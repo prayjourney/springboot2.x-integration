@@ -53,7 +53,7 @@ public class ImageKaptchaController {
         if (!KaptchaUtil.checkVerifyCode(request)) {
             return "验证码有误！";
         } else {
-            return "hello,world!";
+            return "hello, world!";
         }
     }
 }
