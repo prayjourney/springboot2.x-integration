@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Author renjiaxin
  * @Date 2020/8/28
- * @Description 获取前端传入的String，对比验证码
+ * @Description Kaptcha工具类，获取前端传入的String，对比验证码
  */
 @Component
 public class KaptchaUtil {
