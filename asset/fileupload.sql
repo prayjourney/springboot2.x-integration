@@ -13,6 +13,7 @@ File Encoding         : 65001
 Date: 2020-10-12 16:33:52
 */
 
+# 大文件上传的两个表， file_md5快速上传，存储md5，检测md5是否存在，file_upload_status存储上传状态
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
