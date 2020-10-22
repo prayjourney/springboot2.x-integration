@@ -2,6 +2,7 @@ package com.zgy.bootintegration.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zgy.bootintegration.pojo.FileUploadStatus;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
  * @Date 2020/10/12
  * @Description
  */
+@Mapper
 @Repository
 public interface FileUploadStatusMapper extends BaseMapper<FileUploadStatus> {
     int selectFileMd5(String md5);
