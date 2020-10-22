@@ -18,7 +18,7 @@ import java.security.MessageDigest;
 import java.security.PrivilegedAction;
 
 /**
- * 文件md5值
+ * bigfile大文件上传，获取文件的md5值
  */
 @Component
 @Slf4j
