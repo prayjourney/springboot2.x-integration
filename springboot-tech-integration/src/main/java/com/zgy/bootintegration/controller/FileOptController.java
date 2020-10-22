@@ -50,7 +50,7 @@ public class FileOptController {
     public String pictureName = "s1.xxx";
     public String picturePath = "d://";
     private static List<String> excelFile =
-            Arrays.asList(".xlsx",".xlsm",".xlsb",".xls", ".xltx",".xltm", ".xlt", ".xlam", "xla", ".ods");
+            Arrays.asList(".xlsx", ".xlsm", ".xlsb", ".xls", ".xltx", ".xltm", ".xlt", ".xlam", "xla", ".ods");
 
 
     // 文件下载相关代码
@@ -214,41 +214,40 @@ public class FileOptController {
     @ResponseBody
     @RequestMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
-        if(file.isEmpty()){
+        if (file.isEmpty()) {
             return "file is empty!";
         }
         String fileName = file.getOriginalFilename();
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         log.info("上传文件名称为:{}, 后缀名为:{}!", fileName, suffixName);
-        if (StringUtils.isBlank(suffixName) || !excelFile.contains(suffixName)){
+        if (StringUtils.isBlank(suffixName) || !excelFile.contains(suffixName)) {
             return "文件不符合要求! 请重新上传符合格式的excel文件!";
         }
         // classes目录的绝对路径
-        String fileTempPath =  ClassUtils.getDefaultClassLoader().getResource("").getPath();
-        String fileTempAllPath = fileTempPath + File.separator + "upload" +File.separator +fileName;
+        String fileTempPath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+        String fileTempAllPath = fileTempPath + File.separator + "upload" + File.separator + fileName;
         File fileTempObj = new File(fileTempAllPath);
         // 检测目录是否存在
-        if (!fileTempObj.getParentFile().exists()){
+        if (!fileTempObj.getParentFile().exists()) {
             fileTempObj.getParentFile().mkdirs();
         }
         // 写入文件, 写入文件之后, 然后就去新的线程之中处理
         file.transferTo(fileTempObj);
-        new Thread(()->{
+        new Thread(() -> {
             String name = fileTempObj.getAbsolutePath();
             File excelFile = new File(name);
-            try
-            {
+            try {
                 // 使用jdbctemplate
                 // ExcelReaderBuilder readerBuilder = EasyExcel.read(excelFile, new NoModelDataListener(template));
                 // 使用mybatis
                 ExcelReaderBuilder readerBuilder = EasyExcel.read(excelFile, new NoModelDataListener(mapper));
                 readerBuilder.sheet(0).doRead();
-            }catch (Exception e){
+            } catch (Exception e) {
                 log.error("解析excel文件发生了错误, 原因是:{} !", e.getMessage());
             }
             excelFile.delete();
             log.info("上传到服务器的excel文件处理完毕, 已经删除!");
-        },"task: operate file").start();
+        }, "task: operate file").start();
         return "upload okay!";
     }
 }

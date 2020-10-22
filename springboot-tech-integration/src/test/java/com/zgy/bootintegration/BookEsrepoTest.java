@@ -93,9 +93,9 @@ public class BookEsrepoTest {
     @Test
     public void testUpdateBookDocumentByMap() throws IOException {
         Map<String, Object> mp = new HashMap<>();
-        mp.put("name","封神榜");
-        mp.put("author","河东智叟许仲林");
-        mp.put("overview","武王伐纣啊");
+        mp.put("name", "封神榜");
+        mp.put("author", "河东智叟许仲林");
+        mp.put("overview", "武王伐纣啊");
         mp.put("type", "==1213");
         System.out.println(esService.updateBookDocumentByMap(mp, "books", "3", 1));
     }
@@ -156,6 +156,7 @@ public class BookEsrepoTest {
     }
 
     // todo: 批量更新
+
     /**
      * 批量更新，这个不行，有点问题，更新不到我们想要的字段上面去
      *
@@ -192,6 +193,6 @@ public class BookEsrepoTest {
 
     @Test
     public void searchBookDocumentByName() throws IOException {
-        esService.searchDocumentByName("books","三国演义");
+        esService.searchDocumentByName("books", "三国演义");
     }
 }

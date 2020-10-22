@@ -49,13 +49,13 @@ public class JacksonLearn {
         // map -> json Str
         Map<String, Object> map = new HashMap<>();
         map.put("name", "hello");
-        map.put("ls", Arrays.asList("张三","李四","Lily","小明"));
+        map.put("ls", Arrays.asList("张三", "李四", "Lily", "小明"));
         map.put("city", ChinaBigCity.builder().name("成都").postCode("232341").province("四川省").area(476522.f).build());
         map.put("array", new Integer[]{1, 2, 34, 55});
         map2Str(map);
 
         // json Str -> map
-        String str ="{\"city\":{\"name\":\"成都\",\"province\":\"四川省\",\"postCode\":\"232341\",\"area\":476522.0}," +
+        String str = "{\"city\":{\"name\":\"成都\",\"province\":\"四川省\",\"postCode\":\"232341\",\"area\":476522.0}," +
                 "\"ls\":[\"张三\",\"李四\",\"Lily\",\"小明\"],\"name\":\"hello\"}";
         str2Map(str);
 
@@ -155,10 +155,10 @@ public class JacksonLearn {
     // jsonStr -> map
     public static void str2Map(String str) throws JsonProcessingException {
         Map<String, Object> map = mapper.readValue(str, Map.class);
-        String name = (String)map.get("name");
+        String name = (String) map.get("name");
         List<String> ls = (List<String>) map.get("ls");
         Object city = map.get("city");
-        System.out.println(name + ", " +ls.size());
+        System.out.println(name + ", " + ls.size());
         System.out.println(city.toString());
     }
 
@@ -183,12 +183,13 @@ public class JacksonLearn {
      */
 
     // jsonArray(jsonStr) -> list(map) // 这个处理有问题
+
     /**
      * public static void array2List(String strArray) throws JsonProcessingException {
-     *     List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
-     *     System.out.println(value.size());
-     *     System.out.println(value.get(0));
-     *}
+     * List value = mapper.readValue(strArray, new TypeReference<List<String>>(){});
+     * System.out.println(value.size());
+     * System.out.println(value.get(0));
+     * }
      */
 
 
@@ -204,7 +205,7 @@ public class JacksonLearn {
         JsonNode rootNode = mapper.readTree(str);
         // 遍历Tree
         Iterator<JsonNode> iterator = rootNode.elements();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next().asText());
         }
         // 直接通过关键字获取node对象
@@ -218,13 +219,13 @@ public class JacksonLearn {
         JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
         // 根节点
         ObjectNode rootNode = jsonNodeFactory.objectNode();
-        rootNode.put("token","123");
-        rootNode.put("name","张三");
-        rootNode.put("age",22);
+        rootNode.put("token", "123");
+        rootNode.put("name", "张三");
+        rootNode.put("age", 22);
         // 往根节点中添加一个子对象
         ObjectNode petsNode = jsonNodeFactory.objectNode();
-        petsNode.put("petName","kitty")
-                .put("petAge",3);
+        petsNode.put("petName", "kitty")
+                .put("petAge", 3);
         rootNode.set("pets", petsNode);
         // 往根节点中添加一个数组
         ArrayNode arrayNode = jsonNodeFactory.arrayNode();
@@ -244,21 +245,21 @@ public class JacksonLearn {
     // 创建 jsonArray的String
     public static void createJsonArrayString() throws IOException {
         /**
-        [
-            {
-                "petName": "kitty",
-                    "petAge": 3
-            },
-            {
-                "petName": "kitty",
-                    "petAge": 3
-            },
-            {
-                "petName": "kitty",
-                    "petAge": 3
-            }
-        ]
-        */
+         [
+         {
+         "petName": "kitty",
+         "petAge": 3
+         },
+         {
+         "petName": "kitty",
+         "petAge": 3
+         },
+         {
+         "petName": "kitty",
+         "petAge": 3
+         }
+         ]
+         */
         JsonNodeFactory jsonNodeFactory = JsonNodeFactory.instance;
         // 当做根节点
         ArrayNode arrayNode = jsonNodeFactory.arrayNode();
@@ -289,12 +290,12 @@ public class JacksonLearn {
         // 使用ObjectMapper的readValue方法将json字符串解析到JsonNode实例中
         JsonNode rootNode = mapper.readTree(str);
         // 直接从rootNode中获取某个键的值, 这种方式在如果我们只需要一个长json串中某个字段值时非常方便
-        if (rootNode.isArray()){
+        if (rootNode.isArray()) {
             int size = rootNode.size();
-            for (int i = 0; i < size; i++){
+            for (int i = 0; i < size; i++) {
                 // 获取每一个子node下面的所有的节点，包括key和value
                 Iterator<Map.Entry<String, JsonNode>> fields = rootNode.get(i).fields();
-                while(fields.hasNext()){
+                while (fields.hasNext()) {
                     Map.Entry<String, JsonNode> nodeKey = fields.next();
                     System.out.print("key: " + nodeKey.getKey() + ",  value: " + nodeKey.getValue() + "  . ");
                 }
@@ -314,7 +315,7 @@ public class JacksonLearn {
             ObjectNode rootNode = jsonNodeFactory.objectNode();
             Set<Map.Entry<K, V>> entries = list.get(i).entrySet();
             Iterator<Map.Entry<K, V>> iterator = entries.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Map.Entry<K, V> kvEntry = iterator.next();
                 rootNode.put(kvEntry.getKey().toString(), kvEntry.getValue().toString());
             }
@@ -358,22 +359,22 @@ public class JacksonLearn {
     public static void parse4String(String str) throws IOException {
         JsonFactory jsonFactory = new JsonFactory();
         JsonParser jsonParser = jsonFactory.createParser(str);
-        while (jsonParser.nextToken()!= JsonToken.END_OBJECT){
+        while (jsonParser.nextToken() != JsonToken.END_OBJECT) {
             String fieldName = jsonParser.getCurrentName();
 
             if ("name".equals(fieldName)) {
                 jsonParser.nextToken();
                 System.out.println(jsonParser.getText());
             }
-            if("age".equals(fieldName)){
+            if ("age".equals(fieldName)) {
                 jsonParser.nextToken();
                 System.out.println(jsonParser.getNumberValue());
             }
-            if("verified".equals(fieldName)){
+            if ("verified".equals(fieldName)) {
                 jsonParser.nextToken();
                 System.out.println(jsonParser.getBooleanValue());
             }
-            if("marks".equals(fieldName)){
+            if ("marks".equals(fieldName)) {
                 //move to [
                 jsonParser.nextToken();
                 // loop till token equal to "]"
@@ -440,40 +441,40 @@ public class JacksonLearn {
 
     /**
      * 感觉这个流式操作，不得行啊
-    // list(map) -> jsonArray(jsonStr)
-    public static <T> void ls2Array(List<Map<String, Object>> list) throws IOException {
-        StringWriter sw = new StringWriter();
-        JsonFactory jsonFactory = new JsonFactory();
-        JsonGenerator generator = jsonFactory.createGenerator(sw);
-        // 开始写入
-        generator.writeStartObject();
-        for (int i = 0; i < list.size(); i++) {
-            generator.writeFieldName("hello" + i);
-            generator.writeStartArray();
-            generator.writeStringField("name", list.get(i).get("name").toString());
-            generator.writeStringField("province", list.get(i).get("province").toString());
-            generator.writeStringField("postCode", list.get(i).get("postCode").toString());
-            generator.writeEndArray();
-        }
-        generator.writeEndObject();
-        generator.close();
-        System.out.println(sw.toString());
+     // list(map) -> jsonArray(jsonStr)
+     public static <T> void ls2Array(List<Map<String, Object>> list) throws IOException {
+     StringWriter sw = new StringWriter();
+     JsonFactory jsonFactory = new JsonFactory();
+     JsonGenerator generator = jsonFactory.createGenerator(sw);
+     // 开始写入
+     generator.writeStartObject();
+     for (int i = 0; i < list.size(); i++) {
+     generator.writeFieldName("hello" + i);
+     generator.writeStartArray();
+     generator.writeStringField("name", list.get(i).get("name").toString());
+     generator.writeStringField("province", list.get(i).get("province").toString());
+     generator.writeStringField("postCode", list.get(i).get("postCode").toString());
+     generator.writeEndArray();
+     }
+     generator.writeEndObject();
+     generator.close();
+     System.out.println(sw.toString());
 
-    }
+     }
 
-    // jsonArray(jsonStr) -> list(map)
-    public static <T> void array2Ls(String string) throws IOException {
-        StringWriter sw = new StringWriter();
-        JsonFactory jsonFactory = new JsonFactory();
-        JsonParser parser = jsonFactory.createParser(string);
+     // jsonArray(jsonStr) -> list(map)
+     public static <T> void array2Ls(String string) throws IOException {
+     StringWriter sw = new StringWriter();
+     JsonFactory jsonFactory = new JsonFactory();
+     JsonParser parser = jsonFactory.createParser(string);
 
-        // 开始解析"["
-        if (parser.isExpectedStartArrayToken()) {
-            String currentName = parser.getCurrentName();
-            JsonToken jsonToken = parser.nextToken();
-        }
-    }
-    **/
+     // 开始解析"["
+     if (parser.isExpectedStartArrayToken()) {
+     String currentName = parser.getCurrentName();
+     JsonToken jsonToken = parser.nextToken();
+     }
+     }
+     **/
 
 }
 

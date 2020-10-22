@@ -44,7 +44,7 @@
                             </div>
                             <!-- 阻止了默认行为 -->
                             <button type="button" class="btn btn-info" v-on:click.pre="searchUser">搜索</button>
-                            <button type="reset" class="btn btn-warning" >搜索条件重置</button>
+                            <button type="reset" class="btn btn-warning">搜索条件重置</button>
                         </form>
                     </div>
                 </div>
@@ -203,8 +203,8 @@
                             console.log(err)
                         })
                     },
-                    searchUser(){
-                        console.log(this.searchName )
+                    searchUser() {
+                        console.log(this.searchName)
                         console.log(this.searchPhoneCode)
                         let _this = this
                         axios.get('http://localhost:8988/bootvue/user/selectuserbynameorphonecode?name=' +

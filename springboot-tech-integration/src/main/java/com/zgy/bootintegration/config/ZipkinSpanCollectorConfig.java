@@ -31,10 +31,10 @@ import org.springframework.context.annotation.Configuration;
  * java -jar ./zipkin-server/target/zipkin-server-*exec.jar
  * 下载位置：https://zipkin.io/pages/quickstart.html，https://search.maven.org/remote_content?g=io.zipkin.java&a=zipkin-server&v=LATEST&c=exec
  * 参考：
- *  * https://blog.csdn.net/ffzhihua/article/details/95474166，https://www.cnblogs.com/xushuyi/p/10443769.html，
- *  * https://www.cnblogs.com/mengyixin/p/9839049.html，https://www.cnblogs.com/haixiang/p/11498439.html，
- *  * https://zipkin.io/pages/quickstart，https://blog.csdn.net/yangchuanan/article/details/83549345，
- *  * https://github.com/openzipkin/zipkin，https://www.csdn.net/gather_2b/MtjaEgzsNjQwNDYtYmxvZwO0O0OO0O0O.html
+ * * https://blog.csdn.net/ffzhihua/article/details/95474166，https://www.cnblogs.com/xushuyi/p/10443769.html，
+ * * https://www.cnblogs.com/mengyixin/p/9839049.html，https://www.cnblogs.com/haixiang/p/11498439.html，
+ * * https://zipkin.io/pages/quickstart，https://blog.csdn.net/yangchuanan/article/details/83549345，
+ * * https://github.com/openzipkin/zipkin，https://www.csdn.net/gather_2b/MtjaEgzsNjQwNDYtYmxvZwO0O0OO0O0O.html
  */
 @Configuration
 public class ZipkinSpanCollectorConfig {

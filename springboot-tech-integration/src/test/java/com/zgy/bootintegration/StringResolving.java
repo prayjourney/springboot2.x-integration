@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class StringResolving {
     private static ObjectMapper mapper = new ObjectMapper();
+
     public static void main(String[] args) throws JsonProcessingException {
         String str = "query=12313123&amp;word=rewqwtrwfdtgRETWEdsgdf+阿股份大厦&amp;type=JOB&amp;word=123123213123213213&amp;type=JOB";
         String[] split = str.split(";");
@@ -40,11 +41,11 @@ public class StringResolving {
             List<String> objects = new ArrayList<>();
             for (int i = 1; i < collect.size(); ) {
                 String arrayJson =
-                        "{\"word\":" + "\""+ collect.get(i) + "\"" +"," + "\"type\":" + "\""+ collect.get(i+1) + "\"}";
+                        "{\"word\":" + "\"" + collect.get(i) + "\"" + "," + "\"type\":" + "\"" + collect.get(i + 1) + "\"}";
                 i += 2;
                 objects.add(arrayJson);
             }
-            System.out.println(query +", "+objects.toString());
+            System.out.println(query + ", " + objects.toString());
             System.out.println(collect.size());
 
         }

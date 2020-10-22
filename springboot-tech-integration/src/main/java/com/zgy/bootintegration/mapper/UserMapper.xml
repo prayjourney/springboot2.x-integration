@@ -3,10 +3,14 @@
 <mapper namespace="com.zgy.bootintegration.mapper.UserMapper">
 
     <select id="selectUserById" resultType="com.zgy.bootintegration.pojo.User" parameterType="integer">
-        SELECT * FROM `user` WHERE `id` = #{id}
+        SELECT *
+        FROM `user`
+        WHERE `id` = #{id}
     </select>
 
     <select id="selectUserByName" resultType="com.zgy.bootintegration.pojo.User" parameterType="string">
-        SELECT * FROM `user` WHERE `name` = #{name}
+        SELECT *
+        FROM `user`
+        WHERE `name` = #{name}
     </select>
 </mapper>

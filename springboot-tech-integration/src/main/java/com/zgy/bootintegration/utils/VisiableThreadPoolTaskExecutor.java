@@ -19,10 +19,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Component
 public class VisiableThreadPoolTaskExecutor extends ThreadPoolTaskExecutor {
 
-    private void showThreadPoolInfo(String prefix){
+    private void showThreadPoolInfo(String prefix) {
         ThreadPoolExecutor threadPoolExecutor = getThreadPoolExecutor();
 
-        if(null==threadPoolExecutor){
+        if (null == threadPoolExecutor) {
             return;
         }
 

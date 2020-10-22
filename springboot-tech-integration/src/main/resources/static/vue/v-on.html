@@ -17,19 +17,19 @@
                 el: "#app",
                 // model：数据
                 data: {
-                    items:[
-                        {message:"hello"},
-                        {message:"world"},
-                        {message:"china"},
-                        {message:"japan"},
-                        {message:"usa"},
-                        {message:"british"}
+                    items: [
+                        {message: "hello"},
+                        {message: "world"},
+                        {message: "china"},
+                        {message: "japan"},
+                        {message: "usa"},
+                        {message: "british"}
                     ]
                 },
                 // 方法必须定义到vue的methods对象之中, v-on来绑定事件
-                methods:{
+                methods: {
                     // event要不要都是可以的
-                    sayHello :function (event) {
+                    sayHello: function (event) {
                         alert(this.items[0].message)
                         // alert(123)
                     }

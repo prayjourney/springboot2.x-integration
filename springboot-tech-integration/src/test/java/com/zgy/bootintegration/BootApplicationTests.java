@@ -152,32 +152,32 @@ public class BootApplicationTests {
 
     // 逻辑删除
     @Test
-    public void testDeleteById(){
+    public void testDeleteById() {
         userMapper.deleteById(1262043073220792322L);
     }
 
     // 逻辑删除, 批量
     @Test
-    public void testDeleteByBatchIds(){
-        userMapper.deleteBatchIds(Arrays.asList(1262043073220792322L,1262041503661940738L));
+    public void testDeleteByBatchIds() {
+        userMapper.deleteBatchIds(Arrays.asList(1262043073220792322L, 1262041503661940738L));
     }
 
     // Wrapper， 用于比较复杂的SQL
     @Test
-    public void testWrapperQuery(){
+    public void testWrapperQuery() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         // 和map类似， 支持链式编程，name不空， age大于18， version为1
-        wrapper.isNotNull("name").ge("age",18).eq("version", 1);
+        wrapper.isNotNull("name").ge("age", 18).eq("version", 1);
         List<User> users = userMapper.selectList(wrapper);
         users.forEach(System.out::println);
     }
 
     // 模糊查询
     @Test
-    public void testWrapperQueryLike(){
+    public void testWrapperQueryLike() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         // 和map类似， 支持链式编程，name不空， age大于18， version为1
-        wrapper.like("name","张");
+        wrapper.like("name", "张");
         List<User> users = userMapper.selectList(wrapper);
         users.forEach(System.out::println);
     }

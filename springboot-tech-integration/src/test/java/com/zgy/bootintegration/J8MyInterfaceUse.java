@@ -15,7 +15,7 @@ public class J8MyInterfaceUse {
         System.out.println(new HelloWorld().myName());
     }
 
-    static class HelloWorld extends MyAbstractClass implements MyInterface{
+    static class HelloWorld extends MyAbstractClass implements MyInterface {
         @Override
         public String getName() {
             return "hello";
@@ -23,22 +23,22 @@ public class J8MyInterfaceUse {
     }
 }
 
-interface MyInterface{
+interface MyInterface {
     // default关键字， 可以定义多个default的方法
-    default String myInfo(){
+    default String myInfo() {
         return "myinfo";
     }
 
     // 可以定义静态的有方法体的方法
-    public static String getVersion(){
+    public static String getVersion() {
         return "1.0";
     }
 
-    default String version(){
+    default String version() {
         return "1.0";
     }
 
-    default String myName(){
+    default String myName() {
         return "Hong Kong";
     }
 
@@ -46,8 +46,8 @@ interface MyInterface{
     public String getName();
 }
 
-abstract class MyAbstractClass{
-    public String myName(){
+abstract class MyAbstractClass {
+    public String myName() {
         return "香港";
     }
 }

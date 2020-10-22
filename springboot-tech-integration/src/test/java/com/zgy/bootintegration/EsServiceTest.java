@@ -25,14 +25,15 @@ public class EsServiceTest {
     public void testUpdateBookDocumentByMap() throws IOException {
         esService.updateBookDocumentByName("books", "author", "吴承恩");
     }
+
     @Test
-    public void batchUpdateDocument(){
+    public void batchUpdateDocument() {
 
     }
 
     @Test
     public void nullFieldTest() throws IOException {
-        esService.checkNullField("kuangsheng",200);
+        esService.checkNullField("kuangsheng", 200);
     }
 
 }

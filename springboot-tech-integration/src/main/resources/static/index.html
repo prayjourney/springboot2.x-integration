@@ -4,29 +4,32 @@
         <meta charset="UTF-8">
         <title>boot-mybatis-mbplus-shiro</title>
         <style type="text/css">
-            h1,h3 {
+            h1, h3 {
                 font-family: "微软雅黑 Light";
                 color: darkorchid;
             }
-            span{
+
+            span {
                 font-size: small;
                 color: darkorange;
             }
-            #a1,#a2,#a3,#a4,#a5{
+
+            #a1, #a2, #a3, #a4, #a5 {
                 color: deepskyblue;
                 text-decoration: none;
             }
 
             /*小火箭的阴影效果，但是效果不太理想*/
-            .effect{
+            .effect {
                 position: relative;
-                -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
-                -moz-box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
-                box-shadow: 0px 1px 4px rgba(0,0,0,0.1),0px 0px 20px rgba(0,0,0,0.2) inset;
+                -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 0px 20px rgba(0, 0, 0, 0.2) inset;
+                -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 0px 20px rgba(0, 0, 0, 0.2) inset;
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1), 0px 0px 20px rgba(0, 0, 0, 0.2) inset;
             }
+
             /*后代选择器*/
-            form[id=upfile] input{
-                border-radius:5px 5px 5px 5px;
+            form[id=upfile] input {
+                border-radius: 5px 5px 5px 5px;
                 border-color: #ff70ad;
                 font-size: 12px;
                 color: #551A8B;
@@ -38,7 +41,7 @@
             }
 
             /*这个上传框，设置好像不起作用的啊？*/
-            input#file-upload-button{
+            input#file-upload-button {
                 color: darkviolet;
             }
 
@@ -50,7 +53,8 @@
         <!-- a标签的锚点，可以用于页面间跳转或者页面内跳转定位-->
         <a name="indextop"></a>
         <h1>springboot2.x-integration</h1>
-        <h3>整合springboot, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用easyexcel处理excel文件等几项技术</h3>
+        <h3>整合springboot, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件,
+            使用easyexcel处理excel文件等几项技术</h3>
 
         <!-- 最原始的上传文件的前端控件，一般的小文件上传用这个就行了 -->
         <br>
@@ -72,7 +76,7 @@
         <a href="/jd/" style="color: #ff70ad">点击到达京东搜索页面</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="jd_info.html">京东说明</a>
 
         <h2>测试 shiro <a id="a5" style="border-style: dot-dash solid" href="/shiro/logout">退出</a></h2>
-        <a id=a1 href="/shiro/addmsg">添加msg!<span >需要验证，没有权限的话，跳转到登陆页面，在ShiroConfig之中配置好了</span></a><br>
+        <a id=a1 href="/shiro/addmsg">添加msg!<span>需要验证，没有权限的话，跳转到登陆页面，在ShiroConfig之中配置好了</span></a><br>
         <a id=a2 href="/shiro/getmsg">获取msg!<span>不需要验证</span></a><br>
         <a id=a3 href="/shiro/getmoney">取1000元!<span>需要验证，权限验证</span></a><br>
         <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
@@ -85,15 +89,16 @@
             stAge: <input type='text' name='stAge'>&nbsp;&nbsp;&nbsp;&nbsp;
             classId: <input type='text' name='classId'>&nbsp;&nbsp;&nbsp;&nbsp;
             stHome: <select name="stHome" style="width:80px; height:22px; margin-right: 20px;">
-                <option selected="selected">北京</option>
-                <option>成都</option>
-                <!-- 设置南京无法选择 -->
-                <option disabled>南京</option>
-                <option>杭州</option>
-                <option>武汉</option>
-            </select>
-            <input id ="tijiao" type="submit" value="提交" onclick="tijiaomethod()"/>
-        </form><br/>
+            <option selected="selected">北京</option>
+            <option>成都</option>
+            <!-- 设置南京无法选择 -->
+            <option disabled>南京</option>
+            <option>杭州</option>
+            <option>武汉</option>
+        </select>
+            <input id="tijiao" type="submit" value="提交" onclick="tijiaomethod()"/>
+        </form>
+        <br/>
 
         <h2>测试Token</h2>
         <!-- a标签的name属性是干嘛的呢？ 锚点？-->
@@ -144,11 +149,11 @@
             //})
 
             // 这种才会是正宗的处理方法
-            function tijiaomethod(){
+            function tijiaomethod() {
                 let formDataTemp = $("#myForm").serialize();
                 // jquery form表单.serialize()序列化后中文乱码问题原因及解决
                 // https://blog.csdn.net/w1014074794/article/details/43987689
-                let formData= decodeURIComponent(formDataTemp, true);
+                let formData = decodeURIComponent(formDataTemp, true);
                 console.log(formData)
                 // $.post("/student/info", function (formData) {
                 //     console.log(formData);
@@ -159,7 +164,7 @@
                     dataType: "text",
                     data: {"info": formData},
                     success: function (data) {
-                       console.log(data)
+                        console.log(data)
                     }
                 })
                 // 这样相当于新开了一个页面

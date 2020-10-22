@@ -8,10 +8,10 @@
     </head>
     <body>
         <div id="app">
-            <zhangsan v-for="item in courses" v-bind:oneitem="item" ></zhangsan>
+            <zhangsan v-for="item in courses" v-bind:oneitem="item"></zhangsan>
             <hr/>
             <!-- v-for是循环， v-bind绑定数据， 绑定的后面是props之中的名称，后面的item是循环出来的数据-->
-            <zhangsan v-for="item in courses" :oneitem="item" ></zhangsan>
+            <zhangsan v-for="item in courses" :oneitem="item"></zhangsan>
             <hr/>
             <!-- 下面这个有问题 -->
             <!--<zhangsan1 v-for="item in courses" :item="item" ></zhangsan1>-->
@@ -29,12 +29,12 @@
 
             // vue对象绑定了div
             let vueObj = new Vue({
-               el: "#app",
-               data:{
-                   courses:["Java", 'C++', 'Linux']
-               }
+                el: "#app",
+                data: {
+                    courses: ["Java", 'C++', 'Linux']
+                }
             });
         </script>
-        
+
     </body>
 </html>

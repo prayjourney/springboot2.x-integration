@@ -22,12 +22,12 @@ public class ShiroTest {
     private UserService service;
 
     @Test
-    public void testGetUserById(){
+    public void testGetUserById() {
         System.out.println(service.queryUserById(1));
     }
 
     @Test
-    public void testGetUserByName(){
+    public void testGetUserByName() {
         System.out.println(service.queryUserByName("李四"));
     }
 }

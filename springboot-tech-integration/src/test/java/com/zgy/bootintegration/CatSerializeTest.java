@@ -17,8 +17,7 @@ import java.time.LocalDate;
 /**
  * @Author renjiaxin
  * @Date 2020/6/23
- * @Description
- * https://www.iteye.com/blog/xiebh-121311
+ * @Description https://www.iteye.com/blog/xiebh-121311
  * https://blog.csdn.net/u013870094/article/details/82765907
  * https://blog.csdn.net/qq_35890572/article/details/81630052
  */
@@ -41,7 +40,7 @@ public class CatSerializeTest {
     public void testDeSerial() throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("d://catSerialize.txt")));
         // ObjectInputStream对象输入流，从catSerialize.txt文件中读取对象，完成对象的反序列化操作
-        CatSerialize myCat = (CatSerialize)ois.readObject();
+        CatSerialize myCat = (CatSerialize) ois.readObject();
         System.out.println("CatSerialize对象反序列化成功!");
         ois.close();
         System.out.println(myCat.toString());

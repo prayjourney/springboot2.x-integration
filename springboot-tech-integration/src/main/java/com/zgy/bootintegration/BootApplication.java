@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @MapperScan("com.zgy.bootintegration.mapper") // 扫描mapper文件夹
 @EnableScheduling // 开启定时任务
-@EnableAsync(proxyTargetClass=true) //aop的代理，使用cglib方式，默认是jdk方式
+@EnableAsync(proxyTargetClass = true) //aop的代理，使用cglib方式，默认是jdk方式
 public class BootApplication {
 
     public static void main(String[] args) {

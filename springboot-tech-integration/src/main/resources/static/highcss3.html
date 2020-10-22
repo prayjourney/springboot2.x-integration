@@ -4,80 +4,93 @@
         <meta charset="UTF-8">
         <title>css的高级玩法</title>
         <style>
-            #s1{
+            #s1 {
                 width: 100px;
                 height: 100px;
                 border-radius: 50px;
                 background-color: #3388bb;
             }
-            img{
+
+            img {
                 border-radius: 500px;
                 /*盒子阴影*/
                 box-shadow: 10px 10px 50px yellow;
             }
-            div{
+
+            div {
                 color: #ff0036;
             }
-            div.inline{
+
+            div.inline {
                 color: tomato;
                 font-size: 18px;
 
                 display: inline-block;
             }
-            #father{
+
+            #father {
                 border: 2px #66cbfa solid;
                 /*方法1: 父级元素增加高度*/
                 /*height: 900px;*/
                 /*方法2: 父级元素增加overflow属性*/
                 /*overflow: auto;*/
-                /*overflow: hidden;*/  /*auto和hidden效果一样*/
+                /*overflow: hidden;*/ /*auto和hidden效果一样*/
             }
+
             /*方法4: 使用伪类，增加小的块属性*/
-            #father:after{
+            #father:after {
                 content: "";
                 display: block;
                 clear: both;
             }
-            .layer01{
+
+            .layer01 {
                 border: 1px #ff0036 solid;
                 display: inline-block;
                 float: left;
             }
-            .layer02{
+
+            .layer02 {
                 border: 1px #ff0036 solid;
                 display: inline-block;
                 float: left;
             }
-            .layer03{
+
+            .layer03 {
                 border: 1px #ff0036 solid;
                 display: inline-block;
                 float: right;
                 line-height: 25px;
                 clear: both;
             }
-            .layer04{
+
+            .layer04 {
                 border: 1px #ff0036 solid;
                 display: inline-block;
                 float: right;
                 line-height: 50px;
                 clear: right;
             }
-            .clear{
+
+            .clear {
                 clear: both;
                 margin: 0px;
                 padding: 0px;
             }
-            #testdiv{
+
+            #testdiv {
                 width: 200px;
                 height: 100px;
                 overflow: scroll;
             }
-            #mybox{
+
+            #mybox {
                 padding: 10px;
                 margin: 10px;
                 border: #ff0036 1px solid;
             }
-            #first{
+
+            #first {
                 color: #3388bb;
                 background-color: #fca7ff;
                 border: 1px #32fa4a dotted;
@@ -85,24 +98,28 @@
                 top: 5px;
                 right: -20px;
             }
-            #second{
+
+            #second {
                 color: #a32cff;
                 background-color: #9ef7ff;
                 border: 1px #fa2e3a dashed;
             }
-            #third{
+
+            #third {
                 color: orangered;
                 background-color: #ffe743;
                 border: 1px #22fa3f dotted;
             }
-            #forbox{
+
+            #forbox {
                 padding: 10px;
                 margin: 10px;
                 border: 2px tomato solid;
                 width: 300px;
                 height: 300px;
             }
-            a{
+
+            a {
                 padding: 0px;
                 margin: 0px;
                 border: 1px #3452ff solid;
@@ -117,33 +134,40 @@
                 font-size: 20px;
                 font-family: 方正粗黑宋简体;
             }
-            a:hover{
+
+            a:hover {
                 background-color: #ff9296;
             }
-            #a2, #a4{
+
+            #a2, #a4 {
                 position: relative;
                 left: 202px;
-                top:-102px;
+                top: -102px;
             }
-            #a3{
+
+            #a3 {
                 position: relative;
-                top:-3px;
+                top: -3px;
             }
-            #a4{
+
+            #a4 {
                 position: relative;
-                top:-104px;
+                top: -104px;
             }
-            #a5{
+
+            #a5 {
                 position: relative;
                 left: 101px;
-                top:-307px;
+                top: -307px;
             }
-            #box2{
+
+            #box2 {
                 padding: 10px;
                 margin: 10px;
                 border: #ff0036 1px solid;
             }
-            #one{
+
+            #one {
                 padding: 300px;
                 background-color: #7f8434;
                 border: 1px salmon solid;
@@ -152,7 +176,8 @@
                 position: fixed;
                 display: block;
             }
-            #two{
+
+            #two {
                 padding: 20px;
                 background-color: whitesmoke;
                 border: 2px salmon dashed;
@@ -161,39 +186,46 @@
                 position: absolute;
 
             }
-            #mycontent{
+
+            #mycontent {
                 padding: 5px;
                 margin: 5px;
                 font-size: 22px;
                 line-height: 25px;
                 border: 1px #fac54b solid;
             }
-            #myimg{
+
+            #myimg {
                 border-radius: 300px 0px 300px 0px;
                 box-shadow: 10px 10px 30px lightpink;
             }
-            ul li{
+
+            ul li {
                 padding: 0px;
                 margin: 0px;
                 list-style: none;
             }
+
             /*父级元素相对定位*/
-            #mycontent li{
+            #mycontent li {
                 position: relative;
             }
+
             .tipBg, .tipText {
-                position :absolute;
+                position: absolute;
                 width: 300px;
                 height: 25px;
                 top: -70px;
             }
-            .tipText{
+
+            .tipText {
                 color: #66cbfa;
-                z-index: 0;/*图层，默认是0，最大无限*/
+                z-index: 0; /*图层，默认是0，最大无限*/
             }
-            .tipBg{
+
+            .tipBg {
                 background: #3388bb;
-                opacity: 0.5;/*背景透明度*/
+                opacity: 0.5; /*背景透明度*/
             }
 
         </style>
@@ -226,10 +258,10 @@
         <br/>
         <br/>
         <div id="father">
-            <div class="layer01"><img src="images/lf2.png" alt =""></div>
-            <div class="layer02"><img src="images/lf2.png" alt =""></div>
+            <div class="layer01"><img src="images/lf2.png" alt=""></div>
+            <div class="layer02"><img src="images/lf2.png" alt=""></div>
             <div class="layer03">浮动的盒子可以左浮动也可以右边浮动</div>
-            <div class="layer04"><img src="images/lf2.png" alt =""></div>
+            <div class="layer04"><img src="images/lf2.png" alt=""></div>
         </div>
         <!-- 方法3: 增加一个新的空div -->
         <!-- <div class="clear"><span>123, hello world!</span></div>-->

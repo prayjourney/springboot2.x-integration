@@ -35,7 +35,7 @@ public class EsScrollTest {
         Iterator<Map.Entry<String, Integer>> iterator = kuangsheng.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, Integer> map = iterator.next();
-            System.out.println("key : " + map.getKey() + ", value : " +map.getValue());
+            System.out.println("key : " + map.getKey() + ", value : " + map.getValue());
         }
 
 
@@ -47,7 +47,6 @@ public class EsScrollTest {
     }
 
 
-
     @Test
     public void testMultiCompositeBuckets() throws IOException {
         esService.multiCompositeBuckets("kuangsheng");
@@ -56,11 +55,11 @@ public class EsScrollTest {
 
     @Test
     public void testSearchSort01() throws IOException {
-        esService.searchSort01("kuangsheng",5,null);
+        esService.searchSort01("kuangsheng", 5, null);
     }
 
     @Test
     public void testSearchSort02() throws IOException {
-        esService.searchSort02("kuangsheng",5,null);
+        esService.searchSort02("kuangsheng", 5, null);
     }
 }

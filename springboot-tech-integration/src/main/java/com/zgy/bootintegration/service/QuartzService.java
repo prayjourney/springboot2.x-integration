@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
  * @Author renjiaxin
  * @Date 2020/5/22
  * @Description
- *
  * @URL cron的介绍博客
  * https://www.cnblogs.com/zouhong/p/11332126.html
  * https://juejin.im/entry/5bb9bfd0f265da0af609c755
@@ -60,7 +59,7 @@ public class QuartzService {
                 .stId(Integer.valueOf(String.valueOf(UUID.randomUUID().getLeastSignificantBits()).substring(10, 15)))
                 .build();
         studentMapper.insert(student);
-        log.info("插入学生成功，时间是： "+ LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+        log.info("插入学生成功，时间是： " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
         return JacksonUtil.getJsonFromObject(student);
     }
 

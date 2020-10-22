@@ -21,9 +21,9 @@ import java.time.Duration;
 /**
  * @Author: renjiaxin
  * @Despcription: Redis本身给我们提供了一个RedisTemplate，但是泛型类型是RedisTemplate<Object, Object>, 和我们的需求有点差异，
- *                一般而言的话，我们是使用key—value的模式，所以就是String,Object的方式就行了，那么就需要自己写一个RedisConfig，
- *                我们在自己写RedisConfig的时候，因为是已经提供了redisTemplate这个bean，所以我们的template就需要一个新的名字，
- *                这个名字需要和原有的名字有区别，然后在使用的地方，进行注入的时候，需要使用我们自己写的template来注入，即可。
+ * 一般而言的话，我们是使用key—value的模式，所以就是String,Object的方式就行了，那么就需要自己写一个RedisConfig，
+ * 我们在自己写RedisConfig的时候，因为是已经提供了redisTemplate这个bean，所以我们的template就需要一个新的名字，
+ * 这个名字需要和原有的名字有区别，然后在使用的地方，进行注入的时候，需要使用我们自己写的template来注入，即可。
  * @Date: Created in 2020/4/19 12:30
  * @Modified by: https://segmentfault.com/a/1190000020314044, https://blog.csdn.net/weixin_38312502/article/details/80916222
  */
