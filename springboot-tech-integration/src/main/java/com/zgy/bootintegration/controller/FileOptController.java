@@ -52,7 +52,8 @@ public class FileOptController {
     private static List<String> excelFile =
             Arrays.asList(".xlsx",".xlsm",".xlsb",".xls", ".xltx",".xltm", ".xlt", ".xlam", "xla", ".ods");
 
-    //文件下载相关代码
+
+    // 文件下载相关代码
     @ResponseBody
     @RequestMapping("/download")
     public void fileDownload(HttpServletResponse response) {
@@ -105,7 +106,7 @@ public class FileOptController {
     }
 
 
-    //文件下载， 这个下载下来是一个空的文件
+    // 文件下载， 这个下载下来是一个空的文件
     @ResponseBody
     @RequestMapping("/download2")
     public void fileDownload2(HttpServletResponse response) throws IOException {
@@ -146,7 +147,7 @@ public class FileOptController {
     }
 
 
-    //文件下载
+    // 文件下载
     @ResponseBody
     @RequestMapping("/download3")
     public void fileDownload3(HttpServletResponse response) throws IOException {
@@ -208,6 +209,8 @@ public class FileOptController {
 
     }
 
+
+    // 文件上传，上传到了设置好的 路径
     @ResponseBody
     @RequestMapping("/uploadFile")
     public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException, InterruptedException {
@@ -247,7 +250,5 @@ public class FileOptController {
             log.info("上传到服务器的excel文件处理完毕, 已经删除!");
         },"task: operate file").start();
         return "upload okay!";
-
     }
-
 }
