@@ -115,7 +115,7 @@ public class UserController {
     @CrossOrigin
     @ResponseBody
     @GetMapping("selectuserbynameorphonecode")
-    public List<User> selectByUserNameOrPhoneCode(@Param("name")String name, @Param("phoneCode")String phoneCode){
+    public List<User> selectByUserNameOrPhoneCode(@Param("name") String name, @Param("phoneCode") String phoneCode) {
         // 可以使用java代码控制多个情况的问题，也可以使用动态sql
         log.info("name是: {} , phoneCode是: {} !", name, phoneCode);
         return service.selectByUserNameOrPhoneCode(name, phoneCode);

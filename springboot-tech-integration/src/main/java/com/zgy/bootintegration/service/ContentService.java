@@ -85,7 +85,7 @@ public class ContentService {
 
 
         // 解析结果, 所有的结果都放在searchResponse之中，我们需要的内容，就是在Hits之中
-        ArrayList<Map<String,Object>> list = new ArrayList<>();
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
         for (SearchHit documentFields : searchResponse.getHits().getHits()) {
             list.add(documentFields.getSourceAsMap());
         }
@@ -123,16 +123,16 @@ public class ContentService {
         SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
 
         // 解析结果, 所有的结果都放在searchResponse之中，我们需要的内容，就是在Hits之中
-        ArrayList<Map<String,Object>> list = new ArrayList<>();
+        ArrayList<Map<String, Object>> list = new ArrayList<>();
         for (SearchHit hit : searchResponse.getHits().getHits()) {
             // 第2步，解析高亮的字段
             Map<String, HighlightField> highlightFields = hit.getHighlightFields();
             HighlightField title = highlightFields.get("title");
             Map<String, Object> sourceAsMap = hit.getSourceAsMap(); //原来的结果
-            if(title != null){
+            if (title != null) {
                 Text[] fragments = title.fragments();
                 String new_title = "";
-                for (Text text: fragments){
+                for (Text text : fragments) {
                     new_title += text;
                 }
                 // 替换

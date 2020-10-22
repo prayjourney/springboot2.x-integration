@@ -17,10 +17,10 @@ public class AsyncServiceImpl implements AsyncService {
     @Async("asyncServiceExecutor")
     public void executeAsync() {
         log.info("start executeAsync");
-        try{
+        try {
             Thread.sleep(10000);
             System.out.println("好瞌睡啊。。。。");
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         log.info("end executeAsync");

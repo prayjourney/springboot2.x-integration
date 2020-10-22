@@ -41,7 +41,7 @@ public class UserService {
     }
 
     // 动态sql:https://www.jianshu.com/p/6b0227935d0f
-    public List<User> selectByUserNameOrPhoneCode(String name, String phoneCode){
+    public List<User> selectByUserNameOrPhoneCode(String name, String phoneCode) {
         return mapper.selectByUserNameOrPhoneCode(name, phoneCode);
     }
 }

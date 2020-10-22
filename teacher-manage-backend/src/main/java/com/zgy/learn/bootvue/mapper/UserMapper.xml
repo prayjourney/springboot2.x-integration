@@ -2,24 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zgy.learn.bootvue.mapper.UserMapper">
     <select id="findAll" resultType="com.zgy.learn.bootvue.pojo.User">
-        SELECT * FROM t_user;
+        SELECT *
+        FROM t_user;
     </select>
 
     <select id="selectUserById" resultType="com.zgy.learn.bootvue.pojo.User">
-        SELECT * FROM t_user WHERE id = #{id};
+        SELECT *
+        FROM t_user
+        WHERE id = #{id};
     </select>
 
     <insert id="saveUser" parameterType="com.zgy.learn.bootvue.pojo.User">
-        INSERT INTO `t_user`(`name`, `age`, `salary`, `phoneCode`)  VALUES (#{name}, #{age}, #{salary}, #{phoneCode});
+        INSERT INTO `t_user`(`name`, `age`, `salary`, `phoneCode`)
+        VALUES (#{name}, #{age}, #{salary}, #{phoneCode});
     </insert>
 
     <delete id="deleteUserById" parameterType="int">
-        DELETE FROM `t_user` WHERE id = #{id};
+        DELETE
+        FROM `t_user`
+        WHERE id = #{id};
     </delete>
 
     <update id="updateUserById">
-        UPDATE `t_user` SET `name` = #{name}, `age` = #{age}, `salary` = #{salary}, `phoneCode` =#{phoneCode} WHERE
-        `id` = #{id};
+        UPDATE `t_user`
+        SET `name`      = #{name},
+            `age`       = #{age},
+            `salary`    = #{salary},
+            `phoneCode` =#{phoneCode}
+        WHERE `id` = #{id};
     </update>
 
     <!-- 查询的话，按条件就必须有where， 有where后面就要有条件，如果使用WHERE就要有一个 1=1 的真条件，或者使用<where>, 使用<where>优雅点-->

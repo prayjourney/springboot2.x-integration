@@ -74,12 +74,11 @@ public class EasyExcelTest {
 
     // 简单的读
     @Test
-    public void simpleReadTest(){
+    public void simpleReadTest() {
         String fileName = "d:\\数据标注6-03.xlsx";
         //ExcelReaderBuilder readerBuilder = EasyExcel.read(fileName, new NoModelDataListener());
         //readerBuilder.sheet(0).doRead();
     }
-
 
 
 }

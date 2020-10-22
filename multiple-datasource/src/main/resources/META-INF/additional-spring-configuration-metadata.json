@@ -4,5 +4,6 @@
       "name": "spring.datasource.dynamic.durid.validationQuery",
       "type": "java.lang.String",
       "description": "Description for spring.datasource.dynamic.durid.validationQuery."
-  }
-] }
+    }
+  ]
+}

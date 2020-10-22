@@ -61,10 +61,10 @@ public class PageUtil {
     /**
      * 获取分页之后，该页的数据
      *
-     * @param list 需要分页的List数据
+     * @param list     需要分页的List数据
      * @param pageSize 页面大小
-     * @param pageNo 页面编码
-     * @param <T> T参数类型
+     * @param pageNo   页面编码
+     * @param <T>      T参数类型
      * @return pageNo页面的内容，相当于是一个子List
      * @throws Exception exception
      */
@@ -86,11 +86,11 @@ public class PageUtil {
     /**
      * 获取分页的总数
      *
-     * @param map       需要分页的map
+     * @param map      需要分页的map
      * @param pageSize 页面大小
      * @return 按照此页面分页可以得到的分页数量
      */
-    public static <T,V> int getIteratorNum(Map<T,V> map, int pageSize) {
+    public static <T, V> int getIteratorNum(Map<T, V> map, int pageSize) {
         int base = map.size() / pageSize;
         boolean complete = (map.size() % pageSize) == 0 ? true : false;
         if (complete == true) {
@@ -103,15 +103,15 @@ public class PageUtil {
     /**
      * map的分页
      *
-     * @param map 需要分页的数据
+     * @param map      需要分页的数据
      * @param pageSize 页面大小
-     * @param pageNo 要获取的页面编码
-     * @param <T> T参数类型
-     * @param <V> V参数类型
+     * @param pageNo   要获取的页面编码
+     * @param <T>      T参数类型
+     * @param <V>      V参数类型
      * @return pageNo页面的内容，相当于是一个子Map
      * @throws Exception exception
      */
-    public static <T,V> Map<T, V> map2Page(Map<T,V> map, int pageSize, int pageNo) throws Exception {
+    public static <T, V> Map<T, V> map2Page(Map<T, V> map, int pageSize, int pageNo) throws Exception {
         // 获取当前分页条件下的页面数量
         int allPageNumber = getIteratorNum(map, pageSize);
 
@@ -119,7 +119,7 @@ public class PageUtil {
         Set<T> ts = map.keySet();
         List<T> keyList = new ArrayList<>();
         List<V> valueList = new ArrayList<>();
-        for (T t: ts){
+        for (T t : ts) {
             keyList.add(t);
             valueList.add(map.get(t));
         }
@@ -128,9 +128,9 @@ public class PageUtil {
             throw new Exception("page number is out of boundary!");
         } else if (pageNo >= 0 && pageNo < allPageNumber - 1) {
             List<T> tempKeyList = keyList.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
-            List<V> tempValueList = valueList.subList(pageNo * pageSize, pageNo * pageSize +pageSize);
+            List<V> tempValueList = valueList.subList(pageNo * pageSize, pageNo * pageSize + pageSize);
             Map<T, V> tvHashMap = new HashMap<>();
-            for (int i =0; i< tempKeyList.size(); i++){
+            for (int i = 0; i < tempKeyList.size(); i++) {
                 // 1.此处可以Map的方式get, 2.可以通过list按顺序获取
                 tvHashMap.put(tempKeyList.get(i), tempValueList.get(i));
             }
@@ -139,7 +139,7 @@ public class PageUtil {
             List<T> tempKeyList = keyList.subList(pageNo * pageSize, map.size());
             List<V> tempValueList = valueList.subList(pageNo * pageSize, map.size());
             Map<T, V> tvHashMap = new HashMap<>();
-            for (int i =0; i< tempKeyList.size(); i++){
+            for (int i = 0; i < tempKeyList.size(); i++) {
                 // 1.此处可以Map的方式get, 2.可以通过list按顺序获取
                 tvHashMap.put(tempKeyList.get(i), tempValueList.get(i));
             }

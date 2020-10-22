@@ -32,7 +32,7 @@ public class TransferParam {
 
         // 对象类型的值传递
         System.out.println("+++++++++++对象类型的值传递++++++++++++++");
-        Map<String, String > map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("name", "李小龙");
         System.out.println("调用changeDataObject(Map<String, String> map)方法前: " + map);
         changeDataObject(map);
@@ -56,19 +56,19 @@ public class TransferParam {
         System.out.println("方法中： " + data);
     }
 
-    public static void changeDataObject(Map<String, String> map){
-        Map<String, String > testMap = new HashMap<>();
+    public static void changeDataObject(Map<String, String> map) {
+        Map<String, String> testMap = new HashMap<>();
         testMap.put("name", "zhangsan");
         map = testMap;
         System.out.println("方法中： " + map);
     }
 
-    public static void changeString(String str){
-        str ="Hello world!";
+    public static void changeString(String str) {
+        str = "Hello world!";
         System.out.println("方法中： " + str);
     }
 
-    public static void changePeople(People people){
+    public static void changePeople(People people) {
         Map<String, String> info2 = new HashMap<>();
         info2.put("address", "北京");
         info2.put("home", "四川雅安");

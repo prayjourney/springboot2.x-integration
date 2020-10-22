@@ -269,7 +269,7 @@
             <version>${zipkin.version}</version>
         </dependency>
 
-        <!-- 大文件上传 -->
+        <!-- 大文件上传的依赖包 -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>

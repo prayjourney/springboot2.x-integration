@@ -58,7 +58,7 @@ public class BlogCodeGenerator {
         StrategyConfig strategyConfig = new StrategyConfig();
         //要映射的表名
         strategyConfig.setInclude("article", "article_admire", "article_like", "authority", "category",
-                "comment", "comment_like", "comment_reply", "comment_reply_like","favorite", "friend",
+                "comment", "comment_like", "comment_reply", "comment_reply_like", "favorite", "friend",
                 "label", "level", "message", "message_reply", "role", "role_authority", "sponsor", "user");
         // 驼峰命名
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);

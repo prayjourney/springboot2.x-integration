@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class HutoolCaptchaTest {
 
     @Test
-    public void testCreateCodeImage(){
+    public void testCreateCodeImage() {
         //定义图形验证码的长和宽
         LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(200, 100);
 

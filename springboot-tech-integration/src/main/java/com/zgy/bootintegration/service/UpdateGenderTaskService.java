@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 //@EnableAspectJAutoProxy(proxyTargetClass = true) //此处不需要这个
-public class UpdateGenderTaskService{
+public class UpdateGenderTaskService {
     @Autowired
     private StudentMapper studentMapper;
 

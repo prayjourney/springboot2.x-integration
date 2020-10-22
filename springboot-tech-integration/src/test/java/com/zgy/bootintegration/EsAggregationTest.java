@@ -23,20 +23,21 @@ public class EsAggregationTest {
 
     @Test
     public void testAggDocumentMax() throws IOException {
-        esService.aggDocumentMax("kuangsheng","age");
+        esService.aggDocumentMax("kuangsheng", "age");
 
     }
 
     @Test
     public void testAggDocumentMax02() throws IOException {
-        esService.aggDocumentMax02("kuangsheng","age");
+        esService.aggDocumentMax02("kuangsheng", "age");
 
     }
+
     @Test
     public void testAggDocumentMax03() throws IOException {
-        String q1= "{\"size\":0,\"aggs\":{\"the_terms\":{\"terms\":{\"size\":10,\"field\":\"age\"}}}}";
-        String myQuery= "{size:0, aggs:{the_terms:{terms:{size:10,field:age}}}}";
-        esService.aggDocumentMax03("kuangsheng","age",myQuery);
+        String q1 = "{\"size\":0,\"aggs\":{\"the_terms\":{\"terms\":{\"size\":10,\"field\":\"age\"}}}}";
+        String myQuery = "{size:0, aggs:{the_terms:{terms:{size:10,field:age}}}}";
+        esService.aggDocumentMax03("kuangsheng", "age", myQuery);
 
     }
 

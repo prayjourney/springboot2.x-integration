@@ -23,8 +23,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MybatisPlusConfiguration {
     // 注册乐观锁插件
     @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor(){
-        return  new OptimisticLockerInterceptor();
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
     }
 
     // 分页插件
@@ -42,18 +42,18 @@ public class MybatisPlusConfiguration {
 
     // 配置逻辑删除组件
     @Bean
-    public ISqlInjector sqlInjector(){
+    public ISqlInjector sqlInjector() {
         return new LogicSqlInjector();
     }
 
     //SQL执行效率插件
     @Bean
-    @Profile(value = {"dev","test"})
-    public PerformanceInterceptor performanceInterceptor(){
+    @Profile(value = {"dev", "test"})
+    public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
         performanceInterceptor.setFormat(true);
         performanceInterceptor.setMaxTime(1000);  // 1ms设置sql执行的最大时间，超过就不去执行
-        return  performanceInterceptor;
+        return performanceInterceptor;
 
     }
 }

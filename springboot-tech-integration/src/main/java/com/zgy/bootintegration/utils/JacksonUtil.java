@@ -90,7 +90,7 @@ public class JacksonUtil {
             ObjectNode rootNode = jsonNodeFactory.objectNode();
             Set<Map.Entry<K, V>> entries = list.get(i).entrySet();
             Iterator<Map.Entry<K, V>> iterator = entries.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Map.Entry<K, V> kvEntry = iterator.next();
                 rootNode.put(kvEntry.getKey().toString(), kvEntry.getValue().toString());
             }

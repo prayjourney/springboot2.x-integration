@@ -26,8 +26,8 @@ public class JwtTokenUtil {
         Cookie[] cookies = getRequest().getCookies();
         String token = null;
         String kidId = null;
-        for (int i= 0; i<  cookies.length; i++){
-            if (cookies[i].getName().equals("token")){
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("token")) {
                 token = cookies[i].getValue();
                 kidId = JWT.decode(token).getAudience().get(0);
             }

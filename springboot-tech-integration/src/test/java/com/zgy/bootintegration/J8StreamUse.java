@@ -17,8 +17,7 @@ import java.util.stream.Stream;
 /**
  * @Author renjiaxin
  * @Date 2020/6/16
- * @Description
- * Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
+ * @Description Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
  */
 public class J8StreamUse {
     public static void main(String[] args) {
@@ -57,7 +56,7 @@ public class J8StreamUse {
         System.out.println(listStream.findFirst().get());
 
         // 2. Arrays之中的静态方法获取数组流
-        Integer[]  integers = new Integer[10];
+        Integer[] integers = new Integer[10];
         integers = new Integer[]{1, 2, 3, 4, 5};
         Stream<Integer> arrayStream = Arrays.stream(integers);
         arrayStream.forEach(x -> System.out.print(x));
@@ -74,16 +73,16 @@ public class J8StreamUse {
 
         // 4. 使用无限流
         // 无限流, 种子是起始值, 下面的filter是一个检测操作， boolean类型的
-        Stream<Integer> stream3 = Stream.iterate(1, x ->  x + 2);
+        Stream<Integer> stream3 = Stream.iterate(1, x -> x + 2);
         stream3.limit(20).skip(2).filter(x -> x % 2 != 0).forEach(System.out::println);
     }
 
     /**
      * 筛选与切片: 实际上就是对流里面的数据进行一个过滤或者其他的操作，比如截断limit，跳过skip,去重distinct，filter接收lambda
      */
-    public static void filterMethod(){
-        Stream<Integer> integerStream = Stream.of(1, 20, 13, 27 ,29, 34, 15, 61, 27, 84, 29);
-        integerStream.filter(x -> x >=10).limit(10).distinct().skip(0).forEach(System.out::println);
+    public static void filterMethod() {
+        Stream<Integer> integerStream = Stream.of(1, 20, 13, 27, 29, 34, 15, 61, 27, 84, 29);
+        integerStream.filter(x -> x >= 10).limit(10).distinct().skip(0).forEach(System.out::println);
         // 排序
         // Comparator<Integer> comparator = (x, y) -> x - y;
         // System.out.println(integerStream.filter(x -> x > 13).sorted().min(comparator).get());
@@ -94,15 +93,15 @@ public class J8StreamUse {
      * map: 接收lambda, 将元素转化成其他形式或者提取信息，接受一个函数作为参数，将该函数应用到每一个元素上，并将其映射成新的元素
      * flatMap: 接收一个函数作为参数，将流中的每个值换成另一个流，然后把所有的流连成一个流
      */
-    public static void mapMethod(){
-        List<String> list = Arrays.asList("aa","bb","ccc","dd");
+    public static void mapMethod() {
+        List<String> list = Arrays.asList("aa", "bb", "ccc", "dd");
         list.stream().map(String::toUpperCase).forEach(System.out::println);
 
         System.out.println("-----------------------");
         Stream<Stream<Character>> s2tm =
                 list.stream().map(x -> J8StreamUse.filterCharacter(x));
         // 流中取流
-        s2tm.forEach(sm ->{
+        s2tm.forEach(sm -> {
             sm.forEach(System.out::println);
         });
 
@@ -112,9 +111,9 @@ public class J8StreamUse {
 
     }
 
-    public static Stream<Character> filterCharacter(String str){
+    public static Stream<Character> filterCharacter(String str) {
         List<Character> list = new ArrayList<>();
-        for (Character ch: str.toCharArray()){
+        for (Character ch : str.toCharArray()) {
             list.add(ch);
         }
         return list.stream();
@@ -125,8 +124,8 @@ public class J8StreamUse {
      * sorted()--->自然排序， comparable
      * sorted(Comparator com)--->定制排序， comparator
      */
-    public static void sortMethod(){
-        List<String> list = Arrays.asList("张三", "lisi", "22","7","黑山老妖");
+    public static void sortMethod() {
+        List<String> list = Arrays.asList("张三", "lisi", "22", "7", "黑山老妖");
         list.stream().sorted().forEach(System.out::println);
 
         // 定制排序
@@ -159,7 +158,7 @@ public class J8StreamUse {
     /**
      * 终止操作
      */
-    public static void terminalMethod(){
+    public static void terminalMethod() {
         // 是否全都匹配，检查所有元素
         boolean match1 = dogs.stream().allMatch(e -> e.getStatus().getStatus() == "OKAY");
         System.out.println(match1);
@@ -194,8 +193,8 @@ public class J8StreamUse {
      * T reduce(T identity, BinaryOperator<T> accumulator);
      * Optional<T> reduce(BinaryOperator<T> accumulator);
      */
-    public static void reduceMethod(){
-        List<Integer> list =  Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+    public static void reduceMethod() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         // 0是起始值
         Integer sum = list.stream().reduce(0, (x, y) -> x + y);
         System.out.println(sum);
@@ -210,7 +209,7 @@ public class J8StreamUse {
      * 收集
      * 将流转换为其他的形式，接受一个collector接口实现，用于给Stream之中的元素做汇总的方法
      */
-    public static void collectMethod(){
+    public static void collectMethod() {
         // 收集所有的狗的名字
         List<String> stringList = dogs.stream().map(LittleDog::getName).collect(Collectors.toList());
         stringList.forEach(System.out::println);
@@ -231,7 +230,7 @@ public class J8StreamUse {
         Map<Status, List<LittleDog>> listMap = dogs.stream().collect(Collectors.groupingBy(LittleDog::getStatus));
         Set<Map.Entry<Status, List<LittleDog>>> entrySet = listMap.entrySet();
         Stream<Map.Entry<Status, List<LittleDog>>> stream = entrySet.stream();
-        stream.forEach(x -> System.out.println(x.getKey() + ", " +x.getValue()));
+        stream.forEach(x -> System.out.println(x.getKey() + ", " + x.getValue()));
 
         // 多级分组
         Map<String, Map<String, List<LittleDog>>> mapMap = dogs.stream()
@@ -270,7 +269,7 @@ public class J8StreamUse {
     /**
      * 综合使用
      */
-    public static void commonUseStream(){
+    public static void commonUseStream() {
 
         List<Integer> ls = Arrays.asList(1, 2, 100, 6, 33, 9, -2, 122, 58, 39, 199);
         // 创建流
@@ -291,7 +290,7 @@ public class J8StreamUse {
 
     @Data
     @Builder
-    static class LittleDog{
+    static class LittleDog {
         private Integer id;
         private String name;
         private String kind;
@@ -300,17 +299,17 @@ public class J8StreamUse {
     }
 }
 
-enum Status{
-    GREAT(1, "great"), GOOD(2,"good"), OKAY(3,"okay"), BAD(4,"bad");
+enum Status {
+    GREAT(1, "great"), GOOD(2, "good"), OKAY(3, "okay"), BAD(4, "bad");
     private int index;
     private String status;
 
-    private Status(int idex, String  str) {
+    private Status(int idex, String str) {
         index = idex;
         status = str;
     }
 
-    public String getStatus(){
+    public String getStatus() {
         return status;
     }
 }

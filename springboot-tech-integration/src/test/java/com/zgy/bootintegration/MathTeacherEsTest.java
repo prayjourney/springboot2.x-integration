@@ -81,7 +81,7 @@ public class MathTeacherEsTest {
 
     @Test
     public void searchBookDocumentByName() throws IOException {
-        esService.searchDocumentByName("teachers","girl");
+        esService.searchDocumentByName("teachers", "girl");
         // esService.searchDocumentByName("teachers","boy");  //可以查询出来
     }
 }

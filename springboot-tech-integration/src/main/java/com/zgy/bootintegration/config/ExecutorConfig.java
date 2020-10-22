@@ -32,7 +32,7 @@ public class ExecutorConfig {
     private Integer outTimeSeconds;
 
     @Bean
-    public Executor asyncServiceExecutor(){
+    public Executor asyncServiceExecutor() {
         // Spring给我们封装的ThreadPoolTaskExecutor， 其实核心就是ThreadPoolExecutor
         // ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         // 使用自定义的详细的Executor
@@ -52,6 +52,6 @@ public class ExecutorConfig {
         // 初始化
         executor.initialize();
 
-        return  executor;
+        return executor;
     }
 }

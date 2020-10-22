@@ -18,17 +18,17 @@
             Vue.config.devtools = true
             var vm = new Vue({
                 el: "#app",
-                data:{
-                    message :"hello world!"
+                data: {
+                    message: "hello world!"
                 },
-                methods:{
+                methods: {
                     currentTime1: function () {
                         // 返回当前时间戳
                         return Date.now();
                     }
                 },
                 // 计算属性， methods和computed中的方法不能重名
-                computed:{
+                computed: {
                     currentTime2: function () {
                         // 返回当前时间戳
                         return Date.now();

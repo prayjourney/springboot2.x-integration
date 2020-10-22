@@ -38,8 +38,8 @@ public class SessionController {
         // false表示只能获取当前请求中的session，如果没有也不能自动创建。
         // HttpSession session=request.getSession(false);
 
-        session.setAttribute("username","TOM");
-        session.setAttribute("password","tommmm");
+        session.setAttribute("username", "TOM");
+        session.setAttribute("password", "tommmm");
         return "已经创建好了session, 给前端返回了session id";
     }
 
@@ -59,8 +59,8 @@ public class SessionController {
         // false表示只能获取当前请求中的session，如果没有也不能自动创建。
         // HttpSession session=request.getSession(false);
 
-        session.setAttribute("username","TOM");
-        session.setAttribute("password","tommmm");
+        session.setAttribute("username", "TOM");
+        session.setAttribute("password", "tommmm");
         Cookie c1 = new Cookie("name", "zhangsan");
         response.addCookie(c1);
         return "已经创建好了session, 给前端返回了session id, cookie值，请通过F12在network之中查看";
@@ -83,8 +83,8 @@ public class SessionController {
         log.info("如果是第一次请求，那就创建session");
         // false表示只能获取当前请求中的session，如果没有也不能自动创建, 当没有持久化的时候，就会为null--->错误
         // 不管有没有持久化，session只要创建了就会存在，如果没有创建就不存在，就会为null, 和是否持久化无关
-        HttpSession session=request.getSession(false);
-        if(null != session){
+        HttpSession session = request.getSession(false);
+        if (null != session) {
             String sessionId = session.getId();
             String userName = session.getAttribute("username").toString();
             log.info("从session之中获取sessionId:" + sessionId);
@@ -96,12 +96,12 @@ public class SessionController {
                 String value = cookies[i].getValue();
                 log.info("从cookie之中获取key：" + name);
                 log.info("从cookie之中获取value:" + value);
-                if (sessionId.equals(value)){
+                if (sessionId.equals(value)) {
                     log.info("前端传来的sessionID和后端的sessionID相等!" + sessionId + "," + value);
                 }
             }
             return "已经创建好了session, 给前端返回了session id, cookie值，请通过F12在network之中查看";
-        }else {
+        } else {
             return "session为空！";
         }
     }
@@ -151,12 +151,12 @@ public class SessionController {
     @PostMapping("/jdbc/add/{name}/{value}")
     @ResponseBody
     public String addSessionJDBC(HttpServletRequest request, @PathVariable("name") String name,
-                              @PathVariable("value") String value) {
+                                 @PathVariable("value") String value) {
         log.info("使用jdbc存取session!");
         HttpSession session = request.getSession();
         // 看看session里面到底是什么
         Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()){
+        while (attributeNames.hasMoreElements()) {
             log.info(attributeNames.nextElement().toString());
         }
 
@@ -180,7 +180,7 @@ public class SessionController {
         HttpSession session = request.getSession();
         // 看看session里面到底是什么
         Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()){
+        while (attributeNames.hasMoreElements()) {
             log.info(attributeNames.nextElement().toString());
         }
 

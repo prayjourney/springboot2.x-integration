@@ -1,6 +1,7 @@
-function putongfashu(){
+function putongfashu() {
     return '三十六变';
 }
+
 function home() {
     return this.work
 }
@@ -24,8 +25,8 @@ var zhubajie = {
 var shawujing = {
     name: '沙悟净',
     age: 736,
-    work : '天宫',
-    base :  home
+    work: '天宫',
+    base: home
 
 }
 
@@ -33,17 +34,17 @@ var tangsanzang = {
     name: '唐三藏',
     age: 36,
     work: "灵山",
-    base :  home
+    base: home
 }
 
 // this指向了shawujing, 如果不指向的话，那就会谁调用，指向谁
-home().apply(shawujing,[])
+home().apply(shawujing, [])
 
 // JSON字符串和对象的转换
 var person = {
-    name : "张三",
-    age:22,
-    home:'北京'
+    name: "张三",
+    age: 22,
+    home: '北京'
 }
 // 对象转字符串
 var pStr = JSON.stringify(person)

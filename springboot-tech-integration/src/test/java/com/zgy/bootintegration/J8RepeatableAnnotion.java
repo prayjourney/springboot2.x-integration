@@ -31,14 +31,14 @@ public class J8RepeatableAnnotion {
         Constructor[] constructors = pClass.getConstructors();
         Field field = pClass.getDeclaredField("name");
         MyAnnotation[] fieldAnnotationsByType = field.getAnnotationsByType(MyAnnotation.class);
-        for (MyAnnotation ma : fieldAnnotationsByType){
+        for (MyAnnotation ma : fieldAnnotationsByType) {
             System.out.println(ma.value());
         }
 
         // 这个还是空的
         System.out.println(p.toString());
         // 赋值, 不过这个时候，它的值被多次赋值冲掉了
-        for (MyAnnotation ma : fieldAnnotationsByType){
+        for (MyAnnotation ma : fieldAnnotationsByType) {
             p.setName(ma.value());
         }
         System.out.println(p.toString());
@@ -46,7 +46,7 @@ public class J8RepeatableAnnotion {
 
     @Data
     @Builder
-    static class PersonInfo{
+    static class PersonInfo {
         @MyAnnotation("张三")
         @MyAnnotation("张二狗")
         @MyAnnotation("张海涛")
@@ -54,11 +54,11 @@ public class J8RepeatableAnnotion {
 
         private Integer age;
 
-        public void show(@MyAnnotation("Hello") String name){
+        public void show(@MyAnnotation("Hello") String name) {
             System.out.println("123");
         }
 
-        public void getInfo(){
+        public void getInfo() {
             System.out.println("getInfo method!");
         }
     }
@@ -69,7 +69,7 @@ public class J8RepeatableAnnotion {
 @Repeatable(MyAnnotationCollect.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotation{
+@interface MyAnnotation {
     // 注解之中好像必须有value
     String value() default "woshi测试的一个";
 }
@@ -77,7 +77,7 @@ public class J8RepeatableAnnotion {
 // 想要是可重复的，那就需要制定一个注解的容器, 这个就是MyAnnotation的容器
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotationCollect{
+@interface MyAnnotationCollect {
     // 返回的是一个数组
     MyAnnotation[] value();
 }

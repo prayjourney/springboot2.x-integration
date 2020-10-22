@@ -52,26 +52,26 @@ public class ShiroController {
     public String loginCheck(String user, String password) {
         // 简单的测试
         /**
-        if (null == user || null == password) {
-            return "404";
-        } else if ("123456".equals(password)) {
-            return "index";
-        } else {
-            return "login";
-        }
+         if (null == user || null == password) {
+         return "404";
+         } else if ("123456".equals(password)) {
+         return "index";
+         } else {
+         return "login";
+         }
          */
         // 获取当前的用户
         Subject subject = SecurityUtils.getSubject();
         // 封装用户登录的数据
         UsernamePasswordToken token = new UsernamePasswordToken(user, password);
-        try{
+        try {
             // 执行登录方法，没有异常说明okay
             subject.login(token);
             return "index";
-        }catch (UnknownAccountException e1) {
+        } catch (UnknownAccountException e1) {
             log.error("用户名错误！ {} !", e1.getCause());
             return "login";
-        }catch (IncorrectCredentialsException e2){
+        } catch (IncorrectCredentialsException e2) {
             log.error("密码错误！ {} !", e2.getCause());
             return "login";
         }
@@ -79,7 +79,7 @@ public class ShiroController {
 
     @RequestMapping("unauthor")
     // @ResponseBody
-    public String unauthor(){
+    public String unauthor() {
         // return "页面未经授权，不得访问！";
         return "unauthor";
     }
@@ -87,14 +87,14 @@ public class ShiroController {
     // 权限的检测
     @RequiresPermissions("user:money")
     @GetMapping("getmoney")
-    public String getMoney(){
-        try{
+    public String getMoney() {
+        try {
             // 问题，如果没有登录，则直接跳到登录页面，如果没有权限，则跳到未授权页面，不应该在这儿再次处理了吧？
             // ShiroConfig simpleMappingExceptionResolver解决了这个问题
             // Subject subject = SecurityUtils.getSubject(); // 权限是一开始就回去检测和检查, 根本不应该来这儿操作
             System.out.println("获取1000元!");
             return "getmoney";
-        }catch (AuthorizationException e){
+        } catch (AuthorizationException e) {
             // 权限是一开始就回去检测和检查, 根本不应该来这儿操作
             System.out.println(e.getCause());
             return "login";
@@ -104,20 +104,20 @@ public class ShiroController {
     // 角色的检测
     @RequiresRoles("role:admin")
     @GetMapping("getallinfo")
-    public String getAllInfo(){
+    public String getAllInfo() {
         System.out.println("我是管理，想干啥就干啥！");
         return "allinfo";
     }
 
     @GetMapping("logout")
-    public String logout(){
+    public String logout() {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getPrincipal();
-        if (null != user){
+        if (null != user) {
             subject.logout();
             log.warn("退出成功");
             return "index";
-        }else{
+        } else {
             log.warn("没有用户登陆，不需要退出");
             return "index";
         }

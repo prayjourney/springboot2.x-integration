@@ -14,7 +14,7 @@ public class TestThread {
 //            System.out.println("结束");
 //        }
 
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 Thread.sleep(5000);
                 System.out.println("你好: " + Thread.currentThread().getName());

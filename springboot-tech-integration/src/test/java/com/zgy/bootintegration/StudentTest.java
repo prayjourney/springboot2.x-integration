@@ -21,25 +21,25 @@ public class StudentTest {
     StudentService studentService;
 
     @Test
-    public void testInsertStudent(){
+    public void testInsertStudent() {
         studentService.insertStudent();
     }
 
 
     // 会更新全部的字段，需要注意
     @Test
-    public void testUpdateStudent(){
+    public void testUpdateStudent() {
         studentService.updateStudent();
     }
 
 
     @Test
-    public void testGetStudentById(){
+    public void testGetStudentById() {
         studentService.getStudentById(101);
     }
 
     @Test
-    public void testGetStudentByName(){
+    public void testGetStudentByName() {
         studentService.getStudentByName("关羽");
     }
 }

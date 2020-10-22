@@ -20,8 +20,7 @@ import java.util.Properties;
  * @Despcription: 配置Shiro，层层递进，ShiroFilterFactoryBean-> DefaultWebSecurityManager-> Realm
  * @Date: Created in 2020/6/14 22:58
  * @Modified by:
- * @URL
- * https://www.cnblogs.com/tuifeideyouran/p/7696055.html
+ * @URL https://www.cnblogs.com/tuifeideyouran/p/7696055.html
  * https://blog.csdn.net/zalan01408980/article/details/85402528
  * https://www.jianshu.com/p/74304ebb7d30/
  * https://blog.csdn.net/yali_aini/article/details/84000271
@@ -104,7 +103,7 @@ public class ShiroConfig {
      * 并在必要时进行安全逻辑验证, 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)
      */
     @Bean
-    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
         // 生成代理, 用于注解的解析和相关权限的验证
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);

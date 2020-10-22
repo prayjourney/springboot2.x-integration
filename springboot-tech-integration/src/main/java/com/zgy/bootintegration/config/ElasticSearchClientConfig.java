@@ -25,15 +25,15 @@ public class ElasticSearchClientConfig {
     private Integer port;
 
     // 使用默认参数
+
     /**
-    @Bean
-    public RestHighLevelClient restHighLevelClient1() {
-        RestHighLevelClient restHighLevelClient = new RestHighLevelClient(RestClient.builder(
-                new HttpHost(esHost, port, "http")
-        ));
-        return restHighLevelClient;
-    }
-    */
+     * @Bean public RestHighLevelClient restHighLevelClient1() {
+     * RestHighLevelClient restHighLevelClient = new RestHighLevelClient(RestClient.builder(
+     * new HttpHost(esHost, port, "http")
+     * ));
+     * return restHighLevelClient;
+     * }
+     */
 
     @Bean
     public RestHighLevelClient restHighLevelClient() {

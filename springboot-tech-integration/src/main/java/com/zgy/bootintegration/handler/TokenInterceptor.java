@@ -43,7 +43,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
 
         // 当前将没有注解的也设置为跳过认证
-        if (null == method.getAnnotation(PassToken.class)){
+        if (null == method.getAnnotation(PassToken.class)) {
             return true;
         }
 
@@ -65,8 +65,8 @@ public class TokenInterceptor implements HandlerInterceptor {
             // 2.如果token放到了cookie之中，则从cookie之中获取
             Cookie[] cookies = httpServletRequest.getCookies();
             String token = null;
-            for (int i= 0; i<  cookies.length; i++){
-                if (cookies[i].getName().equals("token")){
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("token")) {
                     token = cookies[i].getValue();
                 }
             }

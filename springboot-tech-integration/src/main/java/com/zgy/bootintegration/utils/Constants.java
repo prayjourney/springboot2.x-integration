@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 大文件上传的常量表
+ * bigfile大文件上传的常量表
  */
 public interface Constants {
     /**

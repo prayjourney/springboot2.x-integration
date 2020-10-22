@@ -37,7 +37,7 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         log.info("正在登陆的操作... 时间是: {}!", Instant.now().getNano());
         // 此处的authenticationToken是Controller传来之后，封装好，然后传到此处的
-        UsernamePasswordToken token  = (UsernamePasswordToken) authenticationToken;
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         // 获取真实的数据， 连接数据库
         User user = service.queryUserByName(token.getUsername());
 
@@ -69,7 +69,7 @@ public class MyRealm extends AuthorizingRealm {
 
         // 拿到当前登录的这个对象
         Subject subject = SecurityUtils.getSubject();
-        User currentUser = (User)subject.getPrincipal();
+        User currentUser = (User) subject.getPrincipal();
 
         // 设置当前用户的权限，数据库之中获取
         authorizationInfo.addStringPermission(currentUser.getPerms());

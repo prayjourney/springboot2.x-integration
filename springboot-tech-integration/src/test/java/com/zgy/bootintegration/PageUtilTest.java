@@ -77,9 +77,9 @@ public class PageUtilTest {
         Map<Integer, String> integerStringMap = PageUtil.map2Page(map, 15, 0);
         Set<Map.Entry<Integer, String>> entries = integerStringMap.entrySet();
         Iterator<Map.Entry<Integer, String>> iterator = entries.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Map.Entry<Integer, String> next = iterator.next();
-            System.out.println("key : " + next.getKey() +", value : " +next.getValue());
+            System.out.println("key : " + next.getKey() + ", value : " + next.getValue());
         }
 
     }
