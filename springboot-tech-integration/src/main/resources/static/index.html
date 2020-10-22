@@ -52,7 +52,7 @@
         <h1>springboot2.x-integration</h1>
         <h3>整合springboot, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用easyexcel处理excel文件等几项技术</h3>
 
-        <!-- 最原始的上传文件的前端控件 -->
+        <!-- 最原始的上传文件的前端控件，一般的小文件上传用这个就行了 -->
         <br>
         <h2>原始的上传文件的控件</h2>
         <form id="upfile" action='/uploadFile' enctype="multipart/form-data" method='post'>
@@ -64,6 +64,7 @@
         <br>
         <br>
         <br>
+        <!-- 模态对话框的页面，上面是直接使用的form表单 -->
         <a href="upfile.html">模态对话框的上传页面</a>
         <br>
         <br>
@@ -77,7 +78,7 @@
         <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
 
 
-        <!-- 如果没input或者select没有name,name就不会序列化到他-->
+        <!-- 如果没input或者select没有name,name就不会序列化到他 -->
         <h2>form表单序列化为json</h2>
         <form id="myForm" method="post">
             stName: <input type='text' name='stName'> &nbsp;&nbsp;&nbsp;&nbsp;
