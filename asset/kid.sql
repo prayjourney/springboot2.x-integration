@@ -32,3 +32,5 @@ CREATE TABLE `kid` (
 INSERT INTO `kid` VALUES ('111', '张三', '123');
 INSERT INTO `kid` VALUES ('112', '李四', '124');
 INSERT INTO `kid` VALUES ('113', '小红', '125');
+INSERT INTO `kid` VALUES ('114', '小黑', '126');
+INSERT INTO `kid` VALUES ('115', '小泽玛利亚', '127');

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @Author: renjiaxin
  * @Despcription: 用来跳过验证的 PassToken
  * @Date: Created in 2020/8/9 12:23
- * @Modified by:
+ * @Modified by: 自定义注解PassToken
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

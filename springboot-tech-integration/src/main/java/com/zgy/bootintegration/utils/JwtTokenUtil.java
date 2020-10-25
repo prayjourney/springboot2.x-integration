@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author: renjiaxin
- * @Despcription:
+ * @Despcription: Token的工具
  * @Date: Created in 2020/8/9 12:17
  * @Modified by:
  */
 @Component
 public class JwtTokenUtil {
-    // 这只是一个测试的方法
+    // 获取token
     public static String getTokenKidId() {
         // 从 http 请求头中取出 token
         // String token = getRequest().getHeader("token");

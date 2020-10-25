@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @Author: renjiaxin
- * @Despcription:
+ * @Despcription: Token的拦截器配置
  * @Date: Created in 2020/8/9 12:18
  * @Modified by:
  */

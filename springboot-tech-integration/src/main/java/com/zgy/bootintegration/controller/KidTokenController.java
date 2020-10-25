@@ -50,7 +50,7 @@ public class KidTokenController {
     MongoService mongoService;
 
     /**
-     * 登录
+     * 登录, 生成token, 可以设置token的位置
      *
      * @param kid
      * @param response
