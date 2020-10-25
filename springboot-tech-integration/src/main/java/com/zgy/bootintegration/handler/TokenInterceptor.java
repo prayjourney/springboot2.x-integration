@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
+ * 拦截器
  * 配置拦截器去获取token并验证token，实现一个拦截器就需要实现HandlerInterceptor接口
  * 主要流程:
  * 1. 从http请求头中取出token，或者从cookie之中取出cookie，这个要看设置的情况
