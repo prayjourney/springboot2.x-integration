@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>二维码生成器</title>
+        <style type="text/css">
+            textarea {
+                font-size: 16px;
+                width: 300px;
+                height: 100px;
+            }
+
+            .hint {
+                color: red;
+                display: none;
+            }
+
+            .qrCodeDiv {
+                width: 200px;
+                height: 200px;
+                border: 2px solid sandybrown;
+            }
+
+            .qrCodeDiv img {
+                max-height: 100%;
+                max-width: 100%;
+            }
+        </style>
+        <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $("button").click(function () {
+                    var codeContent = $("textarea").val();
+                    console.log(codeContent);
+                    if (codeContent.trim() == "") {
+                        $(".hint").text("二维码内容不能为空").fadeIn(500);
+                    } else {
+                        $(".hint").text("").fadeOut(500);
+                        $("#codeImg").attr("src", "/qrCode?codeContent=" + codeContent);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <textarea placeholder="二维码内容..."></textarea><br>
+        <button>生成二维码</button>
+        <span class="hint"></span>
+        <div class="qrCodeDiv">
+            <img src="" id="codeImg">
+        </div>
+    </body>
+</html>
