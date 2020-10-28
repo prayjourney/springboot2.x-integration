@@ -73,12 +73,13 @@ public class QRCodeUtil {
                 fileName = new Date().getTime() + ".png";
                 log.info("二维码图片文件名为空，随机生成 png 格式图片...");
             }
+
             /*
              * com.google.zxing.EncodeHintType：编码提示类型,枚举类型
              * EncodeHintType.CHARACTER_SET：设置字符编码类型
              * EncodeHintType.ERROR_CORRECTION：设置误差校正
-             * ErrorCorrectionLevel：误差校正等级，L = ~7% correction、M = ~15% correction、Q = ~25% correction、H = ~30%
-             *   correction不设置时，默认为 L 等级，等级不一样，生成的图案不同，但扫描的结果是一样的
+             * ErrorCorrectionLevel：误差校正等级，L = ~7% correction、M = ~15% correction、Q = ~25% correction、H = ~30% correction
+             *   不设置时，默认为 L 等级，等级不一样，生成的图案不同，但扫描的结果是一样的
              * EncodeHintType.MARGIN：设置二维码边距，单位像素，值越小，二维码距离四周越近
              */
             Map<EncodeHintType, Object> hints = new HashMap();
@@ -101,8 +102,7 @@ public class QRCodeUtil {
             BitMatrix bitMatrix = multiFormatWriter.encode(codeContent, BarcodeFormat.QR_CODE, CODE_WIDTH, CODE_HEIGHT, hints);
 
             /*
-             * java.awt.image.BufferedImage：
-             * 具有图像数据的可访问缓冲图像，实现了 RenderedImage 接口
+             * java.awt.image.BufferedImage：具有图像数据的可访问缓冲图像，实现了 RenderedImage 接口
              * BitMatrix 的 get(int x, int y) 获取比特矩阵内容，指定位置有值，则返回true，将其设置为前景色，否则设置为背景色
              * BufferedImage 的 setRGB(int x, int y, int rgb) 方法设置图像像素
              *      x：像素位置的横坐标，即列
@@ -153,8 +153,7 @@ public class QRCodeUtil {
             codeContent = codeContent.trim();
 
             /*
-             * com.google.zxing.EncodeHintType：
-             * 编码提示类型,枚举类型
+             * com.google.zxing.EncodeHintType：编码提示类型,枚举类型
              * EncodeHintType.CHARACTER_SET：设置字符编码类型
              * EncodeHintType.ERROR_CORRECTION：设置误差校正
              * ErrorCorrectionLevel：误差校正等级，L = ~7% correction、M = ~15% correction、Q = ~25% correction、H = ~30% correction
