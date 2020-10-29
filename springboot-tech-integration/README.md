@@ -1,1 +1,5 @@
-使用springboot+vue+bootstrap的架构，完成一个小的案例，其中我们只是使用bootstrap的css，不使用他的js，js部分功能，由vue来实现。
+页面修改前的样式
+![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162225.jpg)
+
+页面样式修改之后的情况：
+![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162005.png)

@@ -13,9 +13,9 @@
 |[Bootstrap](#Bootstrap) | [axios](#axios) | [Vue](#Vue) | [Zipkin](#Zipkin) | [MongoDb](#MongoDb) | [Mysql](#Mysql) |
 
 ### 项目说明
-整个项目分为两部分，springboot2.x-integration与teacher-manage-backend， 二者没有父子模块的关系。
+整个项目分为两部分, springboot2.x-integration与teacher-manage-backend, 二者没有父子模块的关系。
 #### springboot2.x-integration
-整合springboot2.x, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
+整合springboot2.x, mybatis, mybatis-plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
 进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件等几项技术。主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看
 application.properties配置文件与config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，
 redis作为缓存。
@@ -27,34 +27,40 @@ teacher-manage-backend与springboot2.x-integration没有隶属的关系，teache
 teacher-manage-backend项目的前端部分，在该项目下的teacher-manage-front，基于vue2.x，启动的时候依次运行`npm install`, `npm run dev`启动。
 
 ### 问题解决
-1. springboot2.x-integration项目启动， 需要首先启动redis, 否则就会报错， windows下，命令行下面启动redis-server.exe可能会报错，需要执行
-redis-server.exe redis.conf，如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`，后面的redis.conf是配置文件。
+1. springboot2.x-integration项目启动, 需要首先启动redis, 否则就会报错, windows下, 命令行下面启动redis-server.exe可能会报错，需要执行
+redis-server.exe redis.conf, 如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`，后面的redis.conf是配置文件。
 2. 由于打包可能会出问题，可能无法把两个项目之中的配置文件打包到运行其中，则需要手动拷贝，也就是target的classes目录下，如下图：
 ![configfile.png](./asset/configfile.png)
-3. 打包问题的解决, 添加两个资源包， 一个是打包mapper.xml文件，一个是打包resources目录下的文件，这样两个就都能打包target的class或者jar包里了。
-```xml
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-    </plugins>
-    <resources>
-        <!-- mapper下面的xxx.xml文件要打包 -->
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </resource>
-        <!-- 包含resources文件夹以及子文件夹下所有资源 -->
-        <resource>
-            <directory>src/main/resources</directory>
-            <includes>
-                <include>**/*.*</include>
-            </includes>
-        </resource>
-    </resources>
-</build>
-```
+3. 打包问题的解决, 添加两个资源包, 一个是打包mapper.xml文件，一个是打包resources目录下的文件，这样两个就都能打包target的class或者jar包里了。
+    ```xml
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- mapper下面的xxx.xml文件要打包 -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- 包含resources文件夹以及子文件夹下所有资源 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+    ```
+4. 页面展示的问题
+需要修改webuploader.css文件, 配合前端，就可以将picker和上传按钮放到同一行了, 展示的效果对比如下:<br/>
+**页面修改前的样式**
+  ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162225.jpg)
+**页面样式修改之后的样式**
+  ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162005.png)
