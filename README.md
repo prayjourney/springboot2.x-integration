@@ -16,24 +16,24 @@
 整个项目分为两部分, springboot2.x-integration与teacher-manage-backend, 二者没有父子模块的关系。
 #### springboot-tech-integration
 整合springboot2.x, mybatis, mybatis-plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
-进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件, 使用hutool进行二维码和验证码的生成，同时提供了使用kaptcha生成验证码, 
-使用zxing生成二维码的功能分支。与hutool相比，使用kaptcha生成验证码与使用zxing生成二维码，后两者要复杂一些，使用hutool，基本上是使用xxxUtil, 
-调用相应的方法, 就可以完成功能需求了。本项目主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看application.properties配置文件与
-config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，redis作为缓存。这些技术与
+进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件, 使用hutool进行二维码和验证码的生成, 同时提供了使用kaptcha生成验证码, 
+使用zxing生成二维码的功能分支。与hutool相比, 使用kaptcha生成验证码与使用zxing生成二维码, 后两者要复杂一些, 使用hutool, 基本上是使用xxxUtil, 
+调用相应的方法, 就可以完成功能需求了。本项目主要是对springboot之中常用的技术进行了一个整合, 每个技术的使用可以参看application.properties配置文件与
+config包之中查看除了上面的技术之外, 还有spring-session技术, 使用了logback作为日志记录。使用了mysql与MongoDB存储, redis作为缓存。这些技术与
 springboot2.x的整合, 都提供了单独的分支, 可以单独checkout, 进行验证与测试。
 #### teacher-manage-backend
-teacher-manage-backend与springboot2.x-integration没有隶属的关系，teacher-manage-backend是教师管理系统的后台，作为一个后台系统，
-其中主要使用了Druid, Mybatis， MybatisPlus技术， 主要是提供给前台增删改查的CRUD功能。 resources文件夹下的bootvue目录，bootvue目录，
-是原始的vue开发方式，在html页面之中使用vue, 创建vue对象，然后进行数据和行为的绑定以及控制。使用了bootstrap的ui。在这一部分之中，
-我们仅仅使用bootstrap的css，不使用他的js，js部分功能，由vue来实现。bootvue目录没有前后分离，只不过使用了vue技术的html页面。
-teacher-manage-backend项目的前端部分，在该项目下的teacher-manage-front，基于vue2.x，启动的时候依次运行`npm install`, `npm run dev`启动。
+teacher-manage-backend与springboot2.x-integration没有隶属的关系, teacher-manage-backend是教师管理系统的后台, 作为一个后台系统, 
+其中主要使用了Druid, Mybatis, MybatisPlus技术, 主要是提供给前台增删改查的CRUD功能。 resources文件夹下的bootvue目录, bootvue目录, 
+是原始的vue开发方式, 在html页面之中使用vue, 创建vue对象, 然后进行数据和行为的绑定以及控制。使用了bootstrap的ui。在这一部分之中, 
+我们仅仅使用bootstrap的css, 不使用他的js, js部分功能, 由vue来实现。bootvue目录没有前后分离, 只不过使用了vue技术的html页面。
+teacher-manage-backend项目的前端部分, 在该项目下的teacher-manage-front, 基于vue2.x, 启动的时候依次运行`npm install`, `npm run dev`启动。
 
 ### 问题解决
-1. springboot2.x-integration项目启动, 需要首先启动redis, 否则就会报错, windows下, 命令行下面启动redis-server.exe可能会报错，需要执行
-redis-server.exe redis.conf, 如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`，后面的redis.conf是配置文件。
-2. 由于打包可能会出问题，可能无法把两个项目之中的配置文件打包到运行其中，则需要手动拷贝，也就是target的classes目录下，如下图：
+1. springboot2.x-integration项目启动, 需要首先启动redis, 否则就会报错, windows下, 命令行下面启动redis-server.exe可能会报错, 需要执行
+redis-server.exe redis.conf, 如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe redis.conf`, 后面的redis.conf是配置文件。
+2. 由于打包可能会出问题, 可能无法把两个项目之中的配置文件打包到运行其中, 则需要手动拷贝, 也就是target的classes目录下, 如下图:
 ![configfile.png](./asset/configfile.png)
-3. 打包问题的解决, 添加两个资源包, 一个是打包mapper.xml文件，一个是打包resources目录下的文件，这样两个就都能打包target的class或者jar包里了。
+3. 打包问题的解决, 添加两个资源包, 一个是打包mapper.xml文件, 一个是打包resources目录下的文件, 这样两个就都能打包target的class或者jar包里了。
     ```xml
     <build>
         <plugins>
@@ -61,8 +61,8 @@ redis-server.exe redis.conf, 如`C:\work-soft\Redis-x64-3.2.100>redis-server.exe
     </build>
     ```
 4. 页面展示的问题
-需要修改webuploader.css文件, 配合前端，就可以将picker和上传按钮放到同一行了, 展示的效果对比如下:<br/>
+需要修改`webuploader.css`文件, 配合前端, 就可以将picker和上传按钮放到同一行了, 展示的效果对比如下:<br/>
 **页面修改前的样式**
   ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162225.jpg)
 **页面样式修改之后的样式**
-  ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029162005.png)
+  ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20201029164856.png)
