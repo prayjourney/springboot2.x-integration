@@ -5,7 +5,7 @@ import com.zgy.bootintegration.mapper.FileUploadStatusMapper;
 import com.zgy.bootintegration.pojo.FileUploadStatus;
 import com.zgy.bootintegration.pojo.MultipartFileParam;
 import com.zgy.bootintegration.service.BigFileUploadService;
-import com.zgy.bootintegration.utils.Constants;
+import com.zgy.bootintegration.utils.FileUploadConstants;
 import com.zgy.bootintegration.vo.ResultStatus;
 import com.zgy.bootintegration.vo.ResultVo;
 import io.swagger.annotations.ApiOperation;
@@ -60,7 +60,7 @@ public class BigFileUploadController {
             return new ResultVo(ResultStatus.NO_HAVE);
         }
         boolean processing = Boolean.parseBoolean(processingObj.getUploadStatus());
-        String value = fileMd5Mapper.selectFilePath(Constants.FILE_MD5_KEY + md5);
+        String value = fileMd5Mapper.selectFilePath(FileUploadConstants.FILE_MD5_KEY.val() + md5);
         if (processing) {
             return new ResultVo(ResultStatus.IS_HAVE, value);
         } else {

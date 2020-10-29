@@ -7,7 +7,7 @@ import com.zgy.bootintegration.mapper.FileUploadStatusMapper;
 import com.zgy.bootintegration.pojo.FileMd5;
 import com.zgy.bootintegration.pojo.FileUploadStatus;
 import com.zgy.bootintegration.pojo.MultipartFileParam;
-import com.zgy.bootintegration.utils.Constants;
+import com.zgy.bootintegration.utils.FileUploadConstants;
 import com.zgy.bootintegration.utils.FileMD5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,7 +174,7 @@ public class BigFileUploadService {
             status.setUploadStatus("true");
             fileUploadStatusMapper.insert(status);
             FileMd5 fileMd5 = new FileMd5();
-            fileMd5.setFileMd5(Constants.FILE_MD5_KEY + param.getMd5());
+            fileMd5.setFileMd5(FileUploadConstants.FILE_MD5_KEY.val() + param.getMd5());
             fileMd5.setFilePath(uploadDirPath + "/" + fileName);
             fileMd5Mapper.insert(fileMd5);
             return true;
@@ -188,7 +188,7 @@ public class BigFileUploadService {
 
             if (fileMd5Mapper.selectFileMd5(param.getMd5()) >= 1) {
                 FileMd5 fileMd5 = new FileMd5();
-                fileMd5.setFileMd5(Constants.FILE_MD5_KEY + param.getMd5());
+                fileMd5.setFileMd5(FileUploadConstants.FILE_MD5_KEY.val() + param.getMd5());
                 fileMd5.setFilePath(uploadDirPath + "/" + fileName + ".conf");
                 fileMd5Mapper.insert(fileMd5);
             }
