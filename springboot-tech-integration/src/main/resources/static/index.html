@@ -53,34 +53,24 @@
         <!-- a标签的锚点，可以用于页面间跳转或者页面内跳转定位-->
         <a name="indextop"></a>
         <h1>springboot2.x-integration</h1>
-        <h3>整合springboot, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件,
-            使用easyexcel处理excel文件等几项技术</h3>
+        <h3>
+            整合springboot2.x, mybatis, mybatis plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
+            进行大文件上传, 完成了上传于秒传功能, 使用easyexcel处理excel文件等几项技术。主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看
+            application.properties配置文件与config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，
+            redis作为缓存。
+        </h3>
+        <br/>
 
-        <!-- 最原始的上传文件的前端控件，一般的小文件上传用这个就行了 -->
-        <br>
-        <h2>原始的上传文件的控件</h2>
-        <form id="upfile" action='/uploadFile' enctype="multipart/form-data" method='post'>
-            <input type="file" name="file"/> <!-- 这个是上传文件的一个关键的地方，type是file -->
-            <!-- <input type='hidden' name='userid'> -->
-            <!-- <input type='hidden' name='signature'> -->
-            <input type="submit" value="提交"/>
-        </form>
-        <br>
-        <br>
-        <br>
-        <!-- 模态对话框的页面，上面是直接使用的form表单 -->
-        <a href="upfile.html">模态对话框的上传页面</a>
-        <br>
-        <br>
-        <br>
+        <h2>Elastic Search 测试</h2>
         <a href="/jd/" style="color: #ff70ad">点击到达京东搜索页面</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="jd_info.html">京东说明</a>
+        <br/>
 
         <h2>测试 shiro <a id="a5" style="border-style: dot-dash solid" href="/shiro/logout">退出</a></h2>
         <a id=a1 href="/shiro/addmsg">添加msg!<span>需要验证，没有权限的话，跳转到登陆页面，在ShiroConfig之中配置好了</span></a><br>
         <a id=a2 href="/shiro/getmsg">获取msg!<span>不需要验证</span></a><br>
         <a id=a3 href="/shiro/getmoney">取1000元!<span>需要验证，权限验证</span></a><br>
         <a id=a4 href="/shiro/getallinfo">获取所有的信息!<span>需要验证，角色验证</span></a><br>
-
+        <br/>
 
         <!-- 如果没input或者select没有name,name就不会序列化到他 -->
         <h2>form表单序列化为json</h2>
@@ -103,18 +93,37 @@
         <h2>测试Token</h2>
         <!-- a标签的name属性是干嘛的呢？ 锚点？-->
         <a href="tokenHtml.html" name="登录产生token">登录产生token</a>
+        <br/>
 
         <h2>集成Swagger</h2>
         <a href="swagger-ui.html">点击查看swagger接口</a>
+        <br/>
 
         <h2>Kaptcha验证码</h2>
         <a href="yanzhengma.html">Kaptcha验证码页面</a>
+        <br/>
 
         <h2>Hutool验证码</h2>
         <a href="yanzhengma_hutool.html">Hutool验证码</a>
+        <br/>
+
+        <!-- 最原始的上传文件的前端控件，一般的小文件上传用这个就行了 -->
+        <h2>原始的上传文件的控件</h2>
+        <form id="upfile" action='/uploadFile' enctype="multipart/form-data" method='post'>
+            <input type="file" name="file"/> <!-- 这个是上传文件的一个关键的地方，type是file -->
+            <!-- <input type='hidden' name='userid'> -->
+            <!-- <input type='hidden' name='signature'> -->
+            <input type="submit" value="提交"/>
+        </form>
+        <br>
+        <br>
+        <!-- 模态对话框的页面，上面是直接使用的form表单 -->
+        <a href="upfile.html">模态对话框的上传页面</a>
+        <br>
 
         <h2>大文件上传</h2>
         <a href="bigfileupload.html">大文件上传</a>
+        <br/>
 
         <a href="simpleH5.html#top" title="跳转到html5练习页面" style="display: block; color: darkviolet; padding-left: 90%">
             跳转到html5练习页面
