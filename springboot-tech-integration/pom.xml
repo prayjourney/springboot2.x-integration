@@ -280,6 +280,14 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <!-- 二维码生成依赖包, core是核心包, javase输出到web时候用, 使用hutool就不用了javase这个包了-->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @Author: renjiaxin
- * @Despcription: token 下发
+ * @Despcription: token下发
  * @Date: Created in 2020/8/9 12:14
  * @Modified by:
  */

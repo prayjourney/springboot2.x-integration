@@ -14,11 +14,13 @@
 
 ### 项目说明
 整个项目分为两部分, springboot2.x-integration与teacher-manage-backend, 二者没有父子模块的关系。
-#### springboot2.x-integration
+#### springboot-tech-integration
 整合springboot2.x, mybatis, mybatis-plus, druid数据库连接池, shiro, elasticsearch, quartz, threadpool, 上传下载文件, 使用webuploader
-进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件等几项技术。主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看
-application.properties配置文件与config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，
-redis作为缓存。
+进行**大文件上传**, 完成了上传于秒传功能, 使用easyexcel处理excel文件, 使用hutool进行二维码和验证码的生成，同时提供了使用kaptcha生成验证码, 
+使用zxing生成二维码的功能分支。与hutool相比，使用kaptcha生成验证码与使用zxing生成二维码，后两者要复杂一些，使用hutool，基本上是使用xxxUtil, 
+调用相应的方法, 就可以完成功能需求了。本项目主要是对springboot之中常用的技术进行了一个整合，每个技术的使用可以参看application.properties配置文件与
+config包之中查看除了上面的技术之外，还有spring-session技术，使用了logback作为日志记录。使用了mysql与MongoDB存储，redis作为缓存。这些技术与
+springboot2.x的整合, 都提供了单独的分支, 可以单独checkout, 进行验证与测试。
 #### teacher-manage-backend
 teacher-manage-backend与springboot2.x-integration没有隶属的关系，teacher-manage-backend是教师管理系统的后台，作为一个后台系统，
 其中主要使用了Druid, Mybatis， MybatisPlus技术， 主要是提供给前台增删改查的CRUD功能。 resources文件夹下的bootvue目录，bootvue目录，
