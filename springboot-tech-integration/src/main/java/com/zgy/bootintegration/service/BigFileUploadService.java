@@ -162,13 +162,21 @@ public class BigFileUploadService {
         }
         accessConfFile.close();
 
+        /*
+         * FIXME:
+         * 这一部分可能会有多个数据同时写入，FileUtils.readFileToByteArray(confFile);方法有问题，需要修改，
+         * 下列操作保证存入数据库的数据，只有一份，如果最后一个是okay的，那么结果就是正确的，保证最终的正确性
+         */
         if (isComplete == Byte.MAX_VALUE) {
-            // 上传完成，删除旧的部分，只记录完成的条目
-            QueryWrapper queryWrapper = new QueryWrapper();
-            queryWrapper.eq("fileMd5", param.getMd5());
-            fileUploadStatusMapper.delete(queryWrapper);
+            // 上传完成, 删除旧的部分, 只记录完成的条目
+            QueryWrapper queryWrapper01 = new QueryWrapper();
+            queryWrapper01.eq("fileMd5", param.getMd5());
+            fileUploadStatusMapper.delete(queryWrapper01);
+            QueryWrapper queryWrapper02 = new QueryWrapper();
+            queryWrapper02.eq("fileMd5", "FILE_MD5:" + param.getMd5());
+            fileMd5Mapper.delete(queryWrapper02);
 
-            // 插入完成的条目
+            // 插入完成的条目, 保证最终的正确性
             FileUploadStatus status = new FileUploadStatus();
             status.setFileMd5(param.getMd5());
             status.setUploadStatus("true");
