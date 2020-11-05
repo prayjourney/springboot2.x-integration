@@ -17,17 +17,19 @@ import org.springframework.stereotype.Component;
 @Component // 此处加入Spring管理, 直接创建好了userRealm的bean
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
-    // 授权
+
+    // 认证，看能不能登录
+    @Override
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        log.info("执行了认证！");
+        return null;
+    }
+
+    // 授权, 去操作某一个东西
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("执行了授权！");
         return null;
     }
 
-    // 认证
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        log.info("执行了认证！");
-        return null;
-    }
 }
