@@ -7,12 +7,14 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author zuiguangying
  * @Date 2020/11/5
  * @Description 自定义的realme, 需要继承AuthorizingRealm
  */
+@Component
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
     // 授权
