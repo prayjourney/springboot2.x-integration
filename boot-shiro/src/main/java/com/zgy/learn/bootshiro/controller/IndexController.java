@@ -20,14 +20,16 @@ public class IndexController {
 
 
     @RequestMapping("user/add")
-    public String add() {
+    public String add(Model model) {
+        model.addAttribute("message", "add页面!");
         return "user/add";
 
     }
 
 
     @RequestMapping("user/update")
-    public String update() {
+    public String update(Model model) {
+        model.addAttribute("message", "update页面!");
         return "user/update";
 
     }
