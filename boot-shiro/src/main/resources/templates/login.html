@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -14,8 +14,12 @@
     </head>
     <body>
         <div class="container">
+            <!-- 如果登录失败，就会有提示信息 -->
             <div class="row">
-                <form action="">
+                <p th:text="${message}" style="color: orangered"></p>
+            </div>
+            <div class="row">
+                <form th:action="@{/login}" method="post">
                     <span class="badge badge-danger">用户名: </span><input type="text" name="username"><br/>
                     <span class="badge badge-secondary">密&nbsp;&nbsp;&nbsp;&nbsp;码:
                     </span><input type="text" name="password"><br/>
