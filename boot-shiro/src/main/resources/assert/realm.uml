@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.apache.shiro.realm.Realm</OriginalElement>
+  <nodes>
+    <node x="0.0" y="516.0">org.apache.shiro.realm.text.IniRealm</node>
+    <node x="721.0" y="344.0">org.apache.shiro.realm.ldap.AbstractLdapRealm</node>
+    <node x="500.0" y="86.0">org.apache.shiro.realm.CachingRealm</node>
+    <node x="480.0" y="344.0">org.apache.shiro.realm.ldap.DefaultLdapRealm</node>
+    <node x="28.0" y="430.0">org.apache.shiro.realm.text.TextConfigurationRealm</node>
+    <node x="535.0" y="0.0">org.apache.shiro.realm.Realm</node>
+    <node x="706.0" y="430.0">org.apache.shiro.realm.activedirectory.ActiveDirectoryRealm</node>
+    <node x="48.0" y="344.0">org.apache.shiro.realm.SimpleAccountRealm</node>
+    <node x="480.0" y="258.0">org.apache.shiro.realm.AuthorizingRealm</node>
+    <node x="161.0" y="516.0">org.apache.shiro.realm.text.PropertiesRealm</node>
+    <node x="495.0" y="430.0">org.apache.shiro.realm.ldap.JndiLdapRealm</node>
+    <node x="972.0" y="344.0">org.apache.shiro.realm.jdbc.JdbcRealm</node>
+    <node x="465.0" y="172.0">org.apache.shiro.realm.AuthenticatingRealm</node>
+    <node x="309.0" y="344.0">com.zgy.learn.bootshiro.config.UserRealm</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.apache.shiro.realm.AuthenticatingRealm" target="org.apache.shiro.realm.CachingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.ldap.JndiLdapRealm" target="org.apache.shiro.realm.ldap.DefaultLdapRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.jdbc.JdbcRealm" target="org.apache.shiro.realm.AuthorizingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="1047.5" y="314.0" />
+      <point x="678.9" y="314.0" />
+      <point x="88.39999999999998" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.activedirectory.ActiveDirectoryRealm" target="org.apache.shiro.realm.ldap.AbstractLdapRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.SimpleAccountRealm" target="org.apache.shiro.realm.AuthorizingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="168.5" y="314.0" />
+      <point x="502.1" y="314.0" />
+      <point x="-88.39999999999998" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.ldap.DefaultLdapRealm" target="org.apache.shiro.realm.AuthorizingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.text.TextConfigurationRealm" target="org.apache.shiro.realm.SimpleAccountRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.text.IniRealm" target="org.apache.shiro.realm.text.TextConfigurationRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="70.5" y="491.0" />
+      <point x="98.25" y="491.0" />
+      <point x="-70.25" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.ldap.AbstractLdapRealm" target="org.apache.shiro.realm.AuthorizingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="836.5" y="324.0" />
+      <point x="634.7" y="324.0" />
+      <point x="44.200000000000045" y="18.0" />
+    </edge>
+    <edge source="com.zgy.learn.bootshiro.config.UserRealm" target="org.apache.shiro.realm.AuthorizingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="384.5" y="324.0" />
+      <point x="546.3" y="324.0" />
+      <point x="-44.200000000000045" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.AuthorizingRealm" target="org.apache.shiro.realm.AuthenticatingRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.CachingRealm" target="org.apache.shiro.realm.Realm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.text.PropertiesRealm" target="org.apache.shiro.realm.text.TextConfigurationRealm">
+      <point x="0.0" y="-18.0" />
+      <point x="266.5" y="491.0" />
+      <point x="238.75" y="491.0" />
+      <point x="70.25" y="18.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="561.5" y="276.0" />
+  <SelectedNodes>
+    <node>org.apache.shiro.realm.Realm</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
