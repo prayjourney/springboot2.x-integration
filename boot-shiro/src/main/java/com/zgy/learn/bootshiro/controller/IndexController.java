@@ -23,7 +23,6 @@ public class IndexController {
     public String add(Model model) {
         model.addAttribute("message", "add页面!");
         return "user/add";
-
     }
 
 
@@ -31,6 +30,5 @@ public class IndexController {
     public String update(Model model) {
         model.addAttribute("message", "update页面!");
         return "user/update";
-
     }
 }
