@@ -12,7 +12,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author zuiguangying
+ * @Author zuiguangyin
  * @Date 2020/11/5
  * @Description 自定义的realme, 需要继承AuthorizingRealm
  */
