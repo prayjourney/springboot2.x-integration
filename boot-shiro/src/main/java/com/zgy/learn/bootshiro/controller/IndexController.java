@@ -3,11 +3,9 @@ package com.zgy.learn.bootshiro.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @Author renjiaxin
+ * @Author zuiguangying
  * @Date 2020/11/5
  * @Description
  */
@@ -15,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
     @RequestMapping({"", "/", "home", "index"})
     public String index(Model model) {
-        model.addAttribute("message", "hello nihao a !");
+        model.addAttribute("message", "这是来自后端的测试消息!");
         return "index";
     }
 }
