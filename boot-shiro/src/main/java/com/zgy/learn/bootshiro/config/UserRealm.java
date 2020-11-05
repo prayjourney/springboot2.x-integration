@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Date 2020/11/5
  * @Description 自定义的realme, 需要继承AuthorizingRealm
  */
-@Component
+@Component // 此处加入Spring管理, 直接创建好了userRealm的bean
 @Slf4j
 public class UserRealm extends AuthorizingRealm {
     // 授权
