@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * druid的登录地址: http://localhost:8833/druid/index.html
  * 这个配置其实现在是可有可无的, 我们只需要在application.yml之中配置好相关的参数即可
  * 这个类最大的作用就是提供了配置和过滤, 配置用户名密码, ip, 过滤请求的类型, 比如是js, 图片, 他就不去检测了, 最好加上, 全面而完整
  */
 @Configuration
-public class DruidConfiguration {
+public class DruidConfig {
+    // 这个配置在spring.datasource.type之中设置com.alibaba.druid.pool.DruidDataSource直接标明了, 所以可以省略
     // @ConfigurationProperties(prefix = "spring.datasource")
     // @Bean
     // public DruidDataSource druidDataSource() {
