@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @Author zuiguangyin
  * @Date 2020/11/5
@@ -26,6 +29,20 @@ public class ShiroConfig {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         // 设置securityManager
         filterFactoryBean.setSecurityManager(securityManager);
+
+        /*
+         * anon: 无需认证就可访问
+         * authc：必须认证才能访问
+         * user：必须拥有记住我功能才能访问
+         * perms: 拥有对某个资源的权限才能访问
+         * role:拥有某个角色权限才能访问
+         */
+        //添加shiro的内置过滤器
+        Map<String, String> filterMap = new HashMap<>();
+        filterMap.put("/", "anon");
+        filterMap.put("/user/add", "authc");
+        filterMap.put("/user/update", "authc");
+        filterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return filterFactoryBean;
     }
 
