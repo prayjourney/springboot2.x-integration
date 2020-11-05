@@ -37,12 +37,14 @@ public class ShiroConfig {
          * perms: 拥有对某个资源的权限才能访问
          * role:拥有某个角色权限才能访问
          */
-        //添加shiro的内置过滤器
+        // 添加shiro的内置过滤器
         Map<String, String> filterMap = new HashMap<>();
         filterMap.put("/", "anon");
-        filterMap.put("/user/add", "authc");
-        filterMap.put("/user/update", "authc");
+        filterMap.put("/user/*", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(filterMap);
+
+        // 如果认证失败, 跳转到login页面
+        filterFactoryBean.setLoginUrl("/login");
         return filterFactoryBean;
     }
 

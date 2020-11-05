@@ -31,4 +31,10 @@ public class IndexController {
         model.addAttribute("message", "update页面!");
         return "user/update";
     }
+
+
+    @RequestMapping("login")
+    public String login() {
+        return "login";
+    }
 }
