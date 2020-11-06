@@ -21,4 +21,12 @@ public class User {
     private Integer id;
     private String name;
     private String password;
+    /**
+     * 权限
+     */
+    private String perms;
+    /**
+     * 角色
+     */
+    private String role;
 }

@@ -23,12 +23,14 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `perms` varchar(200) DEFAULT '' COMMENT '权限',
+  `role` varchar(255) DEFAULT NULL COMMENT '角色',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '123456');
-INSERT INTO `user` VALUES ('2', 'zhangsan', 'abc123');
-INSERT INTO `user` VALUES ('3', '小明', '111222');
+INSERT INTO `user` VALUES ('1', 'admin', '123456', 'user:add', 'admin');
+INSERT INTO `user` VALUES ('2', 'zhangsan', 'abc123', 'user:update', 'student');
+INSERT INTO `user` VALUES ('3', '小明', '111222', null, 'student');
