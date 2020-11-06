@@ -3,6 +3,7 @@ package com.zgy.learn.bootshiro.config;
 import com.zgy.learn.bootshiro.pojo.User;
 import com.zgy.learn.bootshiro.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,6 +13,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +59,8 @@ public class UserRealm extends AuthorizingRealm {
             return null; // 用户验证, 表示没有这个用户
         }
 
+        // return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
+        // 将用户信息分发给授权doGetAuthorizationInfo函数
         return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
     }
 
@@ -66,9 +70,21 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("执行了授权！");
 
-        // 一个自己处理的例子, 给进来的用户都加一个权限
+        /*
+         * // 一个自己处理的例子, 给进来的用户都加一个权限
+         * SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+         * authorizationInfo.addStringPermission("user:add");
+         * return authorizationInfo;
+         *
+         */
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.addStringPermission("user:add");
+
+        // 连接真实的数据库, 权限的验证, 拿到当前登录的这个对象
+        Subject subject = SecurityUtils.getSubject();
+        // 拿到当前对象
+        User currentUser = (User) subject.getPrincipal();
+        // 设置当前对象的权限, shiro自己去比较, 剩下的不用我们管了
+        authorizationInfo.addStringPermission(currentUser.getPerms());
         return authorizationInfo;
     }
 
