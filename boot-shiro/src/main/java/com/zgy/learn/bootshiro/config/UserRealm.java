@@ -1,7 +1,7 @@
 package com.zgy.learn.bootshiro.config;
 
-import com.zgy.learn.bootshiro.pojo.Person;
-import com.zgy.learn.bootshiro.service.PersonService;
+import com.zgy.learn.bootshiro.pojo.User;
+import com.zgy.learn.bootshiro.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
-    PersonService personService;
+    UserService userService;
 
     // 认证，看能不能登录
     @Override
@@ -49,14 +49,14 @@ public class UserRealm extends AuthorizingRealm {
          *
          */
 
-        // 连接真实的数据库
+        // 连接真实的数据库, 用户名验证, 密码验证
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        Person person = personService.queryPersonByName(token.getUsername());
+        User person = userService.queryUserByName(token.getUsername());
         if (null == person) {
-            return null;
+            return null; // 用户验证, 表示没有这个用户
         }
 
-        return new SimpleAuthenticationInfo("", person.getPassword(), "");
+        return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
     }
 
 

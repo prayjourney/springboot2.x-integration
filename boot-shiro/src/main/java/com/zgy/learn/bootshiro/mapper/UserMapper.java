@@ -1,7 +1,7 @@
 package com.zgy.learn.bootshiro.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zgy.learn.bootshiro.pojo.Person;
+import com.zgy.learn.bootshiro.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface PersonMapper extends BaseMapper<Person> {
+public interface UserMapper extends BaseMapper<User> {
 
-    @Select("select * from `person` where name = #{name}")
-    public Person queryPersonByName(String name);
+    @Select("select * from `user` where name = #{name}")
+    User queryUserByName(String name);
 }

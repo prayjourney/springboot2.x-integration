@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class User {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;

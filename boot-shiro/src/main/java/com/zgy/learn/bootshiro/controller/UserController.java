@@ -1,7 +1,7 @@
 package com.zgy.learn.bootshiro.controller;
 
-import com.zgy.learn.bootshiro.pojo.Person;
-import com.zgy.learn.bootshiro.service.PersonService;
+import com.zgy.learn.bootshiro.pojo.User;
+import com.zgy.learn.bootshiro.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description
  */
 @RestController
-public class PersonController {
+public class UserController {
+
     @Autowired
-    PersonService personService;
+    UserService userService;
 
     @RequestMapping("querybyname")
-    public Person queryPersonByName(String name) {
-        return personService.queryPersonByName(name);
+    public User queryUserByName(String name) {
+        return userService.queryUserByName(name);
     }
 }
