@@ -43,8 +43,14 @@ public class ShiroConfig {
         filterMap.put("/user/*", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
+        // 授权
+        filterMap.put("/user/add", "perms[user:add]");
+
         // 如果认证失败, 跳转到login页面
         filterFactoryBean.setLoginUrl("/login");
+
+        // 如果授权失败, 跳转到401页面
+        filterFactoryBean.setUnauthorizedUrl("/401");
         return filterFactoryBean;
     }
 
