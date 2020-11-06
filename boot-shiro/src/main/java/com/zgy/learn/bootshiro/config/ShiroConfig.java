@@ -45,6 +45,7 @@ public class ShiroConfig {
 
         // 授权
         filterMap.put("/user/add", "perms[user:add]");
+        filterMap.put("/user/update", "perms[user:update]");
 
         // 如果认证失败, 跳转到login页面
         filterFactoryBean.setLoginUrl("/login");
