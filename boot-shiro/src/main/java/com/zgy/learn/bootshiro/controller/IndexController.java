@@ -70,4 +70,15 @@ public class IndexController {
     public String unauthorized() {
         return "401";
     }
+
+
+    @GetMapping("logout")
+    public String logout() {
+        // 获取当前用户
+        Subject subject = SecurityUtils.getSubject();
+        // 执行退出方法
+        subject.logout();
+
+        return "index";
+    }
 }
