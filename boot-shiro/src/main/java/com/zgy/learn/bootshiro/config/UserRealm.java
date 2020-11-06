@@ -83,8 +83,12 @@ public class UserRealm extends AuthorizingRealm {
         Subject subject = SecurityUtils.getSubject();
         // 拿到当前对象
         User currentUser = (User) subject.getPrincipal();
+
         // 设置当前对象的权限, shiro自己去比较, 剩下的不用我们管了
         authorizationInfo.addStringPermission(currentUser.getPerms());
+
+        // 设置当前对象的角色
+        authorizationInfo.addRole(currentUser.getRole());
         return authorizationInfo;
     }
 
