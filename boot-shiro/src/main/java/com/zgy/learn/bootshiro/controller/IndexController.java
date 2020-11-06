@@ -33,6 +33,13 @@ public class IndexController {
     }
 
 
+    @RequestMapping("user/search")
+    public String search(Model model) {
+        model.addAttribute("message", "search页面!");
+        return "user/search";
+    }
+
+
     @RequestMapping("user/update")
     public String update(Model model) {
         model.addAttribute("message", "update页面!");
