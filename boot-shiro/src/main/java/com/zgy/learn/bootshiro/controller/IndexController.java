@@ -4,6 +4,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,7 +63,14 @@ public class IndexController {
         // 执行登录方法
         try {
             subject.login(token);
+
+            // 当前用户是否登录, 如果成功, 就不显示登录按钮了
+            Subject currentSubject = SecurityUtils.getSubject();
+            Session session = currentSubject.getSession();
+            session.setAttribute("loginUser", username);
+
             return "index";
+
         } catch (UnknownAccountException e1) {
             model.addAttribute("message", "用户名错误");
             return "login";
