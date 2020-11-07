@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">>
     <head>
         <meta charset="UTF-8">
+        <style>
+            #login {
+                color: deepskyblue;
+            }
+
+            #logout {
+                color: orangered;
+            }
+        </style>
         <title>首页</title>
     </head>
     <body>
-        <h3>这是首页！ | <a th:href="@{/logout}" style="color: orangered">退出</a> </h3>
+        <h3>首页::: | <a id="login" th:href="@{/login}">登录</a> | <a id="logout" th:href="@{/logout}">退出</a></h3>
         <p th:text="${message}"></p>
         <hr>
 
-        <a th:href="@{/user/add}">add页面</a> |
-        <a th:href="@{/user/search}">search页面</a> |
-        <a th:href="@{/user/update}">update页面</a>
+        <div shiro:hasPermission="user:add">
+            <a th:href="@{/user/add}">add页面</a> |
+        </div>
+
+        <div shiro:hasRole="student">
+            <a th:href="@{/user/search}">search页面</a> |
+        </div>
+
+        <div shiro:hasPermission="user:user:update">
+            <a th:href="@{/user/update}">update页面</a>
+        </div>
+
     </body>
 </html>
