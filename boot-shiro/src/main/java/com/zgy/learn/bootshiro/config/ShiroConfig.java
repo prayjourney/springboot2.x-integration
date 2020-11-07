@@ -1,5 +1,6 @@
 package com.zgy.learn.bootshiro.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,12 @@ public class ShiroConfig {
     // public UserRealm userRealm() {
     //     return new UserRealm();
     // }
+
+
+    // 整合shiro与thymeleaf
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
+    }
 
 }
