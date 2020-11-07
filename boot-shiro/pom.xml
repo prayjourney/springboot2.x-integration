@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <shiro.version>1.7.0</shiro.version>
+        <shiro.version>1.5.3</shiro.version>
     </properties>
 
     <dependencies>
