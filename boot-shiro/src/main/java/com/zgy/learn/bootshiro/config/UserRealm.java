@@ -54,14 +54,14 @@ public class UserRealm extends AuthorizingRealm {
 
         // 连接真实的数据库, 用户名验证, 密码验证
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        User person = userService.queryUserByName(token.getUsername());
-        if (null == person) {
+        User user = userService.queryUserByName(token.getUsername());
+        if (null == user) {
             return null; // 用户验证, 表示没有这个用户
         }
 
         // return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
         // 将用户信息分发给授权doGetAuthorizationInfo函数
-        return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
+        return new SimpleAuthenticationInfo(user, user.getPassword(), ""); // 密码验证
     }
 
 
@@ -81,7 +81,7 @@ public class UserRealm extends AuthorizingRealm {
 
         // 连接真实的数据库, 权限的验证, 拿到当前登录的这个对象
         Subject subject = SecurityUtils.getSubject();
-        // 拿到当前对象
+        // 拿到当前对象, Principal可以是任何对象, 一般而言就是认证时候的对象, 登录后, 需要按照这个用户去授权, 等一些列的操作, 可以传递参数
         User currentUser = (User) subject.getPrincipal();
 
         // 设置当前对象的权限, shiro自己去比较, 剩下的不用我们管了
