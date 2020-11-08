@@ -2,12 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- 子模块的parent -->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.zgy</groupId>
+        <artifactId>springboot2.x-integration</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+    <!-- 自己的坐标 -->
     <groupId>com.zgy</groupId>
     <artifactId>springboot-tech-integration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -26,15 +29,13 @@
         <shiro.version>1.5.3</shiro.version>
     </properties>
 
+
+    <!-- 依赖 -->
     <dependencies>
         <!-- 基本的依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,32 +59,66 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!-- 数据库相关 -->
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- jdbctemplate的功能 -->
+        <!-- jdbc-template -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-
-        <!-- shiro的starter -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring-boot-web-starter</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-
-        <!-- druid的starter -->
+        <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.20</version>
         </dependency>
+        <!-- mybatis，使用mybatis-plus后可省略 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.2</version>
+        </dependency>
+        <!-- mybatis-plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- mongodb -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+
+        <!-- spring-session -->
+        <!-- spring-session: redis -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+        <!-- spring-session: jdbc -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+        </dependency>
+
 
         <!-- jackson -->
         <dependency>
@@ -102,23 +137,18 @@
             <version>2.10.4</version>
         </dependency>
 
-        <!-- mybatis，这个在使用了mybatis-plus后可以省略 -->
+
+        <!-- thymeleaf -->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.2</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- mybatis-plus -->
+        <!-- shiro -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.1</version>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <version>${shiro.version}</version>
         </dependency>
 
         <!-- swagger2, 用于支持生成后的代码的引用 -->
@@ -133,7 +163,7 @@
             <version>2.9.2</version>
         </dependency>
 
-        <!-- elasticsearch 的starter -->
+        <!-- elasticsearch -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
@@ -157,16 +187,10 @@
             <version>${elasticsearch.high.rest.client.version}</version>
         </dependency>
 
-        <!-- quartz模块，定时任务调度 -->
+        <!-- quartz定时任务调度 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-
-        <!-- thymeleaf -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
         <!-- jsoup爬虫 -->
@@ -195,26 +219,6 @@
             <version>2.1.6</version>
         </dependency>
 
-        <!-- spring session的依赖 -->
-        <!-- redis的starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <!-- spring session 与redis应用基本环境配置, 需要开启redis后才可以使用，不然启动Spring boot会报错 -->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-data-redis</artifactId>
-        </dependency>
-        <!-- https://blog.csdn.net/ljk126wy/article/details/93971421 -->
-        <!-- https://www.cnblogs.com/yingsong/p/9838198.html -->
-
-        <!-- 使用jdbc来保存session -->
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session-jdbc</artifactId>
-        </dependency>
-
         <!-- java-jwt -->
         <dependency>
             <groupId>com.auth0</groupId>
@@ -222,13 +226,7 @@
             <version>3.10.3</version>
         </dependency>
 
-        <!-- mongodb -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-        <!-- hutool-all, hutool工具集合依赖 -->
+        <!-- hutool工具集合依赖 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -287,9 +285,10 @@
             <artifactId>core</artifactId>
             <version>3.3.3</version>
         </dependency>
-
     </dependencies>
 
+
+    <!-- 打包 -->
     <build>
         <plugins>
             <plugin>
