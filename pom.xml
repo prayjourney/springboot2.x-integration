@@ -88,11 +88,13 @@
                 <version>8.0.22</version>
                 <scope>runtime</scope>
             </dependency>
+            <!-- jdbc -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-jdbc</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
+            <!-- mybatis -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -135,7 +137,7 @@
             </dependency>
 
 
-            <!-- spring session的依赖 -->
+            <!-- spring session -->
             <!-- https://blog.csdn.net/ljk126wy/article/details/93971421, https://www.cnblogs.com/yingsong/p/9838198.html -->
             <!-- redis保存session -->
             <dependency>
@@ -168,7 +170,7 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!-- swagger2, 用于支持生成后的代码的引用 -->
+            <!-- swagger2 -->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -185,26 +187,26 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
             </dependency>
-            <!-- 需要在其中指定elasticsearch的版本，一般而言有可能和elasticsearch的starter中提供的不一样-->
+            <!-- 需要在其中指定elasticsearch的版本，一般而言有可能和elasticsearch的starter中提供的不一样 -->
             <dependency>
                 <groupId>org.elasticsearch</groupId>
                 <artifactId>elasticsearch</artifactId>
                 <version>${elasticsearch.version}</version>
             </dependency>
-            <!-- elasticsearch-rest-high-level-client基于elasticsearch-rest-client-->
+            <!-- elasticsearch-rest-high-level-client基于elasticsearch-rest-client -->
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-client</artifactId>
                 <version>${elasticsearch.rest.client.version}</version>
             </dependency>
-            <!--elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致-->
+            <!-- elasticsearch高级客户端的依赖，版本最好和需要在其中指定elasticsearch的版本一致 -->
             <dependency>
                 <groupId>org.elasticsearch.client</groupId>
                 <artifactId>elasticsearch-rest-high-level-client</artifactId>
                 <version>${elasticsearch.high.rest.client.version}</version>
             </dependency>
 
-            <!-- quartz定时任务调度 -->
+            <!-- quartz定时任务 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-quartz</artifactId>
@@ -218,7 +220,7 @@
                 <version>${springboot.version}</version>
             </dependency>
 
-            <!-- shiro的starter -->
+            <!-- shiro -->
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring-boot-web-starter</artifactId>
@@ -251,14 +253,14 @@
                 <version>2.1.6</version>
             </dependency>
 
-            <!-- java-jwt的依赖 -->
+            <!-- java-jwt -->
             <dependency>
                 <groupId>com.auth0</groupId>
                 <artifactId>java-jwt</artifactId>
                 <version>3.10.3</version>
             </dependency>
 
-            <!-- hutool工具集合-->
+            <!-- hutool工具集合 -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
