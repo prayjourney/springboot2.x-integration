@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>01.layui快速上手</title>
+        <link rel="stylesheet" href="static/layui-2.5.6/css/layui.css">
+    </head>
+    <body>
+        <h2 class="layui-anim">第一个layui!</h2>
+
+        <script src="static/layui-2.5.6/layui.js"></script>
+        <script>
+            // 一般直接写在一个js文件中
+            layui.use(['layer', 'form'], function () {
+                var layer = layui.layer, form = layui.form;
+                layer.msg('Hello World');
+            });
+        </script>
+    </body>
+</html>
