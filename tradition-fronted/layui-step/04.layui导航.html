@@ -28,7 +28,7 @@
             </div>
 
             <div class="layui-row">
-                <!-- 水平导航 -->
+                <!-- 水平导航, 测试了一下, 貌似不支持二级菜单之中再去嵌套 -->
                 <ul class="layui-nav layui-bg-blue">
                     <!-- layui-this表示选中 -->
                     <li class="layui-nav-item layui-this"><a href="">李白</a></li>
@@ -54,6 +54,36 @@
             <li class="layui-nav-item"><a href="">杜甫</a></li>
             <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
         </ul>
+
+        <hr/>
+
+        <!-- 垂直导航 -->
+        <ul class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item"><a href="">李白</a></li>
+            <li class="layui-nav-item">
+                <a href="">杜甫</a>
+                <dd class="layui-nav-child">
+                    <dl><a href="">兵车行</a></dl>
+                    <dl><a href="">春日思李白</a></dl>
+                </dd>
+            </li>
+            <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
+        </ul>
+
+        <!-- 侧边导航, 占满整个屏幕-->
+        <!--            <div class="layui-row"> -->
+        <!--                <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+        <!--                    <li class="layui-nav-item"><a href="">李白</a></li> -->
+        <!--                    <li class="layui-nav-item"> -->
+        <!--                        <a href="">杜甫</a> -->
+        <!--                        <dd class="layui-nav-child"> -->
+        <!--                            <dl><a href="">兵车行</a></dl> -->
+        <!--                            <dl><a href="">春日思李白</a></dl> -->
+        <!--                        </dd> -->
+        <!--                    </li> -->
+        <!--                    <li class="layui-nav-item"><a href="">今夜大三浪</a></li> -->
+        <!--                </ul> -->
+        <!--            </div> -->
 
 
         <script src="static/layui-2.5.6/layui.js"></script>
