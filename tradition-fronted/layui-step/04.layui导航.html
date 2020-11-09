@@ -30,8 +30,18 @@
             <div class="layui-row">
                 <!-- 水平导航 -->
                 <ul class="layui-nav layui-bg-blue">
-                    <li class="layui-nav-item"><a href="">李白</a></li>
-                    <li class="layui-nav-item"><a href="">杜甫</a></li>
+                    <!-- layui-this表示选中 -->
+                    <li class="layui-nav-item layui-this"><a href="">李白</a></li>
+                    <li class="layui-nav-item">
+                        <a href="">杜甫</a>
+                        <!-- 子导航模块, dd是二级导航, dl是子条目 -->
+                        <dd class="layui-nav-child">
+                            <dl><a href="">兵车行</a></dl>
+                            <dl><a href="">春日思李白</a></dl>
+                            <dl><a href="">茅屋为秋风所破歌</a></dl>
+                            <dl><a href="">闻官军收河南河北</a></dl>
+                        </dd>
+                    </li>
                     <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
                 </ul>
             </div>
