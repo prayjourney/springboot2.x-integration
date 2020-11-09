@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>02.layui栅格系统</title>
+        <link rel="stylesheet" href="static/layui-2.5.6/css/layui.css">
+    </head>
+    <body>
+        <!-- layui-container: 容器 -->
+        <div class="layui-container layui-border-box">
+            <!-- layui-row: 放在行内 -->
+            <div class="layui-row">
+                <div class="layui-col-lg2 layui-bg-blue">
+                    1/3
+                </div>
+                <div class="layui-col-lg6 layui-col-lg-offset2 layui-bg-orange">
+                    <div class="grid-demo">占用6格, 偏移2格, 橘黄色背景</div>
+                </div>
+                <div class="layui-col-lg2 layui-bg-cyan">
+                    1/3
+                </div>
+            </div>
+        </div>
+
+        <!-- layui-fuild: 容器显示100%的尺寸 -->
+        <div class="layui-fluid">
+            <!-- layui-row: 放在行内 -->
+            <div class="layui-row">
+                <div class="layui-col-lg2 layui-bg-blue">
+                    1/3
+                </div>
+                <div class="layui-col-lg6 layui-col-lg-offset2 layui-bg-orange">
+                    <div class="grid-demo">占用6格, 偏移2格, 橘黄色背景</div>
+                </div>
+                <div class="layui-col-lg2 layui-bg-cyan">
+                    1/3
+                </div>
+            </div>
+        </div>
+
+        <script src="static/layui-2.5.6/layui.js"></script>
+        <script>
+            // 一般直接写在一个js文件中
+            layui.use(['layer', 'form'], function() {
+                var layer = layui.layer,
+                    form = layui.form;
+            });
+        </script>
+    </body>
+</html>
