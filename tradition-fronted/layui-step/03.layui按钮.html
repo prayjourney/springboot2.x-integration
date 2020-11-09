@@ -13,15 +13,17 @@
                 <div class="layui-col-lg12 layui-bg-gray">
                     <p class="laydate-day-next" style="text-align: center;">按钮</p>
                 </div>
-                
+
                 <hr/>
                 <!-- 按钮主题 -->
                 <div class="layui-col-lg4 layui-bg-gray">
                     <div class="layui-btn">无主题基本按钮</div>
                 </div>
-                <div class="layui-col-lg5 layui-bg-black"><button class="layui-btn layui-btn-danger">危险的按钮</button></div>
+                <div class="layui-col-lg5 layui-bg-black">
+                    <button class="layui-btn layui-btn-danger">危险的按钮</button>
+                </div>
                 <div class="layui-col-lg3 layui-bg-gray"><a class="layui-btn layui-btn-primary">普通按钮</a></div>
-                
+
                 <hr/>
                 <!-- 按钮尺寸 -->
                 <div class="layui-col-lg3 layui-bg-gray">
@@ -30,9 +32,12 @@
                 <div class="layui-col-lg3 layui-bg-gray">
                     <div class="layui-btn layui-btn-lg layui-btn-primary">大按钮</div>
                 </div>
-                <div class="layui-col-lg3 layui-bg-black"><button class="layui-btn layui-btn-disabled">禁止按钮</button></div>
-                <div class="layui-col-lg3 layui-bg-gray"><a class="layui-btn layui-btn-sm layui-btn-primary">小按钮</a></div>
-                
+                <div class="layui-col-lg3 layui-bg-black">
+                    <button class="layui-btn layui-btn-disabled">禁止按钮</button>
+                </div>
+                <div class="layui-col-lg3 layui-bg-gray"><a class="layui-btn layui-btn-sm layui-btn-primary">小按钮</a>
+                </div>
+
                 <hr/>
                 <!-- 按钮圆角与图标 -->
                 <div class="layui-col-lg3 layui-bg-gray">
@@ -61,13 +66,38 @@
                     <button type="button" class="layui-btn">删除</button>
                 </div>
             </div>
+
+            <hr/>
+            <div class="layui-row layui-col-lg8 layui-col-lg-offset2">
+                <div>
+                    <button type="button" class="layui-btn layui-btn-fluid layui-bg-orange">民族英雄：按钮容器</button>
+                </div>
+                <br/>
+                <!-- 按钮容器 -->
+                <div class="layui-btn-container">
+                    <button type="button" class="layui-btn">岳飞</button>
+                    <button type="button" class="layui-btn layui-btn-danger">文天祥</button>
+                    <button type="button" class="layui-btn">张煌言</button>
+                    <button type="button" class="layui-btn"><i class="layui-icon layui-icon-camera"></i>李定国</button>
+                    <button type="button" class="layui-btn">吴阶</button>
+                    <button type="button" class="layui-btn">卫青</button>
+                    <button type="button" class="layui-btn">霍去病</button>
+                    <button type="button" class="layui-btn">于谦</button>
+                    <button type="button" class="layui-btn">蓝玉</button>
+                    <button type="button" class="layui-btn">徐达</button>
+                    <button type="button" class="layui-btn">韩世忠</button>
+                    <button type="button" class="layui-btn">李克用</button>
+                    <button type="button" class="layui-btn">柴荣</button>
+                    <button type="button" class="layui-btn layui-bg-black">其他...</button>
+                </div>
+            </div>
         </div>
 
 
         <script src="static/layui-2.5.6/layui.js"></script>
         <script>
             // 一般直接写在一个js文件中
-            layui.use(['layer', 'form'], function() {
+            layui.use(['layer', 'form'], function () {
                 var layer = layui.layer,
                     form = layui.form;
             });
