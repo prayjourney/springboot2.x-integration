@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>04.layui导航.html</title>
+        <link rel="stylesheet" href="static/layui-2.5.6/css/layui.css">
+    </head>
+    <body>
+        <!-- layui-container: 容器 -->
+        <div class="layui-container">
+            <!-- 导航，导航的本质是一个列表:ul(无序列表), ol(有序列表), li(列表项), 每一个item是一个链接, 否则显示很怪 -->
+            <div class="layui-row">
+                <!-- 水平导航, 只是文字 -->
+                <ul class="layui-nav">
+                    <li class="layui-nav-item">李白</li>
+                    <li class="layui-nav-item">杜甫</li>
+                    <li class="layui-nav-item">今夜大三浪</li>
+                </ul>
+            </div>
+
+            <div class="layui-row">
+                <!-- 水平导航, 每个子项目需要使用a标签 -->
+                <ul class="layui-nav layui-bg-orange">
+                    <li class="layui-nav-item"><a href="">李白</a></li>
+                    <li class="layui-nav-item"><a href="">杜甫</a></li>
+                    <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
+                </ul>
+            </div>
+
+            <div class="layui-row">
+                <!-- 水平导航 -->
+                <ul class="layui-nav layui-bg-blue">
+                    <li class="layui-nav-item"><a href="">李白</a></li>
+                    <li class="layui-nav-item"><a href="">杜甫</a></li>
+                    <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- 容器外的导航 撑满宽度 -->
+        <ul class="layui-nav">
+            <li class="layui-nav-item"><a href="">李白</a></li>
+            <li class="layui-nav-item"><a href="">杜甫</a></li>
+            <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
+        </ul>
+
+
+        <script src="static/layui-2.5.6/layui.js"></script>
+        <script>
+            // element是导航需要的组件
+            layui.use(['layer', 'form', 'element'], function () {
+                var layer = layui.layer,
+                    form = layui.form,
+                    element = layui.element;
+            });
+        </script>
+    </body>
+</html>
