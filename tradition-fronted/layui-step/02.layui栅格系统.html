@@ -13,10 +13,20 @@
                 <div class="layui-col-lg2 layui-bg-blue">
                     1/3
                 </div>
-                <div class="layui-col-lg6 layui-col-lg-offset2 layui-bg-orange">
-                    <div class="grid-demo">占用6格, 偏移2格, 橘黄色背景</div>
+                <!-- 2个格子的偏移 -->
+                <div class="layui-col-lg6 layui-col-lg-offset2">
+                    <!-- 列的嵌套 -->
+                    <div class="layui-row">
+                        <!-- sm小屏幕占4格，lg大屏幕占5格 -->
+                        <div class="layui-col-sm4 layui-col-lg5 layui-bg-gray">
+                            <div class="grid-demo">占用6格, 偏移2格, 橘黄色背景</div>
+                        </div>
+                        <div class="layui-col-lg6 layui-col-lg-offset1 layui-bg-cyan" >
+                            <div class="grid-demo">hello world</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="layui-col-lg2 layui-bg-cyan">
+                <div class="layui-col-lg2 layui-bg-red">
                     1/3
                 </div>
             </div>
