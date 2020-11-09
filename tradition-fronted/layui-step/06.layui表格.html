@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>06.layui表格</title>
+        <link rel="stylesheet" href="static/layui-2.5.6/css/layui.css">
+    </head>
+    <body>
+        <div class="layui-container">
+            <div class="row layui-col-lg10 layui-col-lg-offset1">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <!-- 第三行没有设置宽度 -->
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>昵称</th>
+                        <th>加入时间</th>
+                        <th>签名</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>贤心</td>
+                        <td>2016-11-29</td>
+                        <td>人生就像是一场修行</td>
+                    </tr>
+                    <tr>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 隔行换色, 边框, 尺寸-->
+            <div class="row">
+                <table class="layui-table" lay-even="true" lay-skin="row" lay-size="sm">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <!-- 第三行没有设置宽度 -->
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>昵称</th>
+                        <th>加入时间</th>
+                        <th>签名</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>贤心</td>
+                        <td>2016-11-29</td>
+                        <td>人生就像是一场修行</td>
+                    </tr>
+                    <tr>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                    </tr>
+                    <tr>
+                        <td>贤心</td>
+                        <td>2016-11-29</td>
+                        <td>人生就像是一场修行</td>
+                    </tr>
+                    <tr>
+                        <td>许闲心</td>
+                        <td>2016-11-28</td>
+                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <script src="static/layui-2.5.6/layui.js"></script>
+        <script>
+            // element是导航, 选项卡需要的组件
+            layui.use(['layer', 'form', 'element'], function () {
+                var layer = layui.layer,
+                    form = layui.form,
+                    element = layui.element;
+            });
+        </script>
+    </body>
+</html>
