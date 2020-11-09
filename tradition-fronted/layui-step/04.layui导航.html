@@ -21,7 +21,8 @@
             <div class="layui-row">
                 <!-- 水平导航, 每个子项目需要使用a标签 -->
                 <ul class="layui-nav layui-bg-orange">
-                    <li class="layui-nav-item"><a href="">李白</a></li>
+                    <!-- 加了一个小徽章badge -->
+                    <li class="layui-nav-item"><a href="">李白<span class="layui-badge">3</span></a></li>
                     <li class="layui-nav-item"><a href="">杜甫</a></li>
                     <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
                 </ul>
@@ -45,6 +46,17 @@
                     <li class="layui-nav-item"><a href="">今夜大三浪</a></li>
                 </ul>
             </div>
+
+            <div class="layui-row">
+                <!-- 面包屑导航 -->
+                <span class="layui-breadcrumb">
+                    <a href="">首页</a>
+                    <a href="">国际新闻</a>
+                    <a href="">亚太地区</a>
+                    <a><cite>正文</cite></a>
+                </span>
+            </div>
+            <hr/>
 
         </div>
 
@@ -84,6 +96,8 @@
         <!--                    <li class="layui-nav-item"><a href="">今夜大三浪</a></li> -->
         <!--                </ul> -->
         <!--            </div> -->
+
+        <hr/>
 
 
         <script src="static/layui-2.5.6/layui.js"></script>
