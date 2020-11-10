@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>11.layui表单-基础元素-02</title>
+        <link rel="stylesheet" href="static/layui-2.5.6/css/layui.css">
+    </head>
+    <body>
+        <div class="layui-container">
+            <!-- 提示按钮 -->
+            <div class="layui-row layui-col-lg-offset2 layui-col-lg8">
+                <button class="layui-btn-fluid layui-btn-primary layui-btn-gray layui-btn-lg">form表单</button>
+            </div>
+            <hr class="layui-bg-orange"/>
+            <hr class="layui-bg-orange"/>
+            <hr class="layui-bg-orange"/>
+
+            <div class="layui-row layui-col-lg-offset2 layui-col-lg8">
+                <!-- form表单 -->
+                <form class="layui-form" action="">
+                    <!-- 行区块结构 -->
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required lay-verify="required" placeholder="输入姓名"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <!-- 行区块结构 -->
+
+                    <!-- 标签 -->
+                    <label class="layui-form-label">年龄</label>
+                    <!-- layui-input-inline: 正常长度， layui-input-block: 撑满-->
+                    <div class="layui-input-block">
+                        <!-- required lay-verify="required" 必填, layui-input样式, autocomplete自动填充 -->
+                        <input type="number" name="age" required lay-verify="required" placeholder="输入年龄"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <script src="static/layui-2.5.6/layui.js"></script>
+        <script>
+            // element是导航, 选项卡需要的组件
+            layui.use(['layer', 'form', 'element'], function () {
+                var layer = layui.layer,
+                    form = layui.form,
+                    element = layui.element;
+
+                //监听提交
+                form.on('submit(formDemo)', function (data) {
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
+                });
+            });
+        </script>
+    </body>
+</html>
