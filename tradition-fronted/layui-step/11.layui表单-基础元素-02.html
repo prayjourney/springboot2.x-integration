@@ -123,9 +123,19 @@
                     <!-- 单选框 -->
                     <div class="layui-form-item">
                         <label class="layui-form-label">性别</label>
+                        <!-- 需要设置相同的name， 才认为是一组 -->
                         <input type="radio" name="gender" title="男" checked>
                         <input type="radio" name="gender" title="女" checked>
                         <input type="radio" name="gender" title="第三性" disabled>
+                    </div>
+
+                    <!-- 文本域 -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">自我介绍</label>
+                        <div class="layui-input-block">
+                            <textarea name="remark" required lay-verify="required" placeholder="请输入自我介绍"
+                                      class="layui-textarea"></textarea>
+                        </div>
                     </div>
 
                     <div class="layui-form-item">
