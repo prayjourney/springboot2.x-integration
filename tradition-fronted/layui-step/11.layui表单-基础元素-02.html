@@ -63,6 +63,27 @@
                         </div>
                     </div>
 
+                    <!-- 下拉框分组 -->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">爱好</label>
+                        <div class="layui-input-block">
+                            <select name="hobby" lay-verify="required">
+                                <!-- 这个必须写 -->
+                                <option value="">请选择一个爱好</option>
+                                <optgroup label="运动">
+                                    <option value="basketball">篮球</option>
+                                    <option value="football">足球</option>
+                                    <option value="volleyball">排球</option>
+                                </optgroup>
+                                <optgroup label="游戏">
+                                    <option value="dota">dota</option>
+                                    <option value="dota2">dota2</option>
+                                    <option value="lol">lol</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="layui-form-item">
                         <div>
                             <div class="layui-col-lg2 layui-col-lg-offset5">
