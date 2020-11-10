@@ -67,7 +67,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">爱好</label>
                         <div class="layui-input-block">
-                            <select name="hobby" lay-verify="required">
+                            <!-- lay-verify="required": 必选, lay-search: 开启搜索 -->
+                            <select name="hobby" lay-verify="required" lay-search>
                                 <!-- 这个必须写 -->
                                 <option value="">请选择一个爱好</option>
                                 <optgroup label="运动">
