@@ -25,7 +25,14 @@
                         <label class="layui-text">time</label>
                         <input type="text" class="layui-input" id="test4"/>
                     </div>
-
+                    <div class="layui-inline">
+                        <label class="layui-text">format格式化</label>
+                        <input type="text" class="layui-input" id="test5"/>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-text">value初始值</label>
+                        <input type="text" class="layui-input" id="test6"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,6 +57,15 @@
                 laydate.render({
                     elem: '#test4',  //指定元素
                     type: 'time'
+                });
+                laydate.render({
+                    elem: '#test5',  //指定元素
+                    format: 'yyyy年--MM月--dd日'
+                });
+                laydate.render({
+                    elem: '#test6',  //指定元素
+                    format: 'yyyy年/MM月/dd日',
+                    value: '2013年/02月/15日'
                 });
             });
         </script>
