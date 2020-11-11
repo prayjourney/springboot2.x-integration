@@ -7,9 +7,24 @@
     </head>
     <body>
         <div class="layui-container">
-            <div class="layui-row layui-col-lg8">
+            <div class="layui-row layui-col-lg8 layui-col-lg-offset2">
                 <div class="layui-inline"> <!-- 注意：这一层元素并不是必须的 -->
-                    <input type="text" class="layui-input" id="test1"/>
+                    <div class="layui-inline">
+                        <label class="layui-text">默认</label>
+                        <input type="text" class="layui-input" id="test1"/>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-text">year</label>
+                        <input type="text" class="layui-input" id="test2"/>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-text">datetime</label>
+                        <input type="text" class="layui-input" id="test3"/>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-text">time</label>
+                        <input type="text" class="layui-input" id="test4"/>
+                    </div>
 
                 </div>
             </div>
@@ -23,6 +38,18 @@
                 // 执行一个laydate实例
                 laydate.render({
                     elem: '#test1' //指定元素
+                });
+                laydate.render({
+                    elem: '#test2', //指定元素
+                    type: 'year'
+                });
+                laydate.render({
+                    elem: '#test3',  //指定元素
+                    type: 'datetime'
+                });
+                laydate.render({
+                    elem: '#test4',  //指定元素
+                    type: 'time'
                 });
             });
         </script>
