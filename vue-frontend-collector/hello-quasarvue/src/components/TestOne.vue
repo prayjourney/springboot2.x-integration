@@ -1,16 +1,19 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
-        <h2>Essential Links</h2>
+        <h2 v-text="text"></h2>
+        <h2 v-html="info"></h2>
     </div>
 </template>
 
 <script>
 export default {
-    name: "HelloWorld",
+    name: "TestOne",
     data() {
         return {
-            msg: "Welcome to Your Vue.js App",
+            msg: "Test One",
+            text: "我有一个梦想！",
+            info : "醒来吧！！！"
         }
     },
 }
