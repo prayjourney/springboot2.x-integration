@@ -8,10 +8,16 @@
 <script>
 export default {
     name: "HelloWorld",
-    data() {
-        return {
-            msg: "Welcome to Your Vue.js App",
-        }
+    // data, 和data()的作用是一样的
+    // data() {
+    //     return {
+    //         msg: "Welcome to Your Vue.js App",
+    //     }
+    // },
+    data: {
+        msg: "Welcome to Your Vue.js App",
+        shouye: "首页",
+        ceshi01: "test 01"
     },
 }
 </script>
