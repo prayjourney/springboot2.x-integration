@@ -4,8 +4,9 @@
         <a href="#/testone">123123</a>
         <a v-bind:href="lianjie"> {{ceshi}}</a>
         <a v-bind:href="vmodel"> vmodel页面</a>
+        <a href="#/newpage"> NewPage页面</a><br/>
         <input type="text" v-bind:placeholder="baidu" />
-        <input type="text" v-bind:value="mashaji" />
+        <input type="text" v-bind:value="mashaji" /><br/>
         <h1>{{msg}}</h1>
         <h2>Essential Links</h2>
         <router-view />
