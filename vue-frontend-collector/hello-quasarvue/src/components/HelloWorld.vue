@@ -1,30 +1,43 @@
 <template>
     <div class="hello">
-        <h1>{{ msg }}</h1>
+        <a href="#/"> 首页</a>
+        <a href="#/testone">123123</a>
+        <a v-bind:href="lianjie"> {{ceshi}}</a>
+        <input type="text" v-bind:placeholder="baidu" />
+        <input type="text" v-bind:value="mashaji" />
+        <h1>{{msg}}</h1>
         <h2>Essential Links</h2>
+        <router-view />
     </div>
 </template>
 
 <script>
 export default {
     name: "HelloWorld",
-    // data, 和data()的作用是一样的
-    // data() {
-    //     return {
-    //         msg: "Welcome to Your Vue.js App",
-    //     }
+    // data, 和data()的作用是一样的，还是用这个data()比较好一点，初始化比较早
+    // data : {
+    //     msg: "Welcome to Your Vue.js App",
+    //     shouye: "首页",
+    //     ceshi01: "test 01",
+    //     baidu: "baidu.com",
     // },
-    data: {
-        msg: "Welcome to Your Vue.js App",
-        shouye: "首页",
-        ceshi01: "test 01"
+    data() {
+        return {
+            msg: "Welcome to Your Vue.js App",
+            shouye: "首页",
+            lianjie: "#/testone",
+            ceshi: "测试01页面",
+            baidu: "baidu.com",
+            mashaji: "马杀鸡",
+        }
     },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
     font-weight: normal;
 }
 ul {
