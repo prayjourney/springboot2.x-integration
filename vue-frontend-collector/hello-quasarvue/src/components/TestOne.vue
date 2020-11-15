@@ -1,5 +1,7 @@
 <template>
     <div class="hello">
+        <a href="#/">首页</a>
+        <a href="#/testone">123123</a>
         <h1>{{ msg }}</h1>
         <h2 v-text="text"></h2>
         <h2 v-html="info"></h2>
@@ -9,6 +11,7 @@
         <input id="hello3" type="button" value="点击啊3！" @click="clickMethod('你好')" />
         <input id="hello4" type="button" value="点击啊4！" @click="changeShow()" />
         <h2 v-show="showinfo">你好啊</h2>
+        <router-view/>
     </div>
 </template>
 
@@ -20,7 +23,9 @@ export default {
             msg: "Test One",
             text: "我有一个梦想！",
             info: "醒来吧！！！",
-            showinfo: true
+            showinfo: true,
+            shouye: "首页",
+            ceshi01: "test 01"
         }
     },
     methods: {
