@@ -4,8 +4,11 @@
         <h2 v-text="text"></h2>
         <h2 v-html="info"></h2>
         <input type="button" value="点击啊！" v-on:click="helloClick" />
-        <input id="hello" type="button" value="点击啊！" @click="helloClick" />
-        <input id="hello" type="button" value="点击啊！" @click="clickMethod('你好')" />
+        <input id="hello" type="button" value="点击啊1！" @click="helloClick" />
+        <input id="hello2" type="button" value="点击啊2！" @click="clickMethod('你好')" />
+        <input id="hello3" type="button" value="点击啊3！" @click="clickMethod('你好')" />
+        <input id="hello4" type="button" value="点击啊4！" @click="changeShow()" />
+        <h2 v-show="showinfo">你好啊</h2>
     </div>
 </template>
 
@@ -17,6 +20,7 @@ export default {
             msg: "Test One",
             text: "我有一个梦想！",
             info: "醒来吧！！！",
+            showinfo: true
         }
     },
     methods: {
@@ -25,6 +29,10 @@ export default {
         },
         clickMethod(name) {
             alert("你好, " + name)
+        },
+        changeShow() {
+            this.showinfo = !this.showinfo
+            console.log(this.showinfo)
         },
     },
 }
