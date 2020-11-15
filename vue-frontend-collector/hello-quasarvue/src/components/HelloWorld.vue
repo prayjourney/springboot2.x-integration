@@ -3,6 +3,7 @@
         <a href="#/"> 首页</a>
         <a href="#/testone">123123</a>
         <a v-bind:href="lianjie"> {{ceshi}}</a>
+        <a v-bind:href="vmodel"> vmodel页面</a>
         <input type="text" v-bind:placeholder="baidu" />
         <input type="text" v-bind:value="mashaji" />
         <h1>{{msg}}</h1>
@@ -29,6 +30,7 @@ export default {
             ceshi: "测试01页面",
             baidu: "baidu.com",
             mashaji: "马杀鸡",
+            vmodel: "#/vmodel"
         }
     },
 }
