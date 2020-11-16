@@ -7,9 +7,11 @@
 <script>
 export default {
     name: "Footer",
+    // 子组件之中定义为props
+    props: ["copy"],
     data() {
         return {
-            copy: "zgy版权所有 &copy; 2018-2020"
+            // copy: "zgy版权所有 &copy; 2018-2020",
         }
     },
 }

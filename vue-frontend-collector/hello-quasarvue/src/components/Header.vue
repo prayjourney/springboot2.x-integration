@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>欢迎光临</h3>
+        <h3>欢迎光临, <span v-text="text"></span></h3>
     </div>
 </template>
 
@@ -9,8 +9,9 @@ export default {
     name: "Header",
     data() {
         return {
+            text: "fffffffffffffffk",
         }
-    }
+    },
 }
 </script>
 <style scoped>

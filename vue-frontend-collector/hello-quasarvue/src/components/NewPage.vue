@@ -12,14 +12,11 @@ import Header from "./Header.vue"
 import Footer from "./Footer.vue"
 export default {
     name: "NewPage",
-    // 父子组件传递数据
-    props: {
-        footerinfo: "1111"
-    },
-
     data() {
         return {
             solgan: "新的一天，要充满希望！",
+            // 父子组件传递数据, 父组件之中绑定定义好的子组件之中的属性，使用父组件之中的data
+            footerinfo: "Hello world！"
         }
     },
     // 注册组件
