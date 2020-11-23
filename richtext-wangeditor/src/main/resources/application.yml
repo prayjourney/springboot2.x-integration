@@ -1,2 +1,14 @@
 server:
   port: 8896
+
+spring:
+  application:
+    name: richtext-wangeditor
+  resources:
+    static-locations: classpath:/static/
+  thymeleaf:
+    mode: html
+    encoding: UTF-8
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
