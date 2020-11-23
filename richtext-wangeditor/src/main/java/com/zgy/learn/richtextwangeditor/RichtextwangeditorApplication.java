@@ -1,13 +1,13 @@
-package com.zgy.learn.richtextueditor;
+package com.zgy.learn.richtextwangeditor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RichtextueditorApplication {
+public class RichtextwangeditorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RichtextueditorApplication.class, args);
+        SpringApplication.run(RichtextwangeditorApplication.class, args);
     }
 
 }

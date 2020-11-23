@@ -24,7 +24,7 @@
         <module>boot-shiro</module>
         <module>clean-env</module>
         <module>multiple-datasource</module>
-        <module>richtext-ueditor</module>
+        <module>richtext-wangeditor</module>
         <module>springboot-tech-integration</module>
         <module>teacher-manage-backend</module>
     </modules>

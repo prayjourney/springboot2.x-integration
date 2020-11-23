@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.zgy.learn</groupId>
-    <artifactId>richtext-ueditor</artifactId>
+    <artifactId>richtext-wangeditor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>richtext-ueditor</name>
+    <name>richtext-wangeditor</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

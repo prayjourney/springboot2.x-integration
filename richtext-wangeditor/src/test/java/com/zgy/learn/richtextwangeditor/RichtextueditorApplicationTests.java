@@ -1,4 +1,4 @@
-package com.zgy.learn.richtextueditor;
+package com.zgy.learn.richtextwangeditor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
