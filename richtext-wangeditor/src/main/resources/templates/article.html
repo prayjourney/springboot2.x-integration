@@ -22,7 +22,11 @@
             // 不显示网络图片
             editor.config.showLinkImg = false
             // 配置了上传服务器，才有上传图标, 此处没有设置，所以上传会报错，需要后台设置
-            editor.config.uploadImgServer = '/upload-img'
+            editor.config.uploadImgServer = '/img/upload'
+            // 将图片大小限制为 10M
+            editor.config.uploadImgMaxSize = 10 * 1024 * 1024
+            // 上传参数名称
+            editor.config.uploadFileName = 'file'
 
             // 配置菜单栏，删减菜单，调整顺序
             editor.config.menus = [
@@ -77,6 +81,23 @@
                 'x-large': {name: '24px', value: '5'},
                 'xx-large': {name: '32px', value: '6'},
                 'xxx-large': {name: '48px', value: '7'},
+            }
+
+            // https://blog.csdn.net/Teng_is_a_littlebird/article/details/92773101
+            // http://www.wangeditor.com/doc/pages/07-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/09-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0.html
+            editor.config.uploadImgHooks = {
+                success: function (xhr) {
+                    console.log('success', xhr)
+                },
+                error: function (xhr, editor, resData) {
+                    console.log('error', xhr, resData)
+                },
+                customInsert: function (insertImgFn, result) {
+                    // result 即服务端返回的接口
+                    console.log('customInsert', result)
+                    // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+                    insertImgFn(result.url)
+                }
             }
             editor.create()
         })
