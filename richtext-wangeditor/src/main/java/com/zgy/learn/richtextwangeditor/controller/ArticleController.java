@@ -1,9 +1,17 @@
 package com.zgy.learn.richtextwangeditor.controller;
 
+import com.zgy.learn.richtextwangeditor.pojo.Article;
 import com.zgy.learn.richtextwangeditor.service.ArticleService;
+import com.zgy.learn.richtextwangeditor.util.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
 
 /**
  * @Author: renjiaxin
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Modified by:
  */
 @Controller
+@Slf4j
 public class ArticleController {
 
     @Autowired
@@ -22,9 +31,37 @@ public class ArticleController {
         return "article";
     }
 
+
     @RequestMapping("browse")
     public String go2BrowsePage() {
         return "browse";
+    }
+
+
+    @ResponseBody
+    @PostMapping("add")
+    public Result addArticle(Article article) {
+        if (null == article) {
+            log.error("文章不能为空！");
+            return new Result().setCode(101).setMessage("fail");
+        }
+        log.info("开始创建文章");
+        Date date = new Date();
+        // 后续使用前端输入的方式
+        article.setCreatetime(date).setUpdatetime(date).setAuthor("zgy").setTag("默认标签").setTitle(date.toString() + 1);
+        return articleService.addArticle(article);
+    }
+
+
+    @ResponseBody
+    @GetMapping("get")
+    public Result selectArticleById(Integer id) {
+        if (null == id || id <= 0) {
+            log.error("文章id有误！");
+            return new Result().setCode(101).setMessage("fail");
+        }
+        log.info("开始获取文章");
+        return articleService.selectArticleById(id);
     }
 
 }
