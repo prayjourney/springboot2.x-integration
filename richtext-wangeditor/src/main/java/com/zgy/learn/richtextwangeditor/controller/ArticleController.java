@@ -46,9 +46,6 @@ public class ArticleController {
             return new Result().setCode(101).setMessage("fail");
         }
         log.info("开始创建文章");
-        Date date = new Date();
-        // 后续使用前端输入的方式
-        article.setCreatetime(date).setUpdatetime(date).setAuthor("zgy").setTag("默认标签").setTitle(date.toString() + 1);
         return articleService.addArticle(article);
     }
 
