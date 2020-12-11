@@ -38,6 +38,12 @@ public class ArticleController {
     }
 
 
+    @RequestMapping("article2")
+    public String go2Article2Page() {
+        return "article2";
+    }
+
+
     @RequestMapping("browse")
     public String go2BrowsePage() {
         return "browse";
