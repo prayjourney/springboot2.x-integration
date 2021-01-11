@@ -21,7 +21,7 @@
 
     <!-- 模块 -->
     <modules>
-        <module>boot-shiro</module>
+        <module>springboot-shiro</module>
         <module>clean-env</module>
         <module>multiple-datasource</module>
         <module>richtext-wangeditor</module>

@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>com.zgy.learn</groupId>
-    <artifactId>boot-shiro</artifactId>
+    <artifactId>springboot-shiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>boot-shiro</name>
+    <name>springboot-shiro</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
