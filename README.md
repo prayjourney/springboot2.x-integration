@@ -1,13 +1,20 @@
 # <font color="#137db1">springboot2.x-integration</font>
-![geyan](https://img.shields.io/badge/%E6%9C%80%E5%85%89%E9%98%B4-%E8%B9%89%E8%B7%8E%E9%94%99%EF%BC%8C%E6%B6%88%E7%A3%A8%E8%BF%87%EF%BC%8C%E6%9C%80%E6%98%AF%E5%85%89%E9%98%B4%E5%8C%96%E6%B5%AE%E6%B2%AB-blue) ![issues](https://img.shields.io/github/issues/prayjourney/springboot2.x-integration)
- ![forks](https://img.shields.io/github/forks/prayjourney/springboot2.x-integration) ![stars](https://img.shields.io/github/stars/prayjourney/springboot2.x-integration) ![license](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)
+![geyan](https://img.shields.io/badge/%E6%9C%80%E5%85%89%E9%98%B4-%E8%B9%89%E8%B7%8E%E9%94%99%EF%BC%8C%E6%B6%88%E7%A3%A8%E8%BF%87%EF%BC%8C%E6%9C%80%E6%98%AF%E5%85%89%E9%98%B4%E5%8C%96%E6%B5%AE%E6%B2%AB-blue) ![issues](https://img.shields.io/github/issues/prayjourney/springboot2.x-integration) ![forks](https://img.shields.io/github/forks/prayjourney/springboot2.x-integration) ![stars](https://img.shields.io/github/stars/prayjourney/springboot2.x-integration) ![license](https://img.shields.io/github/license/prayjourney/springboot2.x-integration)
 
 ## <font color="#137db1">涉及技术</font>
-|   🚀  |   🔫   |  🌍  |   🎃   |    📐  |   🌷   |   🎯   |   📚   |
-| :----: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-| [Quartz](#Quartz) | [Springboot](#Springboot) | [ElasticSearch](#ElasticSearch) | [Swagger](#Swagger) | [Kaptcha](#Kaptcha) | [Mybatis](#Mybatis) | [Shiro](#Shiro) | [Redis](#Redis) |
-|   🍇   |    🍌   |    🎫   |   🎁  |   ✨   |   ⚽    | 🎆 | 🎠 |
-|[Bootstrap](#Bootstrap) | [axios](#axios) | [Vue](#Vue) | [Zipkin](#Zipkin) | [MongoDb](#MongoDb) | [Mysql](#Mysql) |[jwt](#jwt)| [wangEditor](#wangEditor) |
+| 🍅 |   ⚽   |  🌷  |   🎃   |  🎡  |   ✨   |   📚   |
+| :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| [Springboot](#Springboot) | [Mysql](#Mysql) | [Mybatis](#Mybatis) | [MybatisPlus](#MybatisPlus) | [druid](#druid) | [MongoDb](#MongoDb) | [Redis](#Redis) |
+| 👕 | 🧸 | 🏹 | ⏰ | 🏀 | ✨ | 🧣 |
+| [maven](#maven) | [file-upload](#file-upload) | [big-file-upload](#file-upload) | [Quartz](#Quartz) | [Swagger](#Swagger) | [mail](#mail) | [thread-pool](#thread-pool) |
+|   📐   |  🌍 | 🎯 | 🎱  |   📈   |   🎆  | 🚀 |
+|[Kaptcha](#Kaptcha) | [qrcode](#qrcode) | [Shiro](#Shiro) | [springsecurity](#springsecurity) | [springsession](#springsession) | [jwt](#jwt) |[ElasticSearch](#ElasticSearch)|
+|📄 | 🎁 |  |  |  |  ||
+|[logback](#logback) | [Zipkin](#Zipkin) |  |  |  |  ||
+|🥨 | 🥯 | 🍇 | 🍝 | 🥣 | 🥫 |🎫|
+|[html](#html) | [css](#css) | [Bootstrap](#Bootstrap) | [layui](#layui) | [javascript](#javascript) | [jQuery](#jQuery) |[Vue2](#Vue2)|
+|🍌 | 🥡 | 🎠 |  |  |  ||
+|[axios](#axios) | [nodejs](#nodejs) | [wangEditor](#wangEditor) |  |  |  ||
 
 ## <font color="#137db1">项目说明</font>
 **整个项目分为4个部分, 详细情况如下：**
