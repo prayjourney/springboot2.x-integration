@@ -21,12 +21,9 @@
 
     <!-- 模块 -->
     <modules>
-        <module>springboot-shiro</module>
+        <!-- 只包含两个模块, 其他都设置为独立的 -->
         <module>clean-env</module>
-        <module>multiple-datasource</module>
-        <module>richtext-wangeditor</module>
         <module>springboot-tech-integration</module>
-        <module>teacher-manage-backend</module>
     </modules>
 
     <properties>
