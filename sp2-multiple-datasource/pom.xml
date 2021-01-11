@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zgy</groupId>
-    <artifactId>sp-multiple-datasource</artifactId>
+    <artifactId>sp2-multiple-datasource</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sp-multiple-datasource</name>
+    <name>sp2-multiple-datasource</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
