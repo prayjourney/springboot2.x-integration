@@ -23,7 +23,7 @@
     <modules>
         <!-- 只包含两个模块, 其他都设置为独立的 -->
         <module>clean-env</module>
-        <module>springboot-tech-integration</module>
+        <module>one-piece</module>
     </modules>
 
     <properties>

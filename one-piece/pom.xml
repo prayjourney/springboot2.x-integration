@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <!-- 子模块的parent -->
     <parent>
         <groupId>com.zgy</groupId>
@@ -12,9 +11,9 @@
 
     <!-- 自己的坐标 -->
     <groupId>com.zgy</groupId>
-    <artifactId>springboot-tech-integration</artifactId>
+    <artifactId>one-piece</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-tech-integration</name>
+    <name>one-piece</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
