@@ -13,8 +13,8 @@
     <node x="48.0" y="344.0">org.apache.shiro.realm.SimpleAccountRealm</node>
     <node x="480.0" y="258.0">org.apache.shiro.realm.AuthorizingRealm</node>
     <node x="161.0" y="516.0">org.apache.shiro.realm.text.PropertiesRealm</node>
-    <node x="495.0" y="430.0">org.apache.shiro.realm.ldap.JndiLdapRealm</node>
     <node x="972.0" y="344.0">org.apache.shiro.realm.jdbc.JdbcRealm</node>
+    <node x="495.0" y="430.0">org.apache.shiro.realm.ldap.JndiLdapRealm</node>
     <node x="465.0" y="172.0">org.apache.shiro.realm.AuthenticatingRealm</node>
     <node x="309.0" y="344.0">com.zgy.learn.bootshiro.config.UserRealm</node>
   </nodes>
@@ -74,15 +74,15 @@
       <point x="0.0" y="-18.0" />
       <point x="0.0" y="18.0" />
     </edge>
-    <edge source="org.apache.shiro.realm.CachingRealm" target="org.apache.shiro.realm.Realm">
-      <point x="0.0" y="-18.0" />
-      <point x="0.0" y="18.0" />
-    </edge>
     <edge source="org.apache.shiro.realm.text.PropertiesRealm" target="org.apache.shiro.realm.text.TextConfigurationRealm">
       <point x="0.0" y="-18.0" />
       <point x="266.5" y="491.0" />
       <point x="238.75" y="491.0" />
       <point x="70.25" y="18.0" />
+    </edge>
+    <edge source="org.apache.shiro.realm.CachingRealm" target="org.apache.shiro.realm.Realm">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="561.5" y="276.0" />
