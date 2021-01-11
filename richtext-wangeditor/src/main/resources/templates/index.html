@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>index</title>
+    </head>
+
+    <body>
+        <div id="div1">
+            <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+        </div>
+        <button id="btn1">获取html</button>
+        <button id="btn2">获取text</button>
+        <br/>
+        <br/>
+        <br/>
+        <a href="/article">⚽⚽⚽来编辑保存文章吧，老哥！</a><br/><br/>
+        <a href="/browse">⛳⛳⛳请查看文章！</a>
+    </body>
+    <!-- 为啥使用 ../static/js/wangEditor.min.js 就是有问题的呢？而使用./js/wangEditor.min.js okay？ -->
+    <!-- <script type="text/javascript" src="js/wangEditor.min.js"></script>-->
+    <!-- 本地获取，问题重重？ -->
+    <script type="text/javascript" src="https://unpkg.com/wangeditor@4.5.0/dist/wangEditor.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        let editor;
+        $(document).ready(function () {
+            let E = window.wangEditor
+            editor = new E('#div1')
+            // 不显示网络图片
+            editor.config.showLinkImg = false
+            // 配置了上传服务器，才有上传图标, 此处没有设置，所以上传会报错，需要后台设置
+            editor.config.uploadImgServer = '/upload-img'
+
+            // 配置菜单栏，删减菜单，调整顺序
+            editor.config.menus = [
+                'head',
+                'bold',
+                'fontSize',
+                'fontName',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'indent',
+                // 'lineHeight', //行高
+                'foreColor',
+                'backColor',
+                'link',
+                'list',
+                'justify',
+                'quote',
+                'emoticon',
+                'image',
+                // 'video', // 视频
+                'table',
+                // 'code', // 代码
+                'splitLine',
+                'undo',
+                'redo',
+            ]
+
+            // 配置字体
+            editor.config.fontNames = [
+                '黑体',
+                '仿宋',
+                '楷体',
+                '标楷体',
+                '华文仿宋',
+                '华文楷体',
+                '宋体',
+                '微软雅黑',
+                'Arial',
+                'Tahoma',
+                'Verdana',
+                'Times New Roman',
+                'Courier New',
+            ]
+
+            // 字体大小
+            editor.config.fontSizes = {
+                'x-small': {name: '10px', value: '1'},
+                'small': {name: '13px', value: '2'},
+                'normal': {name: '16px', value: '3'},
+                'large': {name: '18px', value: '4'},
+                'x-large': {name: '24px', value: '5'},
+                'xx-large': {name: '32px', value: '6'},
+                'xxx-large': {name: '48px', value: '7'},
+            }
+            editor.create()
+        })
+    </script>
+</html>

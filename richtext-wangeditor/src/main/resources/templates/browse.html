@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>浏览文章</title>
+    </head>
+
+    <body>
+        <p>选择你要查看的文章</p>
+        <div id="div1">
+
+        </div>
+    </body>
+    <script type="text/javascript" src="https://unpkg.com/wangeditor@4.5.0/dist/wangEditor.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        let editor;
+        $(document).ready(function () {
+            let E = window.wangEditor
+            editor = new E('#div1')
+            // 不显示网络图片
+            editor.config.showLinkImg = false
+            // 配置了上传服务器，才有上传图标, 此处没有设置，所以上传会报错，需要后台设置
+            editor.config.uploadImgServer = '/upload-img'
+
+            // 配置菜单栏，删减菜单，调整顺序
+            editor.config.menus = [
+                'head',
+                'bold',
+                'fontSize',
+                'fontName',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'indent',
+                // 'lineHeight', //行高
+                'foreColor',
+                'backColor',
+                'link',
+                'list',
+                'justify',
+                'quote',
+                'emoticon',
+                'image',
+                // 'video', // 视频
+                'table',
+                // 'code', // 代码
+                'splitLine',
+                'undo',
+                'redo',
+            ]
+
+            // 配置字体
+            editor.config.fontNames = [
+                '黑体',
+                '仿宋',
+                '楷体',
+                '标楷体',
+                '华文仿宋',
+                '华文楷体',
+                '宋体',
+                '微软雅黑',
+                'Arial',
+                'Tahoma',
+                'Verdana',
+                'Times New Roman',
+                'Courier New',
+            ]
+
+            // 字体大小
+            editor.config.fontSizes = {
+                'x-small': {name: '10px', value: '1'},
+                'small': {name: '13px', value: '2'},
+                'normal': {name: '16px', value: '3'},
+                'large': {name: '18px', value: '4'},
+                'x-large': {name: '24px', value: '5'},
+                'xx-large': {name: '32px', value: '6'},
+                'xxx-large': {name: '48px', value: '7'},
+            }
+            editor.create()
+        })
+    </script>
+</html>

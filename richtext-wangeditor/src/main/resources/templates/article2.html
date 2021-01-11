@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>编辑和保存文章</title>
+    </head>
+
+    <body>
+        <!-- 工具栏和编辑区分开 -->
+        <div id="toolbar-container" class="toolbar"></div>
+        <p>------ 我是分割线 ------</p>
+        <div id="text-container" class="text"></div>
+        <button id="btn1" onclick="saveArticle()">保存文章</button>
+        <button id="btn2" onclick="reset()">清空编辑器</button>
+    </body>
+    <script type="text/javascript" src="https://unpkg.com/wangeditor@4.5.0/dist/wangEditor.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // 设置toolbar不显示
+        // $(".w-e-toolbar").attr("style","display:none;");
+        let editor;
+        $(document).ready(function () {
+            let E = window.wangEditor
+            editor = new E('#toolbar-container', '#text-container') // 传入两个元素
+            // 不显示网络图片
+            editor.config.showLinkImg = false
+            // 配置了上传服务器，才有上传图标, 此处没有设置，所以上传会报错，需要后台设置
+            editor.config.uploadImgServer = '/img/upload'
+            // 将图片大小限制为 10M
+            editor.config.uploadImgMaxSize = 10 * 1024 * 1024
+            // 上传参数名称
+            editor.config.uploadFileName = 'file'
+
+            // 设置编辑区高度
+            editor.config.height = 500
+
+            // 配置菜单栏，删减菜单，调整顺序
+            editor.config.menus = [
+                'head',
+                'bold',
+                'fontSize',
+                'fontName',
+                'italic',
+                'underline',
+                'strikeThrough',
+                'indent',
+                // 'lineHeight', //行高
+                'foreColor',
+                'backColor',
+                'link',
+                'list',
+                'justify',
+                'quote',
+                'emoticon',
+                'image',
+                // 'video', // 视频
+                'table',
+                // 'code', // 代码
+                'splitLine',
+                'undo',
+                'redo',
+            ]
+
+            // 配置字体
+            editor.config.fontNames = [
+                '黑体',
+                '仿宋',
+                '楷体',
+                '标楷体',
+                '华文仿宋',
+                '华文楷体',
+                '宋体',
+                '微软雅黑',
+                'Arial',
+                'Tahoma',
+                'Verdana',
+                'Times New Roman',
+                'Courier New',
+            ]
+
+            // 字体大小
+            editor.config.fontSizes = {
+                'x-small': {name: '10px', value: '1'},
+                'small': {name: '13px', value: '2'},
+                'normal': {name: '16px', value: '3'},
+                'large': {name: '18px', value: '4'},
+                'x-large': {name: '24px', value: '5'},
+                'xx-large': {name: '32px', value: '6'},
+                'xxx-large': {name: '48px', value: '7'},
+            }
+
+            // https://blog.csdn.net/Teng_is_a_littlebird/article/details/92773101
+            // http://www.wangeditor.com/doc/pages/07-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/09-%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0.html
+            editor.config.uploadImgHooks = {
+                success: function (xhr) {
+                    console.log('success', xhr)
+                },
+                error: function (xhr, editor, resData) {
+                    console.log('error', xhr, resData)
+                },
+                customInsert: function (insertImgFn, result) {
+                    // result 即服务端返回的接口
+                    console.log('customInsert', result)
+                    // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+                    insertImgFn(result.url)
+                }
+            }
+            editor.create()
+        })
+
+
+        /**
+         * 创建文章
+         */
+        function saveArticle() {
+            let content = editor.txt.html();
+            console.log("content : ".concat(content))
+            let date = new Date();
+            $.ajax({
+                type: "POST",
+                url: "/add",
+                dataType: "json",
+                data: {
+                    "title": "test" + Math.random(),
+                    "author": "zgy",
+                    "content": content,
+                    "tag": "默认tag",
+                    "createtime": date,
+                    "updatetime": date
+                },
+                success: function (data) {
+                    window.alert("保存成功！")
+                },
+                fail: function (data) {
+                    window.alert("保存失败！")
+                }
+            })
+
+        }
+
+        function reset() {
+            editor.txt.html("");
+        }
+    </script>
+</html>
