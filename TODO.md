@@ -1,1 +1,32 @@
-- [x] springboot整合富文本编辑器。
+- [x] springboot整合富文本编辑器
+- [x] springboot整合shiro
+- springboot整合生成二维码
+    - [ ] zxing方式
+    - [ ] hutool方式
+- springboot整合生成验证码
+    - [ ] hutool方式
+    - kaptcha
+        - [ ] xml方式
+        - [ ] config方式
+- [ ] springboot普通文件上传
+- [ ] springboot大文件上传
+- [ ] springboot整合druid和mybatis-plus
+- [ ] springboot整合springsession
+    - [ ] jdbc方式
+    - [ ] redis方式
+- springboot+mybatis整合多数据源
+    - [ ] package方式
+    - [ ] dynamic datasource方式
+- springboot整合jwt
+    - [ ] java-jwt方式
+    - [ ] jjwt方式
+
+<hr style='background-color:skyblue;height:1px;border:none;'/>
+- [ ] springboot整合线程池
+- [ ] springboot整合redis
+- [ ] springboot整合mongodb
+- [ ] springboot整合swager
+- [ ] springboot整合Quartz
+- [ ] springboot整合ElasticSearch
+- [ ] springboot整合spring security
+- [ ] springboot整合java mail
