@@ -39,7 +39,7 @@ public class ShiroConfig {
          * role:拥有某个角色权限才能访问
          */
         // 添加shiro的内置过滤器
-        Map<String, String> filterMap = new HashMap<>();
+        Map<String, String> filterMap = new HashMap<String, String>();
         filterMap.put("/", "anon");
         filterMap.put("/user/*", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(filterMap);
