@@ -41,6 +41,8 @@
         <shiro.version>1.7.0</shiro.version>
         <springboot.version>2.3.4.RELEASE</springboot.version>
         <springsession.version>2.3.1.RELEASE</springsession.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
 
