@@ -24,16 +24,14 @@ import java.util.Map;
  */
 public class MainTest {
     /**
-     * 由字符串生成加密key
+     * 由给定的字符串生成对称的秘钥, 对称与否根据自己需求
      *
      * @return
      */
     public SecretKey generalKey() {
         String stringKey = JjwtConstant.JWT_SECRET;
-        // 本地的密码解码
-        byte[] encodedKey = Base64Utils.decodeFromString(stringKey);
-        // 根据给定的字节数组使用AES加密算法构造一个密钥
-        SecretKey key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
+        // 使用AES对称加密, 使用给定的JWT_SECRET生成一个对称秘钥
+        SecretKey key = new SecretKeySpec(stringKey.getBytes(), 0, stringKey.getBytes().length, "AES");
         return key;
     }
 
@@ -113,11 +111,11 @@ public class MainTest {
         String subject = objectMapper.writeValueAsString(student);
 
         try {
+            System.out.println("=================生成jwt=================");
             String jwt = test.createJWT(JjwtConstant.JWT_ID, "z.g.y", subject, JjwtConstant.JWT_TTL);
             System.out.println("JWT：" + jwt);
 
-            System.out.println("\n解密\n");
-
+            System.out.println("=================解密jwt=================");
             Claims c = test.parseJWT(jwt);
             System.out.println(c.getId());
             System.out.println(c.getIssuedAt());

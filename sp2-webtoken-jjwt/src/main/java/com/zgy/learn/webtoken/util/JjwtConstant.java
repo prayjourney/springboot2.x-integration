@@ -10,10 +10,9 @@ import java.util.UUID;
  */
 public interface JjwtConstant {
     String JWT_ID = UUID.randomUUID().toString();
-    /**
-     * 加密密文, 这已经是一个base64转码的了
-     */
-    // String JWT_SECRET = "abc_helloWorld!!!++==!!!pp12";
-    String JWT_SECRET = "YWJjX2hlbGxvV29ybGQhISErKz09ISEhcHAxMg==";
+    // 原始的秘钥
+    String JWT_SECRET = "abc_helloWorld!!!++==!!!pp12";
+    // 上面的JWT_SECRET使用base64转码成下面的JWT_SECRET
+    // String JWT_SECRET = "YWJjX2hlbGxvV29ybGQhISErKz09ISEhcHAxMg==";
     int JWT_TTL = 60 * 60 * 1000;
 }
