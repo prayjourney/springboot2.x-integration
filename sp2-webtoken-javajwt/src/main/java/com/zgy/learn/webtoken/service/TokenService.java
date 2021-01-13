@@ -1,8 +1,8 @@
-package com.zgy.bootintegration.service;
+package com.zgy.learn.webtoken.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.zgy.bootintegration.pojo.Kid;
+import com.zgy.learn.webtoken.pojo.Kid;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -10,33 +10,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author: renjiaxin
- * @Despcription: token下发
- * @Date: Created in 2020/8/9 12:14
- * @Modified by:
+ * @author zgy
+ * @date 2021/1/13
+ * @description
  */
 @Service
 public class TokenService {
-
-    // 设置过期时间
+    //设置过期时间
     private static final long EXPIRE_DATE = 30 * 60 * 100000;
 
-    // 简单生成token
+    /**
+     * 简单生成token
+     *
+     * @param kid
+     * @return
+     */
     public String createToken(Kid kid) {
         Date start = new Date();
-        long currentTime = System.currentTimeMillis() + 60 * 60 * 1000;//一小时有效时间
+        // 一小时有效时间
+        long currentTime = System.currentTimeMillis() + 60 * 60 * 1000;
         Date end = new Date(currentTime);
         String token = "";
 
-        token = JWT.create().withAudience(kid.getId().toString()).withIssuedAt(start).withExpiresAt(end)
+        token = JWT.create().withAudience(String.valueOf(kid.getId())).withIssuedAt(start).withExpiresAt(end)
                 .sign(Algorithm.HMAC256(kid.getPassword()));
         return token;
     }
 
 
-    // 完整生成token
+    /**
+     * 完整生成token
+     *
+     * @param kid
+     * @return
+     */
     public String createTokenComplete(Kid kid) {
         String token = "";
+
         try {
             // 过期时间
             Date date = new Date(System.currentTimeMillis() + EXPIRE_DATE);
@@ -46,7 +56,7 @@ public class TokenService {
             Map<String, Object> header = new HashMap<>();
             header.put("typ", "JWT");
             header.put("alg", "HS256");
-            // 携带username，password信息，生成签名
+            // 携带username, password信息, 生成签名
             token = JWT.create()
                     .withHeader(header)
                     .withClaim("username", kid.getUsername())
