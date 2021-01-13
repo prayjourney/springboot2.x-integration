@@ -2,6 +2,7 @@ package com.zgy.bootintegration.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zgy.bootintegration.annotation.KidLoginToken;
+import com.zgy.bootintegration.annotation.PassToken;
 import com.zgy.bootintegration.pojo.Kid;
 import com.zgy.bootintegration.service.KidService;
 import com.zgy.bootintegration.service.MongoService;
@@ -14,20 +15,18 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Author: renjiaxin
@@ -36,7 +35,7 @@ import java.util.Map;
  * @Modified by:
  */
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("kidtoken")
 @Api(value = "KidController", tags = "kid管理的接口")
 public class KidTokenController {
@@ -58,8 +57,7 @@ public class KidTokenController {
      * @throws JSONException
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object login(Kid kid, HttpServletResponse response) throws JSONException {
-        Map<String, Object> tokenMap = new HashMap<>();
+    public String login(Kid kid, HttpServletResponse response) throws JSONException {
         Kid origin = kidService.findKidById(kid.getId());
         Kid kid001 = new Kid();
 
@@ -67,12 +65,12 @@ public class KidTokenController {
         kid001.setUsername(origin.getUsername());
         kid001.setPassword(origin.getPassword());
         if (!kid001.getPassword().equals(kid.getPassword())) {
-            tokenMap.put("message", "登录失败,密码错误");
-            return tokenMap;
+            log.error("登录失败,密码错误!");
+            return "index";
         } else {
-            String token = tokenService.createTokenCookie(kid001);
-            // String token = tokenService.createTokenHeader(kid001);
-            tokenMap.put("token", token);
+            String token = tokenService.createToken(kid001);
+            // String token = tokenService.createTokenComplete(kid001);
+
             // 1. 把token添加到了cookie之中
             Cookie cookie = new Cookie("token", token);
             cookie.setPath("/");
@@ -81,19 +79,34 @@ public class KidTokenController {
             // 2. 把token添加到了header之中
             // response.addHeader("token", token);
 
-            return tokenMap;
+            log.info("token");
+            return "index";
         }
     }
 
     /**
      * 这个请求需要验证token才能访问
      */
+    @ResponseBody
     @KidLoginToken
     @RequestMapping(value = "/getmessage", method = RequestMethod.GET)
     public String getMessage() {
         // 取出token中带的用户id 进行操作
         log.info("用户id是：" + JwtTokenUtil.getTokenKidId());
         return "您已通过验证";
+    }
+
+    /**
+     * 跳过token验证
+     *
+     * @return
+     */
+    @PassToken
+    @ResponseBody
+    @RequestMapping(value = "/getmessagenotoken", method = RequestMethod.GET)
+    public String getMessageNoToken() {
+        log.info("不需要token验证");
+        return "不需要token验证";
     }
 
     // 获取所有的kids
