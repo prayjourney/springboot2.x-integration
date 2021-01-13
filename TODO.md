@@ -18,8 +18,8 @@
     - [ ] package方式
     - [ ] dynamic datasource方式
 - springboot整合jwt
-    - [ ] java-jwt方式
-    - [ ] jjwt方式
+    - [x] java-jwt方式
+    - [x] jjwt方式
 
 <hr style='background-color:skyblue;height:1px;border:none;'/>
 - [ ] springboot整合线程池
