@@ -62,7 +62,7 @@ public class KidController {
         if (!kid001.getPassword().equals(kid.getPassword())) {
             log.error("登录失败,密码错误!");
             // 跳转到index.html页面
-            return "redirect:../index.html";
+            return "redirect:/";
         } else {
             String token = tokenService.createToken(kid001);
 
