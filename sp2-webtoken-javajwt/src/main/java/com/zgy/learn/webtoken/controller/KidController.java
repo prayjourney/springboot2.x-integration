@@ -75,18 +75,22 @@ public class KidController {
 
             log.info("token");
             // ①--error
+            // 跳转到index.html页面, 这样没法直接跳转到http://localhost:8298/index，而是http://localhost:8298/kid/login/
+            // return "index";
+
+            // ②--error
             // 跳转到index.html页面
             // return "redirect:../index.html";
 
-            // ②--error
+            // ③--error
             // 跳转到index.html页面, 能不能在controller之中调用另一个controller的方法, 而这个只是返回对应的页面, url没有修改
             // return "index";
 
-            // ③--error
+            // ④--error
             // 转发, 服务器端行为, https://blog.csdn.net/yubin1285570923/article/details/83796003
             // return "forward:/index";
 
-            // ③--okay
+            // ⑤--okay
             // 重定向, 客户端行为, 重定向到这个/index页面, 相当于是url的一次调用, 刷新了url,
             return "redirect:/index";
         }
