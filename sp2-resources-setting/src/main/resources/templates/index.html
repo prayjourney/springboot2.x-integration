@@ -3,8 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>index</title>
+        <!-- bootstrap css文件, 这样就是引入了本地的css文件 -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     </head>
+
     <body>
-        123
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-xl-10 offset-1">
+                    <h3 class="text-info back text-center">我是首页</h3>
+                    <span class="text-success">给大家展示从资源之中加载的图片文件</span>
+                    <img src="images/img01.jpg" width="100%" height="100%">
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .back {
+                background-color: #f5f8ff;
+            }
+        </style>
     </body>
 </html>
