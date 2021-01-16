@@ -31,6 +31,17 @@ public class KidController {
     TokenService tokenService;
 
     /**
+     * 到登录产生token的页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/kid/login", method = RequestMethod.GET)
+    public String tokenLoginPage() {
+        return "tokenHtml";
+    }
+
+
+    /**
      * 登录
      *
      * @param kid
@@ -39,7 +50,7 @@ public class KidController {
      * @throws JSONException
      */
     @RequestMapping(value = "/kid/login", method = RequestMethod.POST)
-    public Object login(Kid kid, HttpServletResponse response) throws JSONException {
+    public String login(Kid kid, HttpServletResponse response) throws JSONException {
         Kid origin = kidService.findKidById(kid.getId());
 
         Kid kid001 = new Kid();
@@ -63,8 +74,21 @@ public class KidController {
             // response.addHeader("token", token);
 
             log.info("token");
+            // ①--error
             // 跳转到index.html页面
-            return "redirect:../index.html";
+            // return "redirect:../index.html";
+
+            // ②--error
+            // 跳转到index.html页面, 能不能在controller之中调用另一个controller的方法, 而这个只是返回对应的页面, url没有修改
+            // return "index";
+
+            // ③--error
+            // 转发, 服务器端行为, https://blog.csdn.net/yubin1285570923/article/details/83796003
+            // return "forward:/index";
+
+            // ③--okay
+            // 重定向, 客户端行为, 重定向到这个/index页面, 相当于是url的一次调用, 刷新了url,
+            return "redirect:/index";
         }
     }
 
