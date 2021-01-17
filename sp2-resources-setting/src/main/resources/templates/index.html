@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>index</title>
-        <!-- 设置网站小图标, 暂时有点问题 -->
+        <!-- 设置网站小图标 -->
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <!-- bootstrap css文件, 这样就是引入了本地的css文件 -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -22,11 +22,23 @@
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-xl-10 offset-1">
-                    <span class="badge badge-success">
+                    <span class="badge badge-success" style="font-size: 15px">
                         页面都放在模板的时候, 一般使用/xxx请求去跳转到页面, 而不是直接使用html方式跳转, 所以要提供每个功能的首页。
                     </span>
                     <a class="" href="/hello">跳转到hello页面</a>
-                    <button class="btn btn-block btn-outline-danger" onclick="printHelloPage()">输出hello页面内容</button>
+                    <button class="btn btn-block btn-outline-primary" onclick="printHelloPage()">输出hello页面内容</button>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-xl-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 18px">展示重定向</span>
+                    <a class="btn btn-block btn-outline-danger" href="/toShow">重定向到show.html页面，这个页面放在了静态资源static之中</a>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-xl-10 offset-1">
+                    <span class="badge badge-dark" style="font-size: 18px">展示转发</span>
+                    <a class="btn btn-block btn-outline-info" href="/toHello">转发到hello页面之上，这个页面是在templates之中</a>
                 </div>
             </div>
         </div>
