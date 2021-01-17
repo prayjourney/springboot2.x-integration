@@ -1,0 +1,2 @@
+网站小图标，只能是xxx.ico的格式，springboot2.3.x以后，需要自己设置
+在首页设置，所有的都会继承，也可以在每个页面都自己设置，格式为在head之中<link rel="shortcut icon" type="image/x-icon" href="icon03.ico">
