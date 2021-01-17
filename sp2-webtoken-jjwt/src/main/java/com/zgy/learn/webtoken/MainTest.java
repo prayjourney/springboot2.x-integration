@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @despcription: 使用student作为对象, 但是不是数据库ourschool之中的student对象
  * @date: created in 2021-01-13
  * @modified :
  */
