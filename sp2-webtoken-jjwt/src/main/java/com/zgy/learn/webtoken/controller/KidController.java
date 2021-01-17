@@ -1,6 +1,8 @@
 package com.zgy.learn.webtoken.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.zgy.learn.webtoken.annotation.NeedLogin;
+import com.zgy.learn.webtoken.annotation.PassLogin;
 import com.zgy.learn.webtoken.pojo.Kid;
 import com.zgy.learn.webtoken.service.KidService;
 import com.zgy.learn.webtoken.service.TokenJjwtService;
@@ -9,10 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -73,5 +78,32 @@ public class KidController {
             return "redirect:/index";
         }
     }
+
+    @NeedLogin
+    @ResponseBody
+    @GetMapping(value = "/kid/needlogin")
+    public String needLogin(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        String token = null;
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("jwtToken")) {
+                token = cookies[i].getValue();
+            }
+        }
+        if (null != token) {
+            return "有token信息，暂时通过";
+        } else {
+            return "没有token信息，无法通过";
+        }
+    }
+
+
+    @PassLogin
+    @ResponseBody
+    @GetMapping(value = "/kid/passlogin")
+    public String passLogin() {
+        return "不需要验证";
+    }
+
 }
 

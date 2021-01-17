@@ -22,11 +22,26 @@
     <body>
         <div class="container" style="margin-top: 10px;">
             <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <h2 class="text-info text-center">测试Token生成</h2>
+                <div class="col-sm-10 offset-1">
+                    <h2 class="text-info text-center">使用jjwt包，测试Token生成</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-success" style="font-size: 15px; margin-top: 5px;">登录产生token</span>
                     <a href="/kid/login" name="登录产生token">登录产生token</a>
-                    <br/>
-                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 15px; margin-top: 5px;">需要验证是否登录了</span>
+                    <a href="/kid/needlogin" name="需要验证是否登录了">需要验证是否登录了</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-primary" style="font-size: 15px; margin-top: 5px;">不需要验证是否登录</span>
+                    <a href="/kid/passlogin" name="不需要验证是否登录">不需要验证是否登录</a>
                 </div>
             </div>
         </div>
