@@ -52,6 +52,10 @@ public class KidController {
     @RequestMapping(value = "/kid/login", method = RequestMethod.POST)
     public String login(Kid kid, HttpServletResponse response) throws JSONException {
         Kid origin = kidService.findKidById(kid.getId());
+        if (null == origin) {
+            log.info("没有id为{}的用户！", kid.getId());
+            return "redirect:/";
+        }
 
         Kid kid001 = new Kid();
         kid001.setId(origin.getId());
