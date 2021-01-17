@@ -18,7 +18,7 @@ public class IndexController {
 
 
     /**
-     * 重定向到静态资源的页面
+     * 重定向到静态资源的页面, 这个页面没有在thymeleaf动态模版之中, 所以只能重定向到这儿
      *
      * @return
      */
