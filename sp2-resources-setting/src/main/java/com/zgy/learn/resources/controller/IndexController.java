@@ -15,4 +15,15 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+
+    /**
+     * 重定向到静态资源的页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/show")
+    public String toShow() {
+        return "redirect:/show.html";
+    }
 }

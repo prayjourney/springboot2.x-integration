@@ -22,11 +22,17 @@
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-xl-10 offset-1">
-                    <span class="badge badge-success">
+                    <span class="badge badge-success" style="font-size: 14px">
                         页面都放在模板的时候, 一般使用/xxx请求去跳转到页面, 而不是直接使用html方式跳转, 所以要提供每个功能的首页。
                     </span>
                     <a class="" href="/hello">跳转到hello页面</a>
                     <button class="btn btn-block btn-outline-danger" onclick="printHelloPage()">输出hello页面内容</button>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-xl-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 18px">展示重定向</span>
+                    <a class="btn btn-block btn-outline-danger" href="/show">重定向到show.html页面，这个页面放在了静态资源之中</a>
                 </div>
             </div>
         </div>
