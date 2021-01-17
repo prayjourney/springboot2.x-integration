@@ -40,7 +40,11 @@ public class TokenJjwtService {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
 
-        // 创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
+        /*
+         * 如果有私有声明，一定要先设置这个自己创建的私有的声明，给builder的claim赋值，一旦写在标准的声明赋值之后，会覆盖了标准的声明
+         * 创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
+         * claims和subject使用了相同的信息，一般而言使用标准的声明就够用了
+         */
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", kid.getId());
         claims.put("userName", kid.getUsername());
@@ -50,20 +54,14 @@ public class TokenJjwtService {
 
         // 下面就是在为payload添加各种标准声明和私有声明了, 这里其实就是new一个JwtBuilder，设置jwt的body
         JwtBuilder builder = Jwts.builder();
-        // 如果有私有声明，一定要先设置这个自己创建的私有的声明，这个是给builder的claim赋值，一旦写在标准的声明赋值之后，就是覆盖了那些标准的声明的
         builder.setClaims(claims);
-        // jwt的id, 是JWT的唯一标识，根据业务需要，这个可以设置为一个不重复的值，主要用来作为一次性token,从而回避重放攻击。
-        builder.setId(id);
-        // jwt的签发时间
-        builder.setIssuedAt(now);
-        // jwt签发人
-        builder.setIssuer("z.g.y");
-        // jwt的主体, 是一个json格式的字符串，可以存放什么userid，roldid之类的，作为什么用户的唯一标志。
+
+        // jwt的id, 是JWT的唯一标识, jwt的签发时间, jwt签发人,
+        builder.setId(id).setIssuedAt(now).setIssuer("z.g.y");
+        // jwt的主体, 是一个json格式的字符串，可以存放什么userid，roldid之类的，作为什么用户的唯一标志。设置签名的签名算法和签名使用的秘钥
         ObjectMapper objectMapper = new ObjectMapper();
         String subject = objectMapper.writeValueAsString(claims);
-        builder.setSubject(subject);
-        // 设置签名使用的签名算法和签名使用的秘钥
-        builder.signWith(signatureAlgorithm, key);
+        builder.setSubject(subject).signWith(signatureAlgorithm, key);
 
         // 设置过期时间
         if (ttlMillis >= 0) {
