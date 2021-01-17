@@ -8,7 +8,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.util.Base64Utils;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -22,7 +21,7 @@ import java.util.Map;
  * @date: created in 2021-01-13
  * @modified :
  */
-public class MainTest {
+public class SimpleJjwtTest {
     /**
      * 由给定的字符串生成对称的秘钥, 对称与否根据自己需求
      *
@@ -105,7 +104,7 @@ public class MainTest {
 
 
     public static void main(String[] args) throws JsonProcessingException {
-        MainTest test = new MainTest();
+        SimpleJjwtTest test = new SimpleJjwtTest();
         Student student = new Student(1, "张三", 22);
         ObjectMapper objectMapper = new ObjectMapper();
         String subject = objectMapper.writeValueAsString(student);
