@@ -110,15 +110,18 @@ public class KidController {
 
     @NeedLogin
     @ResponseBody
-    @GetMapping(value = "/kid/needloginheader")
+    @GetMapping(value = "/kid/senddata")
     public String needLoginHeader(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
         String token = null;
         // 2. 把token添加到了header之中, 从header的之中获取
         token = request.getHeader("Authorization");
+        String music = request.getHeader("music");
+        String ide = request.getHeader("ide");
+        log.info("token: {}, music: {}, ide: {}！", token, music, ide);
         if (null != token) {
-            return "有token信息，暂时通过";
+            return "have token, pass!";
         } else {
-            return "没有token信息，无法通过";
+            return "no token, forbidden!";
         }
     }
 

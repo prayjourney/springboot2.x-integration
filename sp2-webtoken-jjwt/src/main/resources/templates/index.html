@@ -42,9 +42,9 @@
             </div>
             <div class="row">
                 <div class="col-sm-10 offset-1">
-                    <span class="badge badge-danger" style="font-size: 18px; margin-top: 5px;">使用header验证是否登录</span>
-                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="checkHeader()"
-                           value="使用header验证是否登录"/>
+                    <span class="badge badge-danger" style="font-size: 18px; margin-top: 5px;">通过异步Header,给后端传数据</span>
+                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="sendDataByHeader()"
+                           value="通过异步Header,给后端传数据"/>
                 </div>
             </div>
             <div class="row back">
@@ -61,9 +61,31 @@
             }
         </style>
         <script>
-            function checkHeader() {
-                // /kid/needloginheader
-                console.log(123)
+            function sendDataByHeader() {
+                // 异步方式提交, 获取已经有的header信息
+                $.ajax({
+                    url: '/kid/senddata',
+                    type: 'get',
+                    dataType: 'json',
+                    // headers和beforeSend可以设置头部信息
+                    headers: {
+                        "Accept": "text/plain; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        // 随便设置一个自定义参数
+                        "music": "I'm with you(Avril Lavigne)"
+                    },
+                    beforeSend: function (request) {
+                        request.setRequestHeader("ide", "idea, vscode");
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        console.log("success")
+                    },
+                    error: function (data) {
+                        console.log(data)
+                        console.log("error")
+                    }
+                })
             }
         </script>
     </body>
