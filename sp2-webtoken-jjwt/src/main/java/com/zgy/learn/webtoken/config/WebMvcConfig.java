@@ -27,7 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 跨域支持
+     * 跨域支持，总的支持
      *
      * @param registry
      */

@@ -77,16 +77,12 @@ public class KidController {
             String token = tokenService.createJWT(JjwtConstant.JWT_ID, kid, JjwtConstant.JWT_TTL);
 
             // 1. 把token添加到了cookie之中
-            // Cookie cookie = new Cookie("jwtToken", token);
-            // cookie.setPath("/");
-            // cookie.setHttpOnly(true); // httponly, 安全一些
-            // response.addCookie(cookie);
+            Cookie cookie = new Cookie("jwtToken", token);
+            cookie.setPath("/");
+            cookie.setHttpOnly(true); // httponly, 安全一些
+            response.addCookie(cookie);
 
             // 2. 把token添加到了header之中
-            // response.setHeader("Access-Control-Allow-Credentials", "true");
-            // response.setHeader("Access-Control-Allow-Headers",
-            //         "Origin, X-Requested-With, Content-Type, Accept, access-token");
-            // response.setHeader("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST, OPTIONS");
             response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
             log.info("token: {}", token);
             return "redirect:/index";
