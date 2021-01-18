@@ -47,6 +47,13 @@
                            value="通过异步Header,给后端传数据"/>
                 </div>
             </div>
+            <div class="row tomato">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 18px; margin-top: 5px;">使用header验证是否登录</span>
+                    <input class="btn btn-outline-secondary btn-sm" type="button" onclick="checkHeader()"
+                           value="使用header验证是否登录"/>
+                </div>
+            </div>
             <div class="row back">
                 <div class="col-sm-10 offset-1">
                     <span class="badge badge-primary" style="font-size: 18px; margin-top: 5px;">不需要验证是否登录</span>
@@ -58,6 +65,10 @@
         <style>
             .back {
                 background-color: #d4e4ff
+            }
+
+            .tomato {
+                background-color: #ffc8c4;
             }
         </style>
         <script>
@@ -76,6 +87,30 @@
                     },
                     beforeSend: function (request) {
                         request.setRequestHeader("ide", "idea, vscode");
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        console.log("success")
+                    },
+                    error: function (data) {
+                        console.log(data)
+                        console.log("error")
+                    }
+                })
+            }
+
+            function checkHeader() {
+                // 从localStorage之中获取
+                let token = localStorage.getItem("Authorization")
+                console.log("token: " + token)
+                $.ajax({
+                    url: '/kid/needloginheader',
+                    type: 'get',
+                    dataType: 'json',
+                    headers: {
+                        "Accept": "text/plain; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "Authorization": token
                     },
                     success: function (data) {
                         console.log(data)
