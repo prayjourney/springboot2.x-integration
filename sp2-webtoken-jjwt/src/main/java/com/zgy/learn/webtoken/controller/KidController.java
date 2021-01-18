@@ -91,18 +91,28 @@ public class KidController {
 
     @NeedLogin
     @ResponseBody
-    @GetMapping(value = "/kid/needlogin")
-    public String needLogin(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
+    @GetMapping(value = "/kid/needlogincookie")
+    public String needLoginCookie(HttpServletRequest request) {
         String token = null;
-
         // 1. 把token添加到了cookie之中, 从header之中携带的cookie获取信息
-        // Cookie[] cookies = request.getCookies();
-        // for (int i = 0; i < cookies.length; i++) {
-        //     if (cookies[i].getName().equals("jwtToken")) {
-        //         token = cookies[i].getValue();
-        //     }
-        // }
+        Cookie[] cookies = request.getCookies();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("jwtToken")) {
+                token = cookies[i].getValue();
+            }
+        }
+        if (null != token) {
+            return "有token信息，暂时通过";
+        } else {
+            return "没有token信息，无法通过";
+        }
+    }
 
+    @NeedLogin
+    @ResponseBody
+    @GetMapping(value = "/kid/needloginheader")
+    public String needLoginHeader(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
+        String token = null;
         // 2. 把token添加到了header之中, 从header的之中获取
         token = request.getHeader("Authorization");
         if (null != token) {

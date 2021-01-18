@@ -22,31 +22,49 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     </head>
     <body>
-        <div class="container" style="margin-top: 10px;">
-            <div class="row">
+        <div class="container" style="margin-top: 10px; border: 1px solid #ff9800;">
+            <div class="row back">
                 <div class="col-sm-10 offset-1">
                     <h2 class="text-info text-center">使用jjwt包，测试Token生成</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-10 offset-1">
-                    <span class="badge badge-success" style="font-size: 15px; margin-top: 5px;">登录产生token</span>
+                    <span class="badge badge-success" style="font-size: 18px; margin-top: 10px;">登录产生token</span>
                     <a href="/kid/login" name="登录产生token">登录产生token</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row back">
                 <div class="col-sm-10 offset-1">
-                    <span class="badge badge-warning" style="font-size: 15px; margin-top: 5px;">需要验证是否登录了</span>
-                    <a href="/kid/needlogin" name="需要验证是否登录了">需要验证是否登录了</a>
+                    <span class="badge badge-warning" style="font-size: 18px; margin-top: 5px;">使用cookie验证是否登录</span>
+                    <a href="/kid/needlogincookie"> 使用cookie验证是否登录</a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-10 offset-1">
-                    <span class="badge badge-primary" style="font-size: 15px; margin-top: 5px;">不需要验证是否登录</span>
+                    <span class="badge badge-danger" style="font-size: 18px; margin-top: 5px;">使用header验证是否登录</span>
+                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="checkHeader()"
+                           value="使用header验证是否登录"/>
+                </div>
+            </div>
+            <div class="row back">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-primary" style="font-size: 18px; margin-top: 5px;">不需要验证是否登录</span>
                     <a href="/kid/passlogin" name="不需要验证是否登录">不需要验证是否登录</a>
                 </div>
             </div>
         </div>
 
+        <style>
+            .back {
+                background-color: #d4e4ff
+            }
+        </style>
+        <script>
+            function checkHeader() {
+                // /kid/needloginheader
+                console.log(123)
+            }
+        </script>
     </body>
 </html>
