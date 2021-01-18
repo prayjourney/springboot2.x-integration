@@ -10,8 +10,10 @@ import com.zgy.learn.webtoken.util.JjwtConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,9 +77,17 @@ public class KidController {
             String token = tokenService.createJWT(JjwtConstant.JWT_ID, kid, JjwtConstant.JWT_TTL);
 
             // 1. 把token添加到了cookie之中
-            Cookie cookie = new Cookie("jwtToken", token);
-            cookie.setPath("/");
-            response.addCookie(cookie);
+            // Cookie cookie = new Cookie("jwtToken", token);
+            // cookie.setPath("/");
+            // cookie.setHttpOnly(true); // httponly, 安全一些
+            // response.addCookie(cookie);
+
+            // 2. 把token添加到了header之中
+            // response.setHeader("Access-Control-Allow-Credentials", "true");
+            // response.setHeader("Access-Control-Allow-Headers",
+            //         "Origin, X-Requested-With, Content-Type, Accept, access-token");
+            // response.setHeader("Access-Control-Allow-Methods", "GET, PUT, DELETE, POST, OPTIONS");
+            response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
             log.info("token: {}", token);
             return "redirect:/index";
         }
@@ -86,15 +96,19 @@ public class KidController {
     @NeedLogin
     @ResponseBody
     @GetMapping(value = "/kid/needlogin")
-    public String needLogin(HttpServletRequest request) {
-        // 1. 把token添加到了cookie之中, 从header之中携带的cookie获取信息
-        Cookie[] cookies = request.getCookies();
+    public String needLogin(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
         String token = null;
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("jwtToken")) {
-                token = cookies[i].getValue();
-            }
-        }
+
+        // 1. 把token添加到了cookie之中, 从header之中携带的cookie获取信息
+        // Cookie[] cookies = request.getCookies();
+        // for (int i = 0; i < cookies.length; i++) {
+        //     if (cookies[i].getName().equals("jwtToken")) {
+        //         token = cookies[i].getValue();
+        //     }
+        // }
+
+        // 2. 把token添加到了header之中, 从header的之中获取
+        token = request.getHeader("Authorization");
         if (null != token) {
             return "有token信息，暂时通过";
         } else {

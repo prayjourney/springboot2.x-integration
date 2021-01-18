@@ -17,4 +17,5 @@ public interface JjwtConstant {
     int JWT_TTL = 30 * 60 * 1000;
 
     String JWT_TOKEN_PREFIX = "Bearer ";
+    String AUTH_HEADER_KEY = "Authorization";
 }
