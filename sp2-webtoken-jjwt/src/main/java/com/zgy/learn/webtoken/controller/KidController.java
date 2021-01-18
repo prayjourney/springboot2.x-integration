@@ -74,7 +74,7 @@ public class KidController {
         } else {
             String token = tokenService.createJWT(JjwtConstant.JWT_ID, kid, JjwtConstant.JWT_TTL);
 
-            // 把token添加到了cookie之中
+            // 1. 把token添加到了cookie之中
             Cookie cookie = new Cookie("jwtToken", token);
             cookie.setPath("/");
             response.addCookie(cookie);
@@ -87,6 +87,7 @@ public class KidController {
     @ResponseBody
     @GetMapping(value = "/kid/needlogin")
     public String needLogin(HttpServletRequest request) {
+        // 1. 把token添加到了cookie之中, 从header之中携带的cookie获取信息
         Cookie[] cookies = request.getCookies();
         String token = null;
         for (int i = 0; i < cookies.length; i++) {
