@@ -85,7 +85,10 @@ public class KidController {
             // 2. 把token添加到了header之中
             response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
             log.info("token: {}", token);
-            return "redirect:/index";
+
+            // 跳转的事情, 还是让前端拿到响应结果后自己跳转
+            // return "redirect:/index";
+            return "tokenHtml";
         }
     }
 

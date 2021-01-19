@@ -46,17 +46,23 @@
                     //     "password": password
                     // },
                     data: $('#login').serialize(),
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data)
-                        // 保存到localStorage之中， 方便后续获取
-                        let token = data.getResponseHeader("Authorization")
-                        localStorage.setItem("Authorization", token)
-                        console.log("success")
+                    // dataType: 'json',
+                    success: function (data, status, xhr) {
+                        // 由于后端返回的是一个页面, data是html代码, status是状态, xhr是详细返回信息
+                        console.log(status, xhr, xhr.status)
+                        if (200 == xhr.status) {
+                            // 下面是获取部分和精确获取header信息
+                            let allHeaderInfo = xhr.getAllResponseHeaders();
+                            let authorization = xhr.getResponseHeader("authorization");
+                            console.log("authorization : " + authorization)
+                            // 保存到localStorage之中, 方便后续获取
+                            localStorage.setItem("Authorization", authorization)
+                        } else {
+                            console.log("no need info!")
+                        }
                     },
                     error: function (data) {
-                        console.log(data)
-                        console.log("error")
+                        console.log("error: " + data)
                     }
                 })
             }
