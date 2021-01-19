@@ -4,6 +4,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ public class IndexController {
     }
 
 
+    @RequiresRoles("student")
     @RequestMapping("user/search")
     public String search(Model model) {
         model.addAttribute("message", "search页面!");
