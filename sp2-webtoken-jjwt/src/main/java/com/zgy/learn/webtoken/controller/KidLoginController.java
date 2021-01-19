@@ -53,15 +53,12 @@ public class KidLoginController {
      * @return
      * @throws JSONException
      */
-    @ResponseBody
     @RequestMapping(value = "/kid/login", method = RequestMethod.POST)
     public String login(Kid kid, HttpServletResponse response) throws JSONException, JsonProcessingException {
         Kid origin = kidService.findKidById(kid.getId());
         if (null == origin) {
             log.info("没有id为{}的用户！", kid.getId());
-            // 返回错误字符串
-            return "error";
-            // return "redirect:/";
+            return "redirect:/";
         }
 
         Kid kid001 = new Kid();
@@ -87,12 +84,9 @@ public class KidLoginController {
             response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
             log.info("token: {}", token);
 
-            // @Controller的时候, 可以返回页面或者是跳转
+            // 跳转的事情, 还是让前端拿到响应结果后自己跳转
             // return "redirect:/index";
-            // return "tokenHtml";
-
-            // ResponseBody, 返回一个结果字符串, 页面不变, 要变前端处理, 异步请求场景多
-            return "okay";
+            return "tokenHtml";
         }
     }
 
