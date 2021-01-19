@@ -114,7 +114,7 @@ public class KidLoginController {
     @NeedLogin
     @ResponseBody
     @GetMapping(value = "/kid/senddata")
-    public String getDataByHeader(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
+    public String getDataByHeader(HttpServletRequest request) {
         String token = null;
         // 前端从header之中获取传入数据, 后端获取
         // 传入了music, ide, token没有传, 所以为null
