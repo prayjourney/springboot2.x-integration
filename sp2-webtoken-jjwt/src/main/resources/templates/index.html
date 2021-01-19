@@ -96,7 +96,6 @@
             function checkHeader() {
                 // 从localStorage之中获取
                 let token = localStorage.getItem("Authorization")
-                console.log("token: " + token)
                 $.ajax({
                     url: '/kid/needloginheader',
                     type: 'get',
@@ -107,7 +106,7 @@
                         "Authorization": token
                     },
                     success: function (data) {
-                        console.log("success")
+                        alert(data)
                     },
                     error: function (data) {
                         console.log("error: " + data)
