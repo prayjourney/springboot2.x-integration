@@ -81,7 +81,8 @@ public class KidLoginController {
             response.addCookie(cookie);
 
             // 2. 把token添加到了header之中
-            response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
+            // response.setHeader(JjwtConstant.AUTH_HEADER_KEY, JjwtConstant.JWT_TOKEN_PREFIX + token);
+            response.setHeader(JjwtConstant.AUTH_HEADER_KEY, token); // 暂时注销Bearer Token前缀
             log.info("token: {}", token);
 
             // 跳转的事情, 还是让前端拿到响应结果后自己跳转
