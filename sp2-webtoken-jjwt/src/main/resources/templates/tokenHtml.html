@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Token page</title>
+        <!-- 小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="/fav.ico">
+        <!-- 使用了jquery -->
+        <script src="/js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-xl-10 offset-1">
+                <form id="login" action="" method="post">
+                    <div class="form-group">
+                        <label for="user" class="col-sm-2 control-label"><strong>用户id：</strong></label>
+                        <div class="col-xl-12">
+                            <input id="user" type="text" name="id" placeholder="请输入用户id" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd" class="col-xl-2 control-label"><strong>密码：</strong></label>
+                        <div class="col-xl-12">
+                            <input id="pwd" type="text" class="form-control" name="password" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-left: 15px; padding-right: 15px;">
+                        <input type="button" value="登录" class="btn btn-block btn-success"
+                               onclick="loginCreateToken()"/>
+                        <input type="button" value="重置" class="btn btn-block btn-warning"/>
+                    </div>
+                </form>
+                <!-- 复合条件的时候再去显示, 默认fade隐藏, show显示 -->
+                <div id="loginSuccess" class="alert alert-primary alert-dismissible fade">
+                    登录成功!
+                </div>
+                <div id="loginFail" class="alert alert-danger alert-dismissible fade">
+                    登录失败!
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function loginCreateToken() {
+                $.ajax({
+                    url: '/kid/login',
+                    type: 'post',
+                    // data: {
+                    //     "id": id,
+                    //     "username": username,
+                    //     "password": password
+                    // },
+                    data: $('#login').serialize(),
+                    // dataType: 'json',
+                    success: function (data, status, xhr) {
+                        // 由于后端返回的是一个页面, data是html代码, status是状态, xhr是详细返回信息
+                        console.log(status, xhr, xhr.status)
+                        if (200 == xhr.status) {
+                            // 下面是获取部分和精确获取header信息
+                            let allHeaderInfo = xhr.getAllResponseHeaders();
+                            let authorization = xhr.getResponseHeader("authorization");
+                            console.log("authorization : " + authorization)
+
+                            // 保存到localStorage之中, 方便后续获取
+                            localStorage.setItem("Authorization", authorization)
+
+                            // 定时器提示
+                            show("loginSuccess")
+                            fade("loginSuccess")
+
+                            // 跳转到首页
+                            window.location.href = "/index";
+                        } else {
+                            console.log("no need info!")
+                        }
+                    },
+                    error: function (data) {
+                        show("loginFail")
+                        fade("loginFail")
+                        console.log("error: " + data)
+                    }
+                })
+            }
+
+            // 显示提示
+            function show(id) {
+                let i = "#" + id
+                $(i).removeClass("fade")
+                $(i).addClass("show")
+                let t1 = window.setTimeout(function () {
+                    // do nothing...
+                }, 3000)
+                // 去除定时器
+                window.clearTimeout(t1)
+            }
+
+            // 隐藏提示
+            function fade(id) {
+                let i = "#" + id
+                $(i).removeClass("show")
+                $(i).addClass("fade")
+            }
+        </script>
+    </body>
+</html>

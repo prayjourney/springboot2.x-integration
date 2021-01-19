@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>token生成与验证</title>
+        <!-- 小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="fav.ico">
+        <style type="text/css">
+            h1, h3 {
+                font-family: "微软雅黑 Light";
+                color: darkorchid;
+            }
+
+            span {
+                font-size: small;
+                color: darkorange;
+            }
+        </style>
+        <!-- 使用了jquery -->
+        <script src="js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px; border: 1px solid #ff9800;">
+            <div class="row back">
+                <div class="col-sm-10 offset-1">
+                    <h2 class="text-info text-center">使用jjwt包，测试Token生成</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-success" style="font-size: 18px; margin-top: 10px;">登录产生token</span>
+                    <a href="/kid/login" name="登录产生token">登录产生token</a>
+                </div>
+            </div>
+            <div class="row back">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 18px; margin-top: 5px;">使用cookie验证是否登录</span>
+                    <a href="/kid/needlogincookie"> 使用cookie验证是否登录</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-danger" style="font-size: 18px; margin-top: 5px;">通过异步Header,给后端传数据</span>
+                    <input class="btn btn-outline-dark btn-sm" type="button" onclick="sendDataByHeader()"
+                           value="通过异步Header,给后端传数据"/>
+                </div>
+            </div>
+            <div class="row" style="background-color: #ffc8c4;">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-warning" style="font-size: 18px; margin-top: 5px;">使用header验证是否登录</span>
+                    <input class="btn btn-outline-secondary btn-sm" type="button" onclick="checkHeader()"
+                           value="使用header验证是否登录"/>
+                </div>
+            </div>
+            <div class="row back">
+                <div class="col-sm-10 offset-1">
+                    <span class="badge badge-primary" style="font-size: 18px; margin-top: 5px;">不需要验证是否登录</span>
+                    <a href="/kid/passlogin" name="不需要验证是否登录">不需要验证是否登录</a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .back {
+                background-color: #d4e4ff
+            }
+        </style>
+        <script>
+            function sendDataByHeader() {
+                // 异步方式提交, 获取已经有的header信息
+                $.ajax({
+                    url: '/kid/senddata',
+                    type: 'get',
+                    // dataType: 'json',
+                    // headers和beforeSend可以设置头部信息
+                    headers: {
+                        "Accept": "text/plain; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        // 随便设置一个自定义参数
+                        "music": "I'm with you(Avril Lavigne)"
+                    },
+                    beforeSend: function (request) {
+                        request.setRequestHeader("ide", "idea, vscode");
+                    },
+                    success: function (data) {
+                        console.log("success")
+                    },
+                    error: function (data) {
+                        console.log("error: " + data)
+                    }
+                })
+            }
+
+            function checkHeader() {
+                // 从localStorage之中获取
+                let token = localStorage.getItem("Authorization")
+                $.ajax({
+                    url: '/kid/needloginheader',
+                    type: 'get',
+                    // dataType: 'json',
+                    headers: {
+                        "Accept": "text/plain; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "Authorization": token
+                    },
+                    success: function (data) {
+                        if ("valid" == data) {
+                            alert("有效的token")
+                        } else if ("invalid" == data) {
+                            alert("无效的token, 请重新登录！")
+                            window.location.href = "/kid/login";
+                        } else if ("notoken" == daat) {
+                            alert("没有token, 请登录！")
+                            window.location.href = "/kid/login";
+                        } else {
+                            window.location.href = "/kid/login";
+                        }
+                    },
+                    error: function (data) {
+                        console.log("error: " + data)
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>
