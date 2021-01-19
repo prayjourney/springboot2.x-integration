@@ -106,7 +106,17 @@
                         "Authorization": token
                     },
                     success: function (data) {
-                        alert(data)
+                        if ("valid" == data) {
+                            alert("有效的token")
+                        } else if ("invalid" == data) {
+                            alert("无效的token, 请重新登录！")
+                            window.location.href = "/kid/login";
+                        } else if ("notoken" == daat) {
+                            alert("没有token, 请登录！")
+                            window.location.href = "/kid/login";
+                        } else {
+                            window.location.href = "/kid/login";
+                        }
                     },
                     error: function (data) {
                         console.log("error: " + data)

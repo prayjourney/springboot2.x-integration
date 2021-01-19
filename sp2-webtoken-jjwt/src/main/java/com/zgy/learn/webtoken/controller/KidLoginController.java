@@ -7,6 +7,7 @@ import com.zgy.learn.webtoken.pojo.Kid;
 import com.zgy.learn.webtoken.service.KidService;
 import com.zgy.learn.webtoken.service.TokenJjwtService;
 import com.zgy.learn.webtoken.util.JjwtConstant;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * @author zgy
@@ -138,10 +140,20 @@ public class KidLoginController {
         // 2. 把token添加到了header之中, 从header的之中获取
         token = request.getHeader("Authorization");
         log.info("token: {}！", token);
+
+        // token有效性的验证, 时间都是毫秒
+        Long nowTime = System.currentTimeMillis();
+        Claims claims = tokenService.parseJWT(token);
+        Date expiration = claims.getExpiration();
+        Long expTime = expiration.getTime();
         if (null != token) {
-            return "have token, pass!";
+            if (nowTime - expTime <= 0) {
+                return "valid";
+            } else {
+                return "invalid";
+            }
         } else {
-            return "no token, forbidden!";
+            return "notoken";
         }
     }
 
