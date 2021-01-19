@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Slf4j
 @Controller
-public class KidController {
+public class KidLoginController {
     @Autowired
     KidService kidService;
 
