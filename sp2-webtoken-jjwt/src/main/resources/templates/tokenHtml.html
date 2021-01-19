@@ -32,6 +32,13 @@
                         <input type="button" value="重置" class="btn btn-block btn-warning"/>
                     </div>
                 </form>
+                <!-- 复合条件的时候再去显示, 默认fade隐藏, show显示 -->
+                <div id="loginSuccess" class="alert alert-primary alert-dismissible fade">
+                    登录成功!
+                </div>
+                <div id="loginFail" class="alert alert-danger alert-dismissible fade">
+                    登录失败!
+                </div>
             </div>
         </div>
 
@@ -55,16 +62,45 @@
                             let allHeaderInfo = xhr.getAllResponseHeaders();
                             let authorization = xhr.getResponseHeader("authorization");
                             console.log("authorization : " + authorization)
+
                             // 保存到localStorage之中, 方便后续获取
                             localStorage.setItem("Authorization", authorization)
+
+                            // 定时器提示
+                            show("loginSuccess")
+                            fade("loginSuccess")
+
+                            // 跳转到首页
+                            window.location.href = "/index";
                         } else {
                             console.log("no need info!")
                         }
                     },
                     error: function (data) {
+                        show("loginFail")
+                        fade("loginFail")
                         console.log("error: " + data)
                     }
                 })
+            }
+
+            // 显示提示
+            function show(id) {
+                let i = "#" + id
+                $(i).removeClass("fade")
+                $(i).addClass("show")
+                let t1 = window.setTimeout(function () {
+                    // do nothing...
+                }, 3000)
+                // 去除定时器
+                window.clearTimeout(t1)
+            }
+
+            // 隐藏提示
+            function fade(id) {
+                let i = "#" + id
+                $(i).removeClass("show")
+                $(i).addClass("fade")
             }
         </script>
     </body>
