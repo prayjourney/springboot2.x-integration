@@ -10,10 +10,8 @@ import com.zgy.learn.webtoken.util.JjwtConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -132,7 +130,9 @@ public class KidLoginController {
     @NeedLogin
     @ResponseBody
     @GetMapping(value = "/kid/needloginheader")
-    public String needLoginHeader(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
+    // 直接在request之中获取header信息即可
+    // public String needLoginHeader(HttpServletRequest request, @RequestHeader HttpHeaders headers) {
+    public String needLoginHeader(HttpServletRequest request) {
         String token = null;
         // 2. 把token添加到了header之中, 从header的之中获取
         token = request.getHeader("Authorization");
