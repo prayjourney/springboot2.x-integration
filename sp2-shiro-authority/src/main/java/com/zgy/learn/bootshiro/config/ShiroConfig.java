@@ -20,11 +20,26 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    // 1. 创建realm对象, 一般使用自定义的类, 和最后的方法作用一样, 在UserRealm之中加入了Component, 让spring管理, 此处注入
+    // ①创建realm对象, 和下面方法作用一样, 让spring管理bean
     @Autowired
     UserRealm userRealm;
+    // ①创建realm对象， 一般使用自定义的类
+    // @Bean
+    // public UserRealm userRealm() {
+    //     return new UserRealm();
+    // }
 
-    // 3. ShiroFilterFactoryBean
+
+    // ②配置DefaultWebSecurityManager, 设置使用的realm
+    @Bean(name = "defaultWebSecurityManager")
+    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setRealm(userRealm);
+        return securityManager;
+    }
+
+
+    // ③配置ShiroFilterFactoryBean
     @Bean("shiroFilterFactoryBean")
     public ShiroFilterFactoryBean getShiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
@@ -44,10 +59,10 @@ public class ShiroConfig {
         filterMap.put("/user/*", "authc");
         filterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
-        // 授权
+        // 授权, perms权限, roles角色
         filterMap.put("/user/add", "perms[user:add]");
         filterMap.put("/user/update", "perms[user:update]");
-        filterMap.put("/user/search", "roles[admin]"); // 角色
+        filterMap.put("/user/search", "roles[admin]");
 
         // 如果认证失败, 跳转到login页面
         filterFactoryBean.setLoginUrl("/login");
@@ -58,23 +73,7 @@ public class ShiroConfig {
     }
 
 
-    // 2. DefaultWebSecurityManager, 限定为userRealm
-    @Bean(name = "defaultWebSecurityManager")
-    public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm) {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm);
-        return securityManager;
-    }
-
-
-    // 1. 创建realm对象， 一般使用自定义的类
-    // @Bean
-    // public UserRealm userRealm() {
-    //     return new UserRealm();
-    // }
-
-
-    // 整合shiro与thymeleaf
+    // 整合thymeleaf
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
