@@ -14,15 +14,17 @@
         <title>首页</title>
     </head>
     <body>
-        <h3>首页::: |
-            <!--/*@thymesVar id="loginUser" type=""*/-->
-            <p th:if="${session.loginUser == null}">
-                <a id="login" th:href="@{/login}">登录</a>
-            </p>
-            <p th:if="${null != session.loginUser}">
-                <a id="logout" th:href="@{/logout}">退出</a>
-            </p>
-        </h3>
+        <h3>首页::: </h3>
+        <!--/*@thymesVar id="loginUser" type=""*/-->
+        <p th:if="${session.loginUser == null}">
+            <a id="login" th:href="@{/login}">使用用户名密码登录</a>
+        </p>
+        <p th:if="${session.loginUser == null}">
+            <a id="nosecretlogin" th:href="@{/nosecretlogin}">shiro免密登录</a>
+        </p>
+        <p th:if="${null != session.loginUser}">
+            <a id="logout" th:href="@{/logout}">退出</a>
+        </p>
         <p th:text="${message}"></p>
         <hr>
 
