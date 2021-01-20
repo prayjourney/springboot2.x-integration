@@ -1,5 +1,6 @@
 package com.zgy.learn.bootshiro.config;
 
+import com.zgy.learn.bootshiro.nopassword.NoSecretToken;
 import com.zgy.learn.bootshiro.pojo.User;
 import com.zgy.learn.bootshiro.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,17 +52,24 @@ public class UserRealm extends AuthorizingRealm {
          *
          */
 
-        // 连接真实的数据库, 用户名验证, 密码验证
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        User user = userService.queryUserByName(token.getUsername());
-        if (null == user) {
-            // 用户验证, 表示没有这个用户
-            return null;
-        }
+        // 判断是否免密登陆类型
+        if (authenticationToken instanceof NoSecretToken) {
+            NoSecretToken token = (NoSecretToken) authenticationToken;
+            String user = token.getUsername();
+            return new SimpleAuthenticationInfo(user, "123456", user);
+        } else {
+            // 连接真实的数据库, 用户名验证, 密码验证
+            UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+            User user = userService.queryUserByName(token.getUsername());
+            if (null == user) {
+                // 用户验证, 表示没有这个用户
+                return null;
+            }
 
-        // 将用户信息分发给授权doGetAuthorizationInfo函数, 密码验证
-        // return new SimpleAuthenticationInfo("", person.getPassword(), "");
-        return new SimpleAuthenticationInfo(user, user.getPassword(), "");
+            // 将用户信息分发给授权doGetAuthorizationInfo函数, 密码验证
+            // return new SimpleAuthenticationInfo("", person.getPassword(), "");
+            return new SimpleAuthenticationInfo(user, user.getPassword(), "");
+        }
     }
 
 
