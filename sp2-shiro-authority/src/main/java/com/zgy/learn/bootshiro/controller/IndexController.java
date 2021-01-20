@@ -1,5 +1,7 @@
 package com.zgy.learn.bootshiro.controller;
 
+import com.zgy.learn.bootshiro.nopassword.NoSecretToken;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date 2020/11/5
  * @Description
  */
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -65,7 +68,7 @@ public class IndexController {
         // 执行登录方法
         try {
             subject.login(token);
-
+            log.info("登录成功...");
             // 当前用户是否登录, 如果成功, 就不显示登录按钮了
             Subject currentSubject = SecurityUtils.getSubject();
             Session session = currentSubject.getSession();
@@ -73,6 +76,37 @@ public class IndexController {
 
             return "index";
 
+        } catch (UnknownAccountException e1) {
+            model.addAttribute("message", "用户名错误");
+            return "login";
+        } catch (IncorrectCredentialsException e2) {
+            model.addAttribute("message", "密码错误");
+            return "login";
+        }
+    }
+
+
+    /**
+     * 免密登录
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("nosecretlogin")
+    public String nosecretlogin(Model model) {
+        String username = "hello-world-boy!";
+
+        // 获取当前用户
+        Subject subject = SecurityUtils.getSubject();
+        // 封装用户登录数据
+        NoSecretToken token = new NoSecretToken(username, "sso-login");
+
+        // 执行登录方法
+        try {
+            subject.login(token);
+            log.info("登录成功...");
+
+            return "hello";
         } catch (UnknownAccountException e1) {
             model.addAttribute("message", "用户名错误");
             return "login";
