@@ -18,37 +18,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @Author zuiguangyin
- * @Date 2020/11/5
- * @Description 自定义的realme, 需要继承AuthorizingRealm
+ * @author zuiguangyin
+ * @date 2020/11/5
+ * @description 自定义的realme, 需要继承AuthorizingRealm, 此处加入Spring管理, 直接创建好了userRealm的bean
  */
-@Component // 此处加入Spring管理, 直接创建好了userRealm的bean
 @Slf4j
+@Component
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
     UserService userService;
 
-    // 认证，看能不能登录
+    // 认证--->能不能登录
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        log.info("执行了认证！");
         // 认证封装在了subject.login()之中, 直接在登录的Controller方法之中, 进行认证, 这个套路有点深, 封装了好多层。
+        log.info("执行了认证！");
 
         /*
-         * // 一个自己处理的例子, 输入root, 123456就正确
+         * ①一个自己处理的例子, 输入root, 123456就正确
          * String username = "root";
          * String password = "123456";
          *
-         * // 验证用户名
+         * ②验证用户名
          * UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
          * if (!usernamePasswordToken.getUsername().equals(username)) {
          *     return null; // UnknownAccountException, 用户名错误
          * }
          *
-         * // 验证密码，shiro帮我们做, 不用我们做。 // IncorrectCredentialsException, 密码错误
+         * ③验证密码，shiro帮我们做, 不用我们做。 // IncorrectCredentialsException, 密码错误
          * return new SimpleAuthenticationInfo("", password, "");
-         *
          *
          */
 
@@ -56,22 +55,23 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         User user = userService.queryUserByName(token.getUsername());
         if (null == user) {
-            return null; // 用户验证, 表示没有这个用户
+            // 用户验证, 表示没有这个用户
+            return null;
         }
 
-        // return new SimpleAuthenticationInfo("", person.getPassword(), ""); // 密码验证
-        // 将用户信息分发给授权doGetAuthorizationInfo函数
-        return new SimpleAuthenticationInfo(user, user.getPassword(), ""); // 密码验证
+        // 将用户信息分发给授权doGetAuthorizationInfo函数, 密码验证
+        // return new SimpleAuthenticationInfo("", person.getPassword(), "");
+        return new SimpleAuthenticationInfo(user, user.getPassword(), "");
     }
 
 
-    // 授权, 去操作某一个东西
+    // 授权--->去操作某一个东西
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("执行了授权！");
 
         /*
-         * // 一个自己处理的例子, 给进来的用户都加一个权限
+         * 一个自己处理的例子, 给进来的用户都加一个权限
          * SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
          * authorizationInfo.addStringPermission("user:add");
          * return authorizationInfo;
