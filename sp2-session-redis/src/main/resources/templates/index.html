@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+        <!-- 设置网站小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/icon01.ico">
+        <!-- bootstrap css文件, 这样就是引入了本地的css文件 -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <span class="text-center form-control" style="font-size: 24px;">生成session, 会自动持久化</span>
+                    <a class="gray-back margin-setting" href="/sessiontest/create">
+                        <span class="text-info form-control">测试生成一个session, 没有持久化</span>
+                    </a>
+                    <a class="blue-back margin-setting" href="/sessiontest/create2browser">
+                        <span class="text-warning form-control">测试生成一个session, 并且写入cookie, 没有持久化</span>
+                    </a>
+                    <a class="gray-back margin-setting" href="/sessiontest/get">
+                        <span class="text-secondary form-control">获取session</span>
+                    </a>
+                    <a class="gray-back margin-setting" href="/sessiontest/add/TOM/pp123">
+                        <span class="text-danger form-control">创建Session: TOM</span>
+                    </a>
+                    <a class="blue-back margin-setting" href="/sessiontest/get/TOM">
+                        <span class="text-warning form-control">获取sessionId: TOM</span>
+                    </a>
+                    <hr/>
+                    <span class="text-center form-control" style="font-size: 24px;">
+                        生成session之后, 会自动持久化到我们选择的方式之中, 获取则是通过如下代码获得：
+                    </span>
+                    <code class="code form-control">
+                        HttpSession session = request.getSession();
+                        String value = (String) session.getAttribute(name);
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .gray-back {
+                background-color: lightgray;
+            }
+
+            .blue-back {
+                background-color: #9fcdff;
+            }
+
+            .margin-setting {
+                margin: 5px;
+            }
+
+            hr {
+                width: 100%;
+                margin: 5px auto;
+                border: 0;
+                height: 1px;
+                background: #a32cff;
+            }
+            .code{
+                border-color: #ffeaac;
+                border-width: 1px;
+                border-style: solid;
+                font-size: 14px;
+                color: #0069d9;
+            }
+        </style>
+    </body>
+</html>
