@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>二维码生成器</title>
+        <style type="text/css">
+            textarea {
+                font-size: 16px;
+                width: 300px;
+                height: 100px;
+            }
+
+            .hint {
+                color: red;
+                display: none;
+            }
+
+            .qrCodeDiv {
+                width: 200px;
+                height: 200px;
+                border: 2px solid sandybrown;
+            }
+
+            .qrCodeDiv img {
+                max-height: 100%;
+                max-width: 100%;
+            }
+        </style>
+        <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <script type="text/javascript">
+            $(function () {
+                $("button").click(function () {
+                    var codeContent = $("textarea").val();
+                    console.log(codeContent);
+                    if (codeContent.trim() == "") {
+                        $(".hint").text("二维码内容不能为空").fadeIn(500);
+                    } else {
+                        $(".hint").text("").fadeOut(500);
+                        $("#codeImg").attr("src", "/qrCode?codeContent=" + codeContent);
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <span class="text-center text-info form-control" style="font-size: 24px;">生成二维码</span>
+
+                    <textarea class="form-control" rows="5" id="comment" placeholder="二维码内容..."></textarea>
+                    <div class="qrCodeDiv">
+                        <img src="" id="codeImg">
+                    </div>
+                    <span class="hint"></span>
+                    <button class="btn btn-outline-danger btn-block">生成二维码</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
