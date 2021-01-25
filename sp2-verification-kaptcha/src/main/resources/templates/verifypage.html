@@ -18,7 +18,7 @@
                     <form class="form-inline" action="/kaptcha/verifycode" method="post">
                         <div class="form-group">
                             <label for="code" class="text-info right" style="font-size: 18px;">验证码: </label>
-                            <input id="code" type="text" class="margin-setting"
+                            <input id="code" type="text" class="margin-setting" name="verifyCodeActual"
                                    placeholder="请输入验证码">
                             <img id="captcha_img" alt="点击更换" class="margin-setting" title="点击更换"
                                  onclick="refresh()" src="/kaptcha/generate"/>
