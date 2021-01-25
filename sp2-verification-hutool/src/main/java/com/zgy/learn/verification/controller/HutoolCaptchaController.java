@@ -59,7 +59,6 @@ public class HutoolCaptchaController {
         return circleCaptcha.getCode();
     }
 
-    // fixme: 验证报错
     @GetMapping("/verify")
     @ResponseBody
     public String verify(HttpServletRequest request, String code) {

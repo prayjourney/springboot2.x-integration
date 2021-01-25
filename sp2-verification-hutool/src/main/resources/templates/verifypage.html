@@ -15,17 +15,17 @@
                     <span class="text-info text-center form-control " style="font-size: 24px; margin-bottom: 10px;">
                         提交验证码
                     </span>
-                    <!-- <form class="form-inline" action="/hutool/verify" method="get"> -->
-                    <form class="form-inline">
+                    <!-- 需要使用同步提交 -->
+                    <form class="form-inline" action="/hutool/verify" method="get">
                         <div class="form-group">
                             <label for="code" class="text-info right" style="font-size: 18px;">验证码: </label>
                             <input id="code" type="text" class="margin-setting"
-                                   placeholder="请输入验证码">
+                                   placeholder="请输入验证码" name="code">
                             <img id="captcha_img" alt="点击更换" class="margin-setting" title="点击更换"
                                  onclick="refresh()" src="/hutool/captcha"/>
                         </div>
                         <input type="submit" class="btn btn-outline-primary btn-sm form-control margin-setting"
-                               onclick="verify()" value="提交"/>
+                               value="提交"/>
                         <!-- onclick="verify()" -->
                     </form>
                 </div>
@@ -47,21 +47,21 @@
                 document.getElementById('captcha_img').src = "/hutool/captcha";
             }
 
-            function verify() {
-                $.ajax({
-                    type: "get",
-                    url: "/hutool/verify",
-                    data: {
-                        "input": $('#code').value
-                    },
-                    success: function (data) {
-                        alert("okay!!!")
-                    },
-                    error: function (error) {
-                        alert("error!!!")
-                    }
-                });
-            }
+            // function verify() {
+            //     $.ajax({
+            //         type: "get",
+            //         url: "/hutool/verify",
+            //         data: {
+            //             "code": $('#code').value
+            //         },
+            //         success: function (data) {
+            //             alert("okay!!!")
+            //         },
+            //         error: function (error) {
+            //             alert("error!!!")
+            //         }
+            //     });
+            // }
         </script>
     </body>
 </html>
