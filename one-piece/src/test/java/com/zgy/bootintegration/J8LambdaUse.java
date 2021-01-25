@@ -7,6 +7,22 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+// java8新接口
+interface MyDefaultMethod {
+    // 使用default修饰的默认接口方法, 看起来是可以有多个
+    default double sqrt(Integer num) {
+        return Math.sqrt(num);
+    }
+
+    default int getNum() {
+        return 1;
+    }
+
+    // 普通的接口方法
+    String info(String name, String age);
+
+}
+
 /**
  * @author z.g.y
  * @Date 2020/6/15
@@ -191,21 +207,5 @@ public class J8LambdaUse {
         System.out.println(defaultMethod02.sqrt(22));
     }
 
-
-}
-
-// java8新接口
-interface MyDefaultMethod {
-    // 使用default修饰的默认接口方法, 看起来是可以有多个
-    default double sqrt(Integer num) {
-        return Math.sqrt(num);
-    }
-
-    default int getNum() {
-        return 1;
-    }
-
-    // 普通的接口方法
-    String info(String name, String age);
 
 }

@@ -1,7 +1,7 @@
 package org.zgy.myschool.mapper;
 
-import org.zgy.myschool.pojo.Parents;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.zgy.myschool.pojo.Parents;
 
 /**
  * <p>

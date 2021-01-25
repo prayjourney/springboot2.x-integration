@@ -10,7 +10,7 @@ public class BootShiroApplication {
         System.setProperty("spring.devtools.restart.enabled", "false");
         try {
             SpringApplication.run(BootShiroApplication.class, args);
-        }catch (Throwable t){
+        } catch (Throwable t) {
             t.printStackTrace();
         }
     }

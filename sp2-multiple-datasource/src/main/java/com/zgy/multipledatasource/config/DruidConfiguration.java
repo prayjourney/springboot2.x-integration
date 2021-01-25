@@ -4,11 +4,12 @@ package com.zgy.multipledatasource.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-// import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+// import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 这个配置其实现在是可有可无的，我们只需要在application.properties之中配置好相关的参数即可

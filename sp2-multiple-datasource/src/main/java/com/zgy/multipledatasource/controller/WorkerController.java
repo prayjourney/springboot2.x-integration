@@ -1,6 +1,5 @@
 package com.zgy.multipledatasource.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zgy.multipledatasource.pojo.Worker;
 import com.zgy.multipledatasource.service.WorkerService;
 import lombok.extern.slf4j.Slf4j;

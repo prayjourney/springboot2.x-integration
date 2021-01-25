@@ -40,18 +40,15 @@ import java.util.List;
 @Slf4j
 @RestController
 public class FileOptController {
-    @Autowired
-    JdbcTemplate template;
-
-    @Autowired
-    StudentMapper mapper;
-    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
-
-    public String pictureName = "s1.xxx";
-    public String picturePath = "d://";
     private static List<String> excelFile =
             Arrays.asList(".xlsx", ".xlsm", ".xlsb", ".xls", ".xltx", ".xltm", ".xlt", ".xlam", "xla", ".ods");
-
+    public String pictureName = "s1.xxx";
+    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
+    public String picturePath = "d://";
+    @Autowired
+    JdbcTemplate template;
+    @Autowired
+    StudentMapper mapper;
 
     // 文件下载相关代码
     @ResponseBody

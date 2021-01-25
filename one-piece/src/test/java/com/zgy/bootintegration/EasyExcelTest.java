@@ -26,18 +26,6 @@ import java.util.stream.Stream;
 @SpringBootTest
 public class EasyExcelTest {
 
-    @Data
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
-    static class Apple {
-        private Integer id;
-        private String name;
-        private Integer price;
-        private String origin;
-        private Date date;
-    }
-
     public List<Apple> cats() {
         Stream<Apple> catStream = Stream.of(
                 Apple.builder().id(12).origin("郑州").name("小野猫").price(100).date(new Date()).build(),
@@ -78,6 +66,18 @@ public class EasyExcelTest {
         String fileName = "d:\\数据标注6-03.xlsx";
         //ExcelReaderBuilder readerBuilder = EasyExcel.read(fileName, new NoModelDataListener());
         //readerBuilder.sheet(0).doRead();
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Apple {
+        private Integer id;
+        private String name;
+        private Integer price;
+        private String origin;
+        private Date date;
     }
 
 
