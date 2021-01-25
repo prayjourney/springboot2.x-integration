@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+        <!-- 设置网站小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/icon01.ico">
+        <!-- bootstrap css文件, 这样就是引入了本地的css文件 -->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <span class="text-center form-control" style="font-size: 24px;">
+                        Cookie, Session, Header
+                    </span>
+                    <a class="btn-block gray-back margin-setting" href="/hello1">
+                        <span class="text-info text-center" style="font-size: 18px;">
+                            设置Cookie, Session, Header
+                        </span>
+                    </a>
+                    <a class="btn-block gray-back margin-setting" href="/hello2">
+                        <span class="text-success text-center" style="font-size: 18px;">
+                            获取Cookie, Session, Header
+                        </span>
+                    </a>
+                    <a class="btn-block gray-back margin-setting" href="/hello3">
+                        <span class="text-danger text-center" style="font-size: 18px;">随意</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .gray-back {
+                background-color: #ebebeb;
+                border-radius: 2px;
+                border-radius: inherit;
+            }
+
+            .margin-setting {
+                margin: 15px 0px 15px 0px;
+            }
+        </style>
+    </body>
+</html>
