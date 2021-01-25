@@ -15,6 +15,7 @@
                     <span class="text-info text-center form-control " style="font-size: 24px; margin-bottom: 10px;">
                         提交验证码
                     </span>
+                    <!-- <form class="form-inline" action="/hutool/verify" method="get"> -->
                     <form class="form-inline">
                         <div class="form-group">
                             <label for="code" class="text-info right" style="font-size: 18px;">验证码: </label>
@@ -24,7 +25,8 @@
                                  onclick="refresh()" src="/hutool/captcha"/>
                         </div>
                         <input type="submit" class="btn btn-outline-primary btn-sm form-control margin-setting"
-                               @click="verify()" value="提交"/>
+                               onclick="verify()" value="提交"/>
+                        <!-- onclick="verify()" -->
                     </form>
                 </div>
             </div>
@@ -40,14 +42,14 @@
                 margin-right: 10px;
             }
         </style>
-        <script type="text/javascript">
+        <script>
             function refresh() {
                 document.getElementById('captcha_img').src = "/hutool/captcha";
             }
 
             function verify() {
                 $.ajax({
-                    type: "post",
+                    type: "get",
                     url: "/hutool/verify",
                     data: {
                         "input": $('#code').value

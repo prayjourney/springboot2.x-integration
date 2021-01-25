@@ -5,7 +5,6 @@ import cn.hutool.captcha.CircleCaptcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,7 +38,7 @@ public class HutoolCaptchaController {
         response.setContentType("image/jpeg");
 
         // 生成验证码图片
-        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(120, 30, 6, 6);
+        CircleCaptcha circleCaptcha = CaptchaUtil.createCircleCaptcha(120, 30, 4, 6);
 
         try {
             ServletOutputStream outputStream = response.getOutputStream();
@@ -60,17 +59,13 @@ public class HutoolCaptchaController {
         return circleCaptcha.getCode();
     }
 
-    @PostMapping("/verify")
+    // fixme: 验证报错
+    @GetMapping("/verify")
     @ResponseBody
-    public String verify(HttpServletRequest request, String input) {
-        // 从session中获取验证码对象
-        // CircleCaptcha captcha = (CircleCaptcha)request.getSession().getAttribute("code");
-        // 判断验证码是否输入正确
-        // boolean verify = captcha.verify(input);
-
+    public String verify(HttpServletRequest request, String code) {
         // 从session中获取验证码的String值
-        String code = (String) request.getSession().getAttribute("code");
-        if (code.equals(input)) {
+        String codeInfo = (String) request.getSession().getAttribute("code");
+        if (codeInfo.equals(code)) {
             return "验证通过";
         } else {
             // 此处需要重新生成一个，否则有点问题
