@@ -10,23 +10,34 @@
         - [ ] config方式
 - [ ] springboot普通文件上传
 - [ ] springboot大文件上传
-- [ ] springboot整合druid和mybatis-plus
-- [ ] springboot整合springsession
-    - [ ] jdbc方式
-    - [ ] redis方式
+- [x] springboot整合druid和mybatis-plus
+    - 这个整合其实是很「无感」的, 基本就是DruidConfig+MybatisPlusConfig, 然后再到application.properties之中配置, 
+    druid的配置是spring.datasource.druid与db配置的部分, mybatis-plus的配置就是mybatis-plus.mapper-locations等
+    mybatis-plus.xxx的相关配置，这个具体的配置实在没有太多演示的需要，可以参看例如`sp2-webtoken-javajwt`模块。
+- springboot整合spring-session
+    - [x] jdbc方式
+    - [x] redis方式
 - springboot+mybatis整合多数据源
     - [ ] package方式
-    - [ ] dynamic datasource方式
+    - [x] dynamic datasource方式
 - springboot整合jwt
     - [x] java-jwt方式
     - [x] jjwt方式
 
 <hr style='background-color:skyblue;height:1px;border:none;'/>
+
 - [ ] springboot整合线程池
+
 - [ ] springboot整合redis
+
 - [ ] springboot整合mongodb
+
 - [ ] springboot整合swager
+
 - [ ] springboot整合Quartz
+
 - [ ] springboot整合ElasticSearch
+
 - [ ] springboot整合spring security
+
 - [ ] springboot整合java mail
