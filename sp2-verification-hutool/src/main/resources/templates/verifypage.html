@@ -15,24 +15,26 @@
                     <span class="text-info text-center form-control " style="font-size: 24px; margin-bottom: 10px;">
                         提交验证码
                     </span>
-                    <form class="form-inline" action="/hutool/verify" method="get">
+                    <form class="form-inline">
                         <div class="form-group">
-                            <label for="code" class="text-info right" style="font-size: 18px;" >验证码: </label>
+                            <label for="code" class="text-info right" style="font-size: 18px;">验证码: </label>
                             <input id="code" type="text" class="margin-setting"
                                    placeholder="请输入验证码">
-                            <img id="captcha_img" alt="点击更换" class="margin-setting"  title="点击更换"
+                            <img id="captcha_img" alt="点击更换" class="margin-setting" title="点击更换"
                                  onclick="refresh()" src="/hutool/captcha"/>
                         </div>
-                        <input type="submit" class="btn btn-outline-primary btn-sm form-control margin-setting" value="提交"/>
+                        <input type="submit" class="btn btn-outline-primary btn-sm form-control margin-setting"
+                               @click="verify()" value="提交"/>
                     </form>
                 </div>
             </div>
         </div>
 
         <style>
-            .right{
+            .right {
                 padding-right: 10px;
             }
+
             .margin-setting {
                 margin-left: 10px;
                 margin-right: 10px;
@@ -41,6 +43,22 @@
         <script type="text/javascript">
             function refresh() {
                 document.getElementById('captcha_img').src = "/hutool/captcha";
+            }
+
+            function verify() {
+                $.ajax({
+                    type: "post",
+                    url: "/hutool/verify",
+                    data: {
+                        "input": $('#code').value
+                    },
+                    success: function (data) {
+                        alert("okay!!!")
+                    },
+                    error: function (error) {
+                        alert("error!!!")
+                    }
+                });
             }
         </script>
     </body>
