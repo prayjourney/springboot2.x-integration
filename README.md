@@ -9,8 +9,8 @@
 | [maven](#maven) | [file-upload](#file-upload) | [big-file-upload](#file-upload) | [Quartz](#Quartz) | [Swagger](#Swagger) | [mail](#mail) | [thread-pool](#thread-pool) |
 |   📐   |  🌍 | 🎯 | 🎱  |   📈   |   🎆  | 🚀 |
 |[Kaptcha](#Kaptcha) | [qrcode](#qrcode) | [Shiro](#Shiro) | [springsecurity](#springsecurity) | [springsession](#springsession) | [jwt](#jwt) |[ElasticSearch](#ElasticSearch)|
-|📄 | 🎁 |  |  |  |  ||
-|[logback](#logback) | [Zipkin](#Zipkin) |  |  |  |  ||
+|📄 | 🎁 | 🔨 |  |  |  ||
+|[logback](#logback) | [Zipkin](#Zipkin) | [hutool](#hutool) |  |  |  ||
 |🥨 | 🥯 | 🍇 | 🍝 | 🥣 | 🥫 |🎫|
 |[html](#html) | [css](#css) | [Bootstrap](#Bootstrap) | [layui](#layui) | [javascript](#javascript) | [jQuery](#jQuery) |[Vue2](#Vue2)|
 |🍌 | 🥡 | 🎠 |  |  |  ||

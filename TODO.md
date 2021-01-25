@@ -1,8 +1,8 @@
 - [x] springboot整合富文本编辑器
 - [x] springboot整合shiro
 - springboot整合生成二维码
-    - [ ] zxing方式
-    - [ ] hutool方式
+    - [x] zxing方式
+    - [x] hutool方式
 - springboot整合生成验证码
     - [x] hutool方式
     - kaptcha
