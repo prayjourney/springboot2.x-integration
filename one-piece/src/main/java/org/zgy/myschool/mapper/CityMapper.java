@@ -1,7 +1,7 @@
 package org.zgy.myschool.mapper;
 
-import org.zgy.myschool.pojo.City;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.zgy.myschool.pojo.City;
 
 /**
  * <p>

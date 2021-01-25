@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/9/30
  * @Description zipkin收集器的配置
  * zipkin是cs的架构，代码之中集成了c端，要使用就需要让server启动，server启动有两种方式，要么自己打包，要么启动别人编译好的包，参见：

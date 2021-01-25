@@ -22,6 +22,29 @@ import java.util.Map;
  * @modified :
  */
 public class SimpleJjwtTest {
+    public static void main(String[] args) throws JsonProcessingException {
+        SimpleJjwtTest test = new SimpleJjwtTest();
+        Student student = new Student(1, "张三", 22);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String subject = objectMapper.writeValueAsString(student);
+
+        try {
+            System.out.println("=================生成jwt=================");
+            String jwt = test.createJWT(JjwtConstant.JWT_ID, "z.g.y", subject, JjwtConstant.JWT_TTL);
+            System.out.println("JWT：" + jwt);
+
+            System.out.println("=================解密jwt=================");
+            Claims c = test.parseJWT(jwt);
+            System.out.println(c.getId());
+            System.out.println(c.getIssuedAt());
+            System.out.println(c.getSubject());
+            System.out.println(c.getIssuer());
+            System.out.println(c.get("uid", String.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 由给定的字符串生成对称的秘钥, 对称与否根据自己需求
      *
@@ -33,7 +56,6 @@ public class SimpleJjwtTest {
         SecretKey key = new SecretKeySpec(stringKey.getBytes(), 0, stringKey.getBytes().length, "AES");
         return key;
     }
-
 
     /**
      * 创建jwt
@@ -86,7 +108,6 @@ public class SimpleJjwtTest {
         return builder.compact();
     }
 
-
     /**
      * 解密jwt
      *
@@ -100,29 +121,5 @@ public class SimpleJjwtTest {
         // 得到DefaultJwtParser, 设置签名的秘钥, 设置需要解析的jwt
         Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(jwt).getBody();
         return claims;
-    }
-
-
-    public static void main(String[] args) throws JsonProcessingException {
-        SimpleJjwtTest test = new SimpleJjwtTest();
-        Student student = new Student(1, "张三", 22);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String subject = objectMapper.writeValueAsString(student);
-
-        try {
-            System.out.println("=================生成jwt=================");
-            String jwt = test.createJWT(JjwtConstant.JWT_ID, "z.g.y", subject, JjwtConstant.JWT_TTL);
-            System.out.println("JWT：" + jwt);
-
-            System.out.println("=================解密jwt=================");
-            Claims c = test.parseJWT(jwt);
-            System.out.println(c.getId());
-            System.out.println(c.getIssuedAt());
-            System.out.println(c.getSubject());
-            System.out.println(c.getIssuer());
-            System.out.println(c.get("uid", String.class));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

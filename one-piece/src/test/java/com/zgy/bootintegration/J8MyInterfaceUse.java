@@ -1,5 +1,28 @@
 package com.zgy.bootintegration;
 
+interface MyInterface {
+    // 可以定义静态的有方法体的方法
+    public static String getVersion() {
+        return "1.0";
+    }
+
+    // default关键字， 可以定义多个default的方法
+    default String myInfo() {
+        return "myinfo";
+    }
+
+    default String version() {
+        return "1.0";
+    }
+
+    default String myName() {
+        return "Hong Kong";
+    }
+
+    // 普通的方法不能有方法体
+    public String getName();
+}
+
 /**
  * @Author: renjiaxin
  * @Despcription:
@@ -21,29 +44,6 @@ public class J8MyInterfaceUse {
             return "hello";
         }
     }
-}
-
-interface MyInterface {
-    // default关键字， 可以定义多个default的方法
-    default String myInfo() {
-        return "myinfo";
-    }
-
-    // 可以定义静态的有方法体的方法
-    public static String getVersion() {
-        return "1.0";
-    }
-
-    default String version() {
-        return "1.0";
-    }
-
-    default String myName() {
-        return "Hong Kong";
-    }
-
-    // 普通的方法不能有方法体
-    public String getName();
 }
 
 abstract class MyAbstractClass {

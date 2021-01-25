@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/10/20
  * @URL https://www.cnblogs.com/aizen-sousuke/p/11756279.html, https://github.com/baomidou/dynamic-datasource-spring-boot-starter
  * @Description @DS可以注解在方法上和类上，同时存在方法注解优先于类上注解。注解在service实现或mapper接口方法上，不要同时在service和mapper注解。

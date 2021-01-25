@@ -12,6 +12,24 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+// 自定义的注解， 要是可重复的, 那就要用@Repeatable注解修饰，然后在其中指定注解的容器类
+@Repeatable(MyAnnotationCollect.class)
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotation {
+    // 注解之中好像必须有value
+    String value() default "woshi测试的一个";
+}
+
+
+// 想要是可重复的，那就需要制定一个注解的容器, 这个就是MyAnnotation的容器
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnnotationCollect {
+    // 返回的是一个数组
+    MyAnnotation[] value();
+}
+
 /**
  * @Author: renjiaxin
  * @Despcription:
@@ -62,24 +80,6 @@ public class J8RepeatableAnnotion {
             System.out.println("getInfo method!");
         }
     }
-}
-
-
-// 自定义的注解， 要是可重复的, 那就要用@Repeatable注解修饰，然后在其中指定注解的容器类
-@Repeatable(MyAnnotationCollect.class)
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-@Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotation {
-    // 注解之中好像必须有value
-    String value() default "woshi测试的一个";
-}
-
-// 想要是可重复的，那就需要制定一个注解的容器, 这个就是MyAnnotation的容器
-@Target({ElementType.FIELD, ElementType.PARAMETER})
-@Retention(RetentionPolicy.RUNTIME)
-@interface MyAnnotationCollect {
-    // 返回的是一个数组
-    MyAnnotation[] value();
 }
 
 

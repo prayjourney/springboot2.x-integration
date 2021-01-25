@@ -18,25 +18,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/23
  * @Description
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EasyExcelTest {
-
-    @Data
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
-    static class Apple {
-        private Integer id;
-        private String name;
-        private Integer price;
-        private String origin;
-        private Date date;
-    }
 
     public List<Apple> cats() {
         Stream<Apple> catStream = Stream.of(
@@ -78,6 +66,18 @@ public class EasyExcelTest {
         String fileName = "d:\\数据标注6-03.xlsx";
         //ExcelReaderBuilder readerBuilder = EasyExcel.read(fileName, new NoModelDataListener());
         //readerBuilder.sheet(0).doRead();
+    }
+
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class Apple {
+        private Integer id;
+        private String name;
+        private Integer price;
+        private String origin;
+        private Date date;
     }
 
 

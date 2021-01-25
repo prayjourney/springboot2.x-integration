@@ -19,17 +19,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/24
  * @Description NoModelDataListener不能使用spring管理，所以需要自己注入，通过set注入
  */
 @Slf4j
 public class NoModelDataListener extends AnalysisEventListener<Map<Integer, String>> {
-    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
-    StudentMapper mapper;
+    private static final int BATCH_COUNT = 3000;
 
     // JdbcTemplate template;
-
+    // https://alibaba-easyexcel.github.io/quickstart/read.html#%E7%9B%91%E5%90%AC%E5%99%A8
+    StudentMapper mapper;
+    List<Map<Integer, String>> list = new ArrayList<Map<Integer, String>>();
     /**
      * 如果使用了spring,请使用这个构造方法。每次创建Listener的时候需要把spring管理的类传进来
      */
@@ -39,9 +40,6 @@ public class NoModelDataListener extends AnalysisEventListener<Map<Integer, Stri
     public NoModelDataListener(StudentMapper mapper) {
         this.mapper = mapper;
     }
-
-    private static final int BATCH_COUNT = 3000;
-    List<Map<Integer, String>> list = new ArrayList<Map<Integer, String>>();
 
     @Override
     public void invoke(Map<Integer, String> data, AnalysisContext context) {

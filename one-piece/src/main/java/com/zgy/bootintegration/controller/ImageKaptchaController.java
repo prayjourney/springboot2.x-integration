@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/8/28
  * @Description Kaptcha验证码生成
  */

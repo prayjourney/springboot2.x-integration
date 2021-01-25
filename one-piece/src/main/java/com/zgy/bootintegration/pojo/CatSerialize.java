@@ -2,7 +2,6 @@ package com.zgy.bootintegration.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/23
  * @Description 测试序列化
  */

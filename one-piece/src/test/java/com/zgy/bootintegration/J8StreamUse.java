@@ -14,12 +14,40 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+enum Status {
+    GREAT(1, "great"), GOOD(2, "good"), OKAY(3, "okay"), BAD(4, "bad");
+    private int index;
+    private String status;
+
+    private Status(int idex, String str) {
+        index = idex;
+        status = str;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+}
+
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/16
  * @Description Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
  */
 public class J8StreamUse {
+    // 数据准备
+    static List<LittleDog> dogs = Arrays.asList(
+            LittleDog.builder().id(1).name("lili").kind("阿拉斯加").height(23).status(Status.OKAY).build(),
+            LittleDog.builder().id(2).name("milu").kind("柴犬").height(45).status(Status.BAD).build(),
+            LittleDog.builder().id(3).name("makle").kind("阿拉斯加").height(67).status(Status.GOOD).build(),
+            LittleDog.builder().id(4).name("哈哈").kind("阿拉斯加").height(88).status(Status.GREAT).build(),
+            LittleDog.builder().id(5).name("孩子3").kind("柴犬").height(46).status(Status.GREAT).build(),
+            LittleDog.builder().id(6).name("MGDP").kind("中华田园犬").height(38).status(Status.GOOD).build(),
+            LittleDog.builder().id(7).name("特朗普").kind("柴犬").height(28).status(Status.OKAY).build(),
+            LittleDog.builder().id(8).name("小马").kind("中华田园犬").height(83).status(Status.OKAY).build(),
+            LittleDog.builder().id(9).name("校长").kind("德国牧羊犬").height(99).status(Status.BAD).build()
+    );
+
     public static void main(String[] args) {
         System.out.println("==========1.创建流===============");
         createStream();
@@ -141,19 +169,6 @@ public class J8StreamUse {
         });
         sorted.forEach(System.out::println);
     }
-
-    // 数据准备
-    static List<LittleDog> dogs = Arrays.asList(
-            LittleDog.builder().id(1).name("lili").kind("阿拉斯加").height(23).status(Status.OKAY).build(),
-            LittleDog.builder().id(2).name("milu").kind("柴犬").height(45).status(Status.BAD).build(),
-            LittleDog.builder().id(3).name("makle").kind("阿拉斯加").height(67).status(Status.GOOD).build(),
-            LittleDog.builder().id(4).name("哈哈").kind("阿拉斯加").height(88).status(Status.GREAT).build(),
-            LittleDog.builder().id(5).name("孩子3").kind("柴犬").height(46).status(Status.GREAT).build(),
-            LittleDog.builder().id(6).name("MGDP").kind("中华田园犬").height(38).status(Status.GOOD).build(),
-            LittleDog.builder().id(7).name("特朗普").kind("柴犬").height(28).status(Status.OKAY).build(),
-            LittleDog.builder().id(8).name("小马").kind("中华田园犬").height(83).status(Status.OKAY).build(),
-            LittleDog.builder().id(9).name("校长").kind("德国牧羊犬").height(99).status(Status.BAD).build()
-    );
 
     /**
      * 终止操作
@@ -296,20 +311,5 @@ public class J8StreamUse {
         private String kind;
         private Integer height;
         private Status status;
-    }
-}
-
-enum Status {
-    GREAT(1, "great"), GOOD(2, "good"), OKAY(3, "okay"), BAD(4, "bad");
-    private int index;
-    private String status;
-
-    private Status(int idex, String str) {
-        index = idex;
-        status = str;
-    }
-
-    public String getStatus() {
-        return status;
     }
 }

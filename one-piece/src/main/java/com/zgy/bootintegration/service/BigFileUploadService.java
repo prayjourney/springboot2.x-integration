@@ -7,8 +7,8 @@ import com.zgy.bootintegration.mapper.FileUploadStatusMapper;
 import com.zgy.bootintegration.pojo.FileMd5;
 import com.zgy.bootintegration.pojo.FileUploadStatus;
 import com.zgy.bootintegration.pojo.MultipartFileParam;
-import com.zgy.bootintegration.utils.FileUploadConstants;
 import com.zgy.bootintegration.utils.FileMD5Util;
+import com.zgy.bootintegration.utils.FileUploadConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/10/9
  * @Description
  */

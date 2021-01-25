@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>hutool的验证码的页面</title>
+        <!-- 设置网站小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="/images/icon01.ico">
+        <!-- bootstrap css文件, 这样就是引入了本地的css文件 -->
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <span class="text-info text-center form-control " style="font-size: 24px; margin-bottom: 10px;">
+                        提交验证码
+                    </span>
+                    <!-- 需要使用同步提交 -->
+                    <form class="form-inline" action="/hutool/verify" method="get">
+                        <div class="form-group">
+                            <label for="code" class="text-info right" style="font-size: 18px;">验证码: </label>
+                            <input id="code" type="text" class="margin-setting"
+                                   placeholder="请输入验证码" name="code">
+                            <img id="captcha_img" alt="点击更换" class="margin-setting" title="点击更换"
+                                 onclick="refresh()" src="/hutool/captcha"/>
+                        </div>
+                        <input type="submit" class="btn btn-outline-primary btn-sm form-control margin-setting"
+                               value="提交"/>
+                        <!-- onclick="verify()" -->
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .right {
+                padding-right: 10px;
+            }
+
+            .margin-setting {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        </style>
+        <script>
+            function refresh() {
+                document.getElementById('captcha_img').src = "/hutool/captcha";
+            }
+
+            // function verify() {
+            //     $.ajax({
+            //         type: "get",
+            //         url: "/hutool/verify",
+            //         data: {
+            //             "code": $('#code').value
+            //         },
+            //         success: function (data) {
+            //             alert("okay!!!")
+            //         },
+            //         error: function (error) {
+            //             alert("error!!!")
+            //         }
+            //     });
+            // }
+        </script>
+    </body>
+</html>

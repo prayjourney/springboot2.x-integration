@@ -1,7 +1,7 @@
 package com.zgy.bootintegration.utils;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/5/21
  * @Description 常量
  */

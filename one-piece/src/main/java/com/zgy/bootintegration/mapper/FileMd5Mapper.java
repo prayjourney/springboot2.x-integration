@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/10/12
  * @Description 可以同时加上@Mapper和@Repository，一个是给mybatis看，一个是给spring看，这样就不会报错了
  */

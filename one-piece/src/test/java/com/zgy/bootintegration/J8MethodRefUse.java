@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/17
  * @Description 如果Lambda表达式体中的内容已有方法实现，那么我们就可以直接使用，而不用再去写一遍，这个时候就可以使用"方法引用"来代替
  * @Type 类型
