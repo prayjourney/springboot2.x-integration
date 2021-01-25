@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/8/28
  * @Description Kaptcha验证码的配置类，生成Producer
  */

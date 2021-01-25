@@ -3,7 +3,7 @@ package com.zgy.bootintegration;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/5/22
  * @Description
  */

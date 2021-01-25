@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/15
  * @Description 介绍
  * * 使用规律:

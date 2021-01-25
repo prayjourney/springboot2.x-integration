@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
 /**
- * @author renjiaxin
+ * @author z.g.y
  * @date 2021/1/25
  */
 @Slf4j

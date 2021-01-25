@@ -5,7 +5,7 @@ import com.zgy.bootintegration.pojo.SearchLocation;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/8
  * @Description
  */

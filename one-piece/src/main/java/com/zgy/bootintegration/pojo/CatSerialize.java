@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * @Author renjiaxin
+ * @author z.g.y
  * @Date 2020/6/23
  * @Description 测试序列化
  */
