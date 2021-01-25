@@ -4,10 +4,10 @@
     - [ ] zxing方式
     - [ ] hutool方式
 - springboot整合生成验证码
-    - [ ] hutool方式
+    - [x] hutool方式
     - kaptcha
-        - [ ] xml方式
-        - [ ] config方式
+        - [x] xml方式
+        - [x] config方式
 - [ ] springboot普通文件上传
 - [ ] springboot大文件上传
 - [x] springboot整合druid和mybatis-plus
