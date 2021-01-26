@@ -26,7 +26,11 @@ public class IndexController {
 
     @RequestMapping({"", "/", "home", "index"})
     public String index(Model model) {
-        model.addAttribute("message", "这是来自后端的测试消息!");
+        try {
+            model.addAttribute("message", "这是来自后端的测试消息!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "index";
     }
 
@@ -53,7 +57,7 @@ public class IndexController {
     }
 
 
-    @RequestMapping("login")
+    @GetMapping("login")
     public String login() {
         return "login";
     }
@@ -105,8 +109,7 @@ public class IndexController {
         try {
             subject.login(token);
             log.info("登录成功...");
-
-            return "hello";
+            return "mianmi";
         } catch (UnknownAccountException e1) {
             model.addAttribute("message", "用户名错误");
             return "login";
