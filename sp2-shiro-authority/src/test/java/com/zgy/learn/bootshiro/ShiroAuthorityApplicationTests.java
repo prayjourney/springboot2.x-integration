@@ -7,6 +7,8 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.UUID;
+
 @SpringBootTest
 class ShiroAuthorityApplicationTests {
 
@@ -48,6 +50,13 @@ class ShiroAuthorityApplicationTests {
         String encodedPassword = new SimpleHash("SHA-256", password, salt, 1024).toString();
 
         System.out.printf("原始密码是: %s, 盐是: %s, 运算出来的密文是: %s", password, salt, encodedPassword);
+    }
+
+    // uuid
+    @Test
+    public void testUUID() {
+        String uuid = UUID.randomUUID().toString();
+        System.out.println(uuid);
     }
 
 }
