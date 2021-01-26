@@ -43,9 +43,8 @@ public class UserController {
         String algorithmName = "SHA-256";
         Integer hashNumber = 1024;
         String encodedPassword = new SimpleHash(algorithmName, password, salt, hashNumber).toString();
-        User user = new User();
-        user.setName(name).setPassword(encodedPassword).setSalt(salt).setSalt(salt).
-                setRole("student").setPerms("user:update");
+        User user = new User().setName(name)
+                .setPassword(encodedPassword).setSalt(salt).setRole("student").setPerms("user:update");
         Integer res = userService.saveUser(user);
         if (1 == res) {
             return "success";
