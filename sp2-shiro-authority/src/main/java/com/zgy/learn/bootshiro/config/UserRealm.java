@@ -112,19 +112,20 @@ public class UserRealm extends AuthorizingRealm {
     // shiro配置自定义密码加密器: https://www.cnblogs.com/Sky0914/p/12561474.html
     @Override
     public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-         HashedCredentialsMatcher master = new HashedCredentialsMatcher();
-         // 散列算法: 加密
-         master.setHashAlgorithmName("SHA-256");
-         // 散列的次数, 加密次数, 比如用md5散列两次, 相当于md5(md5("xxx"));
-         master.setHashIterations(1024);
+        HashedCredentialsMatcher master = new HashedCredentialsMatcher();
+        // 散列算法: 加密
+        master.setHashAlgorithmName("SHA-256");
+        // 散列的次数, 加密次数, 比如用md5散列两次, 相当于md5(md5("xxx"));
+        master.setHashIterations(1024);
 
-         // 这个语句一定要调用
-         super.setCredentialsMatcher(master);
+        // 这个语句一定要调用
+        super.setCredentialsMatcher(master);
 
-//        // 自定义认证加密方式
-//        UserMatcher userMatcher = new UserMatcher();
-//        // 设置自定义认证加密方式
-//        super.setCredentialsMatcher(userMatcher);
+        // 下面这个反正是有问题, 还麻烦, 还不如上面的
+        //// 自定义认证加密方式
+        //UserMatcher userMatcher = new UserMatcher();
+        //// 设置自定义认证加密方式
+        //super.setCredentialsMatcher(userMatcher);
     }
 
 }
