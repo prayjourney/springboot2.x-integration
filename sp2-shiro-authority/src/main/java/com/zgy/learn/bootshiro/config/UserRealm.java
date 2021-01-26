@@ -74,8 +74,9 @@ public class UserRealm extends AuthorizingRealm {
             String salt = user.getSalt();
             String pwdInDB = user.getPassword();
 
-            // 使用数据库之中的信息构造,
-            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, pwdInDB, ByteSource.Util.bytes(salt), getName());
+            // 使用数据库之中的信息构造, 第一个参数需要是User对象, 给授权使用
+            // SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, pwdInDB, ByteSource.Util.bytes(salt), getName());
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, pwdInDB, ByteSource.Util.bytes(salt), getName());
             return info;
         }
     }
@@ -111,10 +112,19 @@ public class UserRealm extends AuthorizingRealm {
     // shiro配置自定义密码加密器: https://www.cnblogs.com/Sky0914/p/12561474.html
     @Override
     public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-        HashedCredentialsMatcher master = new HashedCredentialsMatcher();
-        // 散列算法: 加密
-        master.setHashAlgorithmName("SHA-256");
-        // 散列的次数, 加密次数, 比如用md5散列两次, 相当于md5(md5("xxx"));
-        master.setHashIterations(1024);
+         HashedCredentialsMatcher master = new HashedCredentialsMatcher();
+         // 散列算法: 加密
+         master.setHashAlgorithmName("SHA-256");
+         // 散列的次数, 加密次数, 比如用md5散列两次, 相当于md5(md5("xxx"));
+         master.setHashIterations(1024);
+
+         // 这个语句一定要调用
+         super.setCredentialsMatcher(master);
+
+//        // 自定义认证加密方式
+//        UserMatcher userMatcher = new UserMatcher();
+//        // 设置自定义认证加密方式
+//        super.setCredentialsMatcher(userMatcher);
     }
+
 }
