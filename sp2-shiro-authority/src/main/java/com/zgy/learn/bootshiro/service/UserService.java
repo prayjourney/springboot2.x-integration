@@ -9,4 +9,6 @@ import com.zgy.learn.bootshiro.pojo.User;
  */
 public interface UserService {
     User queryUserByName(String name);
+
+    Integer saveUser(User user);
 }
