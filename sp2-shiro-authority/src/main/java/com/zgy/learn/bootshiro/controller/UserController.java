@@ -34,6 +34,11 @@ public class UserController {
             return "not null!";
         }
 
+        User check = userService.queryUserByName(name);
+        if (null != check) {
+            return "already exist!";
+        }
+
         String salt = UUID.randomUUID().toString();
         String algorithmName = "SHA-256";
         Integer hashNumber = 1024;
