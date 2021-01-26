@@ -46,5 +46,5 @@ mybatis-plus:
 # log位置的配置
 logging:
   file:
-    path: /web/tomcat/logs/boot-shiro
+    path: /web/tomcat/logs/shiro-authority
 
