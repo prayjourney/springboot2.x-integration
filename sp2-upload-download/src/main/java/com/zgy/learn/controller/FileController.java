@@ -11,7 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * @author renjiaxin
@@ -26,7 +31,7 @@ public class FileController {
 
     @ResponseBody
     @PostMapping("/uploadFile")
-    public String uploadFile(@RequestParam("file") MultipartFile file) throws JSONException {
+    public String fileUpload(@RequestParam("file") MultipartFile file) throws JSONException {
         JSONObject result = new JSONObject();
         if (file.isEmpty()) {
             result.put("error", "空文件!");
@@ -59,6 +64,41 @@ public class FileController {
         }
 
         result.put("success", "文件上传成功!");
+        return result.toString();
+    }
+
+
+    // 下载到了默认的位置
+    @RequestMapping("/downloadFile")
+    public String fileDownload(HttpServletResponse response, @RequestParam("fileName") String fileName) throws JSONException {
+        JSONObject result = new JSONObject();
+
+        File file = new File(uploadFilePath + '/' + fileName);
+        if (!file.exists()) {
+            result.put("error", "下载文件不存在!");
+            return result.toString();
+        }
+
+        response.reset();
+        response.setContentType("application/octet-stream");
+        response.setCharacterEncoding("utf-8");
+        response.setContentLength((int) file.length());
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));) {
+            byte[] buff = new byte[1024];
+            OutputStream os = response.getOutputStream();
+            int i = 0;
+            while ((i = bis.read(buff)) != -1) {
+                os.write(buff, 0, i);
+                os.flush();
+            }
+        } catch (IOException e) {
+            log.error("发生错误: {}", e);
+            result.put("error", e.getMessage());
+            return result.toString();
+        }
+        result.put("success", "下载成功!");
         return result.toString();
     }
 
