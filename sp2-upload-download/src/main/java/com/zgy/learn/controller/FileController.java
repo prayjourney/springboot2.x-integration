@@ -67,6 +67,36 @@ public class FileController {
         return result.toString();
     }
 
+    /**
+     * 多个文件上传
+     *
+     * @param files
+     * @return
+     * @throws JSONException
+     */
+    @ResponseBody
+    @PostMapping("/uploadFiles")
+    public String fileUploads(@RequestParam("files") MultipartFile files[]) throws JSONException {
+        JSONObject result = new JSONObject();
+
+        for (int i = 0; i < files.length; i++) {
+            String fileName = files[i].getOriginalFilename();
+            File dest = new File(uploadFilePath + '/' + fileName);
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
+            try {
+                files[i].transferTo(dest);
+            } catch (Exception e) {
+                log.error("发生错误: {}", e);
+                result.put("error", e.getMessage());
+                return result.toString();
+            }
+        }
+        result.put("success", "文件上传成功!");
+        return result.toString();
+    }
+
 
     // 下载到了默认的位置
     @RequestMapping("/downloadFile")
