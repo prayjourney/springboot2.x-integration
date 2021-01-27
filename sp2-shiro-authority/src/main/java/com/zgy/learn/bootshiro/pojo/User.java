@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * @Author zuiguangyin
@@ -16,11 +17,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
 public class User {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
     private String password;
+    /**
+     * salt盐值
+     */
+    private String salt;
+
     /**
      * 权限
      */

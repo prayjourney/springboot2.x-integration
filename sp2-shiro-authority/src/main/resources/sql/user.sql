@@ -25,12 +25,13 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `perms` varchar(200) DEFAULT '' COMMENT '权限',
   `role` varchar(255) DEFAULT NULL COMMENT '角色',
+  `salt` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '123456', 'user:add', 'admin');
-INSERT INTO `user` VALUES ('2', 'zhangsan', 'abc123', 'user:update', 'student');
-INSERT INTO `user` VALUES ('3', '小明', '111222', null, 'student');
+INSERT INTO `user` VALUES ('1', 'admin', '123456', 'user:add', 'admin', null);
+INSERT INTO `user` VALUES ('2', 'zhangsan', 'abc123', 'user:update', 'student', null);
+INSERT INTO `user` VALUES ('3', '小明', '111222', null, 'student', null);

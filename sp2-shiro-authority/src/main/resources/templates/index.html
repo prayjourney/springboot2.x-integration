@@ -2,6 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
     <head>
         <meta charset="UTF-8">
+        <title>首页</title>
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <span class="text-center text-info form-control" style="font-size: 24px;">首页</span>
+                    <!--/*@thymesVar id="loginUser" type=""*/-->
+                    <div class="text-info margin-bottom" th:if="${session.loginUser == null}">
+                        <a id="login" th:href="@{/login}">使用用户名密码登录</a>
+                    </div>
+                    <div class="text-danger margin-bottom" th:if="${session.loginUser == null}">
+                        <a id="nosecretlogin" th:href="@{/nosecretlogin}">shiro免密登录</a>
+                    </div>
+                    <div class="text-success margin-bottom" th:if="${null != session.loginUser}">
+                        <a id="logout" th:href="@{/logout}">退出</a>
+                    </div>
+                    <div class="text-warning text-info margin-bottom" th:text="${message}"></div>
+                    <hr>
+
+                    <div shiro:hasPermission="user:add">
+                        <a th:href="@{/user/add}">add页面</a> |
+                    </div>
+
+                    <div shiro:hasRole="student">
+                        <a th:href="@{/user/search}">search页面</a> |
+                    </div>
+
+                    <div shiro:hasPermission="user:user:update">
+                        <a th:href="@{/user/update}">update页面</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <style>
             #login {
                 color: deepskyblue;
@@ -11,43 +48,9 @@
                 color: orangered;
             }
 
-            .margin-top {
-                margin: 30px;
-            }
-
-            .margin-left {
-                margin-left: 180px;
+            .margin-bottom {
+                margin-bottom: 10px;
             }
         </style>
-        <title>首页</title>
-        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
-        <h3 class="text-center text-info margin-top">首页</h3>
-        <!--/*@thymesVar id="loginUser" type=""*/-->
-        <p class="text-info margin-left" th:if="${session.loginUser == null}">
-            <a id="login" th:href="@{/login}">使用用户名密码登录</a>
-        </p>
-        <p class="text-danger margin-left" th:if="${session.loginUser == null}">
-            <a id="nosecretlogin" th:href="@{/nosecretlogin}">shiro免密登录</a>
-        </p>
-        <p class="text-success margin-left" th:if="${null != session.loginUser}">
-            <a id="logout" th:href="@{/logout}">退出</a>
-        </p>
-        <p class="text-warning text-info margin-left" th:text="${message}"></p>
-        <hr>
-
-        <div shiro:hasPermission="user:add">
-            <a th:href="@{/user/add}">add页面</a> |
-        </div>
-
-        <div shiro:hasRole="student">
-            <a th:href="@{/user/search}">search页面</a> |
-        </div>
-
-        <div shiro:hasPermission="user:user:update">
-            <a th:href="@{/user/update}">update页面</a>
-        </div>
-
     </body>
 </html>

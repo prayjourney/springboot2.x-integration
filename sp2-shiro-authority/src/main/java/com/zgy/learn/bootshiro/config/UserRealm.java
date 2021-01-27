@@ -10,11 +10,14 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -58,17 +61,23 @@ public class UserRealm extends AuthorizingRealm {
             String user = token.getUsername();
             return new SimpleAuthenticationInfo(user, "123456", user);
         } else {
-            // 连接真实的数据库, 用户名验证, 密码验证
+            // 输入的信息, 用户名, 密码
             UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+            String userName = token.getPrincipal().toString();
+            String password = new String(token.getPassword());
+
+            // 数据库中获取用户, null表示没有这个用户, salt, pwdInDB从数据库之中获取
             User user = userService.queryUserByName(token.getUsername());
             if (null == user) {
-                // 用户验证, 表示没有这个用户
                 return null;
             }
+            String salt = user.getSalt();
+            String pwdInDB = user.getPassword();
 
-            // 将用户信息分发给授权doGetAuthorizationInfo函数, 密码验证
-            // return new SimpleAuthenticationInfo("", person.getPassword(), "");
-            return new SimpleAuthenticationInfo(user, user.getPassword(), "");
+            // 使用数据库之中的信息构造, 第一个参数需要是User对象, 给授权使用
+            // SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userName, pwdInDB, ByteSource.Util.bytes(salt), getName());
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, pwdInDB, ByteSource.Util.bytes(salt), getName());
+            return info;
         }
     }
 
@@ -98,6 +107,25 @@ public class UserRealm extends AuthorizingRealm {
         // 设置当前对象的角色
         authorizationInfo.addRole(currentUser.getRole());
         return authorizationInfo;
+    }
+
+    // shiro配置自定义密码加密器: https://www.cnblogs.com/Sky0914/p/12561474.html
+    @Override
+    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
+        HashedCredentialsMatcher master = new HashedCredentialsMatcher();
+        // 散列算法: 加密
+        master.setHashAlgorithmName("SHA-256");
+        // 散列的次数, 加密次数, 比如用md5散列两次, 相当于md5(md5("xxx"));
+        master.setHashIterations(1024);
+
+        // 这个语句一定要调用
+        super.setCredentialsMatcher(master);
+
+        // 下面这个反正是有问题, 还麻烦, 还不如上面的
+        //// 自定义认证加密方式
+        //UserMatcher userMatcher = new UserMatcher();
+        //// 设置自定义认证加密方式
+        //super.setCredentialsMatcher(userMatcher);
     }
 
 }
