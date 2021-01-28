@@ -5,6 +5,10 @@
         <title>上传和下载</title>
         <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap-input相关 -->
+        <link href="/css/fileinput.min.css" rel="stylesheet">
+        <script src="/js/fileinput.min.js"></script>
+        <script src="/js/zh.min.js"></script>
     </head>
     <body>
         <div class="container" style="margin-top: 10px;">
@@ -53,21 +57,32 @@
                         <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
                               class="form-horizontal">
                             <div class="form-group row">
-                                <div class="col-sm-2" style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                <div class="col-sm-2"
+                                     style="vertical-align: middle; line-height:40px; margin-top:10px;">
                                     <span class="text text-info"> 选择上传文件：</span>
                                 </div>
-                                <div class="col-sm-6" style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                <div class="col-sm-6"
+                                     style="vertical-align: middle; line-height:40px; margin-top:10px;">
                                     <input type="text" id="fileName" readonly="readonly" placeholder="请选择文件" value=""/>
                                     <a href="javascript:void(0);" class="input">浏览
                                         <!-- file在这儿了 -->
                                         <input type="file" id="file2up" name="file">
                                     </a>
                                 </div>
-                                <div class="col-sm-4" style="vertical-align: middle; line-height:40px; margin-top:20px;">
+                                <div class="col-sm-4"
+                                     style="vertical-align: middle; line-height:40px; margin-top:20px;">
                                     <input class="btn btn-block btn-sm btn-outline-danger" type="submit" value="上传">
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <a class="form-control" style="margin-top: 10px; background-color: #ffc1b7">
+                        <span class="text-success text-center" style="font-size: 18px;">使用Bootstrap Fileinput</span>
+                    </a>
+                    <div class="form-border">
+                        <input id="fileinput" name="file" type="file" multiple accept="image/*"
+                               class="file-loading">
                     </div>
                 </div>
             </div>
@@ -95,8 +110,8 @@
                 background: #3091d1;
                 text-align: center;
                 display: inline-block; /*具有行内元素的视觉，块级元素的属性宽高*/
-                overflow: hidden;      /*去掉的话，输入框也可以点击*/
-                position: relative;    /*相对定位，为 #file 的绝对定位准备*/
+                overflow: hidden; /*去掉的话，输入框也可以点击*/
+                position: relative; /*相对定位，为 #file 的绝对定位准备*/
                 top: 10px;
             }
 
@@ -136,6 +151,19 @@
                         $("#fileName").val($("#file2up").val());
                     }
                 })
+            });
+        </script>
+
+        <script>
+            $("#fileinput").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+            });
+
+            //上传成功后执行
+            $("#fileinput").on("fileuploaded", function (event, data, previewId, index) {
+                console.log(data.response.msg);
             });
         </script>
     </body>
