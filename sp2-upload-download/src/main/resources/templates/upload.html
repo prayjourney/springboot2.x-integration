@@ -85,20 +85,25 @@
                         <input id="fileinput01" name="file" type="file" class="file-loading">
                     </div>
 
-                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+                    <hr style="height:1px; border: none; border-top:2px solid #d8262f;"/>
 
                     <!-- 只允许图片类型 -->
                     <div class="form-border">
                         <input id="fileinput02" name="file" type="file" multiple accept="image/*" class="file-loading">
                     </div>
 
-                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+                    <hr style="height:1px; border: none; border-top:2px outset #2e57d8;"/>
 
                     <div class="form-border">
-                        <input id="fileinput03" name="file" type="file" class="file-loading">
+                        <input id="fileinput04" name="file" type="file" class="file-loading">
                     </div>
 
+                    <hr style="height:1px; border: none; border-top:2px outset #1ad89e;"/>
 
+                    <!-- multiple控制了能否上传多个, maxFileCount控制了最多的个数 -->
+                    <div class="form-border">
+                        <input id="fileinput05" name="file" type="file" multiple class="file-loading">
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,7 +211,7 @@
         </script>
 
         <script>
-            $("#fileinput03").fileinput({
+            $("#fileinput04").fileinput({
                 language: 'zh',
                 uploadUrl: "/file/uploadFile",
                 showClose: false, // 不显示关闭按钮
@@ -222,7 +227,23 @@
             });
 
             //上传成功后执行
-            $("#fileinput03").on("fileinput03", function (event, data, previewId, index) {
+            $("#fileinput04").on("fileinput04", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput05").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                msgFilesTooMany: "最多只允许上传5个文件",
+                allowedPreviewExtensions: ['jpg', 'png', 'txt'], // 允许预览的类型
+            });
+
+            //上传成功后执行
+            $("#fileinput05").on("fileinput05", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
