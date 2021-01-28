@@ -12,8 +12,8 @@
                 <div class="col-sm-12">
                     <span class="text-center text-info form-control" style="font-size: 24px;">文件上传和下载</span>
                     <!-- form-control 外围有一个边框 -->
-                    <a class="form-control" style="margin-top: 10px;" href="/file/index">
-                        <span class="text-danger text-center" style="font-size: 18px;">文件上传下载页面</span>
+                    <a class="form-control" style="margin-top: 10px; background-color: #ebffd1">
+                        <span class="text-danger text-center" style="font-size: 18px;">原始的下载框</span>
                     </a>
                     <div class="form-border">
                         <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
@@ -40,7 +40,7 @@
                                 <div class="input-group" style="padding-left: 15px; padding-right: 15px;">
                                     <span class="input-group-text">选择上传文件：</span>
                                     <input type="file" name="file" class="form-control">
-                                    <input class="btn btn-block btn-outline-success" type="submit" value="上传">
+                                    <input class="btn btn-block btn-outline-danger" type="submit" value="上传">
                                 </div>
                             </div>
                         </form>
