@@ -13,7 +13,7 @@
                     <span class="text-center text-info form-control" style="font-size: 24px;">文件上传和下载</span>
                     <!-- form-control 外围有一个边框 -->
                     <a class="form-control" style="margin-top: 10px; background-color: #ebffd1">
-                        <span class="text-danger text-center" style="font-size: 18px;">原始的下载框</span>
+                        <span class="text-danger text-center" style="font-size: 18px;">原始的上传文件框</span>
                     </a>
                     <div class="form-border">
                         <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
@@ -45,6 +45,26 @@
                             </div>
                         </form>
                     </div>
+
+                    <a class="form-control" style="margin-top: 10px; background-color: #dbd1ff">
+                        <span class="text-success text-center" style="font-size: 18px;">修改后的上传文件框</span>
+                    </a>
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-sm-2" style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                    <span class="text text-info"> 选择上传文件：</span>
+                                </div>
+                                <div class="col-sm-9" style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                    <input type="text" id="fileName" readonly="readonly" placeholder="请选择文件" value=""/>
+                                    <a href="javascript:void(0);" class="input">浏览
+                                        <input type="file" id="file2up" name="document[fileName]">
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,6 +77,62 @@
                 border-style: solid;
                 border-color: lightgray;
             }
+
+            #fileName {
+                width: 400px;
+                height: 30px;
+                padding-left: 20px;
+            }
+
+            a.input {
+                width: 70px;
+                height: 30px;
+                line-height: 30px;
+                background: #3091d1;
+                text-align: center;
+                display: inline-block; /*具有行内元素的视觉，块级元素的属性宽高*/
+                overflow: hidden;      /*去掉的话，输入框也可以点击*/
+                position: relative;    /*相对定位，为 #file 的绝对定位准备*/
+                top: 10px;
+            }
+
+            a.input:hover {
+                background: #31b0d5;
+                color: #ffffff;
+            }
+
+            a {
+                text-decoration: none;
+                color: #FFF;
+            }
+
+            #file2up {
+                opacity: 0; /*设置此控件透明度为零，即完全透明*/
+                filter: alpha(opacity=0); /*设置此控件透明度为零，即完全透明针对IE*/
+                font-size: 100px;
+                position: absolute; /*绝对定位，相对于 .input */
+                top: 0;
+                right: 0;
+            }
         </style>
+
+
+        <script type="text/javascript">
+            $(function () {
+                // 当id为file的对象发生变化时
+                $("#file2up").change(function () {
+                    let fileSize = this.files[0].size;
+                    let size = fileSize / 1024 / 1024;
+                    if (size > 20) {
+                        alert("附件不能大于20M,请将文件压缩后重新上传！");
+                        this.value = "";
+                        return false;
+                    } else {
+                        //将#file的值赋给#file_name
+                        $("#fileName").val($("#file2up").val());
+                    }
+                })
+            });
+        </script>
     </body>
 </html>
