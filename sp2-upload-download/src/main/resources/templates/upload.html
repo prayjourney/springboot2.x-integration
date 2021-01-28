@@ -94,13 +94,21 @@
 
                     <hr style="height:1px; border: none; border-top:2px outset #2e57d8;"/>
 
+                    <!-- 不显示拖拽, 有文件后可以预览 -->
+                    <div class="form-border">
+                        <input id="fileinput03" name="file" type="file" multiple class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px outset #965fd8;"/>
+
+                    <!-- 单一文件, 很多设置, 多了就会替换 -->
                     <div class="form-border">
                         <input id="fileinput04" name="file" type="file" class="file-loading">
                     </div>
 
-                    <hr style="height:1px; border: none; border-top:2px outset #1ad89e;"/>
+                    <hr style="height:1px; border: none; border-top:2px outset #d8af7f;"/>
 
-                    <!-- multiple控制了能否上传多个, maxFileCount控制了最多的个数 -->
+                    <!-- multiple控制了能否上传多个, maxFileCount控制了最多的个数, 可以同时并发上传 -->
                     <div class="form-border">
                         <input id="fileinput05" name="file" type="file" multiple class="file-loading">
                     </div>
@@ -206,6 +214,23 @@
 
             //上传成功后执行
             $("#fileinput02").on("fileinput02", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput03").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                minFileCount: 1,  // 设置只有一个文件上传
+                maxFileCount: 3,
+                msgFilesTooMany: "最多只允许上传3个文件",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+            });
+
+            //上传成功后执行
+            $("#fileinput03").on("fileinput03", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
