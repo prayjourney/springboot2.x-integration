@@ -80,10 +80,21 @@
                     <a class="form-control" style="margin-top: 10px; background-color: #ffc1b7">
                         <span class="text-success text-center" style="font-size: 18px;">使用Bootstrap Fileinput</span>
                     </a>
+                    <!-- 允许所有类型 -->
                     <div class="form-border">
-                        <input id="fileinput" name="file" type="file" multiple accept="image/*"
-                               class="file-loading">
+                        <input id="fileinput01" name="file" type="file" class="file-loading">
                     </div>
+
+                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+
+                    <!-- 只允许图片类型 -->
+                    <div class="form-border">
+                        <input id="fileinput02" name="file" type="file" multiple accept="image/*" class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+
+
                 </div>
             </div>
         </div>
@@ -155,7 +166,7 @@
         </script>
 
         <script>
-            $("#fileinput").fileinput({
+            $("#fileinput01").fileinput({
                 language: 'zh',
                 uploadUrl: "/file/uploadFile",
                 showClose: false, // 不显示关闭按钮
@@ -167,7 +178,25 @@
             });
 
             //上传成功后执行
-            $("#fileinput").on("fileuploaded", function (event, data, previewId, index) {
+            $("#fileinput01").on("fileinput01", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput02").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                minFileCount: 1,  // 设置只有一个文件上传
+                maxFileCount: 1,
+                msgFilesTooMany: "最多只允许上传一个文件",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+                showPreview: false, // 设置不显示预览
+            });
+
+            //上传成功后执行
+            $("#fileinput02").on("fileinput02", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
