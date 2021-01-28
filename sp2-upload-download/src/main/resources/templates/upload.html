@@ -15,19 +15,48 @@
                     <a class="form-control" style="margin-top: 10px;" href="/file/index">
                         <span class="text-danger text-center" style="font-size: 18px;">文件上传下载页面</span>
                     </a>
-                    <form action="/file/uploadFile" enctype="multipart/form-data" method="post" class="form-horizontal">
-                        <div class="form-group row" style="margin-top: 20px;">
-                            <label for="file" class="col-sm-2 col-form-label-sm">选择上传文件：</label>
-                            <div class="col-sm-9">
-                                <input id="file" type="file" class="form-control form-control-sm" name="file">
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row" style="margin-top: 20px;">
+                                <label for="file" class="col-sm-2 col-form-label-sm">选择上传文件：</label>
+                                <div class="col-sm-9">
+                                    <input id="file" type="file" class="form-control form-control-sm" name="file">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input class="btn btn-sm btn-block btn-outline-success" type="submit" value="上传">
+                                </div>
                             </div>
-                            <div class="col-sm-1">
-                                <input class="btn btn-sm  btn-block btn-outline-success" type="submit" value="上传">
+                        </form>
+                    </div>
+
+                    <!-- hr样式设置 -->
+                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row" style="margin-top: 20px;">
+                                <div class="input-group" style="padding-left: 15px; padding-right: 15px;">
+                                    <span class="input-group-text">选择上传文件：</span>
+                                    <input type="file" name="file" class="form-control">
+                                    <input class="btn btn-block btn-outline-success" type="submit" value="上传">
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <style>
+            .form-border {
+                margin-top: 10px;
+                border-radius: 2px;
+                border-width: thin;
+                border-style: solid;
+                border-color: lightgray;
+            }
+        </style>
     </body>
 </html>
