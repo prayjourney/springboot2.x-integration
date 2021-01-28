@@ -94,6 +94,10 @@
 
                     <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
 
+                    <div class="form-border">
+                        <input id="fileinput03" name="file" type="file" class="file-loading">
+                    </div>
+
 
                 </div>
             </div>
@@ -197,6 +201,28 @@
 
             //上传成功后执行
             $("#fileinput02").on("fileinput02", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput03").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                validateInitialCount: true, // 计算数量
+                msgFilesTooMany: "最多只允许上传5个文件",
+                dropZoneEnabled: true,  // 是否显示拖拽区域, 默认是显示
+                showPreview: true, // 设置显示预览, 默认是显示
+                allowedFileTypes: ['image', 'html', 'text', 'video', 'audio', 'flash', 'object'], // 允许的文件类型
+                allowedPreviewTypes: ['image', 'text'], // 允许预览的类型
+                allowedFileExtensions: ['jpg', 'png', 'svg', 'txt', 'jpeg', 'docx', 'log'],    // 允许的文件扩展
+                allowedPreviewExtensions: ['jpg', 'png', 'svg', 'txt', 'jpeg', 'docx', 'log'], // 允许预览的类型
+            });
+
+            //上传成功后执行
+            $("#fileinput03").on("fileinput03", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
