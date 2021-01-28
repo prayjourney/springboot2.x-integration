@@ -4,11 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,12 +23,17 @@ import java.io.OutputStream;
  * @author renjiaxin
  * @date 2021/1/27
  */
-@RestController
+@Controller
 @RequestMapping("file")
 @Slf4j
 public class FileController {
     @Value("${file.upload.dir}")
     private String uploadFilePath;
+
+    @GetMapping(value = {"", "/", "/index"})
+    public String index() {
+        return "upload";
+    }
 
     @ResponseBody
     @PostMapping("/uploadFile")
@@ -99,6 +105,7 @@ public class FileController {
 
 
     // 下载到了默认的位置
+    @ResponseBody
     @RequestMapping("/downloadFile")
     public String fileDownload(HttpServletResponse response, @RequestParam("fileName") String fileName) throws JSONException {
         JSONObject result = new JSONObject();
@@ -133,6 +140,7 @@ public class FileController {
     }
 
 
+    @ResponseBody
     @RequestMapping("/deleteFile")
     public String deleteFile(HttpServletResponse response, @RequestParam("fileName") String fileName) throws JSONException {
         JSONObject result = new JSONObject();
