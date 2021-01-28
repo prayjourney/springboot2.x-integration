@@ -56,11 +56,15 @@
                                 <div class="col-sm-2" style="vertical-align: middle; line-height:40px; margin-top:10px;">
                                     <span class="text text-info"> 选择上传文件：</span>
                                 </div>
-                                <div class="col-sm-9" style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                <div class="col-sm-6" style="vertical-align: middle; line-height:40px; margin-top:10px;">
                                     <input type="text" id="fileName" readonly="readonly" placeholder="请选择文件" value=""/>
                                     <a href="javascript:void(0);" class="input">浏览
-                                        <input type="file" id="file2up" name="document[fileName]">
+                                        <!-- file在这儿了 -->
+                                        <input type="file" id="file2up" name="file">
                                     </a>
+                                </div>
+                                <div class="col-sm-4" style="vertical-align: middle; line-height:40px; margin-top:20px;">
+                                    <input class="btn btn-block btn-sm btn-outline-danger" type="submit" value="上传">
                                 </div>
                             </div>
                         </form>
