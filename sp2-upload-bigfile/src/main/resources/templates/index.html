@@ -4,21 +4,28 @@
         <meta charset="UTF-8">
         <title>断点上传</title>
         <link href="/css/webuploader.css" rel="stylesheet" type="text/css">
-        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
         <script src="http://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script src="/js/webuploader.min.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class="wu-example" id="uploader">
-            <!-- 用来存放文件信息 -->
-            <div class="uploader-list" id="theList"></div>
-            <!-- 样式修改 -->
-            <div class="btn-group">
-                <div id="picker" style="width:120px; height:34px;" class="btn btn-default">选择大文件</div>
-                <button id="ctlBtn" class="btn btn-default">开始上传</button>
-                <button id="testBtn1" class="btn btn-default">测试按钮1</button>
-                <button id="testBtn2" class="btn btn-default">测试按钮2</button>
-                <button id="testBtn3" class="btn btn-default">测试按钮3</button>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="text-center text-info form-control" style="font-size: 24px;">文件上传和下载</span>
+                    <div class="wu-example" id="uploader">
+                        <!-- 用来存放文件信息 -->
+                        <div class="uploader-list" id="theList"></div>
+                        <!-- 样式修改 -->
+                        <div class="btn-group">
+                            <div id="picker" class="btn btn-outline-primary btn-sm">选择大文件</div>
+                            <button id="ctlBtn" class="btn btn-success btn-sm">开始上传</button>
+                            <button id="testBtn1" class="btn btn-info btn-sm">测试按钮1</button>
+                            <button id="testBtn2" class="btn btn-danger btn-sm">测试按钮2</button>
+                            <button id="testBtn3" class="btn btn-warning btn-sm">测试按钮3</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
