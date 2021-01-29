@@ -9,7 +9,7 @@
         - [x] xml方式
         - [x] config方式
 - [x] springboot普通文件上传下载
-- [ ] springboot大文件上传
+- [x] springboot大文件上传
 - [x] springboot整合druid和mybatis-plus
     - 这个整合其实是很「无感」的, 基本就是DruidConfig+MybatisPlusConfig, 然后再到application.properties之中配置, 
     druid的配置是spring.datasource.druid与db配置的部分, mybatis-plus的配置就是mybatis-plus.mapper-locations等
