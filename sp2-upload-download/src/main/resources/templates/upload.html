@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>上传和下载</title>
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap-input相关 -->
+        <link href="/css/fileinput.min.css" rel="stylesheet">
+        <script src="/js/fileinput.min.js"></script>
+        <script src="/js/zh.min.js"></script>
+    </head>
+    <body>
+        <div class="container" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="text-center text-info form-control" style="font-size: 24px;">文件上传和下载</span>
+                    <!-- form-control 外围有一个边框 -->
+                    <a class="form-control" style="margin-top: 10px; background-color: #ebffd1">
+                        <span class="text-danger text-center" style="font-size: 18px;">原始的上传文件框</span>
+                    </a>
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row" style="margin-top: 20px;">
+                                <label for="file" class="col-sm-2 col-form-label-sm">选择上传文件：</label>
+                                <div class="col-sm-9">
+                                    <input id="file" type="file" class="form-control form-control-sm" name="file">
+                                </div>
+                                <div class="col-sm-1">
+                                    <input class="btn btn-sm btn-block btn-outline-success" type="submit" value="上传">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- hr样式设置 -->
+                    <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row" style="margin-top: 20px;">
+                                <div class="input-group" style="padding-left: 15px; padding-right: 15px;">
+                                    <span class="input-group-text">选择上传文件：</span>
+                                    <input type="file" name="file" class="form-control">
+                                    <input class="btn btn-block btn-outline-danger" type="submit" value="上传">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="form-control" style="margin-top: 10px; background-color: #dbd1ff">
+                        <span class="text-success text-center" style="font-size: 18px;">修改后的上传文件框</span>
+                    </a>
+                    <div class="form-border">
+                        <form action="/file/uploadFile" enctype="multipart/form-data" method="post"
+                              class="form-horizontal">
+                            <div class="form-group row">
+                                <div class="col-sm-2"
+                                     style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                    <span class="text text-info"> 选择上传文件：</span>
+                                </div>
+                                <div class="col-sm-6"
+                                     style="vertical-align: middle; line-height:40px; margin-top:10px;">
+                                    <input type="text" id="fileName" readonly="readonly" placeholder="请选择文件" value=""/>
+                                    <a href="javascript:void(0);" class="input">浏览
+                                        <!-- file在这儿了 -->
+                                        <input type="file" id="file2up" name="file">
+                                    </a>
+                                </div>
+                                <div class="col-sm-4"
+                                     style="vertical-align: middle; line-height:40px; margin-top:20px;">
+                                    <input class="btn btn-block btn-sm btn-outline-danger" type="submit" value="上传">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="form-control" style="margin-top: 10px; background-color: #ffc1b7">
+                        <span class="text-success text-center" style="font-size: 18px;">使用Bootstrap Fileinput</span>
+                    </a>
+                    <a class="form-control" style="margin-top: 10px; ">
+                        <span class="text-warning " style="font-size: 16px;">1.允许所有类型; </span>
+                        <span class="text-primary " style="font-size: 16px;">2.只允许多张图片类型; </span>
+                        <span class="text-dark " style="font-size: 16px;">3.不显示拖拽,有文件后可以预览; </span>
+                        <span class="text-danger " style="font-size: 16px;">4.单一文件,很多设置,多了就会替换; </span>
+                        <span class="text-info " style="font-size: 16px;">5.多个文件上传,预览控制; </span>
+                    </a>
+                    <!-- 允许所有类型 -->
+                    <div class="form-border">
+                        <input id="fileinput01" name="file" type="file" class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px solid #d8262f;"/>
+
+                    <!-- 只允许图片类型 -->
+                    <div class="form-border">
+                        <input id="fileinput02" name="file" type="file" multiple accept="image/*" class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px outset #2e57d8;"/>
+
+                    <!-- 不显示拖拽, 有文件后可以预览 -->
+                    <div class="form-border">
+                        <input id="fileinput03" name="file" type="file" multiple class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px outset #965fd8;"/>
+
+                    <!-- 单一文件, 很多设置, 多了就会替换 -->
+                    <div class="form-border">
+                        <input id="fileinput04" name="file" type="file" class="file-loading">
+                    </div>
+
+                    <hr style="height:1px; border: none; border-top:2px outset #d8af7f;"/>
+
+                    <!-- multiple控制了能否上传多个, maxFileCount控制了最多的个数, 可以同时并发上传 -->
+                    <div class="form-border">
+                        <input id="fileinput05" name="file" type="file" multiple class="file-loading">
+                    </div>
+
+                    <a class="form-control" style="margin-top: 10px; background-color: rgba(45,255,225,0.29)">
+                        <span class="text-success text-center" style="font-size: 18px;">下载</span>
+                    </a>
+                    <a class="form-control" href="/file/downloadFile?fileName=logo.png" style="margin-top: 10px; ">
+                        <span class="text-warning " style="font-size: 16px;">下载logo.png</span>
+                    </a>
+                    <a class="form-control" style="margin-top: 10px; background-color: rgba(255,45,114,0.89)">
+                        <span class="text-dark text-center" style="font-size: 18px;">下载</span>
+                    </a>
+                    <a class="form-control" href="/file/deleteFile?fileName=100.png" style="margin-top: 10px; ">
+                        <span class="text-danger " style="font-size: 16px;">删除100.png</span>
+                    </a>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .form-border {
+                margin-top: 10px;
+                border-radius: 2px;
+                border-width: thin;
+                border-style: solid;
+                border-color: lightgray;
+            }
+
+            #fileName {
+                width: 400px;
+                height: 30px;
+                padding-left: 20px;
+            }
+
+            a.input {
+                width: 70px;
+                height: 30px;
+                line-height: 30px;
+                background: #3091d1;
+                text-align: center;
+                display: inline-block; /*具有行内元素的视觉，块级元素的属性宽高*/
+                overflow: hidden; /*去掉的话，输入框也可以点击*/
+                position: relative; /*相对定位，为 #file 的绝对定位准备*/
+                top: 10px;
+            }
+
+            a.input:hover {
+                background: #31b0d5;
+                color: #ffffff;
+            }
+
+            a {
+                text-decoration: none;
+                color: #FFF;
+            }
+
+            #file2up {
+                opacity: 0; /*设置此控件透明度为零，即完全透明*/
+                filter: alpha(opacity=0); /*设置此控件透明度为零，即完全透明针对IE*/
+                font-size: 100px;
+                position: absolute; /*绝对定位，相对于 .input */
+                top: 0;
+                right: 0;
+            }
+        </style>
+
+
+        <script type="text/javascript">
+            $(function () {
+                // 当id为file的对象发生变化时
+                $("#file2up").change(function () {
+                    let fileSize = this.files[0].size;
+                    let size = fileSize / 1024 / 1024;
+                    if (size > 20) {
+                        alert("附件不能大于20M,请将文件压缩后重新上传！");
+                        this.value = "";
+                        return false;
+                    } else {
+                        //将#file的值赋给#file_name
+                        $("#fileName").val($("#file2up").val());
+                    }
+                })
+            });
+        </script>
+
+        <script>
+            $("#fileinput01").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                minFileCount: 1,  // 设置只有一个文件上传
+                maxFileCount: 1,
+                msgFilesTooMany: "最多只允许上传一个文件",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+                showPreview: false, // 设置不显示预览
+            });
+
+            //上传成功后执行
+            $("#fileinput01").on("fileinput01", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput02").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                minFileCount: 1,  // 设置只有一个文件上传
+                maxFileCount: 1,
+                msgFilesTooMany: "最多只允许上传一个文件",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+                showPreview: false, // 设置不显示预览
+            });
+
+            //上传成功后执行
+            $("#fileinput02").on("fileinput02", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput03").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                minFileCount: 1,  // 设置只有一个文件上传
+                maxFileCount: 3,
+                msgFilesTooMany: "最多只允许上传3个文件",
+                dropZoneEnabled: false,  // 是否显示拖拽区域
+            });
+
+            //上传成功后执行
+            $("#fileinput03").on("fileinput03", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput04").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                validateInitialCount: true, // 计算数量
+                msgFilesTooMany: "最多只允许上传5个文件",
+                dropZoneEnabled: true,  // 是否显示拖拽区域, 默认是显示
+                showPreview: true, // 设置显示预览, 默认是显示
+                allowedFileTypes: ['image', 'html', 'text', 'video', 'audio', 'flash', 'object'], // 允许的文件类型
+                allowedPreviewTypes: ['image', 'text'], // 允许预览的类型
+                allowedFileExtensions: ['jpg', 'png', 'svg', 'txt', 'jpeg', 'docx', 'log'],    // 允许的文件扩展
+                allowedPreviewExtensions: ['jpg', 'png', 'svg', 'txt', 'jpeg', 'docx', 'log'], // 允许预览的类型
+            });
+
+            //上传成功后执行
+            $("#fileinput04").on("fileinput04", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput05").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFile",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                msgFilesTooMany: "最多只允许上传5个文件",
+                allowedPreviewExtensions: ['jpg', 'png', 'txt'], // 允许预览的类型
+            });
+
+            //上传成功后执行
+            $("#fileinput05").on("fileinput05", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+    </body>
+</html>
