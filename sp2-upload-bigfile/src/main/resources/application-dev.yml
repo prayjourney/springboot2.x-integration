@@ -1,0 +1,23 @@
+breakpoint:
+  upload:
+    dir: D:/data0/uploads/
+    #1024*1024=1048576 5M=5242880
+    chunkSize: 5 242 880
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 300000
+    jedis:
+      pool:
+        max-idle: 30
+        min-idle: 0
+        max-active: 8
+        max-wait: -1ms
+  http:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false

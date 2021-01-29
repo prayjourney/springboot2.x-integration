@@ -1,0 +1,12 @@
+server:
+  port: 9999
+  servlet:
+    session:
+      timeout: 30
+
+logging:
+  config: classpath:logback.xml
+
+spring:
+  profiles:
+    active: dev
