@@ -44,7 +44,7 @@
 <a name="获取代码"></a>
 ### 获取代码
 * GitHub:<https://github.com/prayjourney/Breakpoint-http.git>
-  <a name="需要知识点"></a>
+<a name="需要知识点"></a>
 ### 需要知识点
 - 基于spring boot开发的，springboot1.x和springboot2.x有较大的差别，需要注意，推荐springboot2.x，其是当前使用的主流框架。
 - WebUploader，WebUploader是由Baidu WebFE(FEX)团队开发的一个简单的以HTML5为主，FLASH为辅的现代文件上传组件。
@@ -62,9 +62,10 @@
 ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20210129200147.jpg)
 2. 秒传功能演示页面
 ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20210129200218.jpg)
-2. 修改过后的样式
+3. 修改过后的样式
 ![](https://raw.githubusercontent.com/prayjourney/img-home/master/img/20210129200623.png)
 详情自己运行就知道。
+
 
 
 <a name="核心讲解"></a>
@@ -176,7 +177,6 @@
 ### 秒传功能
 **秒传功能**，相信大家都体验过了，网盘上传的时候，发现上传的文件秒传了。其实原理稍微有研究过的同学应该知道，其实就是检验文件MD5，记录下上传到系统的文件的MD5,在一个文件上传前先获取文件内容MD5值或者部分取值MD5，然后在匹配系统上的数据。
 *Breakpoint-http*实现秒传原理，客户端选择文件之后，点击上传的时候触发获取文件MD5值，获取MD5后调用系统一个接口（`/index/checkFileMd5`），查询该MD5是否已经存在（我在该项目中用redis来存储数据，用文件MD5值来作key，value是文件存储的地址。）接口返回检查状态，然后再进行下一步的操作。相信大家看代码就能明白了。前端的MD5取值也是用了webuploader自带的功能，这还是个不错的工具。
-
 <a name="断点续传"></a>
 ### 断点续传
 **断点续传**，就是在文件上传的过程中发生了中断，人为因素（暂停）或者不可抗力（断网或者网络差）导致了文件上传到一半失败了。然后在环境恢复的时候，重新上传该文件，而不至于是从新开始上传的。
@@ -232,6 +232,8 @@ Gradle的管理方式，但是就目前而言，其对于mapper.xml文件的打�
 [springboot2.x-integration](https://github.com/prayjourney/springboot2.x-integration)的master分支之中集成了功能，并且可以正常
 运行，如果访问github网速过慢，可以访问gitee的[springboot2.x-integration](https://gitee.com/zuiguangyin123/springboot2.x-integration)
 的master分支，同时如果有问题或者发现bug, 可以提issue给我，欢迎fork或者star。
+
+
 
 ## 更新记录
 当前默认分支是springboot2.x, 修改项目为springboot2+redis+maven的方式。
