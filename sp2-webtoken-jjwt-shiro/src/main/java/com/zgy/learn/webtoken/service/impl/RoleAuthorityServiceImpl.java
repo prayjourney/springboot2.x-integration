@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.mapper.RoleAuthorityDao;
+import com.zgy.learn.webtoken.mapper.RoleAuthorityMapper;
 import com.zgy.learn.webtoken.pojo.RoleAuthority;
 import com.zgy.learn.webtoken.service.RoleAuthorityService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("roleAuthorityService")
 public class RoleAuthorityServiceImpl implements RoleAuthorityService {
     @Resource
-    private RoleAuthorityDao roleAuthorityDao;
+    private RoleAuthorityMapper roleAuthorityMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
      */
     @Override
     public RoleAuthority queryById(Integer roleId) {
-        return this.roleAuthorityDao.queryById(roleId);
+        return this.roleAuthorityMapper.queryById(roleId);
     }
 
     /**
@@ -39,7 +39,7 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
      */
     @Override
     public List<RoleAuthority> queryAllByLimit(int offset, int limit) {
-        return this.roleAuthorityDao.queryAllByLimit(offset, limit);
+        return this.roleAuthorityMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
      */
     @Override
     public RoleAuthority insert(RoleAuthority roleAuthority) {
-        this.roleAuthorityDao.insert(roleAuthority);
+        this.roleAuthorityMapper.insert(roleAuthority);
         return roleAuthority;
     }
 
@@ -62,7 +62,7 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
      */
     @Override
     public RoleAuthority update(RoleAuthority roleAuthority) {
-        this.roleAuthorityDao.update(roleAuthority);
+        this.roleAuthorityMapper.update(roleAuthority);
         return this.queryById(roleAuthority.getRoleId());
     }
 
@@ -74,6 +74,6 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
      */
     @Override
     public boolean deleteById(Integer roleId) {
-        return this.roleAuthorityDao.deleteById(roleId) > 0;
+        return this.roleAuthorityMapper.deleteById(roleId) > 0;
     }
 }

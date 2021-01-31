@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.mapper.AuthorityDao;
+import com.zgy.learn.webtoken.mapper.AuthorityMapper;
 import com.zgy.learn.webtoken.pojo.Authority;
 import com.zgy.learn.webtoken.service.AuthorityService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("authorityService")
 public class AuthorityServiceImpl implements AuthorityService {
     @Resource
-    private AuthorityDao authorityDao;
+    private AuthorityMapper authorityMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public Authority queryById(Integer id) {
-        return this.authorityDao.queryById(id);
+        return this.authorityMapper.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public List<Authority> queryAllByLimit(int offset, int limit) {
-        return this.authorityDao.queryAllByLimit(offset, limit);
+        return this.authorityMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public Authority insert(Authority authority) {
-        this.authorityDao.insert(authority);
+        this.authorityMapper.insert(authority);
         return authority;
     }
 
@@ -62,7 +62,7 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public Authority update(Authority authority) {
-        this.authorityDao.update(authority);
+        this.authorityMapper.update(authority);
         return this.queryById(authority.getId());
     }
 
@@ -74,6 +74,6 @@ public class AuthorityServiceImpl implements AuthorityService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.authorityDao.deleteById(id) > 0;
+        return this.authorityMapper.deleteById(id) > 0;
     }
 }

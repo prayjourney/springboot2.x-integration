@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.mapper.UserRoleDao;
+import com.zgy.learn.webtoken.mapper.UserRoleMapper;
 import com.zgy.learn.webtoken.pojo.UserRole;
 import com.zgy.learn.webtoken.service.UserRoleService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("userRoleService")
 public class UserRoleServiceImpl implements UserRoleService {
     @Resource
-    private UserRoleDao userRoleDao;
+    private UserRoleMapper userRoleMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class UserRoleServiceImpl implements UserRoleService {
      */
     @Override
     public UserRole queryById(Integer userId) {
-        return this.userRoleDao.queryById(userId);
+        return this.userRoleMapper.queryById(userId);
     }
 
     /**
@@ -39,7 +39,7 @@ public class UserRoleServiceImpl implements UserRoleService {
      */
     @Override
     public List<UserRole> queryAllByLimit(int offset, int limit) {
-        return this.userRoleDao.queryAllByLimit(offset, limit);
+        return this.userRoleMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class UserRoleServiceImpl implements UserRoleService {
      */
     @Override
     public UserRole insert(UserRole userRole) {
-        this.userRoleDao.insert(userRole);
+        this.userRoleMapper.insert(userRole);
         return userRole;
     }
 
@@ -62,7 +62,7 @@ public class UserRoleServiceImpl implements UserRoleService {
      */
     @Override
     public UserRole update(UserRole userRole) {
-        this.userRoleDao.update(userRole);
+        this.userRoleMapper.update(userRole);
         return this.queryById(userRole.getUserId());
     }
 
@@ -74,6 +74,6 @@ public class UserRoleServiceImpl implements UserRoleService {
      */
     @Override
     public boolean deleteById(Integer userId) {
-        return this.userRoleDao.deleteById(userId) > 0;
+        return this.userRoleMapper.deleteById(userId) > 0;
     }
 }

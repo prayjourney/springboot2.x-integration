@@ -1,17 +1,17 @@
 package com.zgy.learn.webtoken.mapper;
 
-import com.zgy.learn.webtoken.pojo.OpUser;
+import com.zgy.learn.webtoken.pojo.Role;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * (OpUser)表数据库访问层
+ * (Role)表数据库访问层
  *
  * @author makejava
- * @since 2021-02-01 00:57:54
+ * @since 2021-02-01 00:56:52
  */
-public interface OpUserDao {
+public interface RoleMapper {
 
     /**
      * 通过ID查询单条数据
@@ -19,7 +19,7 @@ public interface OpUserDao {
      * @param id 主键
      * @return 实例对象
      */
-    OpUser queryById(Integer id);
+    Role queryById(Integer id);
 
     /**
      * 查询指定行数据
@@ -28,48 +28,48 @@ public interface OpUserDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<OpUser> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<Role> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param opUser 实例对象
+     * @param role 实例对象
      * @return 对象列表
      */
-    List<OpUser> queryAll(OpUser opUser);
+    List<Role> queryAll(Role role);
 
     /**
      * 新增数据
      *
-     * @param opUser 实例对象
+     * @param role 实例对象
      * @return 影响行数
      */
-    int insert(OpUser opUser);
+    int insert(Role role);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<OpUser> 实例对象列表
+     * @param entities List<Role> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<OpUser> entities);
+    int insertBatch(@Param("entities") List<Role> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<OpUser> 实例对象列表
+     * @param entities List<Role> 实例对象列表
      * @return 影响行数
      */
-    int insertOrUpdateBatch(@Param("entities") List<OpUser> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Role> entities);
 
     /**
      * 修改数据
      *
-     * @param opUser 实例对象
+     * @param role 实例对象
      * @return 影响行数
      */
-    int update(OpUser opUser);
+    int update(Role role);
 
     /**
      * 通过主键删除数据

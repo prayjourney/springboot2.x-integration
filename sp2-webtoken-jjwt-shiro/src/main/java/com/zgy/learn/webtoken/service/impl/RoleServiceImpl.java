@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.mapper.RoleDao;
+import com.zgy.learn.webtoken.mapper.RoleMapper;
 import com.zgy.learn.webtoken.pojo.Role;
 import com.zgy.learn.webtoken.service.RoleService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
     @Resource
-    private RoleDao roleDao;
+    private RoleMapper roleMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Role queryById(Integer id) {
-        return this.roleDao.queryById(id);
+        return this.roleMapper.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<Role> queryAllByLimit(int offset, int limit) {
-        return this.roleDao.queryAllByLimit(offset, limit);
+        return this.roleMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Role insert(Role role) {
-        this.roleDao.insert(role);
+        this.roleMapper.insert(role);
         return role;
     }
 
@@ -62,7 +62,7 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public Role update(Role role) {
-        this.roleDao.update(role);
+        this.roleMapper.update(role);
         return this.queryById(role.getId());
     }
 
@@ -74,6 +74,6 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.roleDao.deleteById(id) > 0;
+        return this.roleMapper.deleteById(id) > 0;
     }
 }

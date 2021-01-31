@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2021-02-01 00:55:20
  */
-public interface AuthorityDao {
+public interface AuthorityMapper {
 
     /**
      * 通过ID查询单条数据

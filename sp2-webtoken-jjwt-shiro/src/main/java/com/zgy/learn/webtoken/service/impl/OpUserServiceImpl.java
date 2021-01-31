@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.mapper.OpUserDao;
+import com.zgy.learn.webtoken.mapper.OpUserMapper;
 import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.service.OpUserService;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("opUserService")
 public class OpUserServiceImpl implements OpUserService {
     @Resource
-    private OpUserDao opUserDao;
+    private OpUserMapper opUserMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class OpUserServiceImpl implements OpUserService {
      */
     @Override
     public OpUser queryById(Integer id) {
-        return this.opUserDao.queryById(id);
+        return this.opUserMapper.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class OpUserServiceImpl implements OpUserService {
      */
     @Override
     public List<OpUser> queryAllByLimit(int offset, int limit) {
-        return this.opUserDao.queryAllByLimit(offset, limit);
+        return this.opUserMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class OpUserServiceImpl implements OpUserService {
      */
     @Override
     public OpUser insert(OpUser opUser) {
-        this.opUserDao.insert(opUser);
+        this.opUserMapper.insert(opUser);
         return opUser;
     }
 
@@ -62,7 +62,7 @@ public class OpUserServiceImpl implements OpUserService {
      */
     @Override
     public OpUser update(OpUser opUser) {
-        this.opUserDao.update(opUser);
+        this.opUserMapper.update(opUser);
         return this.queryById(opUser.getId());
     }
 
@@ -74,6 +74,6 @@ public class OpUserServiceImpl implements OpUserService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.opUserDao.deleteById(id) > 0;
+        return this.opUserMapper.deleteById(id) > 0;
     }
 }

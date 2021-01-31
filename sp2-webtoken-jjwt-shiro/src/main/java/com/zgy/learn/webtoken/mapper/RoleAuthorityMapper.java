@@ -1,25 +1,25 @@
 package com.zgy.learn.webtoken.mapper;
 
-import com.zgy.learn.webtoken.pojo.Role;
+import com.zgy.learn.webtoken.pojo.RoleAuthority;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * (Role)表数据库访问层
+ * (RoleAuthority)表数据库访问层
  *
  * @author makejava
- * @since 2021-02-01 00:56:52
+ * @since 2021-02-01 00:58:22
  */
-public interface RoleDao {
+public interface RoleAuthorityMapper {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param id 主键
+     * @param roleId 主键
      * @return 实例对象
      */
-    Role queryById(Integer id);
+    RoleAuthority queryById(Integer roleId);
 
     /**
      * 查询指定行数据
@@ -28,55 +28,55 @@ public interface RoleDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<Role> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<RoleAuthority> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param role 实例对象
+     * @param roleAuthority 实例对象
      * @return 对象列表
      */
-    List<Role> queryAll(Role role);
+    List<RoleAuthority> queryAll(RoleAuthority roleAuthority);
 
     /**
      * 新增数据
      *
-     * @param role 实例对象
+     * @param roleAuthority 实例对象
      * @return 影响行数
      */
-    int insert(Role role);
+    int insert(RoleAuthority roleAuthority);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Role> 实例对象列表
+     * @param entities List<RoleAuthority> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<Role> entities);
+    int insertBatch(@Param("entities") List<RoleAuthority> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Role> 实例对象列表
+     * @param entities List<RoleAuthority> 实例对象列表
      * @return 影响行数
      */
-    int insertOrUpdateBatch(@Param("entities") List<Role> entities);
+    int insertOrUpdateBatch(@Param("entities") List<RoleAuthority> entities);
 
     /**
      * 修改数据
      *
-     * @param role 实例对象
+     * @param roleAuthority 实例对象
      * @return 影响行数
      */
-    int update(Role role);
+    int update(RoleAuthority roleAuthority);
 
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param roleId 主键
      * @return 影响行数
      */
-    int deleteById(Integer id);
+    int deleteById(Integer roleId);
 
 }

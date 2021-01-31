@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zgy.learn.webtoken.mapper.UserRoleDao">
+<mapper namespace="com.zgy.learn.webtoken.mapper.UserRoleMapper">
 
     <resultMap type="com.zgy.learn.webtoken.pojo.UserRole" id="UserRoleMap">
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
