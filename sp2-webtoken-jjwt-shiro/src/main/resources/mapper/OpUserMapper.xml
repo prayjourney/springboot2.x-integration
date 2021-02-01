@@ -26,6 +26,14 @@
         where id = #{id}
     </select>
 
+    <!--查询单个-->
+    <select id="queryByName" resultMap="OpUserMap">
+        select
+            id, username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked, credentials_expired, create_time, update_time
+        from security.op_user
+        where username = #{username}
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="OpUserMap">
         select
