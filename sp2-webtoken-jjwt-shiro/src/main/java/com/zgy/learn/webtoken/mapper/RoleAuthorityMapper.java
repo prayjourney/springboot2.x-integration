@@ -1,7 +1,9 @@
 package com.zgy.learn.webtoken.mapper;
 
 import com.zgy.learn.webtoken.pojo.RoleAuthority;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
  * @author z.g.y
  * @since 2021-02-01 00:58:22
  */
+@Mapper
+@Repository
 public interface RoleAuthorityMapper {
 
     /**
