@@ -3,6 +3,7 @@ package com.zgy.learn.webtoken.controller;
 import com.zgy.learn.webtoken.pojo.RoleAuthority;
 import com.zgy.learn.webtoken.service.RoleAuthorityService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,20 @@ public class RoleAuthorityController {
     @GetMapping("selectOne")
     public RoleAuthority selectOne(Integer id) {
         return this.roleAuthorityService.queryById(id);
+    }
+
+    /**
+     * 给角色赋予权限
+     *
+     * @param roleId
+     * @param authorityId
+     * @return
+     */
+    @PostMapping("createRoleAuthority")
+    public RoleAuthority createRoleAuthority(Integer roleId, Integer authorityId) {
+        RoleAuthority roleAuthority = new RoleAuthority();
+        roleAuthority.setRoleId(roleId).setAuthorityId(authorityId);
+        return roleAuthorityService.insert(roleAuthority);
     }
 
 }

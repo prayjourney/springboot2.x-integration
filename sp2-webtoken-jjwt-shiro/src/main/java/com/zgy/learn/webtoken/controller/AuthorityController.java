@@ -3,10 +3,12 @@ package com.zgy.learn.webtoken.controller;
 import com.zgy.learn.webtoken.pojo.Authority;
 import com.zgy.learn.webtoken.service.AuthorityService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Authority表控制层
@@ -34,4 +36,18 @@ public class AuthorityController {
         return this.authorityService.queryById(id);
     }
 
+    /**
+     * 创建权限
+     *
+     * @param name
+     * @param displayName
+     * @return
+     */
+    @PostMapping("createAuthority")
+    public Authority createRole(String name, String displayName) {
+        Date now = new Date();
+        Authority authority = new Authority();
+        authority.setName(name).setDisplayName(displayName).setCreateTime(now).setUpdateTime(now);
+        return this.authorityService.insert(authority);
+    }
 }

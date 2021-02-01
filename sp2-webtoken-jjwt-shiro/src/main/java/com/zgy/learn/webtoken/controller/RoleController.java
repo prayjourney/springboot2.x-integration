@@ -3,10 +3,12 @@ package com.zgy.learn.webtoken.controller;
 import com.zgy.learn.webtoken.pojo.Role;
 import com.zgy.learn.webtoken.service.RoleService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Role表控制层
@@ -32,6 +34,21 @@ public class RoleController {
     @GetMapping("selectOne")
     public Role selectOne(Integer id) {
         return this.roleService.queryById(id);
+    }
+
+    /**
+     * 创建角色
+     *
+     * @param name
+     * @param displayName
+     * @return
+     */
+    @PostMapping("createRole")
+    public Role createRole(String name, String displayName) {
+        Date now = new Date();
+        Role role = new Role();
+        role.setName(name).setDisplayName(displayName).setCreateTime(now).setUpdateTime(now);
+        return this.roleService.insert(role);
     }
 
 }
