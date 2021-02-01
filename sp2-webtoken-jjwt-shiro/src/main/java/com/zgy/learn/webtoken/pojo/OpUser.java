@@ -1,14 +1,27 @@
 package com.zgy.learn.webtoken.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * (OpUser)实体类
+ * OpUser实体类
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:57:54
  */
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
 public class OpUser implements Serializable {
     private static final long serialVersionUID = 914918679313307010L;
     /**

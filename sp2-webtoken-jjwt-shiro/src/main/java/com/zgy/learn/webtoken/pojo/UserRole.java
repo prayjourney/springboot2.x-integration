@@ -1,13 +1,26 @@
 package com.zgy.learn.webtoken.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
- * (UserRole)实体类
+ * UserRole实体类
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:58:42
  */
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
 public class UserRole implements Serializable {
     private static final long serialVersionUID = 757615714314527453L;
     /**
@@ -18,22 +31,5 @@ public class UserRole implements Serializable {
      * 角色ID
      */
     private Integer roleId;
-
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
 
 }
