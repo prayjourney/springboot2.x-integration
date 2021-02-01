@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (Authority)表数据库访问层
+ * Authority表数据库访问层
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:55:20
  */
 public interface AuthorityMapper {

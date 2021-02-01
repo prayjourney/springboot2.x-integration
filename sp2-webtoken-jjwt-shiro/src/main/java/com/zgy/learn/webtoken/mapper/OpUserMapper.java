@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (OpUser)表数据库访问层
+ * OpUser表数据库访问层
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:57:54
  */
 public interface OpUserMapper {
@@ -20,6 +20,14 @@ public interface OpUserMapper {
      * @return 实例对象
      */
     OpUser queryById(Integer id);
+
+    /**
+     * 通过name查询单条数据
+     *
+     * @param name
+     * @return
+     */
+    OpUser queryByName(String name);
 
     /**
      * 查询指定行数据

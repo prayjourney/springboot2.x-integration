@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (Role)表数据库访问层
+ * Role表数据库访问层
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:56:52
  */
 public interface RoleMapper {

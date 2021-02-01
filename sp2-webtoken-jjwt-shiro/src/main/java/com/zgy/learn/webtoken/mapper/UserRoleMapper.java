@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * (UserRole)表数据库访问层
+ * UserRole表数据库访问层
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:58:42
  */
 public interface UserRoleMapper {
@@ -30,6 +30,13 @@ public interface UserRoleMapper {
      */
     List<UserRole> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 查询多条数据
+     *
+     * @param userId
+     * @return
+     */
+    List<UserRole> queryAllById(Integer userId);
 
     /**
      * 通过实体作为筛选条件查询
