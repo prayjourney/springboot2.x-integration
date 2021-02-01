@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * (Authority)表控制层
+ * Authority表控制层
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:55:24
  */
 @RestController
