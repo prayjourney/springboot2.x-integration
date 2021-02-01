@@ -119,29 +119,6 @@ INSERT INTO `role_authority` VALUES ('2', '7');
 INSERT INTO `role_authority` VALUES ('2', '8');
 
 -- ----------------------------
--- Table structure for user
--- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-                        `id` int(11) NOT NULL AUTO_INCREMENT,
-                        `name` varchar(50) NOT NULL,
-                        `password` varchar(100) NOT NULL,
-                        `perms` varchar(200) DEFAULT '' COMMENT '权限',
-                        `role` varchar(255) DEFAULT NULL COMMENT '角色',
-                        `salt` varchar(100) DEFAULT NULL,
-                        PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin1', '123456', 'user:add', 'admin', null);
-INSERT INTO `user` VALUES ('2', 'zhangsan', 'abc123', 'user:update', 'student', null);
-INSERT INTO `user` VALUES ('3', '小明', '111222', null, null, null);
-INSERT INTO `user` VALUES ('4', 'zhangsan111', '3a32e7b1667a7d399a3128aea86701ac9d2cf86ce5d3b7e49aa61ce5bae0b272', 'user:update', 'student', '03d8c835-9252-44f3-980b-45396c54881f');
-INSERT INTO `user` VALUES ('5', 'admin', '57ee3edff91aef750e34ee417b6179fe1b9998b5868db507b9cb719925f915b8', 'user:add', 'admin', '881cef05-bd8a-4477-9be9-fe77d07e4915');
-
--- ----------------------------
 -- Table structure for user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `user_role`;
@@ -159,3 +136,17 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` VALUES ('1', '1');
 INSERT INTO `user_role` VALUES ('2', '2');
 INSERT INTO `user_role` VALUES ('3', '2');
+
+-- ----------------------------
+-- Table structure for message
+-- ----------------------------
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+                           `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+                           `name` varchar(100) NOT NULL COMMENT '题目',
+                           `useId` int(11) NOT NULL COMMENT '用户id',
+                           `content` varchar(255) NOT NULL COMMENT '内容',
+                           `create_time` datetime NOT NULL COMMENT '创建时间',
+                           `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp() COMMENT '更新时间',
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
