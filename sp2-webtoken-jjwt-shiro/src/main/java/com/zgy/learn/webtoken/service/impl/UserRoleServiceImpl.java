@@ -9,9 +9,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * (UserRole)表服务实现类
+ * UserRole表服务实现类
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:58:42
  */
 @Service("userRoleService")
@@ -40,6 +40,17 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public List<UserRole> queryAllByLimit(int offset, int limit) {
         return this.userRoleMapper.queryAllByLimit(offset, limit);
+    }
+
+    /**
+     * 查询多条数据
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<UserRole> queryAllById(Integer userId) {
+        return this.userRoleMapper.queryAllById(userId);
     }
 
     /**

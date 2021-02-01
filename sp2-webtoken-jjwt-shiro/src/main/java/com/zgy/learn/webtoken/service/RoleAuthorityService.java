@@ -5,9 +5,9 @@ import com.zgy.learn.webtoken.pojo.RoleAuthority;
 import java.util.List;
 
 /**
- * (RoleAuthority)表服务接口
+ * RoleAuthority表服务接口
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:58:22
  */
 public interface RoleAuthorityService {

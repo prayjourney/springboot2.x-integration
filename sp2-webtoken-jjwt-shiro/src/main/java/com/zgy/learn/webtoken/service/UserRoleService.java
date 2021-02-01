@@ -5,9 +5,9 @@ import com.zgy.learn.webtoken.pojo.UserRole;
 import java.util.List;
 
 /**
- * (UserRole)表服务接口
+ * UserRole表服务接口
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:58:42
  */
 public interface UserRoleService {
@@ -28,6 +28,14 @@ public interface UserRoleService {
      * @return 对象列表
      */
     List<UserRole> queryAllByLimit(int offset, int limit);
+
+    /**
+     * 查询多条数据
+     *
+     * @param userId
+     * @return
+     */
+    List<UserRole> queryAllById(Integer userId);
 
     /**
      * 新增数据

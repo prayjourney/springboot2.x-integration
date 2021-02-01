@@ -5,9 +5,9 @@ import com.zgy.learn.webtoken.pojo.Role;
 import java.util.List;
 
 /**
- * (Role)表服务接口
+ * Role表服务接口
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:56:52
  */
 public interface RoleService {

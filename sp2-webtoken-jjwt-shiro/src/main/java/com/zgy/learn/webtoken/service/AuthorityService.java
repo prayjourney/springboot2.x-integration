@@ -5,9 +5,9 @@ import com.zgy.learn.webtoken.pojo.Authority;
 import java.util.List;
 
 /**
- * (Authority)表服务接口
+ * Authority表服务接口
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:55:22
  */
 public interface AuthorityService {

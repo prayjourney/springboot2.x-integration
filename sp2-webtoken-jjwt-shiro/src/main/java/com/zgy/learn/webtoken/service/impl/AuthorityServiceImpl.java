@@ -9,9 +9,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * (Authority)表服务实现类
+ * Authority表服务实现类
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:55:24
  */
 @Service("authorityService")

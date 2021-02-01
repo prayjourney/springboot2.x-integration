@@ -9,9 +9,9 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * (OpUser)表服务实现类
+ * OpUser表服务实现类
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:57:55
  */
 @Service("opUserService")
@@ -28,6 +28,11 @@ public class OpUserServiceImpl implements OpUserService {
     @Override
     public OpUser queryById(Integer id) {
         return this.opUserMapper.queryById(id);
+    }
+
+    @Override
+    public OpUser queryByName(String name) {
+        return this.opUserMapper.queryByName(name);
     }
 
     /**

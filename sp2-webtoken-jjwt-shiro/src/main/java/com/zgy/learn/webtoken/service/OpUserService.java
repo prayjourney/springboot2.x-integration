@@ -5,9 +5,9 @@ import com.zgy.learn.webtoken.pojo.OpUser;
 import java.util.List;
 
 /**
- * (OpUser)表服务接口
+ * OpUser表服务接口
  *
- * @author makejava
+ * @author z.g.y
  * @since 2021-02-01 00:57:54
  */
 public interface OpUserService {
@@ -19,6 +19,14 @@ public interface OpUserService {
      * @return 实例对象
      */
     OpUser queryById(Integer id);
+
+    /**
+     * 通过name查询单条数据
+     *
+     * @param name
+     * @return
+     */
+    OpUser queryByName(String name);
 
     /**
      * 查询多条数据
