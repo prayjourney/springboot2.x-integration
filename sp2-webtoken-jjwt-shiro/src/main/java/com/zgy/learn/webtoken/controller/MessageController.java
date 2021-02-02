@@ -70,7 +70,8 @@ public class MessageController {
         Subject subject = SecurityUtils.getSubject();
         OpUser opUser = (OpUser) subject.getPrincipal();
 
-        message.setName(name).setContent(content).setCreateTime(now).setUpdateTime(now).setUserId(opUser.getId());
+        // 去掉首尾空格
+        message.setName(name).setContent(content.trim()).setCreateTime(now).setUpdateTime(now).setUserId(opUser.getId());
         messageService.insert(message);
         return "message";
     }

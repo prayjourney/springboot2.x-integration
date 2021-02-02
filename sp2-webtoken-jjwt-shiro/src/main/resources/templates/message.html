@@ -6,6 +6,7 @@
         <!-- 小图标 -->
         <link rel="shortcut icon" type="image/x-icon" href="/img/mine.ico">
         <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <script src="js/jquery-3.4.0.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -18,9 +19,11 @@
                 </div>
                 <div class="row info">
                     <a href="/message/index" name="消息首页" class="form-control">消息首页</a>
-                    <a href="/message/add" name="添加消息">添加消息</a>
-                    <a name="/message/read?id=1">查看id=1的消息</a>
-                    <a name="/message/delete?id=1">删除id=1的消息</a>
+                    <a href="/message/add" name="添加消息" class="form-control">添加消息</a>
+                </div>
+                <div class="form-group" style="padding-left: 15px; padding-right: 15px;">
+                    <input type="button" value="查看id=1的消息" class="btn btn-block btn-primary" onclick="readmessage(1)"/>
+                    <input type="button" value="删除id=1的消息" class="btn btn-block btn-success" onclick="delmessage(1)"/>
                 </div>
             </div>
         </div>
@@ -44,5 +47,40 @@
                 padding-left: 10px;
             }
         </style>
+        <script>
+            function readmessage(id) {
+                $.ajax({
+                    url: "/message/read",
+                    dataType: "json",
+                    type: "get",
+                    data: {
+                        'id': id,
+                    },
+                    success: function (data) {
+                        console.log(1)
+                    },
+                    error: function () {
+                    }
+                });
+            }
+
+            function delmessage() {
+                $.ajax({
+                    url: "/message/delete",
+                    dataType: "json",
+                    type: "get",
+                    data: {
+                        'id': id,
+                    },
+                    success: function (data) {
+                        console.log(1)
+                    },
+                    error: function () {
+                    }
+                });
+
+            }
+        </script>
+
     </body>
 </html>
