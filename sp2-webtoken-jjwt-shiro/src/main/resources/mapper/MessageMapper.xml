@@ -42,7 +42,7 @@
         from security.message
         <where>
             <if test="id != null">
-                and id = #{id}
+                id = #{id}
             </if>
             <if test="name != null and name != ''">
                 and name = #{name}

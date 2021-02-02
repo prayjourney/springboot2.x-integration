@@ -30,7 +30,7 @@
         from security.role_authority
         <where>
             <if test="roleId != null">
-                and role_id = #{roleId}
+                role_id = #{roleId}
             </if>
             <if test="authorityId != null">
                 and authority_id = #{authorityId}

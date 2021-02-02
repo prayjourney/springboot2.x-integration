@@ -30,7 +30,7 @@
         from security.user_role
         <where>
             <if test="userId != null">
-                and user_id = #{userId}
+                user_id = #{userId}
             </if>
             <if test="roleId != null">
                 and role_id = #{roleId}
@@ -39,13 +39,13 @@
     </select>
 
     <!--通过id查询用户角色-->
-    <select id="queryAllById" resultType="com.zgy.learn.webtoken.pojo.UserRole">
+    <select id="queryAllById" resultMap="UserRoleMap">
         select
         user_id, role_id
         from security.user_role
         <where>
             <if test="userId != null">
-                and user_id = #{userId}
+                user_id = #{userId}
             </if>
         </where>
     </select>

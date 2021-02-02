@@ -50,7 +50,7 @@
         from security.op_user
         <where>
             <if test="id != null">
-                and id = #{id}
+                id = #{id}
             </if>
             <if test="username != null and username != ''">
                 and username = #{username}
