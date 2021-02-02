@@ -1,7 +1,7 @@
 package com.zgy.learn.webtoken.service.impl;
 
-import com.zgy.learn.webtoken.dao.MessageDao;
-import com.zgy.learn.webtoken.entity.Message;
+import com.zgy.learn.webtoken.mapper.MessageMapper;
+import com.zgy.learn.webtoken.pojo.Message;
 import com.zgy.learn.webtoken.service.MessageService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @Service("messageService")
 public class MessageServiceImpl implements MessageService {
     @Resource
-    private MessageDao messageDao;
+    private MessageMapper messageMapper;
 
     /**
      * 通过ID查询单条数据
@@ -27,7 +27,7 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public Message queryById(Integer id) {
-        return this.messageDao.queryById(id);
+        return this.messageMapper.queryById(id);
     }
 
     /**
@@ -39,7 +39,7 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public List<Message> queryAllByLimit(int offset, int limit) {
-        return this.messageDao.queryAllByLimit(offset, limit);
+        return this.messageMapper.queryAllByLimit(offset, limit);
     }
 
     /**
@@ -50,7 +50,7 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public Message insert(Message message) {
-        this.messageDao.insert(message);
+        this.messageMapper.insert(message);
         return message;
     }
 
@@ -62,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public Message update(Message message) {
-        this.messageDao.update(message);
+        this.messageMapper.update(message);
         return this.queryById(message.getId());
     }
 
@@ -74,6 +74,6 @@ public class MessageServiceImpl implements MessageService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.messageDao.deleteById(id) > 0;
+        return this.messageMapper.deleteById(id) > 0;
     }
 }
