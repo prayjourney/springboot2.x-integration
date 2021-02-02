@@ -1,6 +1,7 @@
 package com.zgy.learn.webtoken.config;
 
 import com.zgy.learn.webtoken.pojo.OpUser;
+import com.zgy.learn.webtoken.pojo.RoleAuthority;
 import com.zgy.learn.webtoken.pojo.UserRole;
 import com.zgy.learn.webtoken.service.AuthorityService;
 import com.zgy.learn.webtoken.service.OpUserService;
@@ -25,6 +26,7 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,16 +83,28 @@ public class OpUserRealm extends AuthorizingRealm {
         Subject subject = SecurityUtils.getSubject();
         OpUser currentUser = (OpUser) subject.getPrincipal();
 
-        // 设置权限和角色, 用户->角色->权限
+        // 设置权限和角色, 用户->角色->权限, 用户->角色(多), 角色->权限(多)
         List<UserRole> userRoles = userRoleService.queryAllById(currentUser.getId());
         List<String> userRolesNames = userRoles.stream().map(userRole -> {
             Integer roleId = userRole.getRoleId();
             return roleService.queryById(roleId).getName();
         }).collect(Collectors.toList());
 
-        List<String> userRolesAuthorities = userRoles.stream().map(userRole -> {
+        // 权限的id
+        List<List<Integer>> authoritiesListIds = userRoles.stream().map(userRole -> {
             Integer roleId = userRole.getRoleId();
-            Integer authorityId = roleAuthorityService.queryById(roleId).getAuthorityId();
+            List<RoleAuthority> roleAuthorities = roleAuthorityService.queryAllById(roleId);
+            List<Integer> roleAuthoritiesIds = roleAuthorities.stream().map(RoleAuthority::getAuthorityId).collect(Collectors.toList());
+            return roleAuthoritiesIds;
+        }).collect(Collectors.toList());
+
+        List<Integer> authoritiesIds = new ArrayList<>();
+        for (List<Integer> ls : authoritiesListIds) {
+            authoritiesIds.addAll(ls);
+        }
+
+        // 去重, 然后获取权限名
+        List<String> userRolesAuthorities = authoritiesIds.stream().distinct().map(authorityId -> {
             return authorityService.queryById(authorityId).getName();
         }).collect(Collectors.toList());
 
