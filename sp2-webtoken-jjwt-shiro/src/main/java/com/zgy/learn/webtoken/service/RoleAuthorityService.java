@@ -30,6 +30,14 @@ public interface RoleAuthorityService {
     List<RoleAuthority> queryAllByLimit(int offset, int limit);
 
     /**
+     * 查询多条数据
+     *
+     * @param roleId
+     * @return
+     */
+    List<RoleAuthority> queryAllById(Integer roleId);
+
+    /**
      * 新增数据
      *
      * @param roleAuthority 实例对象

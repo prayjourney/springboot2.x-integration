@@ -34,6 +34,14 @@ public interface RoleAuthorityMapper {
      */
     List<RoleAuthority> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 查询多条数据
+     *
+     * @param roleId
+     * @return
+     */
+    List<RoleAuthority> queryAllById(Integer roleId);
+
 
     /**
      * 通过实体作为筛选条件查询

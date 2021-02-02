@@ -43,6 +43,18 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
     }
 
     /**
+     * 查询多条数据
+     *
+     * @param roleId
+     * @return
+     */
+    @Override
+    public List<RoleAuthority> queryAllById(Integer roleId) {
+        return this.roleAuthorityMapper.queryAllById(roleId);
+
+    }
+
+    /**
      * 新增数据
      *
      * @param roleAuthority 实例对象

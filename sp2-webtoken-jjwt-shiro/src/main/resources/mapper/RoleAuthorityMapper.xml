@@ -38,6 +38,18 @@
         </where>
     </select>
 
+    <!--通过roleid查询用户角色权限 -->
+    <select id="queryAllById" resultMap="RoleAuthorityMap">
+        select
+            role_id, authority_id
+        from security.role_authority
+        <where>
+            <if test="roleId != null">
+                role_id = #{roleId}
+            </if>
+        </where>
+    </select>
+
     <!--新增所有列-->
     <insert id="insert" keyProperty="roleId" useGeneratedKeys="true">
         insert into security.role_authority()
