@@ -6,6 +6,7 @@ import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
@@ -92,13 +93,13 @@ public class MessageController {
 
 
     /**
-     * 阅读message, admin角色或者是user角色
+     * 阅读message, admin角色或者是user角色, 默认是AND
      *
      * @param id
      * @return
      */
     @GetMapping("read")
-    @RequiresRoles(value = {"admin", "user"})
+    @RequiresRoles(value = {"admin", "user"}, logical = Logical.OR)
     @ResponseBody
     public String readMessage(Integer id) {
         Message message = messageService.queryById(id);
