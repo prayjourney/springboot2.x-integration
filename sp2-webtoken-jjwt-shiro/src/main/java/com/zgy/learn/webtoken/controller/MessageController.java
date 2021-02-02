@@ -3,9 +3,9 @@ package com.zgy.learn.webtoken.controller;
 
 import com.zgy.learn.webtoken.pojo.Message;
 import com.zgy.learn.webtoken.service.MessageService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  * @author z.g.y
  * @since 2021-02-02 15:36:44
  */
-@RestController
+@Controller
 @RequestMapping("message")
 public class MessageController {
     /**
@@ -23,6 +23,11 @@ public class MessageController {
      */
     @Resource
     private MessageService messageService;
+
+    @GetMapping("index")
+    public String index() {
+        return "message";
+    }
 
     /**
      * 通过主键查询单条数据
