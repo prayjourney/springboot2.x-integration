@@ -7,6 +7,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -27,15 +28,24 @@ public class IndexController {
         return "login";
     }
 
+    /**
+     * 登录
+     *
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     */
     @PostMapping("login")
-    public String login(String username, String password) {
+    public String login(String username, String password, Model model) {
         // 获取当前用户
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);
             log.info("登录成功...");
-            return "index";
+            model.addAttribute("name", username);
+            return "message";
         } catch (UnknownAccountException e1) {
             log.error("用户名错误");
             return "login";
