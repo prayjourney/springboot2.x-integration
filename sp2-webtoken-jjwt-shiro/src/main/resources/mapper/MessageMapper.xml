@@ -5,7 +5,7 @@
     <resultMap type="com.zgy.learn.webtoken.pojo.Message" id="MessageMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="useid" column="useId" jdbcType="INTEGER"/>
+        <result property="userId" column="userId" jdbcType="INTEGER"/>
         <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
@@ -15,7 +15,7 @@
     <select id="queryById" resultMap="MessageMap">
         select id,
                name,
-               useId,
+               userId,
                content,
                create_time,
                update_time
@@ -27,7 +27,7 @@
     <select id="queryAllByLimit" resultMap="MessageMap">
         select id,
                name,
-               useId,
+               userId,
                content,
                create_time,
                update_time
@@ -38,7 +38,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="MessageMap">
         select
-        id, name, useId, content, create_time, update_time
+        id, name, userId, content, create_time, update_time
         from security.message
         <where>
             <if test="id != null">
@@ -47,8 +47,8 @@
             <if test="name != null and name != ''">
                 and name = #{name}
             </if>
-            <if test="useid != null">
-                and useId = #{useid}
+            <if test="userId != null">
+                and useId = #{userId}
             </if>
             <if test="content != null and content != ''">
                 and content = #{content}
@@ -64,26 +64,26 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into security.message(name, useId, content, create_time, update_time)
-        values (#{name}, #{useid}, #{content}, #{createTime}, #{updateTime})
+        insert into security.message(name, userId, content, create_time, update_time)
+        values (#{name}, #{userId}, #{content}, #{createTime}, #{updateTime})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into security.message(name, useId, content, create_time, update_time)
+        insert into security.message(name, userId, content, create_time, update_time)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.useid}, #{entity.content}, #{entity.createTime}, #{entity.updateTime})
+            (#{entity.name}, #{entity.userId}, #{entity.content}, #{entity.createTime}, #{entity.updateTime})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into security.message(name, useId, content, create_time, update_time)
+        insert into security.message(name, userId, content, create_time, update_time)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.useid}, #{entity.content}, #{entity.createTime}, #{entity.updateTime})
+            (#{entity.name}, #{entity.userId}, #{entity.content}, #{entity.createTime}, #{entity.updateTime})
         </foreach>
         on duplicate key update
-        name = values(name) , useId = values(useId) , content = values(content) , create_time = values(create_time) ,
+        name = values(name) , userId = values(userId) , content = values(content) , create_time = values(create_time) ,
         update_time = values(update_time)
     </insert>
 
@@ -94,8 +94,8 @@
             <if test="name != null and name != ''">
                 name = #{name},
             </if>
-            <if test="useid != null">
-                useId = #{useid},
+            <if test="userId != null">
+                useId = #{userId},
             </if>
             <if test="content != null and content != ''">
                 content = #{content},

@@ -144,7 +144,7 @@ DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
                            `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
                            `name` varchar(100) NOT NULL COMMENT '题目',
-                           `useId` int(11) NOT NULL COMMENT '用户id',
+                           `userId` int(11) NOT NULL COMMENT '用户id',
                            `content` varchar(255) NOT NULL COMMENT '内容',
                            `create_time` datetime NOT NULL COMMENT '创建时间',
                            `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp() COMMENT '更新时间',
