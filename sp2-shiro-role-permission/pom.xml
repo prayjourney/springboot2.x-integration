@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zgy.learn.webtoken</groupId>
-    <artifactId>sp2-webtoken-jjwt-shiro</artifactId>
+    <artifactId>sp2-shiro-role-permission</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sp2-webtoken-jjwt-shiro</name>
+    <name>sp2-shiro-role-permission</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
