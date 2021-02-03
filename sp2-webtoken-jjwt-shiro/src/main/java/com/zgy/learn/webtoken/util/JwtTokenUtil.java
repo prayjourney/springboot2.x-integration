@@ -1,7 +1,6 @@
 package com.zgy.learn.webtoken.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zgy.learn.webtoken.pojo.OpUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -23,6 +22,13 @@ import java.util.Map;
  */
 @Component
 public class JwtTokenUtil {
+    /**
+     * 生成token
+     *
+     * @param opUser
+     * @return
+     * @throws JsonProcessingException
+     */
     public String createToken(OpUser opUser) throws JsonProcessingException {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         long nowMillis = System.currentTimeMillis();
@@ -49,13 +55,43 @@ public class JwtTokenUtil {
         return builder.compact();
     }
 
+
+    /**
+     * 解析token内容
+     *
+     * @param jwt
+     * @return
+     */
     public Claims parseToken(String jwt) {
         SecretKey key = generateKey();
         Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(jwt).getBody();
+        // 所有的内容, 都在claim之中, 官方的字段, 我们自己定义的字段
+        // claims.getSubject();
+        // claims.getExpiration();
+        // claims.get("uid");
         return claims;
     }
 
 
+    /**
+     * 验证token的有效性
+     *
+     * @param jwt
+     * @return
+     */
+    public boolean validToken(String jwt) {
+        Date now = new Date();
+        SecretKey key = generateKey();
+        Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(jwt).getBody();
+        Date expiration = claims.getExpiration();
+        if (now.after(expiration)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    // 生成秘钥
     private SecretKey generateKey() {
         String stringKey = TokenConstant.JWT_SECRET;
         SecretKey key = new SecretKeySpec(stringKey.getBytes(), 0, stringKey.getBytes().length, "AES");
