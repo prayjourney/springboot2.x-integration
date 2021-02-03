@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>message</title>
+        <!-- 小图标 -->
+        <link rel="shortcut icon" type="image/x-icon" href="/img/mine.ico">
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <script src="/js/jquery-3.4.0.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- style="margin-top: 10px; border: 1px solid #ff9800;" -->
+            <div class="offset-2 col-md-8">
+                <div class="row back">
+                    <h2 class="text-warning">Message</h2>
+                    <!-- 使用了thymeleaf, 无法直接使用${name}, 需要用thymelaf的头包起来, 如下-->
+                    <span class="welcome">欢迎：<span class="badge badge-info" th:text="${name}"></span></span>
+                </div>
+                <div class="row info">
+                    <a href="/message/index" name="消息首页" class="form-control">消息首页</a>
+                    <a href="/message/add" name="添加消息" class="form-control">添加消息</a>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <button class="btn btn-block btn-outline-info" onclick="readmessage(2)">查看id=1的消息</button>
+                    <button class="btn btn-block btn-danger" onclick="delmessage(1)">删除id=1的消息</button>
+                </div>
+            </div>
+        </div>
+        <style>
+            .back {
+                background-color: #e7f4ff
+            }
+
+            .info {
+                font-size: 18px;
+                margin-top: 10px;
+                text-align: center;
+                border: 2px solid lightsalmon;;
+            }
+
+            /* 设置水平居中, vertical-align, line-height */
+            .welcome {
+                vertical-align: middle;
+                line-height: 45px;
+                font-size: 20px;
+                padding-left: 10px;
+            }
+        </style>
+        <script>
+            function readmessage(id) {
+                $.ajax({
+                    url: "/message/read",
+                    // dataType: "json",
+                    type: "get",
+                    data: {
+                        "id": id,
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        alert(data)
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+
+            function delmessage(id) {
+                $.ajax({
+                    url: "/message/delete",
+                    // dataType: "json",
+                    type: "get",
+                    data: {
+                        'id': id,
+                    },
+                    success: function (data) {
+                        alert("删除成功!")
+                    },
+                    error: function () {
+                    }
+                });
+            }
+        </script>
+
+    </body>
+</html>

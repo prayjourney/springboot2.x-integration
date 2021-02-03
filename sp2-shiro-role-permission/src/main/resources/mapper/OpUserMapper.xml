@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgy.learn.webtoken.mapper.OpUserMapper">
+
+    <resultMap type="com.zgy.learn.webtoken.pojo.OpUser" id="OpUserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="tel" column="tel" jdbcType="VARCHAR"/>
+        <result property="accountDisabled" column="account_disabled" jdbcType="OTHER"/>
+        <result property="accountExpired" column="account_expired" jdbcType="OTHER"/>
+        <result property="accountLocked" column="account_locked" jdbcType="OTHER"/>
+        <result property="credentialsExpired" column="credentials_expired" jdbcType="OTHER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OpUserMap">
+        select
+          id, username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked, credentials_expired, create_time, update_time
+        from security.op_user
+        where id = #{id}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryByName" resultMap="OpUserMap">
+        select
+            id, username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked, credentials_expired, create_time, update_time
+        from security.op_user
+        where username = #{username}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OpUserMap">
+        select
+          id, username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked, credentials_expired, create_time, update_time
+        from security.op_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OpUserMap">
+        select
+        id, username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked,
+        credentials_expired, create_time, update_time
+        from security.op_user
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="salt != null and salt != ''">
+                and salt = #{salt}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="realName != null and realName != ''">
+                and real_name = #{realName}
+            </if>
+            <if test="tel != null and tel != ''">
+                and tel = #{tel}
+            </if>
+            <if test="accountDisabled != null">
+                and account_disabled = #{accountDisabled}
+            </if>
+            <if test="accountExpired != null">
+                and account_expired = #{accountExpired}
+            </if>
+            <if test="accountLocked != null">
+                and account_locked = #{accountLocked}
+            </if>
+            <if test="credentialsExpired != null">
+                and credentials_expired = #{credentialsExpired}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into security.op_user(username, password, salt, email, real_name, tel, account_disabled, account_expired, account_locked, credentials_expired, create_time, update_time)
+        values (#{username}, #{password}, #{salt}, #{email}, #{realName}, #{tel}, #{accountDisabled}, #{accountExpired}, #{accountLocked}, #{credentialsExpired}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into security.op_user(username, password, salt, email, real_name, tel, account_disabled, account_expired,
+        account_locked, credentials_expired, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.salt}, #{entity.email}, #{entity.realName}, #{entity.tel},
+            #{entity.accountDisabled}, #{entity.accountExpired}, #{entity.accountLocked}, #{entity.credentialsExpired},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into security.op_user(username, password, salt, email, real_name, tel, account_disabled, account_expired,
+        account_locked, credentials_expired, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.salt}, #{entity.email}, #{entity.realName}, #{entity.tel},
+            #{entity.accountDisabled}, #{entity.accountExpired}, #{entity.accountLocked}, #{entity.credentialsExpired},
+            #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        username = values(username) , password = values(password) , salt = values(salt) , email = values(email) ,
+        real_name = values(real_name) , tel = values(tel) , account_disabled = values(account_disabled) ,
+        account_expired = values(account_expired) , account_locked = values(account_locked) , credentials_expired =
+        values(credentials_expired) , create_time = values(create_time) , update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update security.op_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="salt != null and salt != ''">
+                salt = #{salt},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="tel != null and tel != ''">
+                tel = #{tel},
+            </if>
+            <if test="accountDisabled != null">
+                account_disabled = #{accountDisabled},
+            </if>
+            <if test="accountExpired != null">
+                account_expired = #{accountExpired},
+            </if>
+            <if test="accountLocked != null">
+                account_locked = #{accountLocked},
+            </if>
+            <if test="credentialsExpired != null">
+                credentials_expired = #{credentialsExpired},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from security.op_user where id = #{id}
+    </delete>
+
+</mapper>
