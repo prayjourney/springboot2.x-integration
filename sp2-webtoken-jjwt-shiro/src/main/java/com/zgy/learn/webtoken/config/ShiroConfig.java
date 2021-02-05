@@ -16,7 +16,7 @@ import java.util.Map;
  * @date 2021/2/1
  * @description ①创建realm对象->②配置DefaultWebSecurityManager, 设置使用的realm->③配置ShiroFilterFactoryBean
  */
-@Configuration
+// @Configuration
 public class ShiroConfig {
     @Autowired
     OpUserRealm opUserRealm;
