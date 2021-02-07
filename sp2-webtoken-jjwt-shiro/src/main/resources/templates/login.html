@@ -45,18 +45,19 @@
                 $.ajax({
                     type: "post",
                     url: "/logintoken",
+                    dataType: "json",
                     data: {
                         "username": $('#user').val(),
                         "password": $('#pwd').val()
                     },
-                    success: function (data) {
-                        // console.log(data)
+                    success: function (result) {
+                        // console.log(result)
                         // token直接从后端数据之中返回, 然后存入localStorage, 然后跳转到目标页面
-                        localStorage.setItem("jwt-token", data)
+                        localStorage.setItem("jwt-token", result.data)
                         window.location.href = "/message/index"
                     },
                     error: function (error) {
-                        console.log(error)
+                        console.log(error.msg)
                     }
                 });
 
