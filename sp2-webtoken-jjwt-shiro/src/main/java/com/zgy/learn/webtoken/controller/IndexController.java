@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author z.g.y
@@ -73,6 +74,7 @@ public class IndexController {
      * @param password
      * @return
      */
+    @ResponseBody
     @PostMapping("logintoken")
     public String logintoken(String username, String password) throws Exception {
         if (null == username || null == password) {
@@ -95,9 +97,10 @@ public class IndexController {
             // 登录
             subject.login(jwtToken);
             log.info("登录成功...");
-            return "message";
+            // 返回token
+            return jwtTokenUtil.createToken(opUser,null);
         } catch (Exception e) {
-            return "message";
+            return "error";
         }
     }
 }
