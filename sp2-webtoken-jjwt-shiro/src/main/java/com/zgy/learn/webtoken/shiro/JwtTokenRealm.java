@@ -16,6 +16,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -94,9 +95,9 @@ public class JwtTokenRealm extends AuthorizingRealm {
         }
 
         // 获取用户名, 用户唯一标识, 此处获取的是token
-        String token = (String)principals.getPrimaryPrincipal();
+        String token = (String) principals.getPrimaryPrincipal();
         boolean status = jwtTokenUtil.validToken(token);
-        if (!status){
+        if (!status) {
             // 过期
             return null;
         }
@@ -138,14 +139,16 @@ public class JwtTokenRealm extends AuthorizingRealm {
     }
 
 
-//    @Override
-//    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-//        // 加密算法, 加密次数
-//        HashedCredentialsMatcher master = new HashedCredentialsMatcher();
-//        master.setHashAlgorithmName("SHA-256");
-//        master.setHashIterations(1024);
-//        // 设置密码匹配器
-//        super.setCredentialsMatcher(master);
-//    }
+    /**
+     * 使用jwt的密码匹配器
+     *
+     * @param credentialsMatcher
+     */
+    @Override
+    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
+        JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
+        // 设置密码匹配器
+        super.setCredentialsMatcher(matcher);
+    }
 
 }
