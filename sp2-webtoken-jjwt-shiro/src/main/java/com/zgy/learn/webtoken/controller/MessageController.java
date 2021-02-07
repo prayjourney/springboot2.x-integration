@@ -4,6 +4,8 @@ package com.zgy.learn.webtoken.controller;
 import com.zgy.learn.webtoken.pojo.Message;
 import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.service.MessageService;
+import com.zgy.learn.webtoken.util.result.Result;
+import com.zgy.learn.webtoken.util.result.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
@@ -46,11 +48,12 @@ public class MessageController {
      *
      * @return
      */
+    @ResponseBody
     @GetMapping("add")
     @RequiresPermissions("addMessage")
-    public String addMessage() {
+    public Result<String> addMessage() {
         log.info("达到添加消息页面");
-        return "addmessage";
+        return new Result<String>(Status.OKAY, "to add message oaky!", "/message/add");
     }
 
 
