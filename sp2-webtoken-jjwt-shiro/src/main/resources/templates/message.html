@@ -19,7 +19,8 @@
                 </div>
                 <div class="row info">
                     <a href="/message/index" name="消息首页" class="form-control">消息首页</a>
-                    <a href="/message/add" name="添加消息" class="form-control">添加消息</a>
+                    <!-- 阻止a标签的默认行为, 获取token-->
+                    <a href="javascript:void(0);" onclick="addMessage()" name="添加消息" class="form-control">添加消息</a>
                 </div>
                 <div class="row" style="margin-top: 10px;">
                     <button class="btn btn-block btn-outline-info" onclick="readmessage(2)">查看id=1的消息</button>
@@ -48,6 +49,28 @@
             }
         </style>
         <script>
+            function addMessage() {
+                // 从localStorage之中获取
+                let token = localStorage.getItem("jwt-token")
+                $.ajax({
+                    url: "/message/add",
+                    type: "get",
+                    dataType: "json",
+                    headers: {
+                        "Accept": "text/plain; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "jwt-token": token
+                    },
+                    success: function (result) {
+                        console.log(result.data)
+                        win.location.href = result.data;
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+
             function readmessage(id) {
                 $.ajax({
                     url: "/message/read",
