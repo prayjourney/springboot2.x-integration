@@ -6,7 +6,7 @@ import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author renjiaxin
+ * @author z.g.y
  * @date 2021/2/4
  */
 @Component
