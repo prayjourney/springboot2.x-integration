@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-25
- * @modified :
+ * @modified:
  */
 @RestController
 @Slf4j

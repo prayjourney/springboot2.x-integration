@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-13
- * @modified :
+ * @modified:
  */
 @Getter
 @Setter

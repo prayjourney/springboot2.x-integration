@@ -6,7 +6,7 @@ import java.util.UUID;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-02-02
- * @modified :
+ * @modified:
  */
 public interface TokenConstant {
     /**

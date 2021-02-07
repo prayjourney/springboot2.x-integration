@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-24
- * @modified :
+ * @modified:
  */
 public class DruidConfig {
     @ConfigurationProperties(prefix = "spring.datasource")

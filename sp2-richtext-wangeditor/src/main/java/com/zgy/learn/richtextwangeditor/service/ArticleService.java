@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020-11-25 上午 12:23
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020-11-25 上午 12:23
+ * @modified:
  */
 @Service
 public class ArticleService {

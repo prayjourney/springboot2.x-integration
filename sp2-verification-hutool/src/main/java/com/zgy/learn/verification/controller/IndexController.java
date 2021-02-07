@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-24
- * @modified :
+ * @modified:
  */
 @Controller
 public class IndexController {

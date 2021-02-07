@@ -14,10 +14,10 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 更新性别
- * @Date: Created in 2020/5/31 23:14
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: 更新性别
+ * @date: Created in 2020/5/31 23:14
+ * @modified:
  */
 @Service
 @Slf4j

@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/14 22:50
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/14 22:50
+ * @modified:
  */
 @RequestMapping("/shiro")
 @Controller

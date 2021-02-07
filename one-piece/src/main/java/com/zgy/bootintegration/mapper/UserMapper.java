@@ -5,10 +5,10 @@ import com.zgy.bootintegration.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/17 21:50
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/17 21:50
+ * @modified:
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {

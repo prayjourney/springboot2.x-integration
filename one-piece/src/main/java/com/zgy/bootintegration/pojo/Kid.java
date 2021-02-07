@@ -8,10 +8,10 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/8/9 12:49
- * @Modified by: Kid的实体
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/8/9 12:49
+ * @modified: Kid的实体
  */
 @Setter
 @Getter

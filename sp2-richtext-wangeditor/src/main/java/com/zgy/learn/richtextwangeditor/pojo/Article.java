@@ -12,10 +12,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020-11-25 上午 12:11
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020-11-25 上午 12:11
+ * @modified:
  */
 @Getter
 @Setter

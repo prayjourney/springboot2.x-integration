@@ -8,10 +8,10 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 数学老师
- * @Date: Created in 2020/5/22 2:39
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: 数学老师
+ * @date: Created in 2020/5/22 2:39
+ * @modified:
  */
 @Setter
 @Getter

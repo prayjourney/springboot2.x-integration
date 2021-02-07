@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Author: renjiaxin
- * @Despcription: token下发
- * @Date: Created in 2020/8/9 12:14
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: token下发
+ * @date: Created in 2020/8/9 12:14
+ * @modified:
  */
 @Service
 public class TokenService {

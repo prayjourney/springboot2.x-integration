@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-18
- * @modified :
+ * @modified:
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(value = RetentionPolicy.RUNTIME)

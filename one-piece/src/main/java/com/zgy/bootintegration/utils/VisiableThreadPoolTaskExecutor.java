@@ -10,10 +10,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/31 19:37
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/31 19:37
+ * @modified:
  */
 @Slf4j
 @Component

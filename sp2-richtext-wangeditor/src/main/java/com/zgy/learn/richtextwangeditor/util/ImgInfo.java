@@ -3,10 +3,10 @@ package com.zgy.learn.richtextwangeditor.util;
 import java.util.Arrays;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020-11-25 上午 02:17
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020-11-25 上午 02:17
+ * @modified:
  */
 public class ImgInfo {
 

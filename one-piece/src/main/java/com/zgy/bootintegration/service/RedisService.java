@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: renjiaxin
- * @Despcription: Redis的缓存服务
- * @Date: Created in 2020/4/19 15:19
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: Redis的缓存服务
+ * @date: Created in 2020/4/19 15:19
+ * @modified:
  */
 @Service
 public class RedisService {

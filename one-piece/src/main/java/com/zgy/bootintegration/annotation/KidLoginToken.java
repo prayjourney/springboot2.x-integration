@@ -6,10 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 用于登录后才能操作的token
- * @Date: Created in 2020/8/9 12:24
- * @Modified by: 自定义注解KidLoginToken
+ * @author: z.g.y
+ * @despcription: 用于登录后才能操作的token
+ * @date: Created in 2020/8/9 12:24
+ * @modified: 自定义注解KidLoginToken
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

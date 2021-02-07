@@ -6,7 +6,7 @@ import java.util.UUID;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-12
- * @modified :
+ * @modified:
  */
 public interface JjwtConstant {
     String JWT_ID = UUID.randomUUID().toString();

@@ -9,10 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/15 8:39
- * @Modified by:
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/15 8:39
+ * @modified:
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

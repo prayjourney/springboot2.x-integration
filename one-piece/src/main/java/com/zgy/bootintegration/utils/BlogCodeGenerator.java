@@ -14,10 +14,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import java.util.ArrayList;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 代码自动生成器
- * @Date: Created in 2020/5/19 2:26
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: 代码自动生成器
+ * @date: Created in 2020/5/19 2:26
+ * @modified:
  */
 public class BlogCodeGenerator {
     public static void main(String[] args) {

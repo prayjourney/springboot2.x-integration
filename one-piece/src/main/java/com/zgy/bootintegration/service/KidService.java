@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author: renjiaxin
- * @Despcription: kidService
- * @Date: Created in 2020/8/9 12:53
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: kidService
+ * @date: Created in 2020/8/9 12:53
+ * @modified:
  */
 @Service
 public class KidService {

@@ -21,10 +21,10 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 自定义的Realm, 继承自AuthorizingRealm
- * @Date: Created in 2020/6/14 23:01
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: 自定义的Realm, 继承自AuthorizingRealm
+ * @date: Created in 2020/6/14 23:01
+ * @modified:
  */
 @Slf4j
 @Component

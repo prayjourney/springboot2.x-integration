@@ -27,10 +27,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 大文件上传接口
- * @Date: Created in 2020/10/8 23:18
- * @Modified by:
+ * @author: z.g.y
+ * @despcription: 大文件上传接口
+ * @date: Created in 2020/10/8 23:18
+ * @modified:
  */
 @ApiOperation("大文件分片上传")
 @Controller

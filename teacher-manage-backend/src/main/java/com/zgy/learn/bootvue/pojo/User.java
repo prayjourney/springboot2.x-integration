@@ -10,10 +10,10 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/8/5 1:12
- * @Modified by: 用户的类
+ * @author: z.g.y
+ * @despcription:
+ * @date: Created in 2020/8/5 1:12
+ * @modified: 用户的类
  */
 @AllArgsConstructor
 @NoArgsConstructor
