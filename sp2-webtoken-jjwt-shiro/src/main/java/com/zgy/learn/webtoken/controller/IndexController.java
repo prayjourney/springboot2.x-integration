@@ -91,9 +91,13 @@ public class IndexController {
         String token = jwtTokenUtil.createToken(opUser, password);
         JwtToken jwtToken = new JwtToken(token);
 
-        // 登录
-        subject.login(jwtToken);
-        log.info("登录成功...");
-        return "message";
+        try {
+            // 登录
+            subject.login(jwtToken);
+            log.info("登录成功...");
+            return "message";
+        } catch (Exception e) {
+            return "message";
+        }
     }
 }
