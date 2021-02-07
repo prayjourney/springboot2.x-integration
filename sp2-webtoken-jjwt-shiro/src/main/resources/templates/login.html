@@ -13,7 +13,8 @@
     <body>
         <div class="container">
             <div class="col-xl-10 offset-1">
-                <form id="login" action="/logintoken" method="post">
+                <!-- 异步提交，获取结果 -->
+                <form id="login" action="">
                     <div class="form-group">
                         <label for="user" class="col-sm-2 control-label"><strong>用户名: </strong></label>
                         <div class="col-xl-12">
@@ -28,7 +29,7 @@
                     </div>
                     <div class="form-group" style="padding-left: 15px; padding-right: 15px;">
                         <input type="button" value="重置" class="btn btn-block btn-warning" onclick="reset()"/>
-                        <input type="submit" value="登录" class="btn btn-block btn-success"/>
+                        <input type="button" value="登录" class="btn btn-block btn-success" onclick="signin()"/>
                     </div>
                 </form>
             </div>
@@ -37,6 +38,27 @@
             function reset() {
                 $("#user").val = "";
                 $("#pwd").val = "";
+            }
+
+            function signin() {
+                // 登录获取token, 写入localStorage, 以后每次请求都带上token
+                $.ajax({
+                    type: "post",
+                    url: "/logintoken",
+                    data: {
+                        "username": $('#user').val(),
+                        "password": $('#pwd').val()
+                    },
+                    success: function (data) {
+                        // console.log(data)
+                        // token直接从后端数据之中返回, 然后存入localStorage, 然后跳转到目标页面
+                        localStorage.setItem("jwt-token", data)
+                        window.location.href = "/message/index"
+                    },
+                    error: function (error) {
+                    }
+                });
+
             }
         </script>
     </body>
