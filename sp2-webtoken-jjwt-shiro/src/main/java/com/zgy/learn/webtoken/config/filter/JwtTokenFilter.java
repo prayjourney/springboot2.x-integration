@@ -1,4 +1,4 @@
-package com.zgy.learn.webtoken.handler;
+package com.zgy.learn.webtoken.config.filter;
 
 import com.zgy.learn.webtoken.config.JwtToken;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author renjiaxin
+ * @author z.g.y
  * @date 2021/2/4
  */
 
@@ -38,7 +38,7 @@ public class JwtTokenFilter extends AccessControlFilter {
         // 这个地方和前端约定, 要求前端将token放入到header部分, 以后的每次请求, 前端都需要在header之中放入Authorization的token
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         // 存放在header之中的名称, 需要前后端约定
-        String token = httpRequest.getHeader("zgy-token");
+        String token = httpRequest.getHeader("jwt-token");
         if (StringUtils.isEmpty(token)) {
             // 向客户端返回错误信息
             onLoginFail(response);
