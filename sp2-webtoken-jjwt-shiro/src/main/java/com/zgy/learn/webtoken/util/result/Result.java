@@ -19,12 +19,12 @@ public class Result<T> {
         this.status = status;
     }
 
-    public Result(Status status, T data) {
+    public Result(Status status, String msg) {
         this.status = status;
-        this.data = data;
+        this.msg = msg;
     }
 
-    public Result(Status status, T data, String msg) {
+    public Result(Status status, String msg, T data) {
         this.status = status;
         this.data = data;
         this.msg = msg;

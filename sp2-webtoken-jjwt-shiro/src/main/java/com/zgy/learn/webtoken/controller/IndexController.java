@@ -4,6 +4,8 @@ import com.zgy.learn.webtoken.config.JwtToken;
 import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.service.OpUserService;
 import com.zgy.learn.webtoken.util.JwtTokenUtil;
+import com.zgy.learn.webtoken.util.result.Result;
+import com.zgy.learn.webtoken.util.result.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -76,7 +78,7 @@ public class IndexController {
      */
     @ResponseBody
     @PostMapping("logintoken")
-    public String logintoken(String username, String password) throws Exception {
+    public Result<String> logintoken(String username, String password) throws Exception {
         if (null == username || null == password) {
             throw new Exception("username null, error!");
         }
@@ -98,9 +100,10 @@ public class IndexController {
             subject.login(jwtToken);
             log.info("登录成功...");
             // 返回token
-            return jwtTokenUtil.createToken(opUser,null);
+            String loginToken = jwtTokenUtil.createToken(opUser, null);
+            return new Result<String>(Status.OKAY, "login success!", loginToken);
         } catch (Exception e) {
-            return "error";
+            return new Result<String>(Status.ERROR, "login error!");
         }
     }
 }
