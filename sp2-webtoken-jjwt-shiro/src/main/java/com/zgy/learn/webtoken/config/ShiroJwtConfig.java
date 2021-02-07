@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.config;
 
-import com.zgy.learn.webtoken.handler.JwtTokenFilter;
+import com.zgy.learn.webtoken.config.filter.JwtTokenFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.realm.Realm;

@@ -40,7 +40,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author renjiaxin
+ * @author z.g.y
  * @date 2021/2/4
  */
 @Slf4j
@@ -101,14 +101,23 @@ public class JwtTokenRealm extends AuthorizingRealm {
         if (null == principals) {
             throw new AuthorizationException("当前用户信息为空, 请检查!");
         }
-        // 获取用户名, 用户唯一标识
-        OpUser opUser = (OpUser) principals.getPrimaryPrincipal();
+
+        // 获取用户名, 用户唯一标识, 此处获取的是token
+        String token = (String)principals.getPrimaryPrincipal();
+        boolean status = jwtTokenUtil.validToken(token);
+        if (!status){
+            // 过期
+            return null;
+        }
+        // subject就是存放了userId, 用户唯一标识
+        Claims claims = jwtTokenUtil.parseToken(token);
+        Integer opUserId = Integer.parseInt(claims.getSubject());
 
         // 从数据库之中查询权限信息
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
         // 设置权限和角色, 用户->角色->权限, 用户->角色(多), 角色->权限(多)
-        List<UserRole> userRoles = userRoleService.queryAllById(opUser.getId());
+        List<UserRole> userRoles = userRoleService.queryAllById(opUserId);
         List<String> userRolesNames = userRoles.stream().map(userRole -> {
             Integer roleId = userRole.getRoleId();
             return roleService.queryById(roleId).getName();
