@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/31 18:54
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/31 18:54
+ * @modified:
  */
 @RestController
 @Slf4j

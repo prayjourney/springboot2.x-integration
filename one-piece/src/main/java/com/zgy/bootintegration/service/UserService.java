@@ -1,10 +1,10 @@
 package com.zgy.bootintegration.service;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/15 8:34
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/15 8:34
+ * @modified:
  */
 
 import com.zgy.bootintegration.mapper.UserMapper;

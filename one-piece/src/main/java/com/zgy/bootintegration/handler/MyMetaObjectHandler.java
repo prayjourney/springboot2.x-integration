@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/17 23:56
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/17 23:56
+ * @modified:
  */
 @Slf4j
 @Component // 加入到IOC容器之中

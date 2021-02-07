@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/23 0:47
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/23 0:47
+ * @modified:
  */
 @Controller
 @RequestMapping("jd")

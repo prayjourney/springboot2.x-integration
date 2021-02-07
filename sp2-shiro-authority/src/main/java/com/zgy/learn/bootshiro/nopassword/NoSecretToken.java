@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-20
- * @modified :
+ * @modified:
  */
 @Setter
 @Getter

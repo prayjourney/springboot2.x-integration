@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/1 0:48
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/1 0:48
+ * @modified:
  */
 @RestController
 @RequestMapping("updateservice")

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author: pray-journey.io
  * @despcription:
  * @date: created in 2021-01-18
- * @modified :
+ * @modified:
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

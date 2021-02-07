@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/17 22:00
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/17 22:00
+ * @modified:
  */
 @Repository
 public interface StudentMapper extends BaseMapper<Student> {

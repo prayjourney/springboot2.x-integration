@@ -31,10 +31,10 @@ import java.lang.reflect.Method;
 }
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/21 11:55
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/21 11:55
+ * @modified:
  */
 public class J8RepeatableAnnotion {
     public static void main(String[] args) throws NoSuchFieldException {

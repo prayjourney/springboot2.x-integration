@@ -24,10 +24,10 @@ interface MyInterface {
 }
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/6/21 13:05
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/6/21 13:05
+ * @modified:
  */
 public class J8MyInterfaceUse {
     public static void main(String[] args) {

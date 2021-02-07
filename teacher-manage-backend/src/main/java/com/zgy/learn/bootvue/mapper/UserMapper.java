@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/8/5 1:18
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/8/5 1:18
+ * @modified:
  */
 @Repository
 public interface UserMapper extends BaseMapper<User> {

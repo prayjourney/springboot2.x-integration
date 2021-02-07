@@ -6,10 +6,10 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 返回统一结果
- * @Date: Created in 2020-11-25 上午 12:45
- * @Modified by:
+ * @author z.g.y
+ * @despcription: 返回统一结果
+ * @date: Created in 2020-11-25 上午 12:45
+ * @modified:
  */
 @Getter
 @Setter

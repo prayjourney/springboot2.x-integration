@@ -16,11 +16,11 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @Author: renjiaxin
- * @Despcription: 配置Shiro，层层递进，ShiroFilterFactoryBean-> DefaultWebSecurityManager-> Realm
- * @Date: Created in 2020/6/14 22:58
- * @Modified by:
- * @URL https://www.cnblogs.com/tuifeideyouran/p/7696055.html
+ * @author z.g.y
+ * @despcription: 配置Shiro，层层递进，ShiroFilterFactoryBean-> DefaultWebSecurityManager-> Realm
+ * @date: Created in 2020/6/14 22:58
+ * @modified:
+ * @url:https://www.cnblogs.com/tuifeideyouran/p/7696055.html
  * https://blog.csdn.net/zalan01408980/article/details/85402528
  * https://www.jianshu.com/p/74304ebb7d30/
  * https://blog.csdn.net/yali_aini/article/details/84000271

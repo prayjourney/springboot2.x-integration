@@ -11,10 +11,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @Author: renjiaxin
- * @Despcription: springboot的线程池配置
- * @Date: Created in 2020/5/31 17:19
- * @Modified by:
+ * @author z.g.y
+ * @despcription: springboot的线程池配置
+ * @date: Created in 2020/5/31 17:19
+ * @modified:
  */
 @Configuration
 @EnableAsync

@@ -1,10 +1,10 @@
 package com.zgy.bootintegration.service;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/31 18:42
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/31 18:42
+ * @modified:
  */
 public interface AsyncService {
     void executeAsync();

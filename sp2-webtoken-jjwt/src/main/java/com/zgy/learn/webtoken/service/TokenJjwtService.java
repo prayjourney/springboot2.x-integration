@@ -20,7 +20,7 @@ import java.util.Map;
  * @author: pray-journey.io
  * @despcription: jwt token的服务
  * @date: created in 2021-01-18
- * @modified :
+ * @modified:
  */
 @Service
 public class TokenJjwtService {

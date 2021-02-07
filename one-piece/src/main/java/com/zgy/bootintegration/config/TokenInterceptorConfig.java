@@ -7,10 +7,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @Author: renjiaxin
- * @Despcription: Token的拦截器配置
- * @Date: Created in 2020/8/9 12:18
- * @Modified by:
+ * @author z.g.y
+ * @despcription: Token的拦截器配置
+ * @date: Created in 2020/8/9 12:18
+ * @modified:
  */
 @Configuration
 public class TokenInterceptorConfig implements WebMvcConfigurer {

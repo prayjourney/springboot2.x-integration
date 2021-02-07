@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Author: renjiaxin
- * @Despcription:
- * @Date: Created in 2020/5/18 1:34
- * @Modified by:
+ * @author z.g.y
+ * @despcription:
+ * @date: Created in 2020/5/18 1:34
+ * @modified:
  */
 @EnableTransactionManagement // 开启事务管理
 @MapperScan("com.zgy.learn.bootvue.mapper") //扫描mapper文件夹
