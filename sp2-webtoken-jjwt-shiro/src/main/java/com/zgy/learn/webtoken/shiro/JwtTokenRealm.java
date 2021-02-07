@@ -1,4 +1,4 @@
-package com.zgy.learn.webtoken.config;
+package com.zgy.learn.webtoken.shiro;
 
 import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.pojo.RoleAuthority;
@@ -9,11 +9,7 @@ import com.zgy.learn.webtoken.service.RoleAuthorityService;
 import com.zgy.learn.webtoken.service.RoleService;
 import com.zgy.learn.webtoken.service.UserRoleService;
 import com.zgy.learn.webtoken.util.JwtTokenUtil;
-import com.zgy.learn.webtoken.util.TokenConstant;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -23,7 +19,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +26,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import javax.crypto.SecretKey;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**

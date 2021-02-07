@@ -1,4 +1,4 @@
-package com.zgy.learn.webtoken.config;
+package com.zgy.learn.webtoken.shiro;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

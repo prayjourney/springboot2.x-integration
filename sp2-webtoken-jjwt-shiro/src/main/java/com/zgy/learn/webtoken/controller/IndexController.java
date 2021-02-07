@@ -1,6 +1,6 @@
 package com.zgy.learn.webtoken.controller;
 
-import com.zgy.learn.webtoken.config.JwtToken;
+import com.zgy.learn.webtoken.shiro.JwtToken;
 import com.zgy.learn.webtoken.pojo.OpUser;
 import com.zgy.learn.webtoken.service.OpUserService;
 import com.zgy.learn.webtoken.util.JwtTokenUtil;
