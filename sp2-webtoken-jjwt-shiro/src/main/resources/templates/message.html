@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>message</title>
         <!-- 小图标 -->
-        <link rel="shortcut icon" type="image/x-icon" href="/img/mine.ico">
-        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+        <link href="/img/mine.ico" rel="shortcut icon" type="image/x-icon">
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <script src="/js/jquery-3.4.0.min.js"></script>
     </head>
     <body>
@@ -18,9 +18,9 @@
                     <span class="welcome">欢迎：<span class="badge badge-info" th:text="${name}"></span></span>
                 </div>
                 <div class="row info">
-                    <a href="/message/index" name="消息首页" class="form-control">消息首页</a>
+                    <a class="form-control" href="/message/index" name="消息首页">消息首页</a>
                     <!-- 阻止a标签的默认行为, 获取token-->
-                    <a href="javascript:void(0);" onclick="addMessage()" name="添加消息" class="form-control">添加消息</a>
+                    <a class="form-control" href="javascript:void(0);" name="添加消息" onclick="addMessage()">添加消息</a>
                 </div>
                 <div class="row" style="margin-top: 10px;">
                     <button class="btn btn-block btn-outline-info" onclick="readmessage(2)">查看id=1的消息</button>

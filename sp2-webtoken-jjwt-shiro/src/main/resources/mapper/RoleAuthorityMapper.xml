@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zgy.learn.webtoken.mapper.RoleAuthorityMapper">
+<mapper namespace="com.zgy.learn.token.mapper.RoleAuthorityMapper">
 
-    <resultMap type="com.zgy.learn.webtoken.pojo.RoleAuthority" id="RoleAuthorityMap">
+    <resultMap type="com.zgy.learn.token.pojo.RoleAuthority" id="RoleAuthorityMap">
         <result property="roleId" column="role_id" jdbcType="INTEGER"/>
         <result property="authorityId" column="authority_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="RoleAuthorityMap">
-        select
-          role_id, authority_id
+        select role_id,
+               authority_id
         from security.role_authority
         where role_id = #{roleId}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="RoleAuthorityMap">
-        select
-          role_id, authority_id
+        select role_id,
+               authority_id
         from security.role_authority
         limit #{offset}, #{limit}
     </select>
@@ -41,7 +41,7 @@
     <!--通过roleid查询用户角色权限 -->
     <select id="queryAllById" resultMap="RoleAuthorityMap">
         select
-            role_id, authority_id
+        role_id, authority_id
         from security.role_authority
         <where>
             <if test="roleId != null">
@@ -83,7 +83,9 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from security.role_authority where role_id = #{roleId}
+        delete
+        from security.role_authority
+        where role_id = #{roleId}
     </delete>
 
 </mapper>
