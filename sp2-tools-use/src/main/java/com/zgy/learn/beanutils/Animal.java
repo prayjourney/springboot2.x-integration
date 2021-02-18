@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
  * @author: pray-journey.io
  * @despcription:
@@ -24,4 +26,5 @@ public class Animal {
     private String name;
     private String kind;
     private int age;
+    private Date birthday;
 }
