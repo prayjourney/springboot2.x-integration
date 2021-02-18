@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zgy.learn.webtoken.mapper.AuthorityMapper">
+<mapper namespace="com.zgy.learn.token.mapper.AuthorityMapper">
 
-    <resultMap type="com.zgy.learn.webtoken.pojo.Authority" id="AuthorityMap">
+    <resultMap type="com.zgy.learn.token.pojo.Authority" id="AuthorityMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="displayName" column="display_name" jdbcType="VARCHAR"/>
@@ -12,16 +12,22 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="AuthorityMap">
-        select
-          id, name, display_name, create_time, update_time
+        select id,
+               name,
+               display_name,
+               create_time,
+               update_time
         from security.authority
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="AuthorityMap">
-        select
-          id, name, display_name, create_time, update_time
+        select id,
+               name,
+               display_name,
+               create_time,
+               update_time
         from security.authority
         limit #{offset}, #{limit}
     </select>
@@ -97,7 +103,9 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from security.authority where id = #{id}
+        delete
+        from security.authority
+        where id = #{id}
     </delete>
 
 </mapper>
