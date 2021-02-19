@@ -55,7 +55,6 @@
                 $.ajax({
                     url: "/message/add",
                     type: "get",
-                    dataType: "json",
                     headers: {
                         "Accept": "text/plain; charset=utf-8",
                         "Content-Type": "text/plain; charset=utf-8",
@@ -63,7 +62,7 @@
                     },
                     success: function (result) {
                         console.log(result.data)
-                        win.location.href = result.data;
+                        window.location.href = result.data;
                     },
                     error: function (error) {
                         console.log(error)
