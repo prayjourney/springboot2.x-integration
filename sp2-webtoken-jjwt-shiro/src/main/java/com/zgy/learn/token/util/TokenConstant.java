@@ -10,6 +10,10 @@ import java.util.UUID;
  */
 public interface TokenConstant {
     /**
+     * 专门为登录而设置的一个Token的id
+     */
+    String JWT_LOGIN_ID = "0xMG1220-=er3rt!!!+=0-345*&3456e&ER*(";
+    /**
      * Token的唯一id
      */
     String JWT_ID = UUID.randomUUID().toString();
