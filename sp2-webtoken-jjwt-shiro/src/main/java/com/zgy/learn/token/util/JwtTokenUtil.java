@@ -66,6 +66,13 @@ public class JwtTokenUtil {
         return tokenStr;
     }
 
+    /**
+     * 只是为了验证用户密码是否正确, 不去设置过期时间, 过期有效时间只对正常请求进行设置
+     *
+     * @param opUser
+     * @param password
+     * @return
+     */
     public String createLoginToken(OpUser opUser, String password) {
         if (null != password) {
             // 生成加密的密码
@@ -85,7 +92,7 @@ public class JwtTokenUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put("user", opUser);
         builder.setClaims(claims);
-        // 官方字段, 只是为了验证用户密码是否正确, 不去设置过期时间, 过期有效时间只对正常请求进行设置
+        // 官方字段
         builder.setId(tid).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
 
         // 签发
