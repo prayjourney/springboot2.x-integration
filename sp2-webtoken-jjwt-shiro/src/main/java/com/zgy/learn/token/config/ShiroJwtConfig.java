@@ -11,7 +11,6 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -26,26 +25,34 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroJwtConfig {
-    @Autowired
-    JwtTokenFilter jwtTokenFilter;
+    private JwtTokenFilter jwtTokenFilter;
 
+    public ShiroJwtConfig(JwtTokenFilter jwtTokenFilter) {
+        this.jwtTokenFilter = jwtTokenFilter;
+    }
+
+
+    /**
+     * 1.身份认证realm(这个需要自己写，账号密码校验；权限等)
+     */
     @Bean
     public Realm realm() {
         return new JwtTokenRealm();
     }
 
+
+    /**
+     * 2.SecurityManager设置，shiro的安全管理器
+     */
     @Bean
     public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        // 设置realm
+        // ①设置realm
         securityManager.setRealm(realm());
-        // 关闭ShiroDAO功能
+        // ②关闭shiro自带的session
+        // 文档：http://shiro.apache.org/session-management.html#SessionManagement-StatelessApplications%28Sessionless%29
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         DefaultSessionStorageEvaluator sessionStorageEvaluator = new DefaultSessionStorageEvaluator();
-        /*
-         * 关闭shiro自带的session，详情见文档
-         * http://shiro.apache.org/session-management.html#SessionManagement-StatelessApplications%28Sessionless%29
-         */
         sessionStorageEvaluator.setSessionStorageEnabled(false);
         subjectDAO.setSessionStorageEvaluator(sessionStorageEvaluator);
         securityManager.setSubjectDAO(subjectDAO);
@@ -56,18 +63,24 @@ public class ShiroJwtConfig {
         return securityManager;
     }
 
+
+    /**
+     * 3.ShiroFilterFactoryBean设置, 处理拦截资源文件问题
+     * 单独一个ShiroFilterFactoryBean配置是或报错的, 在初始化ShiroFilterFactoryBean的时候需要注入:SecurityManager,FilterChain定义说明
+     * ①一个URL可以配置多个Filter, 使用逗号分隔, ②当设置多个过滤器时, 全部验证通过才视为通过, ③部分过滤器可指定参数, 如perms, roles
+     */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
+        // ①必须设置SecurityManager
         filterFactoryBean.setSecurityManager(securityManager());
 
-        // 设置自定义的filter
-        // shiro禁用session后, 如果再使用shiro的内置过滤器authc会报错, 所以就不能再用authc, 使用自定义的Filter就行
-        Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwtTokenFilter", jwtTokenFilter);
-        filterFactoryBean.setFilters(filterMap);
+        // ②设置自定义的filter, shiro禁用session后, 再使用shiro内置过滤器authc会报错, 所以要使用自定义的Filter
+        Map<String, Filter> filters = filterFactoryBean.getFilters();
+        filters.put("jwtTokenFilter", jwtTokenFilter);
+        filterFactoryBean.setFilters(filters);
 
-        // 设置拦截链
+        // 设置一些自定义的拦截链
         Map<String, String> filterChainDefinitionMap = new HashMap<>();
         filterChainDefinitionMap.put("/", "anon");
         filterChainDefinitionMap.put("/home", "anon");
@@ -78,6 +91,7 @@ public class ShiroJwtConfig {
         filterFactoryBean.setUnauthorizedUrl("/401");
         return filterFactoryBean;
     }
+
 
     /**
      * 开启shiro aop注解支持
@@ -108,16 +122,17 @@ public class ShiroJwtConfig {
     }
 
 
-    @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return new LifecycleBeanPostProcessor();
-    }
-
     @Bean("authorizationAdvisor")
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(securityManager);
         return advisor;
+    }
+
+
+    @Bean
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
     }
 
 }
