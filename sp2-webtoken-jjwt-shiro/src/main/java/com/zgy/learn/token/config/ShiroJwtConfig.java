@@ -4,13 +4,10 @@ import com.zgy.learn.token.shiro.JwtTokenRealm;
 import com.zgy.learn.token.shiro.filter.JwtTokenFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
-import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -92,32 +89,39 @@ public class ShiroJwtConfig {
     }
 
 
-    /**
-     * 开启Shiro注解(如@RequiresRoles,@RequiresPermissions),
-     * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
-     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)
-     */
-    @Bean
-    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
-        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-        advisorAutoProxyCreator.setProxyTargetClass(true);
-        return advisorAutoProxyCreator;
-    }
+// SpringBoot加入Shiro导致AOP失效的坑: https://juejin.cn/post/6844904127525306382
+//
+// DefaultAdvisorAutoProxyCreator和LifecycleBeanPostProcessor我都注释了,这两个类会导致AOP失效
+// 因为已经加入了Spring AOP所以不需要使用DefaultAdvisorAutoProxyCreator
+// 我们只要在配置文件application.properties 加入 spring.aop.proxy-target-class=true
+// 然后在SpringBoot启动类注解排除 ShiroAnnotationProcessorAutoConfiguration
+// @SpringBootApplication(exclude = {ShiroAnnotationProcessorAutoConfiguration.class})
+//
+//    /**
+//     * 开启Shiro注解(如@RequiresRoles,@RequiresPermissions),
+//     * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+//     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)
+//     */
+//    @Bean
+//    @DependsOn("lifecycleBeanPostProcessor")
+//    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+//        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+//        defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+//        return defaultAdvisorAutoProxyCreator;
+//    }
+//
+//
+//    @Bean
+//    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+//        return new LifecycleBeanPostProcessor();
+//    }
 
-    /**
-     * 开启aop注解支持
-     */
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
-        return authorizationAttributeSourceAdvisor;
-    }
-
 
     @Bean
-    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return new LifecycleBeanPostProcessor();
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager());
+        return advisor;
     }
 
 }
