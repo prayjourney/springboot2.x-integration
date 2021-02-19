@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Sp2WebtokenJjwtShiroApplication {
+public class Sp2TokenJjwtShiroApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Sp2WebtokenJjwtShiroApplication.class, args);
+        SpringApplication.run(Sp2TokenJjwtShiroApplication.class, args);
     }
 
 }
