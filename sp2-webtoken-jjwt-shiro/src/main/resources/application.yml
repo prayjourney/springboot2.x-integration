@@ -4,6 +4,8 @@ server:
 
 # 数据库+druid
 spring:
+  profiles:
+    active: dev
   datasource:
     username: root
     password: 123456
@@ -32,9 +34,6 @@ spring:
     encoding: UTF-8
     prefix: classpath:/templates/
     suffix: .html
-#  aop:
-#    auto: true
-#    proxy-target-class: true
 
 
 # mybaits
