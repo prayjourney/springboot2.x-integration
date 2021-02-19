@@ -66,21 +66,23 @@ public class JwtTokenUtil {
         return tokenStr;
     }
 
-    private String createLoginToken(OpUser opUser, String password) {
-        // 生成加密的密码
-        String algorithmName = "SHA-256";
-        Integer hashNumber = 1024;
-        String encryptPassword = new SimpleHash(algorithmName, password, opUser.getSalt(), hashNumber).toString();
+    public String createLoginToken(OpUser opUser, String password) {
+        if (null != password) {
+            // 生成加密的密码
+            String algorithmName = "SHA-256";
+            Integer hashNumber = 1024;
+            String encryptPassword = new SimpleHash(algorithmName, password, opUser.getSalt(), hashNumber).toString();
+            opUser.setPassword(encryptPassword).setSalt(opUser.getSalt());
+        }
 
+        // 开始生成用以检测是否可以登录的token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
         SecretKey key = generateKey();
         String tid = TokenConstant.JWT_LOGIN_ID;
         JwtBuilder builder = Jwts.builder();
 
         // 私有声明, 自定义的字段
         Map<String, Object> claims = new HashMap<>();
-        opUser.setPassword(encryptPassword).setSalt(opUser.getSalt());
         claims.put("user", opUser);
         builder.setClaims(claims);
         // 官方字段, 只是为了验证用户密码是否正确, 不去设置过期时间, 过期有效时间只对正常请求进行设置
@@ -91,24 +93,6 @@ public class JwtTokenUtil {
         return builder.compact();
     }
 
-    public String tokenAuthentication(OpUser opUser) {
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
-        SecretKey key = generateKey();
-        String tid = TokenConstant.JWT_LOGIN_ID;
-        JwtBuilder builder = Jwts.builder();
-
-        // 私有声明, 自定义的字段
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("user", opUser);
-        builder.setClaims(claims);
-        // 官方字段
-        builder.setId(tid).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
-
-        // 签发
-        builder.signWith(signatureAlgorithm, key);
-        return builder.compact();
-    }
 
     /**
      * 解析token内容
