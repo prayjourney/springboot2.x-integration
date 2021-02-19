@@ -32,9 +32,9 @@ spring:
     encoding: UTF-8
     prefix: classpath:/templates/
     suffix: .html
-  aop:
-    auto: true
-    proxy-target-class: true
+#  aop:
+#    auto: true
+#    proxy-target-class: true
 
 
 # mybaits
