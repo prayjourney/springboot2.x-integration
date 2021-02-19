@@ -57,7 +57,7 @@ public class JwtTokenRealm extends AuthorizingRealm {
     AuthorityService authorityService;
 
     /**
-     * 重写support,用来表示这个realm专门验证JwtToken, 不浮躁其他的token的验证(如: UsernamePasswordToken)
+     * 重写support,用来表示这个realm专门验证JwtToken, 不负责其他的token的验证(如: UsernamePasswordToken)
      */
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -78,7 +78,8 @@ public class JwtTokenRealm extends AuthorizingRealm {
         // 获取了用户id, 从数据库之中获取用户信息, 生成token, 和之前使用用户名密码生成的token对比
         Integer userId = Integer.parseInt(claims.getSubject());
         OpUser opUser = opUserService.queryById(userId);
-        String jwtToken = jwtTokenUtil.tokenAuthentication(opUser);
+        // 使用数据库之中的信息, 生成token和传入的token比对
+        String jwtToken = jwtTokenUtil.createLoginToken(opUser, null);
 
         // 构造认证信息
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(jwtToken, jwtToken, getName());
@@ -139,16 +140,16 @@ public class JwtTokenRealm extends AuthorizingRealm {
     }
 
 
-    /**
-     * 使用jwt的密码匹配器
-     *
-     * @param credentialsMatcher
-     */
-    @Override
-    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-        JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
-        // 设置密码匹配器
-        super.setCredentialsMatcher(matcher);
-    }
+//    /**
+//     * 使用jwt的密码匹配器
+//     *
+//     * @param credentialsMatcher
+//     */
+//    @Override
+//    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
+//        JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
+//        // 设置密码匹配器
+//        super.setCredentialsMatcher(matcher);
+//    }
 
 }
