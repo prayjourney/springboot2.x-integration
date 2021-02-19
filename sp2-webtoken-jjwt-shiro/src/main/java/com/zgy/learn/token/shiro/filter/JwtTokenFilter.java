@@ -72,12 +72,17 @@ public class JwtTokenFilter extends BasicHttpAuthenticationFilter {
 
     /**
      * 判断用户是否想要登入, 检测header里面是否包含jwt-token字段或者Authorization字段即可, 这个是自己设置的
+     * 如果是尝试登录, 返回true, 如果不是尝试登录, 返回false, 通过获取header之中的字段, 有jwt-token就是我们去做相关操作了, 而不是登录
      */
     @Override
     protected boolean isLoginAttempt(ServletRequest request, ServletResponse response) {
         HttpServletRequest req = (HttpServletRequest) request;
         String authorization = req.getHeader("jwt-token");
-        return !(null == authorization);
+        if (null != authorization) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
@@ -98,29 +103,29 @@ public class JwtTokenFilter extends BasicHttpAuthenticationFilter {
     }
 
 
-    /**
-     * 这个方法是对处理没有获得授权的请求
-     * 如果是登陆的请求的我们直接放行，也可以在配置文件中为登陆的url配置直接放行
-     * 对于需要校验token的接口，用subject login来校验是否能获取系统的权限
-     */
-    @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        if (!isLoginAttempt(request, response)) {
-            // 这个地方和前端约定, 要求前端将token放入到header部分, 以后的每次请求, 前端都需要在header之中放入Authorization的token
-            HttpServletRequest httpRequest = (HttpServletRequest) request;
-            // 存放在header之中的名称, 需要前后端约定
-            String token = httpRequest.getHeader("jwt-token");
-
-            if (StringUtils.isEmpty(token)) {
-                return false;
-            }
-            JwtToken jwtToken = new JwtToken(token);
-            getSubject(request, response).login(jwtToken);
-        }
-
-        // 执行之中没有抛出异常就表示登录成功
-        return true;
-    }
+//    /**
+//     * 这个方法是对处理没有获得授权的请求
+//     * 如果是登陆的请求的我们直接放行, 也可以在配置文件中为登陆的url配置直接放行
+//     * 对于需要校验token的接口, 用subject login来校验是否能获取系统的权限
+//     */
+//    @Override
+//    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
+//        if (isLoginAttempt(request, response)) {
+//            // 这个地方和前端约定, 要求前端将token放入到header部分, 以后的每次请求, 前端都需要在header之中放入Authorization的token
+//            HttpServletRequest httpRequest = (HttpServletRequest) request;
+//            // 存放在header之中的名称, 需要前后端约定
+//            String token = httpRequest.getHeader("jwt-token");
+//
+//            if (StringUtils.isEmpty(token)) {
+//                return false;
+//            }
+//            JwtToken jwtToken = new JwtToken(token);
+//            getSubject(request, response).login(jwtToken);
+//        }
+//
+//        // 执行之中没有抛出异常就表示登录成功
+//        return true;
+//    }
 
 
     /**
