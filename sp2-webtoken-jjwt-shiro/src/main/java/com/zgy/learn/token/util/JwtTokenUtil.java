@@ -67,19 +67,15 @@ public class JwtTokenUtil {
     }
 
     private String createLoginToken(OpUser opUser, String password) {
-        String tokenStr = null;
-
         // 生成加密的密码
         String algorithmName = "SHA-256";
         Integer hashNumber = 1024;
         String encryptPassword = new SimpleHash(algorithmName, password, opUser.getSalt(), hashNumber).toString();
 
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date(nowMillis);
 
         SecretKey key = generateKey();
-        String tid = TokenConstant.JWT_ID;
+        String tid = TokenConstant.JWT_LOGIN_ID;
         JwtBuilder builder = Jwts.builder();
 
         // 私有声明, 自定义的字段
@@ -87,28 +83,19 @@ public class JwtTokenUtil {
         opUser.setPassword(encryptPassword).setSalt(opUser.getSalt());
         claims.put("user", opUser);
         builder.setClaims(claims);
-        // 官方字段
-        builder.setId(tid).setIssuedAt(now).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
-        // 设置过期时间, 生效时间
-        long expMillis = nowMillis + TokenConstant.JWT_EXPIRED_TIME;
-        Date exp = new Date(expMillis);
-        builder.setExpiration(exp).setNotBefore(now);
+        // 官方字段, 只是为了验证用户密码是否正确, 不去设置过期时间, 过期有效时间只对正常请求进行设置
+        builder.setId(tid).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
 
         // 签发
         builder.signWith(signatureAlgorithm, key);
-        tokenStr = builder.compact();
-        return tokenStr;
+        return builder.compact();
     }
 
     public String tokenAuthentication(OpUser opUser) {
-        String tokenStr = null;
-
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date(nowMillis);
 
         SecretKey key = generateKey();
-        String tid = TokenConstant.JWT_ID;
+        String tid = TokenConstant.JWT_LOGIN_ID;
         JwtBuilder builder = Jwts.builder();
 
         // 私有声明, 自定义的字段
@@ -116,16 +103,11 @@ public class JwtTokenUtil {
         claims.put("user", opUser);
         builder.setClaims(claims);
         // 官方字段
-        builder.setId(tid).setIssuedAt(now).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
-        // 设置过期时间, 生效时间
-        long expMillis = nowMillis + TokenConstant.JWT_EXPIRED_TIME;
-        Date exp = new Date(expMillis);
-        builder.setExpiration(exp).setNotBefore(now);
+        builder.setId(tid).setIssuer("z.g.y").setSubject(opUser.getId().toString()).setAudience(opUser.getId().toString());
 
         // 签发
         builder.signWith(signatureAlgorithm, key);
-        tokenStr = builder.compact();
-        return tokenStr;
+        return builder.compact();
     }
 
     /**
