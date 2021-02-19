@@ -139,17 +139,4 @@ public class JwtTokenRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
-
-//    /**
-//     * 使用jwt的密码匹配器
-//     *
-//     * @param credentialsMatcher
-//     */
-//    @Override
-//    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-//        JwtCredentialsMatcher matcher = new JwtCredentialsMatcher();
-//        // 设置密码匹配器
-//        super.setCredentialsMatcher(matcher);
-//    }
-
 }
