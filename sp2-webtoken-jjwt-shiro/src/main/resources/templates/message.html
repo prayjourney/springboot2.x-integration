@@ -57,6 +57,7 @@
                     url: "/message/add",
                     type: "get",
                     headers: {
+                        // accept是表示客户端可以接收的数据类型, Content-Type是此次请求的数据类型, 如果没有参数, 可以不设置
                         "Accept": "application/json; charset=utf-8",
                         "Content-Type": "application/json; charset=utf-8",
                         "jwt-token": token
