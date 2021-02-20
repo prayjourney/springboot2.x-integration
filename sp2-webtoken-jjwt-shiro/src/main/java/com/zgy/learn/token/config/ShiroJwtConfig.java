@@ -82,6 +82,8 @@ public class ShiroJwtConfig {
         filterChainDefinitionMap.put("/home", "anon");
         filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        // 权限配置, 注解不好用啊
+        //filterChainDefinitionMap.put("/message/addmsg", "perms[addMessage]");
         filterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         filterFactoryBean.setLoginUrl("/login");
         filterFactoryBean.setUnauthorizedUrl("/401");

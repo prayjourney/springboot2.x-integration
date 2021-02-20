@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -69,9 +70,10 @@ public class MessageController {
      * @param content
      * @return
      */
-    @PostMapping("add")
-    @RequiresPermissions("addMessage")
-    public String createMessage(String name, String content) {
+    @ResponseBody
+    @PostMapping("addmsg")
+    //@RequiresPermissions("addMessage")
+    public Result<String> createMessage(@RequestParam("name")String name, @RequestParam("content")String content) {
         Message message = new Message();
         Date now = new Date();
 
@@ -82,7 +84,7 @@ public class MessageController {
         // 去掉首尾空格
         message.setName(name).setContent(content.trim()).setCreateTime(now).setUpdateTime(now).setUserId(opUser.getId());
         messageService.insert(message);
-        return "message";
+        return new Result<String>(Status.OKAY, "to add message oaky!", "/message/index");
     }
 
 
