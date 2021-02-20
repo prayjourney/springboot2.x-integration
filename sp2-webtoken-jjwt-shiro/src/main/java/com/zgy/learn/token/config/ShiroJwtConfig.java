@@ -1,6 +1,7 @@
 package com.zgy.learn.token.config;
 
 import com.zgy.learn.token.shiro.JwtTokenRealm;
+import com.zgy.learn.token.shiro.filter.JwtPermissionsFilter;
 import com.zgy.learn.token.shiro.filter.JwtTokenFilter;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
@@ -22,9 +23,11 @@ import java.util.Map;
 @Configuration
 public class ShiroJwtConfig {
     private JwtTokenFilter jwtTokenFilter;
+    private JwtPermissionsFilter jwtPermissionsFilter;
 
-    public ShiroJwtConfig(JwtTokenFilter jwtTokenFilter) {
+    public ShiroJwtConfig(JwtTokenFilter jwtTokenFilter, JwtPermissionsFilter jwtPermissionsFilter) {
         this.jwtTokenFilter = jwtTokenFilter;
+        this.jwtPermissionsFilter = jwtPermissionsFilter;
     }
 
 
@@ -73,7 +76,9 @@ public class ShiroJwtConfig {
 
         // ②设置自定义的filter, shiro禁用session后, 再使用shiro内置过滤器authc会报错, 所以要使用自定义的Filter
         Map<String, Filter> filters = filterFactoryBean.getFilters();
+        // 认证的filter+权限的filter, 后续还可以添加role角色拦截器
         filters.put("jwtTokenFilter", jwtTokenFilter);
+        filters.put("jwtPermissionsFilter", jwtPermissionsFilter);
         filterFactoryBean.setFilters(filters);
 
         // 设置一些自定义的拦截链
