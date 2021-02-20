@@ -42,8 +42,14 @@ public class MessageController {
     }
 
 
+    @GetMapping("addpage")
+    public String addpage() {
+        return "add";
+    }
+
+
     /**
-     * 添加message, 需要添加的权限
+     * 到达添加message页面, 添加权限注解
      *
      * @return
      */
@@ -52,7 +58,7 @@ public class MessageController {
     @RequiresPermissions("addMessage")
     public Result<String> addMessage() {
         log.info("达到添加消息页面");
-        return new Result<String>(Status.OKAY, "to add message oaky!", "/message/add");
+        return new Result<String>(Status.OKAY, "to add message oaky!", "/message/addpage");
     }
 
 
