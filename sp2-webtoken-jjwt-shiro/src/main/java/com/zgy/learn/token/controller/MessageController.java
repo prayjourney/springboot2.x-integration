@@ -1,16 +1,16 @@
 package com.zgy.learn.token.controller;
 
 import com.zgy.learn.token.pojo.Message;
-import com.zgy.learn.token.pojo.OpUser;
 import com.zgy.learn.token.service.MessageService;
+import com.zgy.learn.token.shiro.JwtToken;
+import com.zgy.learn.token.util.JwtTokenUtil;
 import com.zgy.learn.token.util.result.Result;
 import com.zgy.learn.token.util.result.Status;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -36,6 +37,9 @@ public class MessageController {
      */
     @Resource
     private MessageService messageService;
+
+    @Resource
+    private JwtTokenUtil jwtTokenUtil;
 
     @GetMapping("index")
     public String index() {
@@ -73,16 +77,27 @@ public class MessageController {
     @ResponseBody
     @PostMapping("addmsg")
     //@RequiresPermissions("addMessage")
-    public Result<String> createMessage(@RequestParam("name")String name, @RequestParam("content")String content) {
+    public Result<String> createMessage(HttpServletRequest request, @RequestParam("name") String name,
+                                        @RequestParam("content") String content) {
+        log.info("name is:{}, content is:{}!", name, content);
         Message message = new Message();
         Date now = new Date();
 
         // shiro获取当前对象
-        Subject subject = SecurityUtils.getSubject();
-        OpUser opUser = (OpUser) subject.getPrincipal();
+        // Subject subject = SecurityUtils.getSubject();
+        // OpUser opUser = (OpUser) subject.getPrincipal();
+
+        // 从header之中获取token信息, 然后获取对象
+        String token = request.getHeader("jwt-token");
+        Claims claims = jwtTokenUtil.parseToken(token);
+        Integer userId = Integer.valueOf(claims.getSubject());
+        // 权限信息
+        JwtToken jwtToken = new JwtToken(token);
+        Object principal = jwtToken.getPrincipal();
+
 
         // 去掉首尾空格
-        message.setName(name).setContent(content.trim()).setCreateTime(now).setUpdateTime(now).setUserId(opUser.getId());
+        message.setName(name).setContent(content.trim()).setCreateTime(now).setUpdateTime(now).setUserId(userId);
         messageService.insert(message);
         return new Result<String>(Status.OKAY, "to add message oaky!", "/message/index");
     }
