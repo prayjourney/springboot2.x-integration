@@ -5,7 +5,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 /**
  * @author: z.g.y
- * @despcription: Spring Session的配置， 使用springboot-session处理，单位：秒，
+ * @description: Spring Session的配置， 使用springboot-session处理，单位：秒，
  * RedisFlushMode有两个参数：ON_SAVE（表示在response commit前刷新缓存），IMMEDIATE（表示只要有更新，就刷新缓存）
  * @date: Created in 2020/8/7 0:14
  * @modified:

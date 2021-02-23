@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-01-17
  * @modified:
  */

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020-11-25 上午 02:17
  * @modified:
  */

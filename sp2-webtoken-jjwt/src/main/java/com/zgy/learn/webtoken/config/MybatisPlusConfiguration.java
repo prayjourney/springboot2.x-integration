@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author: zgy
- * @despcription:
+ * @description:
  * @date: Created in 2020/5/18
  */
 @EnableTransactionManagement

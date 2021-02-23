@@ -17,7 +17,7 @@ import java.util.Properties;
 
 /**
  * @author: z.g.y
- * @despcription: 配置Shiro，层层递进，ShiroFilterFactoryBean-> DefaultWebSecurityManager-> Realm
+ * @description: 配置Shiro，层层递进，ShiroFilterFactoryBean-> DefaultWebSecurityManager-> Realm
  * @date: Created in 2020/6/14 22:58
  * @modified:
  * @url: https://www.cnblogs.com/tuifeideyouran/p/7696055.html

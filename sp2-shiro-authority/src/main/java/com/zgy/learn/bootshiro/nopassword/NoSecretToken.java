@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-01-20
  * @modified:
  */

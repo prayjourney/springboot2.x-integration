@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-01-16
  * @modified:
  */

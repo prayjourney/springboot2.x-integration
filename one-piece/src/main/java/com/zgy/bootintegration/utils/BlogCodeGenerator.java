@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * @author: z.g.y
- * @despcription: 代码自动生成器
+ * @description: 代码自动生成器
  * @date: Created in 2020/5/19 2:26
  * @modified:
  */

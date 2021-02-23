@@ -5,7 +5,7 @@ import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHtt
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-01-24
  * @modified:
  * @url: https://blog.csdn.net/ljk126wy/article/details/93971421, https://www.cnblogs.com/yingsong/p/9838198.html

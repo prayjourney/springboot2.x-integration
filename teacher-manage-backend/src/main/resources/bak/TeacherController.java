@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
-<<<<<<< HEAD
- * @author z.g.y
-=======
  * @author: z.g.y
->>>>>>> shiro-jwt
- * @despcription:
+ * @description:
  * @date: Created in 8/15/2020 11:37 PM
  * @modified:
  */

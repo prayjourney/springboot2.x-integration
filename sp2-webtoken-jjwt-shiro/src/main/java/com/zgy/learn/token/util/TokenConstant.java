@@ -4,7 +4,7 @@ import java.util.UUID;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-02-02
  * @modified:
  */

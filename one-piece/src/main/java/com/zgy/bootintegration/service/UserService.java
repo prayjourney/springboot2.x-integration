@@ -2,7 +2,7 @@ package com.zgy.bootintegration.service;
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020/6/15 8:34
  * @modified:
  */

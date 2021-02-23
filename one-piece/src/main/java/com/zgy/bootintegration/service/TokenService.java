@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * @author: z.g.y
- * @despcription: token下发
+ * @description: token下发
  * @date: Created in 2020/8/9 12:14
  * @modified:
  */

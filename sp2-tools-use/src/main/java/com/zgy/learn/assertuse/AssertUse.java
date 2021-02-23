@@ -2,7 +2,7 @@ package com.zgy.learn.assertuse;
 
 /**
  * @author: pray-journey.io
- * @despcription: -enableassertions，开启断言，平时的时候是关闭断言的
+ * @description: -enableassertions，开启断言，平时的时候是关闭断言的
  * @date: created in 2021-02-14
  * @modified:
  */

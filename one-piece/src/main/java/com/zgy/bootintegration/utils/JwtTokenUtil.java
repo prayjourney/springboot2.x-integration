@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author: z.g.y
- * @despcription: Token的工具
+ * @description: Token的工具
  * @date: Created in 2020/8/9 12:17
  * @modified:
  */

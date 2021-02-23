@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author: z.g.y
- * @despcription: 用于登录后才能操作的token
+ * @description: 用于登录后才能操作的token
  * @date: Created in 2020/8/9 12:24
  * @modified: 自定义注解KidLoginToken
  */

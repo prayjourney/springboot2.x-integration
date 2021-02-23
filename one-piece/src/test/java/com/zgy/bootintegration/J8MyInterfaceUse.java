@@ -25,7 +25,7 @@ interface MyInterface {
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020/6/21 13:05
  * @modified:
  */

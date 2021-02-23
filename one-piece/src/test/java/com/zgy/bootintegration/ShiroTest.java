@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020/6/15 8:39
  * @modified:
  */

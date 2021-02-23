@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-01-24
  * @modified:
  */

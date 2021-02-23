@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * @author: z.g.y
- * @despcription: 返回统一结果
+ * @description: 返回统一结果
  * @date: Created in 2020-11-25 上午 12:45
  * @modified:
  */

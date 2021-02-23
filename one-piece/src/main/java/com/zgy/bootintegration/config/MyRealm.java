@@ -22,7 +22,7 @@ import java.time.Instant;
 
 /**
  * @author: z.g.y
- * @despcription: 自定义的Realm, 继承自AuthorizingRealm
+ * @description: 自定义的Realm, 继承自AuthorizingRealm
  * @date: Created in 2020/6/14 23:01
  * @modified:
  */

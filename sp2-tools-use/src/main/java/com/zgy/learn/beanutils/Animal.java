@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * @author: pray-journey.io
- * @despcription:
+ * @description:
  * @date: created in 2021-02-18
  * @modified:
  */

@@ -21,7 +21,7 @@ import java.io.FileOutputStream;
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020-11-25 上午 12:27
  * @modified:
  */

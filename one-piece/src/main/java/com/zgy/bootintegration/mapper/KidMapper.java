@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author: z.g.y
- * @despcription:
+ * @description:
  * @date: Created in 2020/8/9 12:50
  * @modified:
  */

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author: z.g.y
- * @despcription: Redis的缓存服务
+ * @description: Redis的缓存服务
  * @date: Created in 2020/4/19 15:19
  * @modified:
  */
