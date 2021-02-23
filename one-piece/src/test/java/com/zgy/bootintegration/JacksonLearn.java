@@ -29,9 +29,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author z.g.y
- * @date 2020/7/6
- * @description 我们所说的String， 都是符合json格式的string
+ * @author: z.g.y
+ * @date: 2020/7/6
+ * @description: 我们所说的String, 都是符合json格式的string
  */
 public class JacksonLearn {
     static ObjectMapper mapper = new ObjectMapper();

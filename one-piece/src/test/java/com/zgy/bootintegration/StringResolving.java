@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author z.g.y
- * @date 2020/7/3
- * @description
+ * @author: z.g.y
+ * @date: 2020/7/3
+ * @description:
  */
 public class StringResolving {
     private static ObjectMapper mapper = new ObjectMapper();

@@ -24,9 +24,9 @@ interface MyDefaultMethod {
 }
 
 /**
- * @author z.g.y
- * @date 2020/6/15
- * @description 介绍
+ * @author: z.g.y
+ * @date: 2020/6/15
+ * @description: 介绍
  * * 使用规律:
  * * 总体要求: ->作为区分，左边是参数(无参), 右边是操作，调用得结果
  * * 参数(无参) -> do SomeThing ;  result = call;

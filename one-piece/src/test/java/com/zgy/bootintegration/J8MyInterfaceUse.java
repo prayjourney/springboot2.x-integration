@@ -24,11 +24,7 @@ interface MyInterface {
 }
 
 /**
-<<<<<<< HEAD
- * @author z.g.y
-=======
  * @author: z.g.y
->>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/6/21 13:05
  * @modified:

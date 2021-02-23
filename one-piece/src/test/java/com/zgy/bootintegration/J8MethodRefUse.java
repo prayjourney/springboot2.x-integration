@@ -14,10 +14,10 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
- * @author z.g.y
- * @date 2020/6/17
- * @description 如果Lambda表达式体中的内容已有方法实现，那么我们就可以直接使用，而不用再去写一遍，这个时候就可以使用"方法引用"来代替
- * @Type 类型
+ * @author: z.g.y
+ * @date: 2020/6/17
+ * @description: 如果Lambda表达式体中的内容已有方法实现，那么我们就可以直接使用，而不用再去写一遍，这个时候就可以使用"方法引用"来代替
+ * @type: 类型
  * * 对象::实例方法
  * * 类::静态方法
  * * 类::实例方法
@@ -32,7 +32,7 @@ import java.util.stream.Stream;
  * 方法引用的类型和使用，其实前几种没有太大的问题，主要是注意入参和返回值，对于后面的构造器和数组，主要是要理解，
  * 我们是要通过它来创建出我们的对象或者数组，所以一定要有返回值，意味着就不能使用消费接口去生成，而应该使用供给或者函数接口去生成，
  * 至于入参的多少，我们就要根据情况来决定了。
- * @Ref 参考链接
+ * @ref: 参考链接
  * https://www.jianshu.com/p/ba2e025cca37
  * https://www.cnblogs.com/yangfei629/p/11426986.html
  * https://blog.csdn.net/weixin_45225595/article/details/106203264

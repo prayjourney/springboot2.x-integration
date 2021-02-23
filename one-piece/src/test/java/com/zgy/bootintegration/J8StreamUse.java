@@ -30,9 +30,9 @@ enum Status {
 }
 
 /**
- * @author z.g.y
- * @date 2020/6/16
- * @description Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
+ * @author: z.g.y
+ * @date: 2020/6/16
+ * @description: Stream操作的三个步骤：1. 创建流, 2.中间操作, 3.结束操作
  */
 public class J8StreamUse {
     // 数据准备

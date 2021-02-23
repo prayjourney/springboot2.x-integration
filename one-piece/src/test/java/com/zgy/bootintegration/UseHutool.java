@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * @author z.g.y
- * @date 2020/8/17
- * @description
+ * @author: z.g.y
+ * @date: 2020/8/17
+ * @description:
  */
 public class UseHutool {
     public static void main(String[] args) {

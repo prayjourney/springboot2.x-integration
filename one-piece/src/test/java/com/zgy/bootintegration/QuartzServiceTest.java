@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author z.g.y
- * @date 2020/5/22
- * @description 测试定时任务
+ * @author: z.g.y
+ * @date: 2020/5/22
+ * @description: 测试定时任务
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

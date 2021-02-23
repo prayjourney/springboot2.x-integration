@@ -10,9 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 
 /**
- * @author z.g.y
- * @date 2020/5/26
- * @description
+ * @author: z.g.y
+ * @date: 2020/5/26
+ * @description:
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

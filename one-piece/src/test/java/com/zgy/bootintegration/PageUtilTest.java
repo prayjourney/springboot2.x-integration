@@ -14,11 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
-<<<<<<< HEAD
- * @author z.g.y
-=======
  * @author: z.g.y
->>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/5/28 0:50
  * @modified:
