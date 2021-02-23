@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 /**
- * @author z.g.y
- * @Date 2020/8/28
- * @Description Kaptcha验证码的配置类，生成Producer
+ * @author: z.g.y
+ * @date: 2020/8/28
+ * @description: Kaptcha验证码的配置类，生成Producer
  */
 @Configuration
 public class KaptchaConfig {

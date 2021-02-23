@@ -3,7 +3,7 @@ package com.zgy.bootintegration.service;
 import com.zgy.bootintegration.pojo.Student;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020/5/31 23:13
  * @modified:

@@ -31,7 +31,11 @@ import java.lang.reflect.Method;
 }
 
 /**
+<<<<<<< HEAD
  * @author z.g.y
+=======
+ * @author: z.g.y
+>>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/6/21 11:55
  * @modified:

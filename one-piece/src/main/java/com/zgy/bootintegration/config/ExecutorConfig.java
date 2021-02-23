@@ -11,7 +11,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * @author z.g.y
+ * @Author: renjiaxin
  * @despcription: springboot的线程池配置
  * @date: Created in 2020/5/31 17:19
  * @modified:

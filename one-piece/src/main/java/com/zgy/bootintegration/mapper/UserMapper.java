@@ -5,7 +5,7 @@ import com.zgy.bootintegration.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020/5/17 21:50
  * @modified:

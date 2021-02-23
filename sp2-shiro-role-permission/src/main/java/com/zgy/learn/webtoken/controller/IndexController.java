@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- * @author z.g.y
- * @date 2021/2/1
+ * @author: z.g.y
+ * @date: 2021/2/1
  */
 @Controller
 @Slf4j

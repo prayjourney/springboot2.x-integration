@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020-11-25 上午 12:11
  * @modified:

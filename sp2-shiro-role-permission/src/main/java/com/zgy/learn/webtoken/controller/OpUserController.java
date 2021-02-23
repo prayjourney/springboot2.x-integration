@@ -15,8 +15,8 @@ import java.util.UUID;
 /**
  * OpUser表控制层
  *
- * @author z.g.y
- * @since 2021-02-01 00:57:55
+ * @author: z.g.y
+ * @date: 2021/2/1
  */
 @RestController
 @RequestMapping("opUser")

@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * @author z.g.y
- * @Date 2020/6/23
- * @Description 测试序列化
+ * @author: z.g.y
+ * @date: 2020/6/23
+ * @description: 测试序列化
  */
 @Setter
 @Getter

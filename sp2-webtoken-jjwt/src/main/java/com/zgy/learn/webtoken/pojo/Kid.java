@@ -10,9 +10,9 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * @author z.g.y
- * @Date 2021/1/13
- * @Description
+ * @author: z.g.y
+ * @date: 2021/1/13
+ * @description:
  */
 @Setter
 @Getter

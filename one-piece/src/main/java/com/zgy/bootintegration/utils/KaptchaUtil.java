@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author z.g.y
- * @Date 2020/8/28
- * @Description Kaptcha工具类，获取前端传入的String，对比验证码
+ * @author: z.g.y
+ * @date: 2020/8/28
+ * @description: Kaptcha工具类，获取前端传入的String，对比验证码
  */
 @Component
 public class KaptchaUtil {

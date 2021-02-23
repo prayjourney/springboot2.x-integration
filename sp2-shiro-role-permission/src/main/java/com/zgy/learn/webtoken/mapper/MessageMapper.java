@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * Message表数据库访问层
  *
- * @author z.g.y
- * @since 2021-02-02 15:36:43
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Mapper
 @Repository

@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author z.g.y
- * @Date 2020/5/21
- * @Description
+ * @author: z.g.y
+ * @date: 2020/5/21
+ * @description:
  */
 @Configuration
 public class ElasticSearchClientConfig {

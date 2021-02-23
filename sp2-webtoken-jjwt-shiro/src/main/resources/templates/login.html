@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>login</title>
+        <!-- 小图标 -->
+        <link href="/img/mine.ico" rel="shortcut icon" type="image/x-icon">
+        <!-- 使用了jquery -->
+        <script src="/js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-xl-10 offset-1">
+                <!-- 异步提交，获取结果 -->
+                <form action="" id="login">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="user"><strong>用户名: </strong></label>
+                        <div class="col-xl-12">
+                            <input class="form-control" id="user" name="username" placeholder="请输入用户名" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xl-2 control-label" for="pwd"><strong>密码: </strong></label>
+                        <div class="col-xl-12">
+                            <input class="form-control" id="pwd" name="password" placeholder="请输入密码" type="password">
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-left: 15px; padding-right: 15px;">
+                        <input class="btn btn-block btn-warning" onclick="reset()" type="button" value="重置"/>
+                        <input class="btn btn-block btn-success" onclick="signin()" type="button" value="登录"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            function reset() {
+                $("#user").val = "";
+                $("#pwd").val = "";
+            }
+
+            function signin() {
+                // 登录获取token, 写入localStorage, 以后每次请求都带上token
+                $.ajax({
+                    type: "post",
+                    url: "/logintoken",
+                    dataType: "json",
+                    data: {
+                        "username": $('#user').val(),
+                        "password": $('#pwd').val()
+                    },
+                    success: function (result) {
+                        // console.log(result)
+                        // token直接从后端数据之中返回, 然后存入localStorage, 然后跳转到目标页面
+                        localStorage.setItem("jwt-token", result.data)
+                        window.location.href = "/message/index"
+                    },
+                    error: function (error) {
+                        console.log(error.msg)
+                    }
+                });
+
+            }
+        </script>
+    </body>
+</html>

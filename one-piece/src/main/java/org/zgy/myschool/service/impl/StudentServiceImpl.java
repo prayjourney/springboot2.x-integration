@@ -7,12 +7,8 @@ import org.zgy.myschool.pojo.Student;
 import org.zgy.myschool.service.StudentSevice;
 
 /**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author zgy
- * @since 2020-05-19
+ * @author: zgy
+ * @since: 2020-05-19
  */
 @Service
 public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> implements StudentSevice {

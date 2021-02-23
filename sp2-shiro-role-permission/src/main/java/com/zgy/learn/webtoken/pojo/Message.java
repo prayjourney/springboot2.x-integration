@@ -11,8 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author z.g.y
- * @date 2021/2/1
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 
 @Setter

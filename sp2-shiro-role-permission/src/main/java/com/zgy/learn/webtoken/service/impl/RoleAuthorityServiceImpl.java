@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * RoleAuthority表服务实现类
  *
- * @author z.g.y
- * @since 2021-02-01 00:58:22
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Service("roleAuthorityService")
 public class RoleAuthorityServiceImpl implements RoleAuthorityService {

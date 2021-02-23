@@ -13,8 +13,8 @@ import java.util.Date;
 /**
  * Authority表控制层
  *
- * @author z.g.y
- * @since 2021-02-01 00:55:24
+ * @author: z.g.y
+ * @since: 2021-02-01 00:55:24
  */
 @RestController
 @RequestMapping("authority")

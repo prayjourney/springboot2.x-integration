@@ -1,10 +1,10 @@
-package com.zgy.learn.webtoken;
+package com.zgy.learn.token;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Sp2WebtokenJjwtShiroApplicationTests {
+class Sp2TokenJjwtShiroApplicationTests {
 
     @Test
     void contextLoads() {

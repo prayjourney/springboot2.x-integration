@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020/6/14 22:50
  * @modified:

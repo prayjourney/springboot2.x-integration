@@ -19,9 +19,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @author z.g.y
- * @Date 2020/6/24
- * @Description NoModelDataListener不能使用spring管理，所以需要自己注入，通过set注入
+ * @author: z.g.y
+ * @date: 2020/6/24
+ * @description: NoModelDataListener不能使用spring管理，所以需要自己注入，通过set注入
  */
 @Slf4j
 public class NoModelDataListener extends AnalysisEventListener<Map<Integer, String>> {

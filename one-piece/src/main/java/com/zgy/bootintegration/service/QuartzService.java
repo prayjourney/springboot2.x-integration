@@ -18,10 +18,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author z.g.y
- * @Date 2020/5/22
- * @Description
- * @url:cron的介绍博客
+ * @author: z.g.y
+ * @date: 2020/5/22
+ * @description:
+ * @url: cron的介绍博客
  * https://www.cnblogs.com/zouhong/p/11332126.html
  * https://juejin.im/entry/5bb9bfd0f265da0af609c755
  * https://www.cnblogs.com/chrischennx/p/7652087.html

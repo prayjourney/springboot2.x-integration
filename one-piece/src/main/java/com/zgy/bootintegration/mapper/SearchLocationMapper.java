@@ -5,9 +5,9 @@ import com.zgy.bootintegration.pojo.SearchLocation;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author z.g.y
- * @Date 2020/6/8
- * @Description
+ * @author: z.g.y
+ * @date: 2020/6/8
+ * @description:
  */
 @Repository
 public interface SearchLocationMapper extends BaseMapper<SearchLocation> {

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @Author zuiguangyin
- * @Date 2020/11/5
- * @Description
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description:
  */
 @Slf4j
 @Controller

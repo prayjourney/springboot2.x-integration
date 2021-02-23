@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 /**
- * @author z.g.y
- * @Date 2020/11/6
- * @Description
+ * @author: z.g.y
+ * @date: 2020/11/6
+ * @description:
  */
 @RestController
 public class UserController {

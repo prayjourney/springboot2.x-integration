@@ -13,7 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
+<<<<<<< HEAD
  * @author z.g.y
+=======
+ * @author: z.g.y
+>>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/5/23 1:34
  * @modified:

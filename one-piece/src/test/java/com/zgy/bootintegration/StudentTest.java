@@ -10,8 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author z.g.y
- * @Date 2020/5/25
- * @Description
+ * @date 2020/5/25
+ * @description
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

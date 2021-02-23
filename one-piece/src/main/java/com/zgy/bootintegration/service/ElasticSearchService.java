@@ -74,9 +74,9 @@ import java.util.function.Function;
 import static org.elasticsearch.index.query.QueryBuilders.matchAllQuery;
 
 /**
- * @author z.g.y
- * @Date 2020/5/21
- * @Description
+ * @author: z.g.y
+ * @date: 2020/5/21
+ * @description:
  */
 @Service
 @Slf4j

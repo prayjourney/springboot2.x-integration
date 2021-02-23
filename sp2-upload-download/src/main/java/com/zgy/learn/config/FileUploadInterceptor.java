@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author z.g.y
- * @date 2021/1/27
+ * @author: z.g.y
+ * @date: 2021/1/27
  */
 @Component
 public class FileUploadInterceptor implements HandlerInterceptor {

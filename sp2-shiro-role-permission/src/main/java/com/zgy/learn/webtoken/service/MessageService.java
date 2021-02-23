@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * (Message)表服务接口
  *
- * @author makejava
- * @since 2021-02-02 15:36:44
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 public interface MessageService {
 

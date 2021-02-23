@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author z.g.y
- * @Date 2021/1/13
- * @Description
+ * @date 2021/1/13
+ * @description
  */
 @Mapper
 @Repository

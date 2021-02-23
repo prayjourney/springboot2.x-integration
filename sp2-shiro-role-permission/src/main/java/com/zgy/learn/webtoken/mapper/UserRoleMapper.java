@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * UserRole表数据库访问层
  *
- * @author z.g.y
- * @since 2021-02-01 00:58:42
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Mapper
 @Repository

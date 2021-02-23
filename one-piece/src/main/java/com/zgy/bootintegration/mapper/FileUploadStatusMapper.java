@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author z.g.y
- * @Date 2020/10/12
- * @Description
+ * @author: z.g.y
+ * @date: 2020/10/12
+ * @description:
  */
 @Mapper
 @Repository

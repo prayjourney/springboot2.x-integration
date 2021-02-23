@@ -9,9 +9,9 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * @Author zuiguangyin
- * @Date 2020/11/5
- * @Description
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description:
  */
 @Getter
 @Setter

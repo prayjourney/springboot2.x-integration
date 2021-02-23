@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author zuiguangyin
- * @Date 2020/11/5
- * @Description
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description:
  */
 @Service
 public class UserServiceImpl implements UserService {

@@ -16,9 +16,9 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
 /**
- * @author z.g.y
- * @Date 2020/8/28
- * @Description Kaptcha验证码生成
+ * @author: z.g.y
+ * @date: 2020/8/28
+ * @description: Kaptcha验证码生成
  */
 @Controller
 public class ImageKaptchaController {

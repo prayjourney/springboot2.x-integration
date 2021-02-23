@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription: 使用@DATA注解涉及的东西太多, 最好使用个明确的getter, setter来代替，而equals和hashcode最好自己去写
  * @date: Created in 2020/5/17 21:41
  * @modified:

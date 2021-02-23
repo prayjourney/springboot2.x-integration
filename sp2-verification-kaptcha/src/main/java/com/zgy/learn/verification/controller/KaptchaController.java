@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
 /**
- * @author z.g.y
- * @date 2021/1/25
+ * @author: z.g.y
+ * @date: 2021/1/25
  */
 @Slf4j
 @Controller

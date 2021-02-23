@@ -12,8 +12,8 @@ import java.io.Serializable;
 /**
  * UserRole实体类
  *
- * @author z.g.y
- * @since 2021-02-01 00:58:42
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Setter
 @Getter

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author z.g.y
- * @Date 2020/5/15
- * @Description
+ * @author: z.g.y
+ * @date: 2020/5/15
+ * @description:
  */
 @RestController
 public class HelloController {

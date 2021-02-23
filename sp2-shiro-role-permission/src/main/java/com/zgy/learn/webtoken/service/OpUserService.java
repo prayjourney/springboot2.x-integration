@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * OpUser表服务接口
  *
- * @author z.g.y
- * @since 2021-02-01 00:57:54
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 public interface OpUserService {
 

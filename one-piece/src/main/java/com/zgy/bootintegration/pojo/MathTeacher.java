@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription: 数学老师
  * @date: Created in 2020/5/22 2:39
  * @modified:

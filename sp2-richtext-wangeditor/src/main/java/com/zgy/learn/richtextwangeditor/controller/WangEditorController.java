@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @author z.g.y
- * @Date 2020/11/23
- * @Description
+ * @author: z.g.y
+ * @date: 2020/11/23
+ * @description:
  */
 @Controller
 @RequestMapping("wangeditor")

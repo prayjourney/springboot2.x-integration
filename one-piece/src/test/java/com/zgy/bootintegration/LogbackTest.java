@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author z.g.y
- * @Date 2020/5/22
- * @Description
+ * @date 2020/5/22
+ * @description
  */
 @Slf4j
 public class LogbackTest {

@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Authority表服务实现类
  *
- * @author z.g.y
- * @since 2021-02-01 00:55:24
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Service("authorityService")
 public class AuthorityServiceImpl implements AuthorityService {

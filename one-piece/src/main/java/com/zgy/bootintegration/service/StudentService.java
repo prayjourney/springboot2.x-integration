@@ -14,9 +14,9 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * @author z.g.y
- * @Date 2020/5/25
- * @Description
+ * @author: z.g.y
+ * @date: 2020/5/25
+ * @description:
  */
 @Service
 public class StudentService {

@@ -12,12 +12,8 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 
 /**
- * <p>
- *
- * </p>
- *
- * @author zgy
- * @since 2020-05-19
+ * @author: zgy
+ * @since: 2020-05-19
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

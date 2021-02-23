@@ -10,7 +10,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020/8/5 1:12
  * @modified: 用户的类

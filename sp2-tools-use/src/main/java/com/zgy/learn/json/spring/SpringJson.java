@@ -6,8 +6,8 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 /**
- * @author z.g.y
- * @date 2021/1/29
+ * @author: z.g.y
+ * @date: 2021/1/29
  */
 public class SpringJson {
     public static void main(String[] args) throws JSONException {

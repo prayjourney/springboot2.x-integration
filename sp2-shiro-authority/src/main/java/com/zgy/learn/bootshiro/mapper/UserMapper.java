@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author zuiguangyin
- * @Date 2020/11/5
- * @Description
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description:
  */
 @Mapper
 @Repository

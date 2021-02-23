@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @despcription: 密码匹配器
  * @date: created in 2021-01-26
  * @modified: https://www.jianshu.com/p/dd646345d830 之中的方法有问题, 还是需要继承HashedCredentialsMatcher
- * @probleam : 还有问题
+ * @probleam: 还有问题
  */
 @Component
 public class UserMatcher extends HashedCredentialsMatcher {

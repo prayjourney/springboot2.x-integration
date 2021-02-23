@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author z.g.y
- * @Date 2020/8/6
- * @Description 生成cookie, 读取Cookie, https://blog.csdn.net/qq_35387940/article/details/83501886
+ * @author: z.g.y
+ * @date: 2020/8/6
+ * @description: 生成cookie, 读取Cookie, https://blog.csdn.net/qq_35387940/article/details/83501886
  * https://www.cnblogs.com/Johnfx-home/p/7125847.html，https://blog.csdn.net/qq_26321411/article/details/80665162
  */
 @Controller

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author z.g.y
- * @date 2021/1/18
+ * @author: z.g.y
+ * @date: 2021/1/18
  */
 @RestController
 public class HelloController {

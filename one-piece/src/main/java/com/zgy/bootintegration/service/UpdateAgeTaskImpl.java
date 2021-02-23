@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author z.g.y
- * @Date 2020/6/1
- * @Description
+ * @author: z.g.y
+ * @date: 2020/6/1
+ * @description:
  */
 @Service
 @Slf4j

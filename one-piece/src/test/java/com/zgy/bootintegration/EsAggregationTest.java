@@ -10,7 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 
 /**
+<<<<<<< HEAD
  * @author z.g.y
+=======
+ * @author: z.g.y
+>>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/5/25 2:42
  * @modified:

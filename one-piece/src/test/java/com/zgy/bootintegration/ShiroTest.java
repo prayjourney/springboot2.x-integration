@@ -9,7 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
+<<<<<<< HEAD
  * @author z.g.y
+=======
+ * @author: z.g.y
+>>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/6/15 8:39
  * @modified:

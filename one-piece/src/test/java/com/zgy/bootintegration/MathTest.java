@@ -2,8 +2,8 @@ package com.zgy.bootintegration;
 
 /**
  * @author z.g.y
- * @Date 2020/7/13
- * @Description
+ * @date 2020/7/13
+ * @description
  */
 public class MathTest {
     public static void main(String[] args) {

@@ -14,9 +14,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author z.g.y
- * @Date 2020/6/8
- * @Description
+ * @author: z.g.y
+ * @date: 2020/6/8
+ * @description:
  */
 @Alias("searchLocation")
 @Setter

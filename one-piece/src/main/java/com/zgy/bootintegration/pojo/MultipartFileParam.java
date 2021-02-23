@@ -10,9 +10,9 @@ import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @author z.g.y
- * @Date 2020/10/9
- * @Description 分块文件传输对象
+ * @author: z.g.y
+ * @date: 2020/10/9
+ * @description: 分块文件传输对象
  */
 @Setter
 @Getter

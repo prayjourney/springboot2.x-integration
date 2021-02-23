@@ -8,7 +8,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription:
  * @date: Created in 2020/8/9 12:49
  * @modified: Kid的实体

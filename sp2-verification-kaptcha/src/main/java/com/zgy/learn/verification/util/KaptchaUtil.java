@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author z.g.y
- * @date 2021/1/25
+ * @author: z.g.y
+ * @date: 2021/1/25
  */
 @Component
 public class KaptchaUtil {

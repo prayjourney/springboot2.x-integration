@@ -9,9 +9,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author zgy
- * @date 2021/1/13
- * @description Token的工具
+ * @author: zgy
+ * @date: 2021/1/13
+ * @description: Token的工具
  */
 @Component
 public class JwtTokenUtil {

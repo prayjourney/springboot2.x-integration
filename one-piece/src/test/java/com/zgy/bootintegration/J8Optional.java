@@ -8,7 +8,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Optional;
 
 /**
+<<<<<<< HEAD
  * @author z.g.y
+=======
+ * @author: z.g.y
+>>>>>>> shiro-jwt
  * @despcription:
  * @date: Created in 2020/6/21 0:28
  * @modified: java8之中的optional类

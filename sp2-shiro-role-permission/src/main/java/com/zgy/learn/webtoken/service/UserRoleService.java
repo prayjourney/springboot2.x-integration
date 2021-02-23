@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * UserRole表服务接口
  *
- * @author z.g.y
- * @since 2021-02-01 00:58:42
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 public interface UserRoleService {
 

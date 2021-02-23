@@ -4,12 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.zgy.myschool.pojo.City;
 
 /**
- * <p>
- * 服务类
- * </p>
- *
- * @author zgy
- * @since 2020-05-19
+ * @author: zgy
+ * @since: 2020-05-19
  */
 public interface CitySevice extends IService<City> {
 

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.time.LocalDateTime;
 
 /**
- * @author z.g.y
- * @Date 2020/7/2
- * @Description
+ * @author: z.g.y
+ * @date: 2020/7/2
+ * @description:
  */
 @Slf4j
 @Controller

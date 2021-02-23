@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgy.learn.token.mapper.AuthorityMapper">
+
+    <resultMap type="com.zgy.learn.token.pojo.Authority" id="AuthorityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="displayName" column="display_name" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AuthorityMap">
+        select id,
+               name,
+               display_name,
+               create_time,
+               update_time
+        from security.authority
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AuthorityMap">
+        select id,
+               name,
+               display_name,
+               create_time,
+               update_time
+        from security.authority
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AuthorityMap">
+        select
+        id, name, display_name, create_time, update_time
+        from security.authority
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="displayName != null and displayName != ''">
+                and display_name = #{displayName}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into security.authority(name, display_name, create_time, update_time)
+        values (#{name}, #{displayName}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into security.authority(name, display_name, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.displayName}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into security.authority(name, display_name, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.displayName}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        name = values(name) , display_name = values(display_name) , create_time = values(create_time) , update_time =
+        values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update security.authority
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="displayName != null and displayName != ''">
+                display_name = #{displayName},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from security.authority
+        where id = #{id}
+    </delete>
+
+</mapper>

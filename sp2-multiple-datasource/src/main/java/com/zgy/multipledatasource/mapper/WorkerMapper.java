@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author z.g.y
- * @Date 2020/10/20
- * @Description
+ * @author: z.g.y
+ * @date: 2020/10/20
+ * @description:
  */
 // @Mapper标志Mapper文件, @Repository标志DAO，有了这个就没有注入错误了
 @Mapper

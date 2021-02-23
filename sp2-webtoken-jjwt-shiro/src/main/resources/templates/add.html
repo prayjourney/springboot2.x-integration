@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>add message</title>
+        <!-- 小图标 -->
+        <link href="/img/mine.ico" rel="shortcut icon" type="image/x-icon">
+        <!-- 使用了jquery -->
+        <script src="/js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-xl-10 offset-1">
+                <form action="" id="add">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="name"><strong>消息名称: </strong></label>
+                        <div class="col-xl-12">
+                            <input class="form-control" id="name" name="name" placeholder="请输入消息名称" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xl-2 control-label" for="content"><strong>消息内容: </strong></label>
+                        <div class="col-xl-12">
+                            <textarea class="form-control" id="content" name="content" placeholder="请输入消息内容" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-left: 15px; padding-right: 15px;">
+                        <input class="btn btn-block btn-primary" onclick="reset()" type="button" value="重置"/>
+                        <input class="btn btn-block btn-success" onclick="save()" type="button" value="添加message"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            function reset() {
+                $("#name").val = "";
+                $("#content").val = "";
+            }
+
+            function save() {
+                // 从localStorage之中获取
+                let token = localStorage.getItem("jwt-token")
+                $.ajax({
+                    type: "post",
+                    url: "/message/addmsg",
+                    dataType: "json",
+                    headers: {
+                        // accept是表示客户端可以接收的数据类型, Content-Type是此次请求的数据类型, 如果没有参数, 可以不设置, 按实际设置
+                        "Accept": "application/json; charset=utf-8",
+                        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+                        "jwt-token": token
+                    },
+                    data: {
+                        "name": $('#name').val(),
+                        "content": $('#content').val()
+                    },
+                    success: function (result) {
+                        console.log(result.data)
+                        window.location.href = result.data;
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

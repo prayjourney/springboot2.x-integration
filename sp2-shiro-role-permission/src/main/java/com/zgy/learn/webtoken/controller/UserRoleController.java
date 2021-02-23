@@ -12,8 +12,8 @@ import javax.annotation.Resource;
 /**
  * UserRole表控制层
  *
- * @author z.g.y
- * @since 2021-02-01 00:58:43
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @RestController
 @RequestMapping("userRole")

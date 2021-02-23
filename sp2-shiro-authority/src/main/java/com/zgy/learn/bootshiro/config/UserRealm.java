@@ -22,9 +22,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @author zuiguangyin
- * @date 2020/11/5
- * @description 自定义的realme, 需要继承AuthorizingRealm, 此处加入Spring管理, 直接创建好了userRealm的bean
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description: 自定义的realme, 需要继承AuthorizingRealm, 此处加入Spring管理, 直接创建好了userRealm的bean
  */
 @Slf4j
 @Component

@@ -13,8 +13,8 @@ import java.util.Date;
 /**
  * OpUser实体类
  *
- * @author z.g.y
- * @since 2021-02-01 00:57:54
+ * @author: z.g.y
+ * @since: 2021-02-01 00:58:43
  */
 @Setter
 @Getter

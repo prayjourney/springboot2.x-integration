@@ -1,9 +1,9 @@
 package com.zgy.bootintegration.utils;
 
 /**
- * @author z.g.y
- * @Date 2020/5/21
- * @Description 常量
+ * @author: z.g.y
+ * @date: 2020/5/21
+ * @description: 常量
  */
 public class ConstantsAndNumber {
     public static final Integer ZERO = 0;

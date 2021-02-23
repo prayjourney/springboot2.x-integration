@@ -1,9 +1,9 @@
 package com.zgy.bootintegration.utils;
 
 /**
- * @author z.g.y
- * @Date 2020/6/5
- * @Description
+ * @author: z.g.y
+ * @date: 2020/6/5
+ * @description:
  */
 public class TestThread {
     public static void main(String[] args) throws InterruptedException {

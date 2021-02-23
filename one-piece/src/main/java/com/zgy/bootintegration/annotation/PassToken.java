@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author z.g.y
+ * @author: z.g.y
  * @despcription: 用来跳过验证的 PassToken
  * @date: Created in 2020/8/9 12:23
  * @modified: 自定义注解PassToken

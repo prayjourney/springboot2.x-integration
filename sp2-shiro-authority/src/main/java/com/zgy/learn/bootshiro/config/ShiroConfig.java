@@ -13,9 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author zuiguangyin
- * @date 2020/11/5
- * @description ShiroFilterFactoryBean用来拦截相关的请求(A), 需要交给SecurityManager(B)处理, DefaultWebSecurityManager是web上面的
+ * @author: zuiguangyin
+ * @date: 2020/11/5
+ * @description: ShiroFilterFactoryBean用来拦截相关的请求(A), 需要交给SecurityManager(B)处理, DefaultWebSecurityManager是web上面的
  * shiro功能的总管理者，而具体的配置的情况，需要从我们的自定义的realm(C)之中去获取，所以三个依赖的关系， A--->B--->C的关系。
  */
 @Configuration
