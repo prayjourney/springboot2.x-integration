@@ -1,11 +1,13 @@
 package com.zgy.learn.token.shiro.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -31,5 +33,17 @@ public class JwtPermissionsFilter extends PermissionsAuthorizationFilter {
             out.print("权限不足！");
         }
         return false;
+    }
+
+    // https://blog.csdn.net/u010606397/article/details/104110093
+    @Override
+    public boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws IOException {
+        System.out.println("123213123123213");
+        log.info("123213213");
+        HttpServletRequest req = (HttpServletRequest) request;
+        String authorization = req.getHeader("jwt-token");
+
+        Subject subject = getSubject(request, response);
+        return super.isAccessAllowed(request, response, mappedValue);
     }
 }

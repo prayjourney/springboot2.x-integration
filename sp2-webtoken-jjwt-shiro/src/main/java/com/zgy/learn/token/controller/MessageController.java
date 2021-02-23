@@ -76,7 +76,7 @@ public class MessageController {
      */
     @ResponseBody
     @PostMapping("addmsg")
-    //@RequiresPermissions("addMessage")
+    @RequiresPermissions("addMessage")
     public Result<String> createMessage(HttpServletRequest request, @RequestParam("name") String name,
                                         @RequestParam("content") String content) {
         log.info("name is:{}, content is:{}!", name, content);
