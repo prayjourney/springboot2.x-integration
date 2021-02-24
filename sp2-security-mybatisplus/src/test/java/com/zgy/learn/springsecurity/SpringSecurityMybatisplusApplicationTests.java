@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.Date;
 
 @SpringBootTest
-class SpringSecurityLearnApplicationTests {
+class SpringSecurityMybatisplusApplicationTests {
     @Autowired
     SecurityUserService securityUserService;
 

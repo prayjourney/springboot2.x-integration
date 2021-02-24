@@ -9,10 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  */
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-public class SpringSecurityLearnApplication {
+public class SpringSecurityMybatisplusApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringSecurityLearnApplication.class, args);
+        SpringApplication.run(SpringSecurityMybatisplusApplication.class, args);
     }
 
 }
