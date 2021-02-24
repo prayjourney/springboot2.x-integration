@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <!-- 上面就是thymeleaf和springsecurity5的命名空间 -->
+        <meta charset="UTF-8">
+        <title>thymeleaf</title>
+        <!-- 小图标 -->
+        <link href="/img/star.ico" rel="shortcut icon" type="image/x-icon">
+        <!-- 使用了jquery -->
+        <script src="/js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="offset-2 col-md-8">
+                <div class="row back">
+                    <h2 class="text-info text-center">thymeleaf和springsecurity整合测试</h2>
+                </div>
+                <div class="row">
+                    <h3 class="text-warning text-center">前端页面获取属性</h3>
+                </div>
+                <div class="row light">
+                    登录账号:<span sec:authentication="name"></span>
+                </div>
+                <div class="row back">
+                    登录账号:<span sec:authentication="principal.username"></span>
+                </div>
+                <div class="row light">
+                    凭证：<span sec:authentication="credentials"></span>
+                </div>
+                <div class="row back">
+                    权限和角色：<span sec:authentication="authorities"></span>
+                </div>
+                <div class="row light">
+                    客户端地址：<span sec:authentication="details.remoteAddress"></span>
+                </div>
+                <div class="row back">
+                    sessionId：<span sec:authentication="details.sessionId"></span>
+                </div>
+                <hr style="height:1px; border: none; border-top:2px dotted #49a1d8;"/>
+                <div class="row light">
+                    <h3 class="text-success text-center">权限的判断</h3>
+                </div>
+                <div class="row back">
+                    <h5 class="text-primary text-center">通过权限判断</h5>
+                </div>
+                <div class="row light">
+                    <div class="btn btn-group btn-group-sm">
+                        <button class="btn btn-success btn-sm" sec:authorize="hasAuthority('insert')">新增</button>
+                        <button class="btn btn-danger btn-sm" sec:authorize="hasAuthority('delete')">删除</button>
+                        <button class="btn btn-warning btn-sm" sec:authorize="hasAuthority('update')">修改</button>
+                        <button class="btn btn-primary btn-sm" sec:authorize="hasAuthority('select')">查看</button>
+                    </div>
+                </div>
+                <div class="row back">
+                    <h5 class="text-primary text-center">通过角色判断</h5>
+                </div>
+                <div class="row light">
+                    <div class="btn btn-group btn-group-sm">
+                        <button class="btn btn-success btn-sm" sec:authorize="hasAnyRole('admin','vip')">新增</button>
+                        <button class="btn btn-danger btn-sm" sec:authorize="hasRole('admin')">删除</button>
+                        <button class="btn btn-warning btn-sm" sec:authorize="hasRole('admin')">修改</button>
+                        <button class="btn btn-primary btn-sm" sec:authorize="hasAnyRole('admin','vip')">查看</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .back {
+                background-color: #d4e4ff
+            }
+
+            .light {
+                background-color: whitesmoke;
+            }
+        </style>
+    </body>
+
+</html>
