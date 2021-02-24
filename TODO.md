@@ -38,6 +38,9 @@
 
 - [ ] springboot整合ElasticSearch
 
-- [ ] springboot整合spring security
+- spring security
+    - [x] springboot整合spring security
+    - [x] spring security整合mybatis-plus
+    - [ ] spring security整合jwt
 
 - [ ] springboot整合java mail
