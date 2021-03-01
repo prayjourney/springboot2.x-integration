@@ -32,7 +32,9 @@
 
 - [ ] springboot整合mongodb
 
-- [ ] springboot整合swager
+- [x] springboot整合swagger
+
+- [x] springboot整合knife4j
 
 - [ ] springboot整合Quartz
 
