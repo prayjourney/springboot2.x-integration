@@ -5,12 +5,12 @@
 | 🍅 |   ⚽   |  🌷  |   🎃   |  🎡  |   ✨   |   📚   |
 | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
 | [Springboot](#Springboot) | [Mysql](#Mysql) | [Mybatis](#Mybatis) | [MybatisPlus](#MybatisPlus) | [druid](#druid) | [MongoDb](#MongoDb) | [Redis](#Redis) |
-| 👕 | 🧸 | 🏹 | ⏰ | 🏀 | ✨ | 🧣 |
-| [maven](#maven) | [file-upload](#file-upload) | [big-file-upload](#file-upload) | [Quartz](#Quartz) | [Swagger](#Swagger) | [mail](#mail) | [thread-pool](#thread-pool) |
+| 👕 | 🧸 | 🏹 | ⏰ | 🏀 | ⚾ | 🧣 |
+| [maven](#maven) | [file-upload](#file-upload) | [big-file-upload](#file-upload) | [Quartz](#Quartz) | [Swagger](#Swagger) | [Knife4j](#Knife4j) | [thread-pool](#thread-pool) |
 |   📐   |  🌍 | 🎯 | 🎱  |   📈   |   🎆  | 🚀 |
 |[Kaptcha](#Kaptcha) | [qrcode](#qrcode) | [Shiro](#Shiro) | [springsecurity](#springsecurity) | [springsession](#springsession) | [jwt](#jwt) |[ElasticSearch](#ElasticSearch)|
-|📄 | 🎁 | 🔨 |  |  |  ||
-|[logback](#logback) | [Zipkin](#Zipkin) | [hutool](#hutool) |  |  |  ||
+|📄 | 🎁 | 🔨 | ✨ |  |  ||
+|[logback](#logback) | [Zipkin](#Zipkin) | [hutool](#hutool) | [mail](#mail) |  |  ||
 |🥨 | 🥯 | 🍇 | 🍝 | 🥣 | 🥫 |🎫|
 |[html](#html) | [css](#css) | [Bootstrap](#Bootstrap) | [layui](#layui) | [javascript](#javascript) | [jQuery](#jQuery) |[Vue2](#Vue2)|
 |🍌 | 🥡 | 🎠 |  |  |  ||
