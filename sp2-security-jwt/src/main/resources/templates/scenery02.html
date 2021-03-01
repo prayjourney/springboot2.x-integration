@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>scenery02</title>
+        <!-- 小图标 -->
+        <link href="/img/star.ico" rel="shortcut icon" type="image/x-icon">
+        <!-- 使用了jquery -->
+        <script src="/js/jquery-3.4.0.min.js"></script>
+        <!-- bootstrap css文件 -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="offset-2 col-md-8">
+                <div class="row back">
+                    <h2 class="text-info text-center">下面是风景图片!</h2>
+                    <img src="/img/scenery.jpg" class="img-rounded">
+                    <img src="/img/wall.jpg" class="img-rounded"><br/>
+                    <a href="javascript:void(0);" onclick="go2_func();">测试跳转</a><br/>
+                    <button onclick="button_test()">测试button</button><br/>
+                    <a href="hello.html">hello页面</a><br/>
+                </div>
+            </div>
+        </div>
+        <style>
+            .back {
+                background-color: #d4e4ff
+            }
+        </style>
+        <script>
+            $("#test_go2_func").click(function(event) {
+                // 使a自带的方法失效，即无法调整到href中的URL
+                event.preventDefault();
+                let token = localStorage.getItem("jwt-token")
+                $.ajax({
+                    type: "get",
+                    url: "/hello",
+                    headers: {
+                        "Accept": "text/html; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "Authorization": token
+                    },
+                    success: function (result) {
+                        console.log("hello-world!!!")
+                        location.href="/test.html"
+                        console.log(result)
+                    },
+                    error: function (error) {
+                        console.log(error.msg)
+                    }
+                });
+            }
+            function go2_func() {
+                let token = localStorage.getItem("jwt-token")
+                alert('a');
+                $.ajax({
+                    type: "get",
+                    url: "/hello",
+                    headers: {
+                        // "Accept": "text/html; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "Authorization": token
+                    },
+                    success: function (result) {
+                        console.log("hello-world!!!")
+                        location.href="/test.html"
+                        console.log(result)
+                    },
+                    error: function (error) {
+                        console.log(error.msg)
+                    }
+                });
+            }
+            
+            function button_test() {
+                let token = localStorage.getItem("jwt-token")
+                $.ajax({
+                    type: "get",
+                    url: "/hello",
+                    headers: {
+                        "Accept": "text/html; charset=utf-8",
+                        "Content-Type": "text/plain; charset=utf-8",
+                        "Authorization": token
+                    },
+                    success: function (result) {
+                        console.log("使用button点击测试")
+                        location.href="/test.html"
+                        console.log(result)
+                    },
+                    error: function (error) {
+                        console.log(error.msg)
+                    }
+                });
+            }
+        </script>
+    </body>
+
+</html>
