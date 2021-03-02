@@ -33,3 +33,30 @@ spring-security-jwt, 在整合了mybatisplus的基础上开始整合jwt
 
 ### 扩展阅读
 [由前端登录验证，页面跳转，携带headers token引发的思考和尝试](https://www.cnblogs.com/southday/p/10885235.html)
+
+
+### 深入一点
+```java
+/**
+ * @question: 原先使用的登录成功之后跳转的页面, successForwardUrl("/hello"), 跳转到/hello对应的页面
+ * 现在登录陈工使用的是successHandler处理, 返回了一个token字符串, 所以就不会跳转页面了, 所以前端拿到的是字符串, 前端需要自己处理跳转。
+ * ①如果使用window.location.href="/hello", 没有传入token, 又会被拦截, 就出现了很大的问题, 所以不要使用浏览器测试, ②使用postman登录,
+ * 能不能访问, 这种情况下是要查看返回的json而不是跳转的页面, 因为此时, 后端已经不会转发页面了,③所以后端纯粹负责权限登录的验证, 全部返回json,
+ * 前端根据json结果, 自主跳转页面。
+ */
+        ...
+        http.formLogin()
+            .usernameParameter("username")
+            .passwordParameter("password")
+            .loginPage("/index")
+            // 原先使用的登录成功之后跳转的页面
+            // .successForwardUrl("/hello")
+            // 现在登录成功使用的是successHandler处理, 返回了一个token字符串, 所以就不会跳转页面了
+            .loginProcessingUrl("/login").successHandler(loginSuccessHandler).failureHandler(loginFailureHandler)
+            .and()
+            // 授权的拦截器和异常处理器, token的解析, 获取权限
+            // jwtAuthorizationFilter在UsernamePasswordAuthenticationFilter之前执行，查看有无token和解析token
+            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+            .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+        ...
+```
