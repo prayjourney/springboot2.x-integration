@@ -43,6 +43,6 @@
 - spring security
     - [x] springboot整合spring security
     - [x] spring security整合mybatis-plus
-    - [ ] spring security整合jwt
+    - [x] spring security整合jwt(说明：**jwt的方式更加适合于前后端完全分离的状态, 传统方式还是用session**)
 
 - [ ] springboot整合java mail
