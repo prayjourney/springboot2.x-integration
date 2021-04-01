@@ -1,40 +1,16 @@
 package com.zgy.learn.springsecurity.config;
 
-import com.zgy.learn.springsecurity.filter.MyUsernamePasswordAuthenticationFilter;
 import com.zgy.learn.springsecurity.handler.MyAccessDeniedHandler;
 import com.zgy.learn.springsecurity.service.MyAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AnonymousAuthenticationProvider;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.RememberMeAuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.authentication.AuthenticationManagerBeanDefinitionParser;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author: pray-journey.io
@@ -71,18 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 自定义登录页面
                 .loginPage("/index")
                 // 当发现/login时认为是登录, 必须和表单提交的地址一样, 执行LoginService的登录服务
-                // .loginProcessingUrl("/login")
-                .loginProcessingUrl("/mylogin")
+                .loginProcessingUrl("/login")
                 // 登录成功后跳转页面, 必须是post请求
-                // .successForwardUrl("/tohello")
-                .successHandler(loginSuccessHandler())
+                .successForwardUrl("/tohello")
                 // 自定义的登录成功跳转handler
                 // .successHandler(new MySuccessForwardHandler("http://www.google.com.hk"))
                 // 登录失败后跳转的页面, 必须是post请求
-                .failureForwardUrl("/toError")
-                .and()
-                .addFilterAt(new MyUsernamePasswordAuthenticationFilter(myAuthenticationManager()),
-                        UsernamePasswordAuthenticationFilter.class);
+                .failureForwardUrl("/toError");
 
         // 授权
         // 这儿的授权是采用的配置方式, 如果使用注解方式, 我们可以把下面的特定网页的这些配置注释掉
@@ -106,7 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 关闭csrf防护, 关闭csrf防护, 才能进行登录
         http.csrf().disable();
-        http.cors().disable();
 
         // 记住我, remember-me的配置
         http.rememberMe()
@@ -149,57 +119,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-
-    @Bean
-    public AuthenticationManager myAuthenticationManager() {
-        AuthenticationProvider provider1 = new AnonymousAuthenticationProvider("AnonymousAuthenticationProvider");
-        AuthenticationProvider provider2 = new RememberMeAuthenticationProvider("RememberMeAuthenticationProvider");
-        DaoAuthenticationProvider provider3 = new DaoAuthenticationProvider();
-        provider3.setUserDetailsService(myAuthenticationService);
-        provider3.setPasswordEncoder(passwordEncoder());
-        AuthenticationProvider provider4 = new AuthenticationManagerBeanDefinitionParser.NullAuthenticationProvider();
-        List<AuthenticationProvider> authenticationProviders = Arrays.asList(provider1, provider2, provider3, provider4);
-        return new ProviderManager(authenticationProviders);
-    }
-
-    /**
-     * 登陆成功，返回Token
-     */
-    @Bean
-    public AuthenticationSuccessHandler loginSuccessHandler() {
-        return new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                Authentication authentication) throws IOException, ServletException {
-                Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-                List<String> authoritiesList = authorities.stream().map(authority -> authority.toString()).
-                        collect(Collectors.toList());
-
-                // 登录成功返回消息
-                responseJson(response, HttpStatus.OK.value(), "登录成功了！！！");
-            }
-        };
-    }
-
-    public static void responseJson(HttpServletResponse response, int status, Object data) {
-        try {
-            // 跨域设置
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "*");
-            // 设置为json格式
-            response.setContentType("application/json;charset=UTF-8");
-            response.setStatus(status);
-            // 装配返回值，状态码+token
-            JSONObject object = new JSONObject();
-            object.put("status", status);
-            object.put("token", data);
-
-            response.getWriter().write(object.toString());
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
     }
 
 }
