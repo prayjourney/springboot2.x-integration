@@ -40,6 +40,10 @@
 
 - [ ] springboot整合ElasticSearch
 
+- 数据分页
+    - [x] mybatis + pagehelper
+    - [ ] mybatisplus + PaginationInterceptor
+
 - spring security
     - [x] springboot整合spring security
     - [x] spring security整合mybatis-plus
