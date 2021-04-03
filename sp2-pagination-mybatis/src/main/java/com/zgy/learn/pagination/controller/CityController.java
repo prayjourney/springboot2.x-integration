@@ -1,5 +1,6 @@
 package com.zgy.learn.pagination.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zgy.learn.pagination.pojo.City;
 import com.zgy.learn.pagination.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class CityController {
     @GetMapping("/get/id")
     public City getById(Integer ctId) {
         return cityService.getById(ctId);
+    }
+
+    @GetMapping("/get/page")
+    public PageInfo getByPage(Integer pageNum, Integer pageSize) {
+        return cityService.getByPageNumSize(pageNum, pageSize);
     }
 
 }

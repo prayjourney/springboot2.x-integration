@@ -2,6 +2,7 @@ package com.zgy.learn.pagination.mapper;
 
 import com.zgy.learn.pagination.pojo.City;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface CityMapper {
     City getById(Integer ctId);
 
     List<City> getAllCities();
+
+    List<City> getByPageNumSize(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
 }

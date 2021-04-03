@@ -1,5 +1,7 @@
 package com.zgy.learn.pagination.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zgy.learn.pagination.mapper.CityMapper;
 import com.zgy.learn.pagination.pojo.City;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +27,12 @@ public class CityService {
 
     public List<City> getAllCities() {
         return cityMapper.getAllCities();
+    }
+
+    public PageInfo getByPageNumSize(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<City> cityList = cityMapper.getByPageNumSize(pageNum, pageSize);
+        PageInfo pageInfo = new PageInfo(cityList);
+        return pageInfo;
     }
 }

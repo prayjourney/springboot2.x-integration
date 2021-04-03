@@ -12,7 +12,13 @@
         FROM `city`
         WHERE ctId = #{ctId}
     </select>
+
     <select id="getAllCities" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+    </select>
+
+    <select id="getByPageNumSize" resultMap="CityMap">
         SELECT ctId, ctName, ctProvince
         FROM `city`
     </select>
