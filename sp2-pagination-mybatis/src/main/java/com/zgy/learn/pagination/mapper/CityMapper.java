@@ -45,4 +45,16 @@ public interface CityMapper {
                                          @Param("pageNum") Integer pageNum,
                                          @Param("pageSize") Integer pageSize);
 
+    /**
+     * 条件分页, 通过对象传参
+     *
+     * @param city
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<City> getByObjectConditionPageNumSize(@Param("city") City city,
+                                               @Param("pageNum") Integer pageNum,
+                                               @Param("pageSize") Integer pageSize);
+
 }

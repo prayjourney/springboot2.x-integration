@@ -52,4 +52,20 @@ public class CityController {
         return cityService.getByConditionPageNumSize(ctId, ctName, ctProvince, pageNum, pageSize);
     }
 
+    @GetMapping("/get/page/obj/condition")
+    public PageInfo getByObjectConditionPage(Integer ctId, String ctName, String ctProvince, Integer pageNum, Integer pageSize) {
+        City city = new City();
+        city.setCtId(ctId).setCtName(ctName).setCtProvince(ctProvince);
+        if (null == ctId || "".equals(ctId)) {
+            city.setCtId(null);
+        }
+        if (StringUtils.isBlank(ctName)) {
+            city.setCtName(null);
+        }
+        if (StringUtils.isBlank(ctProvince)) {
+            city.setCtProvince(null);
+        }
+        return cityService.getByObjectConditionPageNumSize(city, pageNum, pageSize);
+    }
+
 }

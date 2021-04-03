@@ -42,4 +42,12 @@ public class CityService {
         PageInfo pageInfo = new PageInfo(cityList);
         return pageInfo;
     }
+
+    public PageInfo getByObjectConditionPageNumSize(City city, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<City> cityList = cityMapper.getByObjectConditionPageNumSize(city, pageNum, pageSize);
+        PageInfo pageInfo = new PageInfo(cityList);
+        return pageInfo;
+    }
+
 }

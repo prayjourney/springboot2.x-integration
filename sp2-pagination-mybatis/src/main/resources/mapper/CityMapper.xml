@@ -39,6 +39,22 @@
         </where>
     </select>
 
+    <select id="getByObjectConditionPageNumSize" resultType="com.zgy.learn.pagination.pojo.City">
+        SELECT ctId, ctName, ctProvince
+        FROM `city` as ct
+        <where>
+            <if test="city.ctId!=null">
+                ct.ctId = #{city.ctId}
+            </if>
+            <if test="city.ctName!=null">
+                and ct.ctName = #{city.ctName}
+            </if>
+            <if test="city.ctProvince!=null">
+                and ct.ctProvince = #{city.ctProvince}
+            </if>
+        </where>
+    </select>
+
 
 </mapper>
 
