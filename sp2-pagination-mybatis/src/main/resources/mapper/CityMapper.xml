@@ -23,6 +23,22 @@
         FROM `city`
     </select>
 
+    <select id="getByConditionPageNumSize" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+        <where>
+            <if test="ctId!=null">
+                ctId = #{ctId}
+            </if>
+            <if test="ctName!=null">
+                and ctName = #{ctName}
+            </if>
+            <if test="ctProvince!=null">
+                and ctProvince = #{ctProvince}
+            </if>
+        </where>
+    </select>
+
 
 </mapper>
 

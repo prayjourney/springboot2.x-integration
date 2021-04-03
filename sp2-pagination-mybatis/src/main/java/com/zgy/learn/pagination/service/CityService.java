@@ -35,4 +35,11 @@ public class CityService {
         PageInfo pageInfo = new PageInfo(cityList);
         return pageInfo;
     }
+
+    public PageInfo getByConditionPageNumSize(Integer ctId, String ctName, String ctProvince, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<City> cityList = cityMapper.getByConditionPageNumSize(ctId, ctName, ctProvince, pageNum, pageSize);
+        PageInfo pageInfo = new PageInfo(cityList);
+        return pageInfo;
+    }
 }

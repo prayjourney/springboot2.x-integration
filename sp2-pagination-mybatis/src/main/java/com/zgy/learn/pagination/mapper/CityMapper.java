@@ -20,6 +20,29 @@ public interface CityMapper {
 
     List<City> getAllCities();
 
+    /**
+     * 无条件分页
+     *
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     List<City> getByPageNumSize(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+
+    /**
+     * 条件分页
+     *
+     * @param ctId
+     * @param ctName
+     * @param ctProvince
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    List<City> getByConditionPageNumSize(@Param("ctId") Integer ctId,
+                                         @Param("ctName") String ctName,
+                                         @Param("ctProvince") String ctProvince,
+                                         @Param("pageNum") Integer pageNum,
+                                         @Param("pageSize") Integer pageSize);
 
 }

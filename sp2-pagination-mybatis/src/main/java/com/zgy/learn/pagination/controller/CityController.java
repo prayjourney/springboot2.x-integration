@@ -3,6 +3,7 @@ package com.zgy.learn.pagination.controller;
 import com.github.pagehelper.PageInfo;
 import com.zgy.learn.pagination.pojo.City;
 import com.zgy.learn.pagination.service.CityService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,20 @@ public class CityController {
     @GetMapping("/get/page")
     public PageInfo getByPage(Integer pageNum, Integer pageSize) {
         return cityService.getByPageNumSize(pageNum, pageSize);
+    }
+
+    @GetMapping("/get/page/condition")
+    public PageInfo getByConditionPage(Integer ctId, String ctName, String ctProvince, Integer pageNum, Integer pageSize) {
+        if (null == ctId || "".equals(ctId)) {
+            ctId = null;
+        }
+        if (StringUtils.isBlank(ctName)) {
+            ctName = null;
+        }
+        if (StringUtils.isBlank(ctProvince)) {
+            ctProvince = null;
+        }
+        return cityService.getByConditionPageNumSize(ctId, ctName, ctProvince, pageNum, pageSize);
     }
 
 }
