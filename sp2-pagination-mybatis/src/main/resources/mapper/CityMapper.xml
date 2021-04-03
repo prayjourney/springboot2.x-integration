@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zgy.learn.pagination.mapper.CityMapper">
+    <resultMap type="com.zgy.learn.pagination.pojo.City" id="CityMap">
+        <result property="ctId" column="ctId" jdbcType="INTEGER"/>
+        <result property="ctName" column="ctName" jdbcType="VARCHAR"/>
+        <result property="ctProvince" column="ctProvince" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getById" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+        WHERE ctId = #{ctId}
+    </select>
+
+    <select id="getAllCities" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+    </select>
+
+    <select id="getByPageNumSize" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+    </select>
+
+    <select id="getByConditionPageNumSize" resultMap="CityMap">
+        SELECT ctId, ctName, ctProvince
+        FROM `city`
+        <where>
+            <if test="ctId!=null">
+                ctId = #{ctId}
+            </if>
+            <if test="ctName!=null">
+                and ctName = #{ctName}
+            </if>
+            <if test="ctProvince!=null">
+                and ctProvince = #{ctProvince}
+            </if>
+        </where>
+    </select>
+
+    <select id="getByObjectConditionPageNumSize" resultType="com.zgy.learn.pagination.pojo.City">
+        SELECT ctId, ctName, ctProvince
+        FROM `city` as ct
+        <where>
+            <if test="city.ctId!=null">
+                ct.ctId = #{city.ctId}
+            </if>
+            <if test="city.ctName!=null">
+                and ct.ctName = #{city.ctName}
+            </if>
+            <if test="city.ctProvince!=null">
+                and ct.ctProvince = #{city.ctProvince}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
+
