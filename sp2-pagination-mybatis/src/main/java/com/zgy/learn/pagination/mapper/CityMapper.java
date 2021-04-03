@@ -4,6 +4,8 @@ import com.zgy.learn.pagination.pojo.City;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author: pray-journey.io
  * @description:
@@ -14,5 +16,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface CityMapper {
     City getById(Integer ctId);
+
+    List<City> getAllCities();
 
 }

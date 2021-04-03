@@ -5,6 +5,8 @@ import com.zgy.learn.pagination.pojo.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author: pray-journey.io
  * @description:
@@ -19,5 +21,9 @@ public class CityService {
 
     public City getById(Integer ctId) {
         return cityMapper.getById(ctId);
+    }
+
+    public List<City> getAllCities() {
+        return cityMapper.getAllCities();
     }
 }

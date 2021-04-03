@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author: pray-journey.io
  * @description:
@@ -18,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CityController {
     @Autowired
     private CityService cityService;
+
+    @GetMapping("/get/all")
+    public List<City> getAllCities() {
+        return cityService.getAllCities();
+    }
 
     @GetMapping("/get/id")
     public City getById(Integer ctId) {
