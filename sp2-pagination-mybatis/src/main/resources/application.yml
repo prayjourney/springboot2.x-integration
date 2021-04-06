@@ -8,21 +8,21 @@ spring:
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
-    # Hikari\u8FDE\u63A5\u6C60\u914D\u7F6E
+    # Hikari连接池配置
     hikari:
-      # \u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570\u91CF
+      # 最小空闲连接数量
       minimum-idle: 5
-      # \u7A7A\u95F2\u8FDE\u63A5\u5B58\u6D3B\u6700\u5927\u65F6\u95F4, \u9ED8\u8BA4600000(10\u5206\u949F)
+      # 空闲连接存活最大时间, 默认600000(10分钟)
       idle-timeout: 180000
-      # \u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570, \u9ED8\u8BA4\u662F10
+      # 连接池最大连接数, 默认是10
       maximum-pool-size: 10
-      # \u6B64\u5C5E\u6027\u63A7\u5236\u4ECE\u6C60\u8FD4\u56DE\u7684\u8FDE\u63A5\u7684\u9ED8\u8BA4\u81EA\u52A8\u63D0\u4EA4\u884C\u4E3A, \u9ED8\u8BA4\u503Ctrue
+      # 此属性控制从池返回的连接的默认自动提交行为, 默认值true
       auto-commit: true
-      # \u8FDE\u63A5\u6C60\u540D\u79F0
+      # 连接池名称
       pool-name: MyHikariCP
-      # \u6B64\u5C5E\u6027\u63A7\u5236\u6C60\u4E2D\u8FDE\u63A5\u7684\u6700\u957F\u751F\u547D\u5468\u671F, \u503C0\u8868\u793A\u65E0\u9650\u751F\u547D\u5468\u671F, \u9ED8\u8BA41800000\u537330\u5206\u949F
+      # 此属性控制池中连接的最长生命周期, 值0表示无限生命周期, 默认1800000即30分钟
       max-lifetime: 1800000
-      # \u6570\u636E\u5E93\u8FDE\u63A5\u8D85\u65F6\u65F6\u95F4, \u9ED8\u8BA430\u79D2, \u537330000
+      # 数据库连接超时时间, 默认30秒, 即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
 
