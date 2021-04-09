@@ -5,6 +5,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 /**
  * @author: z.g.y
  * @date: 2021/4/7
+ * @desc: 使用Spring提供的AnnotationUtils，然后完成对象的设置
  */
 public class GetApple {
     @Fruit(kind = "富士", origin = {"烟台", "富平"})
