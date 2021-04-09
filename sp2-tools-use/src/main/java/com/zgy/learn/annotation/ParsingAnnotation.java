@@ -8,11 +8,11 @@ import org.springframework.core.annotation.AnnotationUtils;
  * @date: 2021/4/7
  */
 public class ParsingAnnotation {
-    public static String parsingTestByHutool() throws NoSuchFieldException {
+    public static boolean parsingTestByHutool() throws NoSuchFieldException {
         if (AnnotationUtil.hasAnnotation(Computer.class.getDeclaredField("brand"), MyAnnotation.class)) {
-            return "true";
+            return true;
         }
-        return "false";
+        return false;
     }
 
     public static Computer parsingByHutool() throws NoSuchFieldException {
@@ -38,6 +38,31 @@ public class ParsingAnnotation {
         return computer;
     }
 
+    public static boolean parsingTestBySpring() throws NoSuchFieldException {
+        MyAnnotation annotation = AnnotationUtils.findAnnotation(Computer.class.getDeclaredField("kind"),
+                MyAnnotation.class);
+        System.out.println(annotation);
+        return true;
+    }
+
+
+    public static Computer parsingBySpring() throws NoSuchFieldException {
+        Computer computer = new Computer();
+        MyAnnotation brand = AnnotationUtils.findAnnotation(Computer.class.getDeclaredField("brand"),
+                MyAnnotation.class);
+        MyAnnotation kind = AnnotationUtils.findAnnotation(Computer.class.getDeclaredField("kind"),
+                MyAnnotation.class);
+        MyAnnotation price = AnnotationUtils.findAnnotation(Computer.class.getDeclaredField("price"),
+                MyAnnotation.class);
+
+        System.out.printf("brand: %s \n", brand.value());
+        System.out.printf("kind: %s \n", kind.value());
+        System.out.printf("price: %s \n", price.value());
+        computer.setBrand(brand.value()).setKind(kind.value()).setPrice(Integer.valueOf(price.value()));
+        return computer;
+
+    }
+
     public static void main(String[] args) throws NoSuchFieldException {
         System.out.println(parsingTestByHutool());
         System.out.println("===================");
@@ -48,6 +73,13 @@ public class ParsingAnnotation {
         computer2.setBrand("asus").setPrice(7777);
         System.out.println(computer2);
         System.out.println("===================");
+
+        parsingTestBySpring();
+        Computer computer3 = parsingBySpring();
+        Computer computer4 = parsingBySpring();
+        System.out.println(computer3);
+        computer4.setBrand("dell").setPrice(6666);
+        System.out.println(computer4);
 
     }
 }
