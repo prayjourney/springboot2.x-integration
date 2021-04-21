@@ -36,7 +36,7 @@
 
 - [x] springboot整合knife4j
 
-- [ ] springboot整合Quartz
+- [x] springboot整合Quartz
 
 - [ ] springboot整合ElasticSearch
 
