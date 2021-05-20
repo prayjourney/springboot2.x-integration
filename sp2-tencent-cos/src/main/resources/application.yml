@@ -1,0 +1,12 @@
+server:
+  port: 8899
+
+
+# 腾讯云cos参数
+tenxun:
+  cos:
+    bucket: xxxx-bucket
+    region: ap-shanghai
+    secretId: xxxx
+    secretKey: xxxx
+    path: xxxx
