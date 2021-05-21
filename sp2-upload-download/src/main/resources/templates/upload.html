@@ -122,9 +122,15 @@
                         <input id="fileinput05" name="files" type="file" multiple class="file-loading">
                     </div>
 
-                    <!-- 上传时候添加额外的参数 -->
+                    <!-- 上传时候添加额外的参数, 固定参数-->
                     <div class="form-border">
                         <input id="fileinput06" name="files" type="file" multiple class="file-loading">
+                    </div>
+
+                    <!-- 上传时候添加额外的参数, 动态参数 -->
+                    <div class="form-border">
+                        <input id="param" name="name" type="text">
+                        <input id="fileinput07" name="files" type="file" multiple class="file-loading">
                     </div>
 
                     <a class="form-control" style="margin-top: 10px; background-color: rgba(45,255,225,0.29)">
@@ -326,6 +332,40 @@
 
             //上传成功后执行
             $("#fileinput06").on("fileinput05", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput07").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFiles02",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                layoutTemplates: {
+                    actionUpload: '', // 去掉上传按钮
+                },
+                maxFileSize: 2048, // 最大文件限制2MB
+                browseClass: 'btn btn-primary',
+                msgFilesTooMany: "最多只允许上传5个文件",
+                allowedPreviewExtensions: ['jpg', 'png', 'txt'], // 允许预览的类型
+                // 添加额外参数, 替代form的作用
+                // uploadExtraData: {
+                //     // 固定的参数值
+                //     "name": "123-hello",
+                // },
+                // 额外添加的参数, 动态获取参数值
+                uploadExtraData: function (previewId, index) {
+                    // 携带其他一些数据的格式
+                    var data = {
+                        name: $("#param").val()
+                    };
+                    return data;
+                },
+            });
+
+            //上传成功后执行
+            $("#fileinput07").on("fileinput05", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
