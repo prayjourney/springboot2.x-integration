@@ -87,6 +87,7 @@
                         <span class="text-dark " style="font-size: 16px;">3.不显示拖拽,有文件后可以预览; </span>&nbsp;&nbsp;
                         <span class="text-danger " style="font-size: 16px;">4.单一文件,很多设置,多了就会替换; </span>&nbsp;&nbsp;
                         <span class="text-info " style="font-size: 16px;">5.多个文件上传,预览控制; </span>&nbsp;&nbsp;
+                        <span class="text-info " style="font-size: 16px;">6.添加额外参数; </span>&nbsp;&nbsp;
                     </a>
                     <!-- 允许所有类型 -->
                     <div class="form-border">
@@ -119,6 +120,11 @@
                     <!-- multiple控制了能否上传多个, maxFileCount控制了最多的个数, 可以同时并发上传 -->
                     <div class="form-border">
                         <input id="fileinput05" name="files" type="file" multiple class="file-loading">
+                    </div>
+
+                    <!-- 上传时候添加额外的参数 -->
+                    <div class="form-border">
+                        <input id="fileinput06" name="files" type="file" multiple class="file-loading">
                     </div>
 
                     <a class="form-control" style="margin-top: 10px; background-color: rgba(45,255,225,0.29)">
@@ -295,6 +301,31 @@
 
             //上传成功后执行
             $("#fileinput05").on("fileinput05", function (event, data, previewId, index) {
+                console.log(data.response.msg);
+            });
+        </script>
+
+        <script>
+            $("#fileinput06").fileinput({
+                language: 'zh',
+                uploadUrl: "/file/uploadFiles02",
+                showClose: false, // 不显示关闭按钮
+                maxFileCount: 5,
+                layoutTemplates: {
+                    actionUpload: '', // 去掉上传按钮
+                },
+                browseClass: 'btn btn-primary',
+                msgFilesTooMany: "最多只允许上传5个文件",
+                allowedPreviewExtensions: ['jpg', 'png', 'txt'], // 允许预览的类型
+                // 添加额外参数, 替代form的作用
+                uploadExtraData: {
+                    // 固定写死了
+                    "name": "123",
+                },
+            });
+
+            //上传成功后执行
+            $("#fileinput06").on("fileinput05", function (event, data, previewId, index) {
                 console.log(data.response.msg);
             });
         </script>
