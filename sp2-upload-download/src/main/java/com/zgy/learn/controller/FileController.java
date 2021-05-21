@@ -126,10 +126,12 @@ public class FileController {
                 files[i].transferTo(dest);
             } catch (Exception e) {
                 log.error("发生错误: {}", e);
+                result.put("code", 400);
                 result.put("error", e.getMessage());
                 return result.toString();
             }
         }
+        result.put("code", 200);
         result.put("success", "文件上传成功!");
         return result.toString();
     }

@@ -346,7 +346,8 @@
                     actionUpload: '', // 去掉上传按钮
                 },
                 maxFileSize: 2048, // 最大文件限制2MB
-                browseClass: 'btn btn-primary',
+                browseClass: 'btn btn-danger', // 按钮样式
+                uploadClass: 'btn btn-success',
                 msgFilesTooMany: "最多只允许上传5个文件",
                 allowedPreviewExtensions: ['jpg', 'png', 'txt'], // 允许预览的类型
                 // 添加额外参数, 替代form的作用
@@ -362,11 +363,20 @@
                     };
                     return data;
                 },
-            });
+            }).on("fileuploaded", function (event, data, previewId, index) {
+                var result = data.response;
+                // 上传成功
+                if (result.code == 200) {
+                    // 上传成功, 去除预览的图片
+                    $(event.target).fileinput('clear').fileinput('unlock')
+                    $(event.target).parent().siblings('.fileinput-remove').hide()
 
-            //上传成功后执行
-            $("#fileinput07").on("fileinput05", function (event, data, previewId, index) {
-                console.log(data.response.msg);
+                } else if (result.code == 400) {
+                    console.log("error!")
+                } else {
+                    // 后端返回错误
+                    console.log("error! please check!!!")
+                }
             });
         </script>
     </body>
