@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
 
 /**
  * @author: zgy
@@ -16,6 +17,7 @@ public class UseFileChannelBuffer {
     public static void main(String[] args) throws IOException {
         useFileChannel01();
         useFileChannelCopy();
+        directBuffer();
     }
 
     /**
@@ -47,6 +49,7 @@ public class UseFileChannelBuffer {
         outChannel.close();
         fis.close();
         fos.close();
+        System.out.println("完毕: 输入输出流+通道...");
 
     }
 
@@ -74,6 +77,33 @@ public class UseFileChannelBuffer {
         }
         inChannel.close();
         outChannel.close();
+        System.out.println("完毕: 完全使用fileChannel进行拷贝...");
 
     }
+
+    /**
+     * 使用直接缓冲区
+     *
+     * @throws IOException
+     */
+    public static void directBuffer() throws IOException {
+        LocalDateTime start = LocalDateTime.now();
+        FileChannel inChannel =
+                FileChannel.open(Paths.get("D:/迅雷下载/兹山鱼谱.The.Book.of.Fish.2021.HD1080P.韩语中字.TSKS.mkv"),
+                        StandardOpenOption.READ);
+        FileChannel outChannel = FileChannel.open(Paths.get("D:/迅雷下载/兹山鱼谱.mkv"),
+                StandardOpenOption.READ, StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+
+        // 1. 定义直接缓冲区
+        ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
+        while (inChannel.read(byteBuffer) != -1) {
+            byteBuffer.flip();
+            outChannel.write(byteBuffer);
+            byteBuffer.clear();
+        }
+        LocalDateTime end = LocalDateTime.now();
+        System.out.printf("开始时间: %s, 结束时间: %s", start.toString(), end.toString());
+
+    }
+
 }
