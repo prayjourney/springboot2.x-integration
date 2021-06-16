@@ -37,6 +37,9 @@ public class UseBuffer {
     public static void readBufferData() throws UnsupportedEncodingException {
         // 1. 分配指定大小的缓冲区, 非直接缓冲区
         ByteBuffer buffer = ByteBuffer.allocate(1024);
+        System.out.println("capacity: " + buffer.capacity());
+        System.out.println("limit: " + buffer.limit());
+        System.out.println("position: " + buffer.position());
         String str = "十步杀一人，千里不留行。";
         // 2. 使用put把数据放入到缓冲区
         buffer.put(str.getBytes("UTF-8"));
@@ -46,6 +49,11 @@ public class UseBuffer {
         byte[] bytes = new byte[buffer.limit()];
         buffer.get(bytes);
         System.out.println(new String(bytes, 0, bytes.length));
+
+        // capacity是总容量大小, limit是实际占用的大小, position是实际
+        System.out.println("capacity: " + buffer.capacity());
+        System.out.println("limit: " + buffer.limit());
+        System.out.println("position: " + buffer.position());
     }
 
 }
