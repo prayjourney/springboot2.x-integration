@@ -4,13 +4,14 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 
 /**
- * @author zgy
- * @date 2021/6/16
+ * @author: zgy
+ * @date:2021/6/16
  */
 public class UseBuffer {
     public static void main(String[] args) throws UnsupportedEncodingException {
         allocateBuffer();
         readBufferData();
+        reReadAndClear();
     }
 
     /**
@@ -27,6 +28,7 @@ public class UseBuffer {
         System.out.println("capacity: " + buf.capacity());
         System.out.println("limit: " + buf.limit());
         System.out.println("position: " + buf.position());
+        System.out.println("=========================\n");
     }
 
     /**
@@ -54,6 +56,47 @@ public class UseBuffer {
         System.out.println("capacity: " + buffer.capacity());
         System.out.println("limit: " + buffer.limit());
         System.out.println("position: " + buffer.position());
+        System.out.println("=========================\n");
+    }
+
+    /**
+     * 重复读取+清空缓冲区
+     *
+     * @throws UnsupportedEncodingException
+     */
+    public static void reReadAndClear() throws UnsupportedEncodingException {
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+        System.out.println("capacity: " + buffer.capacity());
+        System.out.println("limit: " + buffer.limit());
+        System.out.println("position: " + buffer.position());
+        buffer.put("十步杀一人，千里不留行。".getBytes("UTF-8"));
+        buffer.flip();
+        byte[] bts = new byte[buffer.limit()];
+        // ByteBuffer byteBuffer = buffer.get(bts);
+        // System.out.println(new String(byteBuffer.toString())); // java.nio.HeapByteBuffer[pos=36 lim=36 cap=1024]
+
+        buffer.get(bts);
+        System.out.println(new String(bts));
+        System.out.println("==>capacity: " + buffer.capacity());
+        System.out.println("==>limit: " + buffer.limit());
+        System.out.println("==>position: " + buffer.position());
+
+        // 5. 重复读取
+        buffer.rewind();
+        System.out.println("<==capacity: " + buffer.capacity());
+        System.out.println("<==limit: " + buffer.limit());
+        System.out.println("<==position: " + buffer.position());
+        byte[] bts02 = new byte[buffer.limit()];
+        buffer.get(bts02);
+        System.out.println(new String(bts02));
+
+        // 6. 清空缓冲区
+        buffer.clear();
+        System.out.println("***capacity: " + buffer.capacity());
+        System.out.println("***limit: " + buffer.limit());
+        System.out.println("***position: " + buffer.position());
+        System.out.println("=========================\n");
+
     }
 
 }
