@@ -36,4 +36,21 @@ public class WriteExcelService {
         workbook.write(fos);
     }
 
+    public void writeList(List<PrimaryStudent> students, String fileName) throws IOException {
+        /**
+         *  excel生成的工具类:
+         *  ExportParams：一些基本配置, 名字, sheet名字
+         *  POIEmployee.class :导出的对象的类型
+         *  list：要导出的数据
+         */
+        List<PrimaryStudent> data = new ArrayList<>();
+        data.addAll(students);
+        Workbook workbook = ExcelExportUtil.exportExcel(new ExportParams("员工信息", "员工表"),
+                PrimaryStudent.class, data);
+
+        //写一个文件输出流，把内存中的excel文件写出去
+        FileOutputStream fos = new FileOutputStream(fileName);
+        workbook.write(fos);
+    }
+
 }
