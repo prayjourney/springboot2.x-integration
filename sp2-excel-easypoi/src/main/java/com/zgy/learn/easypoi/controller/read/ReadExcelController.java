@@ -40,4 +40,36 @@ public class ReadExcelController {
 
         return "读取完成！";
     }
+
+    /**
+     * 设置需要读取的行数
+     *
+     * @param file
+     * @param line
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("read-setline")
+    public String readExcel(MultipartFile file, Integer line) throws Exception {
+        if (null == file || line < 0) {
+            return "输入文件不合法！";
+        }
+
+        // 导入的参数的设置
+        ImportParams params = new ImportParams();
+        // 设置表头所在的行, 从第1行开始
+        params.setHeadRows(2);
+        // 开始读取的sheet位置, 默认为0
+        params.setStartSheetIndex(0);
+        // 手动控制读取的行数, 目前来看这个是要-表头head的一行, 剩下的就是可以读取的数量
+        params.setReadRows(line);
+
+        List<PrimaryStudent> result = ExcelImportUtil.importExcel(file.getInputStream(),
+                PrimaryStudent.class, params);
+        for (PrimaryStudent student : result) {
+            System.out.println(student.toString());
+        }
+
+        return "读取完成！";
+    }
 }
