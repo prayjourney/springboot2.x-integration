@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @author zgy
  * @date 2021/7/28
- * @description Date和LocalDateTime格式化, 主要用于时间的展示, 具体怎么存储的, 没有什么问题
+ * @description LocalDateTimeUtil 对LocalDateTime格式化, DateUtil对Date格式化
  */
 @Data
 @Accessors(chain = true)
