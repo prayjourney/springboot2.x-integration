@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zgy.multipledatasource.mapper.db2.SceneryMapper">
+    <select id="selectById" resultType="com.zgy.multipledatasource.pojo.Scenery" parameterType="java.lang.Integer">
+        SELECT *
+        FROM `scenery`
+        WHERE `id` = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM `scenery`
+        WHERE `id` = #{id}
+    </delete>
+
+    <select id="selectSceneryCountryById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT `country`
+        FROM `scenery`
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="getSceneryNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT `name`
+        FROM `scenery`
+        WHERE `id` = #{id}
+    </select>
+</mapper>
