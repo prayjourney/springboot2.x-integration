@@ -18,7 +18,7 @@
     - [x] jdbc方式
     - [x] redis方式
 - springboot+mybatis整合多数据源
-    - [ ] package方式
+    - [x] package方式
     - [x] dynamic datasource方式
 - springboot整合jwt
     - [x] java-jwt方式
