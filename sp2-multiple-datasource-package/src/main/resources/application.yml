@@ -19,3 +19,7 @@ spring:
 # 这个可以写可以不写, 写的话也行, 不写的话也行, 主要最好在dbconfig之中设置好, 就可以了
 # mybatis:
 #   mapper-locations: classpath:mapper/db1/*.xml,classpath*:mapper/db2/*.xml
+# log配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
